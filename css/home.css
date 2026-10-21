@@ -1,1261 +1,245 @@
-
-/* ==========================================
-   BRUTBOX & CO.
-   HOME PAGE STYLESHEET
-   File: css/home.css
-   Project: Men's Essentials E-Commerce
-   Phase 01 - HTML & CSS
-========================================== */
-
-
-/* ==========================================
-   1. HOME PAGE VARIABLES
-========================================== */
-
-:root {
-  --home-primary: #182536;
-  --home-secondary: #293b4d;
-  --home-accent: #ba8957;
-  --home-gold: #dbba8e;
-  --home-light: #f6f3ee;
-  --home-white: #ffffff;
-  --home-text: #263444;
-  --home-muted: #66717d;
-  --home-border: #e6e3df;
-  --home-shadow: 0 12px 35px rgba(24, 37, 54, 0.08);
-  --home-radius: 6px;
-  --home-transition: 0.3s ease;
-}
-
-
-/* ==========================================
-   2. HOME PAGE GENERAL SETTINGS
-========================================== */
-
-body {
-  background-color: var(--home-white);
-  color: var(--home-text);
-}
-
-main {
-  width: 100%;
-  overflow: hidden;
-}
-
-.section {
-  position: relative;
-}
-
-.section-heading {
-  margin-bottom: 35px;
-}
-
-.section-heading h2 {
-  color: var(--home-primary);
-  font-weight: 800;
-}
-
-.section-heading > p {
-  color: var(--home-muted);
-  line-height: 1.8;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  font-weight: 800;
-}
-
-
-/* ==========================================
-   3. TOP ANNOUNCEMENT BAR
-========================================== */
-
-.announcement {
-  background: var(--home-primary);
-  color: #f8e7cf;
-
-  padding: 10px 15px;
-
-  text-align: center;
-  font-size: 10px;
-  font-weight: 700;
-
-  letter-spacing: 0.2em;
-}
-
-
-/* ==========================================
-   4. HOME HEADER
-========================================== */
-
-.site-header {
-  background: rgba(255, 255, 255, 0.98);
-
-  border-bottom: 1px solid var(--home-border);
-
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.03);
-}
-
-.header-inner {
-  min-height: 78px;
-}
-
-/* Brand Logo */
-
-.brand {
-  color: var(--home-primary);
-
-  font-size: 23px;
-  font-weight: 900;
-
-  letter-spacing: 0.08em;
-
-  transition: color var(--home-transition);
-}
-
-.brand:hover {
-  color: var(--home-accent);
-}
-
-.brand span {
-  color: var(--home-accent);
-}
-
-/* Navigation Links */
-
-.desktop-nav a {
-  position: relative;
-  color: var(--home-muted);
-
-  font-weight: 700;
-  font-size: 14px;
-
-  padding: 10px 0;
-
-  transition: color var(--home-transition);
-}
-
-.desktop-nav a:hover {
-  color: var(--home-primary);
-}
-
-.desktop-nav a[aria-current="page"] {
-  color: var(--home-primary);
-}
-
-.desktop-nav a::after {
-  content: "";
-
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-
-  width: 0;
-  height: 2px;
-
-  background: var(--home-accent);
-
-  transition: width var(--home-transition);
-}
-
-.desktop-nav a:hover::after,
-.desktop-nav a[aria-current="page"]::after {
-  width: 100%;
-}
-
-/* Header Shop Button */
-
-.header-shop {
-  background: var(--home-primary);
-  color: white;
-
-  border-radius: 4px;
-
-  padding: 12px 18px;
-
-  font-size: 12px;
-  font-weight: 800;
-
-  transition:
-    background var(--home-transition),
-    transform var(--home-transition);
-}
-
-.header-shop:hover {
-  background: var(--home-accent);
-  transform: translateY(-2px);
-}
-
-
-/* ==========================================
-   5. HOME HERO SECTION
-========================================== */
-
+/* Homepage-specific improvements */
 .hero {
-  position: relative;
-
-  background:
-    radial-gradient(
-      circle at 90% 15%,
-      rgba(186, 137, 87, 0.12),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #182536 0%,
-      #24374a 100%
-    );
-
-  overflow: hidden;
+  background:var(--navy);
+  overflow:hidden
 }
 
-/* Background Decoration */
-
-.hero::before {
-  content: "";
-
-  position: absolute;
-
-  width: 420px;
-  height: 420px;
-
-  right: -180px;
-  top: -200px;
-
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
-  border-radius: 50%;
-
-  pointer-events: none;
+.hero-grid {
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:55px;
+  align-items:center;
+  padding-top:75px;
+  padding-bottom:75px;
+  min-height:600px
 }
 
-.hero::after {
-  content: "";
-
-  position: absolute;
-
-  width: 350px;
-  height: 350px;
-
-  left: -200px;
-  bottom: -200px;
-
-  border: 1px solid rgba(255, 255, 255, 0.06);
-
-  border-radius: 50%;
-
-  pointer-events: none;
+.hero-copy h1 {
+  color:#fff;
+  margin:0;
+  font-size:clamp(2.75rem,5.4vw,5.25rem);
+  letter-spacing:-.065em
 }
 
-/* Hero Container */
-
-.hero-layout {
-  position: relative;
-  z-index: 1;
-
-  display: grid;
-
-  grid-template-columns: 1.14fr 0.86fr;
-
-  align-items: center;
-
-  gap: 65px;
-
-  min-height: 550px;
-
-  padding-top: 70px;
-  padding-bottom: 70px;
+.hero-copy h1 em {
+  color:var(--gold-light);
+  font-style:normal
 }
 
-
-/* ==========================================
-   6. HERO CONTENT
-========================================== */
-
-.hero-copy {
-  max-width: 650px;
+.hero-copy>p:not(.eyebrow) {
+  max-width:500px;
+  color:#d0d8e0;
+  font-size:15px;
+  margin:24px 0 29px
 }
-
-.hero .eyebrow {
-  color: var(--home-gold);
-
-  font-size: 11px;
-
-  letter-spacing: 0.23em;
-
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  margin: 0;
-
-  color: var(--home-white);
-
-  font-size: clamp(40px, 5.7vw, 72px);
-
-  font-weight: 900;
-
-  line-height: 1.1;
-
-  letter-spacing: -0.055em;
-}
-
-.hero h1 em {
-  display: inline-block;
-
-  color: var(--home-gold);
-
-  font-style: normal;
-}
-
-.hero-description {
-  max-width: 480px;
-
-  margin: 25px 0 30px;
-
-  color: #cbd5de;
-
-  font-size: 16px;
-
-  line-height: 1.9;
-}
-
-/* Hero Buttons */
 
 .hero-buttons {
-  display: flex;
-
-  align-items: center;
-
-  flex-wrap: wrap;
-
-  gap: 25px;
+  display:flex;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap
 }
 
-.hero .button-primary {
-  background: var(--home-gold);
-
-  color: var(--home-primary);
-
-  padding: 15px 23px;
-
-  border-radius: var(--home-radius);
-
-  font-weight: 800;
-
-  transition:
-    background var(--home-transition),
-    transform var(--home-transition);
+.hero-text-link {
+  color:white;
+  font-size:13px;
+  font-weight:800;
+  border-bottom:1px solid #ffffff7c;
+  padding:10px 0
 }
 
-.hero .button-primary:hover {
-  background: #edca9a;
-
-  transform: translateY(-3px);
+.hero-stat {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#bfc8d1;
+  margin-top:45px;
+  font-size:11px
 }
 
-.hero .text-link {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  color: white;
-
-  font-size: 13px;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-
-  transition: color var(--home-transition);
+.hero-stat strong {
+  font-size:24px;
+  font-family:var(--display);
+  color:var(--gold-light)
 }
 
-.hero .text-link:hover {
-  color: var(--home-gold);
+.hero-stat i {
+  height:22px;
+  border-left:1px solid #ffffff60;
+  margin:0 12px
 }
 
-.hero-note {
-  color: #a9b9c8;
-
-  margin-top: 30px;
-
-  font-size: 11px;
-
-  letter-spacing: 0.03em;
+.hero-editorial {
+  min-height:455px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:28px;
+  background:linear-gradient(135deg,#66798b,#b48f66 75%,#55453a);
+  color:#fff
 }
 
-
-/* ==========================================
-   7. HERO ART DESIGN
-========================================== */
-
-.hero-art {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-
-  justify-content: space-between;
-  align-items: stretch;
-
-  min-height: 390px;
-
-  padding: 30px;
-
-  background:
-    radial-gradient(
-      circle at 75% 25%,
-      rgba(255, 229, 192, 0.35),
-      transparent 40%
-    ),
-    linear-gradient(
-      145deg,
-      #374959,
-      #967554
-    );
-
-  border: 1px solid rgba(255, 255, 255, 0.15);
-
-  border-radius: var(--home-radius);
-
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
-
-  overflow: hidden;
+.editorial-border {
+  position:absolute;
+  inset:35px 65px;
+  border:1px solid #ffffff91;
+  transform:rotate(-12deg)
 }
 
-/* Decorative Frame */
-
-.hero-art::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 40px 75px;
-
-  border: 1px solid rgba(255, 255, 255, 0.28);
-
-  transform: rotate(-20deg);
-
-  pointer-events: none;
+.editorial-circle {
+  position:absolute;
+  right:-75px;
+  bottom:-45px;
+  width:330px;
+  height:330px;
+  border-radius:50%;
+  border:1px solid #ffffff60
 }
 
-/* Decorative Circle */
-
-.hero-art::after {
-  content: "";
-
-  position: absolute;
-
-  width: 250px;
-  height: 250px;
-
-  right: -100px;
-  bottom: 25px;
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
-
-  border-radius: 50%;
-
-  pointer-events: none;
+.editorial-top,.editorial-bottom {
+  font-size:10px;
+  letter-spacing:.2em;
+  font-weight:800;
+  z-index:1
 }
 
-.hero-art span,
-.hero-art strong {
-  position: relative;
-  z-index: 2;
+.hero-editorial strong {
+  z-index:1;
+  font-size:clamp(3.5rem,7vw,7.5rem);
+  text-align:center;
+  letter-spacing:-.12em;
+  font-family:var(--display);
+  white-space:nowrap
 }
 
-.art-top,
-.art-bottom {
-  color: #fff4e6;
-
-  font-size: 10px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.22em;
+.hero-editorial strong span {
+  color:#e7c49c
 }
 
-.hero-art strong {
-  color: #ffffff;
-
-  align-self: center;
-
-  font-size: clamp(36px, 4vw, 58px);
-
-  font-weight: 900;
-
-  letter-spacing: -0.05em;
-
-  text-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+.editorial-bottom {
+  text-align:right
 }
 
-.art-bottom {
-  align-self: flex-end;
+.promise-bar {
+  background:#eee9e0
 }
 
-
-/* ==========================================
-   8. SHOP BY CATEGORY SECTION
-========================================== */
-
-#categories {
-  padding-top: 90px;
-  padding-bottom: 90px;
-}
-
-#categories .section-heading {
-  margin-bottom: 35px;
+.promise-inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:17px 0;
+  color:#655d54;
+  font-size:10px;
+  letter-spacing:.12em;
+  font-weight:800
 }
 
 .category-grid {
-  display: grid;
-
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  gap: 16px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px
 }
 
-.category-card {
-  display: flex;
-
-  align-items: center;
-
-  gap: 15px;
-
-  min-height: 115px;
-
-  padding: 24px;
-
-  background: #ffffff;
-
-  border: 1px solid var(--home-border);
-
-  border-radius: var(--home-radius);
-
-  transition:
-    background var(--home-transition),
-    border-color var(--home-transition),
-    box-shadow var(--home-transition),
-    transform var(--home-transition);
+.category-tile {
+  min-height:166px;
+  padding:27px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border:1px solid var(--line);
+  background:#fff;
+  transition:background .2s,transform .2s
 }
 
-.category-card:hover {
-  background: #fcfaf7;
-
-  border-color: var(--home-accent);
-
-  box-shadow: var(--home-shadow);
-
-  transform: translateY(-4px);
+.category-tile:hover {
+  background:var(--ivory);
+  transform:translateY(-3px)
 }
 
-.category-number {
-  color: var(--home-accent);
-
-  font-size: 11px;
-
-  font-weight: 800;
+.category-index {
+  font-size:10px;
+  letter-spacing:.11em;
+  font-weight:800;
+  color:#95724d
 }
 
-.category-card strong {
-  flex: 1;
-
-  color: var(--home-primary);
-
-  font-size: 17px;
-
-  font-weight: 800;
+.category-tile strong {
+  font-size:23px;
+  font-family:var(--display);
+  letter-spacing:-.04em
 }
 
-.category-card > span:last-child {
-  color: var(--home-accent);
-
-  font-size: 22px;
-
-  transition: transform var(--home-transition);
+.category-arrow {
+  position:absolute;
+  bottom:24px;
+  right:26px;
+  color:#9a754b;
+  font-size:22px
 }
 
-.category-card:hover > span:last-child {
-  transform: translate(3px, -3px);
+.editorial-banner {
+  background:var(--navy-2);
+  color:white;
+  padding:65px 75px;
+  display:flex;
+  position:relative;
+  overflow:hidden
 }
 
-
-/* ==========================================
-   9. FEATURED PRODUCTS
-========================================== */
-
-#featured {
-  background: var(--home-light);
-
-  padding-top: 90px;
-  padding-bottom: 90px;
+.editorial-banner>div {
+  position:relative;
+  z-index:1
 }
 
-#featured .section-heading {
-  margin-bottom: 40px;
+.editorial-banner h2 {
+  color:white;
+  font-size:clamp(2.2rem,5vw,4.6rem);
+  margin:0
 }
 
-.product-grid {
-  display: grid;
-
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-
-  gap: 22px;
+.editorial-banner p:not(.eyebrow) {
+  color:#cdd4dc;
+  max-width:420px
 }
 
-.product-card {
-  min-width: 0;
-
-  background: transparent;
-
-  transition: transform var(--home-transition);
+.editorial-watermark {
+  position:absolute;
+  font-size:clamp(5rem,16vw,13rem);
+  font-weight:800;
+  font-family:var(--display);
+  letter-spacing:-.12em;
+  color:#ffffff13;
+  right:-20px;
+  bottom:25px
 }
 
-.product-card:hover {
-  transform: translateY(-5px);
+.values-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:35px
 }
 
-/* Product Placeholder */
-
-.product-art {
-  position: relative;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-
-  gap: 20px;
-
-  min-height: 310px;
-
-  padding: 20px;
-
-  border-radius: var(--home-radius);
-
-  overflow: hidden;
-
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
+.values-grid>div {
+  border-top:2px solid var(--navy);
+  padding-top:21px
 }
 
-.product-art::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 30px;
-
-  border: 1px solid rgba(255, 255, 255, 0.35);
-
-  transform: rotate(-8deg);
-
-  pointer-events: none;
+.value-num {
+  color:#a77b49;
+  font-weight:800;
+  font-size:12px
 }
 
-.product-art span {
-  position: relative;
-  z-index: 1;
-
-  color: white;
-
-  font-size: clamp(28px, 3vw, 46px);
-
-  font-weight: 900;
-
-  line-height: 1.05;
-
-  letter-spacing: -0.05em;
-
-  text-align: center;
+.values-grid h3 {
+  font-size:19px
 }
 
-.product-art small {
-  position: relative;
-  z-index: 1;
-
-  color: rgba(255, 255, 255, 0.8);
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.1em;
-
-  text-align: center;
+.values-grid p {
+  color:var(--muted);
+  font-size:14px
 }
-
-/* Product Colors */
-
-.product-art-one {
-  background: linear-gradient(
-    145deg,
-    #82949b,
-    #263b46
-  );
-}
-
-.product-art-two {
-  background: linear-gradient(
-    145deg,
-    #bb968c,
-    #674c50
-  );
-}
-
-.product-art-three {
-  background: linear-gradient(
-    145deg,
-    #a7a79c,
-    #555c56
-  );
-}
-
-.product-art-four {
-  background: linear-gradient(
-    145deg,
-    #c8a781,
-    #73583a
-  );
-}
-
-
-/* ==========================================
-   10. PRODUCT INFORMATION
-========================================== */
-
-.product-info {
-  padding: 18px 4px;
-}
-
-.product-info p {
-  margin: 0 0 7px;
-
-  color: #997347;
-
-  font-size: 10px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.13em;
-}
-
-.product-info h3 {
-  margin: 0 0 8px;
-
-  color: var(--home-primary);
-
-  font-size: 19px;
-
-  font-weight: 800;
-}
-
-.product-info > strong {
-  display: block;
-
-  color: var(--home-primary);
-
-  font-size: 16px;
-
-  font-weight: 800;
-}
-
-.development-note {
-  max-width: 650px;
-
-  margin: 35px auto 0;
-
-  color: var(--home-muted);
-
-  font-size: 13px;
-
-  line-height: 1.8;
-
-  text-align: center;
-}
-
-
-/* ==========================================
-   11. ABOUT / OUR VISION SECTION
-========================================== */
-
-#about {
-  padding-top: 90px;
-  padding-bottom: 90px;
-}
-
-#about .section-heading {
-  margin-bottom: 40px;
-}
-
-.benefits {
-  display: grid;
-
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  gap: 35px;
-}
-
-.benefits > div {
-  padding: 24px 0;
-
-  border-top: 2px solid var(--home-primary);
-
-  transition: border-color var(--home-transition);
-}
-
-.benefits > div:hover {
-  border-color: var(--home-accent);
-}
-
-.benefit-num {
-  color: var(--home-accent);
-
-  font-size: 12px;
-
-  font-weight: 900;
-}
-
-.benefits h3 {
-  margin: 15px 0 10px;
-
-  color: var(--home-primary);
-
-  font-size: 20px;
-
-  font-weight: 800;
-}
-
-.benefits p {
-  margin: 0;
-
-  color: var(--home-muted);
-
-  font-size: 14px;
-
-  line-height: 1.8;
-}
-
-
-/* ==========================================
-   12. HOME FOOTER
-========================================== */
-
-.site-footer {
-  background: #111b29;
-
-  color: #e4e9ed;
-}
-
-.footer-inner {
-  display: flex;
-
-  justify-content: space-between;
-  align-items: center;
-
-  gap: 30px;
-
-  padding-top: 45px;
-  padding-bottom: 45px;
-}
-
-.footer-inner strong {
-  color: white;
-
-  font-size: 19px;
-
-  font-weight: 900;
-
-  letter-spacing: 0.07em;
-}
-
-.footer-inner p {
-  color: #abb9c7;
-
-  font-size: 12px;
-}
-
-.footer-inner a {
-  color: #e4e9ed;
-
-  font-size: 12px;
-
-  font-weight: 800;
-
-  transition: color var(--home-transition);
-}
-
-.footer-inner a:hover {
-  color: var(--home-gold);
-}
-
-
-/* ==========================================
-   13. TABLET RESPONSIVE
-   MAX WIDTH: 1024PX
-========================================== */
-
-@media screen and (max-width: 1024px) {
-
-  .hero-layout {
-    gap: 35px;
-  }
-
-  .hero h1 {
-    font-size: clamp(38px, 5vw, 60px);
-  }
-
-  .hero-art {
-    min-height: 330px;
-  }
-
-  .category-grid {
-    gap: 12px;
-  }
-
-  .category-card {
-    padding: 18px;
-  }
-
-  .product-grid {
-    gap: 16px;
-  }
-
-  .product-art {
-    min-height: 260px;
-  }
-
-}
-
-
-/* ==========================================
-   14. TABLET RESPONSIVE
-   MAX WIDTH: 920PX
-========================================== */
-
-@media screen and (max-width: 920px) {
-
-  .desktop-nav {
-    display: none;
-  }
-
-  .mobile-nav {
-    display: block;
-  }
-
-  .hero-layout {
-    gap: 28px;
-  }
-
-  .hero-art {
-    min-height: 290px;
-  }
-
-  .hero-art strong {
-    font-size: 40px;
-  }
-
-  .category-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 20px;
-  }
-
-  .product-art {
-    min-height: 300px;
-  }
-
-  .benefits {
-    gap: 22px;
-  }
-
-}
-
-
-/* ==========================================
-   15. MOBILE RESPONSIVE
-   MAX WIDTH: 640PX
-========================================== */
-
-@media screen and (max-width: 640px) {
-
-  /* Header */
-
-  .header-inner {
-    min-height: 64px;
-  }
-
-  .brand {
-    font-size: 17px;
-  }
-
-  .header-shop {
-    display: none;
-  }
-
-  /* Hero */
-
-  .hero-layout {
-    grid-template-columns: 1fr;
-
-    min-height: auto;
-
-    gap: 35px;
-
-    padding-top: 55px;
-    padding-bottom: 55px;
-  }
-
-  .hero h1 {
-    font-size: clamp(36px, 10vw, 50px);
-  }
-
-  .hero-description {
-    font-size: 14px;
-
-    line-height: 1.8;
-  }
-
-  .hero-buttons {
-    gap: 15px;
-  }
-
-  .hero-art {
-    min-height: 230px;
-
-    padding: 20px;
-  }
-
-  .hero-art strong {
-    font-size: 40px;
-  }
-
-  .hero-art::before {
-    inset: 20px 45px;
-  }
-
-  /* Categories */
-
-  #categories {
-    padding-top: 55px;
-    padding-bottom: 55px;
-  }
-
-  .category-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 10px;
-  }
-
-  .category-card {
-    min-height: 95px;
-
-    padding: 14px;
-
-    gap: 8px;
-  }
-
-  .category-card strong {
-    font-size: 13px;
-  }
-
-  .category-number {
-    font-size: 10px;
-  }
-
-  /* Featured Products */
-
-  #featured {
-    padding-top: 55px;
-    padding-bottom: 55px;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 14px;
-  }
-
-  .product-art {
-    min-height: 200px;
-    padding: 12px;
-  }
-
-  .product-art span {
-    font-size: 27px;
-  }
-
-  .product-art small {
-    font-size: 8px;
-  }
-
-  .product-info h3 {
-    font-size: 15px;
-  }
-
-  .product-info > strong {
-    font-size: 14px;
-  }
-
-  /* About */
-
-  #about {
-    padding-top: 55px;
-    padding-bottom: 55px;
-  }
-
-  .benefits {
-    grid-template-columns: 1fr;
-
-    gap: 20px;
-  }
-
-  .benefits h3 {
-    font-size: 18px;
-  }
-
-  /* Footer */
-
-  .footer-inner {
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 18px;
-
-    padding-top: 35px;
-    padding-bottom: 35px;
-  }
-
-}
-
-
-/* ==========================================
-   16. SMALL MOBILE
-   MAX WIDTH: 480PX
-========================================== */
-
-@media screen and (max-width: 480px) {
-
-  .brand {
-    font-size: 16px;
-  }
-
-  .hero h1 {
-    font-size: 37px;
-  }
-
-  .hero-description {
-    font-size: 13px;
-  }
-
-  .hero-art {
-    min-height: 210px;
-  }
-
-  .hero-art strong {
-    font-size: 35px;
-  }
-
-  .section-heading h2 {
-    font-size: 28px;
-  }
-
-  .category-card {
-    min-height: 85px;
-    padding: 12px;
-  }
-
-  .category-card strong {
-    font-size: 12px;
-  }
-
-  .product-art {
-    min-height: 175px;
-  }
-
-  .product-art span {
-    font-size: 23px;
-  }
-
-  .product-info h3 {
-    font-size: 14px;
-  }
-
-  .benefits p {
-    font-size: 13px;
-  }
-
-}
-
-
-/* ==========================================
-   17. EXTRA SMALL MOBILE
-   MAX WIDTH: 360PX
-========================================== */
-
-@media screen and (max-width: 360px) {
-
-  .hero h1 {
-    font-size: 33px;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hero-art strong {
-    font-size: 30px;
-  }
-
-  .category-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .product-art {
-    min-height: 250px;
-  }
-
-  .product-art span {
-    font-size: 36px;
-  }
-
-  .product-info h3 {
-    font-size: 17px;
-  }
-
-}
-
-
-/* ==========================================
-   18. ACCESSIBILITY
-========================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .category-card,
-  .product-card,
-  .header-shop,
-  .hero .button-primary,
-  .desktop-nav a {
-    transition: none !important;
-  }
-
-}
-
-
-/* ==========================================
-   END OF HOME.CSS
-   BRUTBOX & CO.
-========================================== */

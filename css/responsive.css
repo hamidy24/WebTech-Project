@@ -1,1029 +1,426 @@
-
-/* =========================================
-   BRUTBOX & CO.
-   RESPONSIVE STYLESHEET
-
-   Project: Men's Essentials E-Commerce
-   Version: Phase 01
-   Pages:
-   - index.html
-   - products.html
-   - product-details.html
-
-   Responsive Support:
-   - Large Desktop
-   - Laptop
-   - Tablet
-   - Mobile
-   - Small Mobile
-========================================= */
-
-
-/* =========================================
-   1. GENERAL RESPONSIVE SETTINGS
-========================================= */
-
-html {
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-body {
-  min-width: 0;
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-img,
-video,
-iframe {
-  max-width: 100%;
-}
-
-img {
-  height: auto;
-}
-
-.container {
-  max-width: 100%;
-}
-
-.product-card,
-.category-card,
-.details-gallery,
-.details-info {
-  min-width: 0;
-}
-
-h1,
-h2,
-h3,
-p {
-  overflow-wrap: break-word;
-}
-
-
-/* =========================================
-   2. LARGE DESKTOP
-   SCREEN: 1200px AND BELOW
-========================================= */
-
-@media screen and (max-width: 1200px) {
-
-  .container {
-    width: calc(100% - 60px);
+/* ======================================================
+   Responsive adjustments. Load AFTER page-specific CSS.
+====================================================== */
+@media(max-width:1120px) {
+  .desktop-nav {
+    gap:15px
   }
 
   .header-inner {
-    gap: 20px;
+    gap:16px
   }
 
-  .desktop-nav {
-    gap: 22px;
+  .product-grid,.catalog-grid {
+    grid-template-columns:repeat(3,minmax(0,1fr))
   }
 
-  .hero-layout {
-    gap: 45px;
+  .hero-grid {
+    gap:35px
   }
 
-  .hero-art {
-    min-height: 340px;
+  .detail-panel {
+    gap:35px
   }
 
-  .product-grid {
-    gap: 16px;
-  }
-
-  .details-layout {
-    gap: 45px;
+  .footer-grid {
+    gap:25px
   }
 
 }
 
-
-/* =========================================
-   3. LAPTOP / SMALL DESKTOP
-   SCREEN: 1024px AND BELOW
-========================================= */
-
-@media screen and (max-width: 1024px) {
-
-  .container {
-    width: calc(100% - 48px);
-  }
-
-  /* Header */
-
-  .brand {
-    font-size: 20px;
-  }
-
+@media(max-width:900px) {
   .desktop-nav {
-    gap: 18px;
-  }
-
-  .desktop-nav a {
-    font-size: 13px;
-  }
-
-  /* Hero */
-
-  .hero-layout {
-    grid-template-columns: 1fr 0.85fr;
-    gap: 30px;
-    min-height: 470px;
-  }
-
-  .hero h1 {
-    font-size: clamp(40px, 5vw, 60px);
-  }
-
-  .hero-description {
-    font-size: 14px;
-  }
-
-  .hero-art {
-    min-height: 320px;
-  }
-
-  /* Categories */
-
-  .category-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .category-card {
-    padding: 18px;
-  }
-
-  /* Products */
-
-  .product-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .product-art {
-    min-height: 250px;
-  }
-
-  .product-info h3 {
-    font-size: 16px;
-  }
-
-  /* Product Details */
-
-  .details-layout {
-    gap: 35px;
-  }
-
-  .details-image {
-    min-height: 420px;
-  }
-
-}
-
-
-/* =========================================
-   4. TABLET VIEW
-   SCREEN: 920px AND BELOW
-========================================= */
-
-@media screen and (max-width: 920px) {
-
-  /* Navigation */
-
-  .desktop-nav {
-    display: none;
+    display:none
   }
 
   .mobile-nav {
-    display: block;
+    display:block
   }
 
-  .header-inner {
-    min-height: 70px;
+  .header-login {
+    display:none
   }
 
-  .header-actions {
-    margin-left: auto;
+  .hero-grid {
+    grid-template-columns:1fr 1fr
   }
 
-  /* Hero */
-
-  .hero-layout {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 25px;
+  .hero-editorial {
+    min-height:360px
   }
 
-  .hero h1 {
-    font-size: clamp(36px, 5.2vw, 54px);
+  .hero-editorial strong {
+    font-size:4rem
   }
 
-  .hero-art {
-    min-height: 290px;
+  .hero-copy h1 {
+    font-size:clamp(2.4rem,5vw,4rem)
   }
 
-  .hero-art strong {
-    font-size: 39px;
+  .promise-inner {
+    font-size:9px
   }
-
-  /* Sections */
-
-  .section {
-    padding-top: 65px;
-    padding-bottom: 65px;
-  }
-
-  /* Categories */
 
   .category-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns:repeat(2,minmax(0,1fr))
   }
 
-  /* Products */
-
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+  .detail-panel {
+    grid-template-columns:1fr;
+    gap:28px
   }
 
-  .product-art {
-    min-height: 300px;
+  .detail-gallery {
+    max-width:650px
   }
 
-  .product-art span {
-    font-size: 42px;
+  .detail-media {
+    min-height:410px;
+    aspect-ratio:5/4
   }
 
-  /* About */
-
-  .benefits {
-    gap: 18px;
+  .cart-layout,.checkout-layout {
+    grid-template-columns:1fr
   }
 
-  /* Product Details */
-
-  .details-layout {
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
+  .summary-card {
+    position:static
   }
 
-  .details-image {
-    min-height: 350px;
+  .auth-section {
+    gap:25px
   }
 
-}
-
-
-/* =========================================
-   5. TABLET PORTRAIT
-   SCREEN: 800px AND BELOW
-========================================= */
-
-@media screen and (max-width: 800px) {
-
-  .container {
-    width: calc(100% - 40px);
+  .footer-grid {
+    grid-template-columns:repeat(2,1fr)
   }
 
-  /* Hero */
-
-  .hero-layout {
-    grid-template-columns: 1fr 1fr;
-    min-height: auto;
-    padding-top: 55px;
-    padding-bottom: 55px;
-  }
-
-  .hero h1 {
-    font-size: 40px;
-  }
-
-  .hero-description {
-    line-height: 1.7;
-  }
-
-  .hero-art {
-    min-height: 270px;
-  }
-
-  .hero-art strong {
-    font-size: 34px;
-  }
-
-  /* Section Heading */
-
-  .section-heading h2 {
-    font-size: 31px;
-  }
-
-  /* Product Details */
-
-  .details-layout {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .details-image {
-    min-height: 430px;
-  }
-
-  .details-info h1 {
-    font-size: 38px;
-  }
-
-  .add-cart-btn {
-    max-width: 420px;
-  }
-
-  .form-group select,
-  .form-group input {
-    max-width: 420px;
-  }
-
-  /* Benefits */
-
-  .benefits {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-  }
-
-  .benefits > div:last-child {
-    grid-column: 1 / -1;
+  .admin-stats {
+    grid-template-columns:repeat(2,1fr)
   }
 
 }
 
-
-/* =========================================
-   6. MOBILE VIEW
-   SCREEN: 640px AND BELOW
-========================================= */
-
-@media screen and (max-width: 640px) {
-
-  /* Global */
-
+@media(max-width:700px) {
   .container {
-    width: calc(100% - 28px);
+    width:min(calc(100% - 28px),var(--max))
   }
-
-  body {
-    font-size: 14px;
-  }
-
-  /* Announcement */
-
-  .announcement {
-    padding: 8px 10px;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-  }
-
-  /* Header */
 
   .header-inner {
-    min-height: 64px;
-    gap: 10px;
+    min-height:64px
   }
 
   .brand {
-    font-size: 17px;
-    letter-spacing: 0.04em;
+    font-size:19px
   }
 
-  .header-shop {
-    display: none;
+  .topbar {
+    font-size:9px;
+    letter-spacing:.07em
   }
-
-  .mobile-nav {
-    display: block;
-  }
-
-  .mobile-nav summary {
-    font-size: 13px;
-    padding: 8px;
-  }
-
-  .mobile-menu-panel {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    width: min(260px, calc(100vw - 28px));
-    min-width: 0;
-    z-index: 50;
-  }
-
-  /* Hero */
-
-  .hero-layout {
-    grid-template-columns: 1fr;
-    gap: 35px;
-    min-height: auto;
-    padding: 58px 0;
-  }
-
-  .hero-copy {
-    width: 100%;
-  }
-
-  .hero h1 {
-    font-size: clamp(36px, 10vw, 50px);
-    line-height: 1.12;
-  }
-
-  .hero-description {
-    max-width: 100%;
-    margin-top: 20px;
-    margin-bottom: 25px;
-    font-size: 14px;
-  }
-
-  .eyebrow {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-  }
-
-  .hero-buttons {
-    gap: 16px;
-  }
-
-  .button {
-    min-height: 44px;
-    padding: 12px 16px;
-    font-size: 12px;
-  }
-
-  .text-link {
-    font-size: 12px;
-  }
-
-  .hero-note {
-    font-size: 10px;
-  }
-
-  /* Hero Artwork */
-
-  .hero-art {
-    min-height: 230px;
-    padding: 22px;
-  }
-
-  .hero-art strong {
-    font-size: 42px;
-  }
-
-  .hero-art::before {
-    inset: 20px 45px;
-  }
-
-  .art-top,
-  .art-bottom {
-    font-size: 9px;
-    letter-spacing: 0.15em;
-  }
-
-  /* General Sections */
 
   .section {
-    padding-top: 55px;
-    padding-bottom: 55px;
+    padding-top:62px;
+    padding-bottom:62px
   }
 
   .section-heading {
-    display: block;
-    margin-bottom: 25px;
+    display:block
   }
 
-  .section-heading h2 {
-    font-size: 29px;
+  .section-heading>p {
+    margin-top:13px
   }
 
-  .section-heading > p {
-    max-width: 100%;
-    margin-top: 12px;
-    font-size: 13px;
+  .hero-grid {
+    grid-template-columns:1fr;
+    padding-top:55px;
+    padding-bottom:55px;
+    gap:35px
   }
 
-  /* Categories */
-
-  .category-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+  .hero-copy h1 {
+    font-size:clamp(2.5rem,10vw,4.4rem)
   }
 
-  .category-card {
-    min-height: 95px;
-    padding: 13px;
-    gap: 8px;
+  .hero-editorial {
+    min-height:270px
   }
 
-  .category-number {
-    font-size: 10px;
+  .hero-editorial strong {
+    font-size:4.5rem
   }
 
-  .category-card strong {
-    font-size: 13px;
-    line-height: 1.4;
+  .promise-inner {
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:7px 24px
   }
 
-  .category-card > span:last-child {
-    font-size: 16px;
+  .promise-inner span:nth-child(3) {
+    display:none
   }
 
-  /* Products */
-
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 13px;
+  .product-grid,.catalog-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:15px
   }
 
-  .product-art {
-    min-height: 210px;
-    padding: 12px;
-    gap: 12px;
+  .product-media {
+    min-height:170px;
+    aspect-ratio:4/5
   }
 
-  .product-art span {
-    font-size: 28px;
+  .product-media strong {
+    font-size:clamp(1.35rem,4vw,2rem)
   }
 
-  .product-art small {
-    font-size: 8px;
-    letter-spacing: 0.06em;
+  .product-media .media-kicker,.product-media .media-caption {
+    font-size:8px
   }
 
-  .product-art::before {
-    inset: 18px;
+  .product-card-meta {
+    font-size:9px
   }
 
-  .product-info {
-    padding-top: 12px;
+  .product-card-meta span:last-child {
+    display:none
   }
 
-  .product-info p {
-    font-size: 11px;
+  .product-card-info h3 {
+    font-size:15px
   }
 
-  .product-info h3 {
-    font-size: 15px;
-    line-height: 1.4;
+  .product-card-bottom {
+    display:block
   }
 
-  .product-info > strong {
-    font-size: 13px;
+  .product-card-bottom span {
+    display:block;
+    text-align:left
   }
 
-  .product-info .button {
-    width: 100%;
-    margin-top: 12px;
-    padding: 10px;
-    font-size: 11px;
-    text-align: center;
+  .editorial-banner {
+    padding:50px 25px
   }
 
-  .development-note {
-    font-size: 11px;
-    line-height: 1.7;
+  .values-grid {
+    grid-template-columns:1fr;
+    gap:18px
   }
 
-  /* Benefits */
-
-  .benefits {
-    grid-template-columns: 1fr;
-    gap: 26px;
+  .page-hero {
+    padding-top:36px;
+    padding-bottom:25px
   }
 
-  .benefits > div:last-child {
-    grid-column: auto;
+  .detail-wrapper {
+    padding-top:15px
   }
 
-  .benefits h3 {
-    font-size: 17px;
+  .detail-media {
+    min-height:330px
   }
 
-  .benefits p {
-    font-size: 13px;
+  .detail-actions {
+    flex-direction:column
   }
 
-  /* Product Details */
-
-  .breadcrumb {
-    padding: 15px 0;
-    font-size: 12px;
+  .detail-actions .btn {
+    width:100%
   }
 
-  .details-layout {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    margin-bottom: 35px;
+  .cart-item {
+    grid-template-columns:85px minmax(0,1fr);
+    gap:15px
   }
 
-  .details-image {
-    min-height: 320px;
-    padding: 22px;
+  .item-cost {
+    grid-column:2;
+    justify-items:start
   }
 
-  .details-image span {
-    font-size: 39px;
+  .cart-thumbnail {
+    align-self:start
   }
 
-  .details-info h1 {
-    font-size: 32px;
+  .auth-section {
+    grid-template-columns:1fr;
+    padding-top:28px;
+    padding-bottom:50px
   }
 
-  .details-category {
-    font-size: 11px;
+  .auth-aside {
+    min-height:275px;
+    padding:34px 28px
   }
 
-  .details-price {
-    font-size: 24px;
+  .auth-deco {
+    font-size:28px
   }
 
-  .details-description {
-    font-size: 14px;
+  .auth-card {
+    padding:25px 0
   }
 
-  .form-group {
-    margin-bottom: 18px;
+  .receipt-layout {
+    grid-template-columns:1fr;
+    gap:20px
   }
 
-  .form-group label {
-    font-size: 13px;
+  .receipt-explainer {
+    padding:0
   }
 
-  .form-group select,
-  .form-group input {
-    max-width: 100%;
-    min-height: 45px;
+  .footer-grid {
+    grid-template-columns:1fr 1fr;
+    gap:30px 20px;
+    padding-top:45px;
+    padding-bottom:45px
   }
 
-  .quantity-input {
-    max-width: 120px !important;
+  .footer-bottom {
+    display:block
   }
 
-  .add-cart-btn {
-    width: 100%;
-    max-width: 100%;
-    min-height: 48px;
-    font-size: 13px;
-  }
-
-  .details-features {
-    padding: 16px;
-  }
-
-  .details-features p {
-    font-size: 12px;
-  }
-
-  .product-extra {
-    padding-top: 25px;
-    padding-bottom: 40px;
-  }
-
-  .product-extra h2 {
-    font-size: 24px;
-  }
-
-  .product-extra p {
-    font-size: 13px;
-  }
-
-  /* Footer */
-
-  .footer-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
-  .footer-inner strong {
-    font-size: 16px;
-  }
-
-  .footer-inner p,
-  .footer-inner a {
-    font-size: 11px;
+  .footer-bottom span {
+    display:block;
+    margin-top:4px
   }
 
 }
 
-
-/* =========================================
-   7. SMALL MOBILE
-   SCREEN: 480px AND BELOW
-========================================= */
-
-@media screen and (max-width: 480px) {
-
-  .container {
-    width: calc(100% - 24px);
-  }
-
-  /* Header */
-
+@media(max-width:430px) {
   .brand {
-    font-size: 16px;
+    font-size:16px
   }
 
-  .header-inner {
-    min-height: 60px;
+  .cart-pill {
+    padding:8px 9px;
+    gap:6px
   }
-
-  /* Hero */
-
-  .hero-layout {
-    padding-top: 45px;
-    padding-bottom: 45px;
-  }
-
-  .hero h1 {
-    font-size: 37px;
-  }
-
-  .hero-description {
-    font-size: 13px;
-  }
-
-  .hero-art {
-    min-height: 210px;
-  }
-
-  .hero-art strong {
-    font-size: 36px;
-  }
-
-  /* Categories */
 
   .category-grid {
-    gap: 8px;
+    grid-template-columns:1fr
   }
 
-  .category-card {
-    flex-wrap: wrap;
-    min-height: 90px;
-    padding: 12px;
+  .category-tile {
+    min-height:125px;
+    padding:20px
   }
 
-  .category-card strong {
-    font-size: 12px;
+  .product-grid,.catalog-grid {
+    grid-template-columns:1fr 1fr;
+    gap:10px
   }
 
-  .category-card > span:last-child {
-    margin-left: auto;
+  .product-media {
+    padding:12px
   }
 
-  /* Product Grid */
-
-  .product-grid {
-    gap: 10px;
+  .product-media strong {
+    font-size:19px
   }
 
-  .product-art {
-    min-height: 175px;
-    padding: 10px;
+  .product-media .media-caption {
+    margin-top:6px
   }
 
-  .product-art span {
-    font-size: 24px;
+  .product-card-bottom strong {
+    font-size:14px
   }
 
-  .product-art small {
-    font-size: 7px;
+  .hero-editorial strong {
+    font-size:3.2rem
   }
 
-  .product-info h3 {
-    font-size: 14px;
+  .detail-price span {
+    display:block;
+    margin-left:0
   }
 
-  .product-info p {
-    font-size: 10px;
+  .form-grid {
+    grid-template-columns:1fr
   }
 
-  .product-info .button {
-    min-height: 40px;
-    padding: 9px 6px;
-    font-size: 10px;
+  .form-grid .full-span {
+    grid-column:auto
   }
 
-  /* Product Details */
-
-  .details-image {
-    min-height: 270px;
+  .payment-option {
+    padding:12px
   }
 
-  .details-image span {
-    font-size: 34px;
+  .checkout-bottom {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch
   }
 
-  .details-info h1 {
-    font-size: 29px;
+  .checkout-bottom .btn {
+    width:100%
   }
 
-  .details-price {
-    font-size: 22px;
+  .footer-grid {
+    grid-template-columns:1fr
+  }
+
+  .admin-section-title {
+    display:block
+  }
+
+  .receipt-paper {
+    padding:5mm 3mm
   }
 
 }
 
-
-/* =========================================
-   8. EXTRA SMALL MOBILE
-   SCREEN: 360px AND BELOW
-========================================= */
-
-@media screen and (max-width: 360px) {
-
-  .brand {
-    font-size: 14px;
+@media(max-width:340px) {
+  .product-grid,.catalog-grid {
+    grid-template-columns:1fr
   }
 
-  .hero h1 {
-    font-size: 33px;
+  .product-media {
+    aspect-ratio:4/3
   }
 
   .hero-buttons {
-    flex-direction: column;
-    align-items: flex-start;
+    display:flex;
+    align-items:stretch;
+    flex-direction:column
   }
 
-  .hero-art strong {
-    font-size: 31px;
-  }
-
-  .section-heading h2 {
-    font-size: 25px;
-  }
-
-  .category-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .category-card {
-    min-height: 72px;
-  }
-
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .product-art {
-    min-height: 240px;
-  }
-
-  .product-art span {
-    font-size: 35px;
-  }
-
-  .product-info h3 {
-    font-size: 17px;
-  }
-
-  .product-info .button {
-    font-size: 12px;
-  }
-
-  .details-image {
-    min-height: 230px;
+  .hero-stat {
+    flex-wrap:wrap
   }
 
 }
 
-
-/* =========================================
-   9. LANDSCAPE MOBILE SUPPORT
-========================================= */
-
-@media screen and
-(max-height: 500px) and
-(orientation: landscape) {
-
-  .hero-layout {
-    min-height: auto;
-    padding-top: 35px;
-    padding-bottom: 35px;
-  }
-
-  .hero-art {
-    min-height: 190px;
-  }
-
-  .section {
-    padding-top: 40px;
-    padding-bottom: 40px;
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto!important;
+    transition:none!important;
+    animation:none!important
   }
 
 }
-
-
-/* =========================================
-   10. TOUCH SCREEN OPTIMIZATION
-========================================= */
-
-@media (pointer: coarse) {
-
-  .mobile-nav summary {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .mobile-menu-panel a {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
-
-  .button,
-  .header-shop,
-  .add-cart-btn {
-    min-height: 44px;
-  }
-
-  .category-card {
-    touch-action: manipulation;
-  }
-
-}
-
-
-/* =========================================
-   11. ACCESSIBILITY
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-}
-
-
-/* =========================================
-   12. PRINT RESPONSIVE SETTINGS
-========================================= */
 
 @media print {
-
-  .announcement,
-  .site-header,
-  .mobile-nav,
-  .hero-buttons,
-  .add-cart-btn,
-  .site-footer {
-    display: none !important;
+  .topbar,.site-header,.site-footer,.hero-buttons,.page-hero,.receipt-explainer,.checkout-bottom {
+    display:none!important
   }
 
   body {
-    color: #000;
-    background: #fff;
-  }
-
-  .hero {
-    background: #fff;
-    color: #000;
-  }
-
-  .hero h1,
-  .hero h1 em {
-    color: #000;
-  }
-
-  .hero-description {
-    color: #333;
+    background:#fff!important;
+    color:#000!important
   }
 
   .container {
-    width: 100%;
-    max-width: 100%;
+    width:100%!important
   }
 
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .product-card,
-  .details-layout {
-    break-inside: avoid;
+  .product-card,.receipt-paper {
+    break-inside:avoid
   }
 
 }
-
-
-/* =========================================
-   END OF RESPONSIVE.CSS
-   BRUTBOX & CO.
-========================================= */
