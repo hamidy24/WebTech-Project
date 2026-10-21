@@ -1,0 +1,1029 @@
+
+/* =========================================
+   BRUTBOX & CO.
+   RESPONSIVE STYLESHEET
+
+   Project: Men's Essentials E-Commerce
+   Version: Phase 01
+   Pages:
+   - index.html
+   - products.html
+   - product-details.html
+
+   Responsive Support:
+   - Large Desktop
+   - Laptop
+   - Tablet
+   - Mobile
+   - Small Mobile
+========================================= */
+
+
+/* =========================================
+   1. GENERAL RESPONSIVE SETTINGS
+========================================= */
+
+html {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+.container {
+  max-width: 100%;
+}
+
+.product-card,
+.category-card,
+.details-gallery,
+.details-info {
+  min-width: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: break-word;
+}
+
+
+/* =========================================
+   2. LARGE DESKTOP
+   SCREEN: 1200px AND BELOW
+========================================= */
+
+@media screen and (max-width: 1200px) {
+
+  .container {
+    width: calc(100% - 60px);
+  }
+
+  .header-inner {
+    gap: 20px;
+  }
+
+  .desktop-nav {
+    gap: 22px;
+  }
+
+  .hero-layout {
+    gap: 45px;
+  }
+
+  .hero-art {
+    min-height: 340px;
+  }
+
+  .product-grid {
+    gap: 16px;
+  }
+
+  .details-layout {
+    gap: 45px;
+  }
+
+}
+
+
+/* =========================================
+   3. LAPTOP / SMALL DESKTOP
+   SCREEN: 1024px AND BELOW
+========================================= */
+
+@media screen and (max-width: 1024px) {
+
+  .container {
+    width: calc(100% - 48px);
+  }
+
+  /* Header */
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .desktop-nav {
+    gap: 18px;
+  }
+
+  .desktop-nav a {
+    font-size: 13px;
+  }
+
+  /* Hero */
+
+  .hero-layout {
+    grid-template-columns: 1fr 0.85fr;
+    gap: 30px;
+    min-height: 470px;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 5vw, 60px);
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-art {
+    min-height: 320px;
+  }
+
+  /* Categories */
+
+  .category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .category-card {
+    padding: 18px;
+  }
+
+  /* Products */
+
+  .product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .product-art {
+    min-height: 250px;
+  }
+
+  .product-info h3 {
+    font-size: 16px;
+  }
+
+  /* Product Details */
+
+  .details-layout {
+    gap: 35px;
+  }
+
+  .details-image {
+    min-height: 420px;
+  }
+
+}
+
+
+/* =========================================
+   4. TABLET VIEW
+   SCREEN: 920px AND BELOW
+========================================= */
+
+@media screen and (max-width: 920px) {
+
+  /* Navigation */
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  .header-inner {
+    min-height: 70px;
+  }
+
+  .header-actions {
+    margin-left: auto;
+  }
+
+  /* Hero */
+
+  .hero-layout {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 25px;
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 5.2vw, 54px);
+  }
+
+  .hero-art {
+    min-height: 290px;
+  }
+
+  .hero-art strong {
+    font-size: 39px;
+  }
+
+  /* Sections */
+
+  .section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  /* Categories */
+
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  /* Products */
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .product-art {
+    min-height: 300px;
+  }
+
+  .product-art span {
+    font-size: 42px;
+  }
+
+  /* About */
+
+  .benefits {
+    gap: 18px;
+  }
+
+  /* Product Details */
+
+  .details-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .details-image {
+    min-height: 350px;
+  }
+
+}
+
+
+/* =========================================
+   5. TABLET PORTRAIT
+   SCREEN: 800px AND BELOW
+========================================= */
+
+@media screen and (max-width: 800px) {
+
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  /* Hero */
+
+  .hero-layout {
+    grid-template-columns: 1fr 1fr;
+    min-height: auto;
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .hero-description {
+    line-height: 1.7;
+  }
+
+  .hero-art {
+    min-height: 270px;
+  }
+
+  .hero-art strong {
+    font-size: 34px;
+  }
+
+  /* Section Heading */
+
+  .section-heading h2 {
+    font-size: 31px;
+  }
+
+  /* Product Details */
+
+  .details-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .details-image {
+    min-height: 430px;
+  }
+
+  .details-info h1 {
+    font-size: 38px;
+  }
+
+  .add-cart-btn {
+    max-width: 420px;
+  }
+
+  .form-group select,
+  .form-group input {
+    max-width: 420px;
+  }
+
+  /* Benefits */
+
+  .benefits {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .benefits > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+/* =========================================
+   6. MOBILE VIEW
+   SCREEN: 640px AND BELOW
+========================================= */
+
+@media screen and (max-width: 640px) {
+
+  /* Global */
+
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  /* Announcement */
+
+  .announcement {
+    padding: 8px 10px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
+  /* Header */
+
+  .header-inner {
+    min-height: 64px;
+    gap: 10px;
+  }
+
+  .brand {
+    font-size: 17px;
+    letter-spacing: 0.04em;
+  }
+
+  .header-shop {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  .mobile-nav summary {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .mobile-menu-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(260px, calc(100vw - 28px));
+    min-width: 0;
+    z-index: 50;
+  }
+
+  /* Hero */
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    min-height: auto;
+    padding: 58px 0;
+  }
+
+  .hero-copy {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 10vw, 50px);
+    line-height: 1.12;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    font-size: 14px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+
+  .hero-buttons {
+    gap: 16px;
+  }
+
+  .button {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+
+  .text-link {
+    font-size: 12px;
+  }
+
+  .hero-note {
+    font-size: 10px;
+  }
+
+  /* Hero Artwork */
+
+  .hero-art {
+    min-height: 230px;
+    padding: 22px;
+  }
+
+  .hero-art strong {
+    font-size: 42px;
+  }
+
+  .hero-art::before {
+    inset: 20px 45px;
+  }
+
+  .art-top,
+  .art-bottom {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+  }
+
+  /* General Sections */
+
+  .section {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+
+  .section-heading {
+    display: block;
+    margin-bottom: 25px;
+  }
+
+  .section-heading h2 {
+    font-size: 29px;
+  }
+
+  .section-heading > p {
+    max-width: 100%;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  /* Categories */
+
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .category-card {
+    min-height: 95px;
+    padding: 13px;
+    gap: 8px;
+  }
+
+  .category-number {
+    font-size: 10px;
+  }
+
+  .category-card strong {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .category-card > span:last-child {
+    font-size: 16px;
+  }
+
+  /* Products */
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+  }
+
+  .product-art {
+    min-height: 210px;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .product-art span {
+    font-size: 28px;
+  }
+
+  .product-art small {
+    font-size: 8px;
+    letter-spacing: 0.06em;
+  }
+
+  .product-art::before {
+    inset: 18px;
+  }
+
+  .product-info {
+    padding-top: 12px;
+  }
+
+  .product-info p {
+    font-size: 11px;
+  }
+
+  .product-info h3 {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .product-info > strong {
+    font-size: 13px;
+  }
+
+  .product-info .button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .development-note {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  /* Benefits */
+
+  .benefits {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .benefits > div:last-child {
+    grid-column: auto;
+  }
+
+  .benefits h3 {
+    font-size: 17px;
+  }
+
+  .benefits p {
+    font-size: 13px;
+  }
+
+  /* Product Details */
+
+  .breadcrumb {
+    padding: 15px 0;
+    font-size: 12px;
+  }
+
+  .details-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 35px;
+  }
+
+  .details-image {
+    min-height: 320px;
+    padding: 22px;
+  }
+
+  .details-image span {
+    font-size: 39px;
+  }
+
+  .details-info h1 {
+    font-size: 32px;
+  }
+
+  .details-category {
+    font-size: 11px;
+  }
+
+  .details-price {
+    font-size: 24px;
+  }
+
+  .details-description {
+    font-size: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group select,
+  .form-group input {
+    max-width: 100%;
+    min-height: 45px;
+  }
+
+  .quantity-input {
+    max-width: 120px !important;
+  }
+
+  .add-cart-btn {
+    width: 100%;
+    max-width: 100%;
+    min-height: 48px;
+    font-size: 13px;
+  }
+
+  .details-features {
+    padding: 16px;
+  }
+
+  .details-features p {
+    font-size: 12px;
+  }
+
+  .product-extra {
+    padding-top: 25px;
+    padding-bottom: 40px;
+  }
+
+  .product-extra h2 {
+    font-size: 24px;
+  }
+
+  .product-extra p {
+    font-size: 13px;
+  }
+
+  /* Footer */
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .footer-inner strong {
+    font-size: 16px;
+  }
+
+  .footer-inner p,
+  .footer-inner a {
+    font-size: 11px;
+  }
+
+}
+
+
+/* =========================================
+   7. SMALL MOBILE
+   SCREEN: 480px AND BELOW
+========================================= */
+
+@media screen and (max-width: 480px) {
+
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  /* Header */
+
+  .brand {
+    font-size: 16px;
+  }
+
+  .header-inner {
+    min-height: 60px;
+  }
+
+  /* Hero */
+
+  .hero-layout {
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+
+  .hero h1 {
+    font-size: 37px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .hero-art {
+    min-height: 210px;
+  }
+
+  .hero-art strong {
+    font-size: 36px;
+  }
+
+  /* Categories */
+
+  .category-grid {
+    gap: 8px;
+  }
+
+  .category-card {
+    flex-wrap: wrap;
+    min-height: 90px;
+    padding: 12px;
+  }
+
+  .category-card strong {
+    font-size: 12px;
+  }
+
+  .category-card > span:last-child {
+    margin-left: auto;
+  }
+
+  /* Product Grid */
+
+  .product-grid {
+    gap: 10px;
+  }
+
+  .product-art {
+    min-height: 175px;
+    padding: 10px;
+  }
+
+  .product-art span {
+    font-size: 24px;
+  }
+
+  .product-art small {
+    font-size: 7px;
+  }
+
+  .product-info h3 {
+    font-size: 14px;
+  }
+
+  .product-info p {
+    font-size: 10px;
+  }
+
+  .product-info .button {
+    min-height: 40px;
+    padding: 9px 6px;
+    font-size: 10px;
+  }
+
+  /* Product Details */
+
+  .details-image {
+    min-height: 270px;
+  }
+
+  .details-image span {
+    font-size: 34px;
+  }
+
+  .details-info h1 {
+    font-size: 29px;
+  }
+
+  .details-price {
+    font-size: 22px;
+  }
+
+}
+
+
+/* =========================================
+   8. EXTRA SMALL MOBILE
+   SCREEN: 360px AND BELOW
+========================================= */
+
+@media screen and (max-width: 360px) {
+
+  .brand {
+    font-size: 14px;
+  }
+
+  .hero h1 {
+    font-size: 33px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-art strong {
+    font-size: 31px;
+  }
+
+  .section-heading h2 {
+    font-size: 25px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    min-height: 72px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-art {
+    min-height: 240px;
+  }
+
+  .product-art span {
+    font-size: 35px;
+  }
+
+  .product-info h3 {
+    font-size: 17px;
+  }
+
+  .product-info .button {
+    font-size: 12px;
+  }
+
+  .details-image {
+    min-height: 230px;
+  }
+
+}
+
+
+/* =========================================
+   9. LANDSCAPE MOBILE SUPPORT
+========================================= */
+
+@media screen and
+(max-height: 500px) and
+(orientation: landscape) {
+
+  .hero-layout {
+    min-height: auto;
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  .hero-art {
+    min-height: 190px;
+  }
+
+  .section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+}
+
+
+/* =========================================
+   10. TOUCH SCREEN OPTIMIZATION
+========================================= */
+
+@media (pointer: coarse) {
+
+  .mobile-nav summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu-panel a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .button,
+  .header-shop,
+  .add-cart-btn {
+    min-height: 44px;
+  }
+
+  .category-card {
+    touch-action: manipulation;
+  }
+
+}
+
+
+/* =========================================
+   11. ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+}
+
+
+/* =========================================
+   12. PRINT RESPONSIVE SETTINGS
+========================================= */
+
+@media print {
+
+  .announcement,
+  .site-header,
+  .mobile-nav,
+  .hero-buttons,
+  .add-cart-btn,
+  .site-footer {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  .hero {
+    background: #fff;
+    color: #000;
+  }
+
+  .hero h1,
+  .hero h1 em {
+    color: #000;
+  }
+
+  .hero-description {
+    color: #333;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-card,
+  .details-layout {
+    break-inside: avoid;
+  }
+
+}
+
+
+/* =========================================
+   END OF RESPONSIVE.CSS
+   BRUTBOX & CO.
+========================================= */
