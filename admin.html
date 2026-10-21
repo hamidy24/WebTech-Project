@@ -1,0 +1,3553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Brutbox & CO. administration dashboard for demo orders and inventory.">
+
+  <title>Admin Dashboard | BRUTBOX & CO.</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+
+    :root {
+      --admin-ink: #182536;
+      --admin-muted: #647283;
+      --admin-accent: #ba8957;
+      --admin-bg: #f5f6f8;
+      --admin-line: #e3e6eb;
+      --admin-white: #ffffff;
+      --admin-green: #257548;
+      --admin-red: #b3261e;
+      --admin-yellow: #946000;
+    }
+
+    /* =====================================
+       ADMIN APPLICATION
+    ===================================== */
+
+    .admin-page {
+      min-height: 80vh;
+      padding: 35px 0 65px;
+      background: var(--admin-bg);
+    }
+
+    .admin-container {
+      width: min(calc(100% - 32px), 1400px);
+      margin: 0 auto;
+    }
+
+    .admin-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 27px;
+    }
+
+    .admin-heading h1 {
+      margin: 0 0 6px;
+      font-size: clamp(27px, 3vw, 36px);
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    .admin-heading p {
+      margin: 0;
+      color: var(--admin-muted);
+      font-size: 13px;
+    }
+
+    .admin-top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .admin-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 10px 14px;
+      border: 1px solid var(--admin-line);
+      border-radius: 4px;
+      background: white;
+      color: var(--admin-ink);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .admin-button:hover {
+      border-color: var(--admin-accent);
+    }
+
+    .admin-button.primary {
+      border-color: var(--admin-ink);
+      background: var(--admin-ink);
+      color: white;
+    }
+
+    .admin-button.primary:hover {
+      border-color: var(--admin-accent);
+      background: var(--admin-accent);
+      color: var(--admin-ink);
+    }
+
+    .admin-button.danger {
+      border-color: #eccaca;
+      color: var(--admin-red);
+    }
+
+    .admin-button.small {
+      min-height: 32px;
+      padding: 6px 10px;
+      font-size: 11px;
+    }
+
+    .admin-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* =====================================
+       DEMO NOTICE
+    ===================================== */
+
+    .admin-notice {
+      padding: 14px 17px;
+      margin-bottom: 22px;
+      border-left: 3px solid var(--admin-accent);
+      background: #fffaf2;
+      color: #68533c;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .admin-notice strong {
+      color: #70502d;
+    }
+
+    /* =====================================
+       DASHBOARD LAYOUT
+    ===================================== */
+
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 225px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .admin-sidebar {
+      padding: 15px;
+      background: var(--admin-white);
+      border: 1px solid var(--admin-line);
+    }
+
+    .admin-sidebar-title {
+      margin: 5px 9px 15px;
+      color: #8993a0;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .admin-tab {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      width: 100%;
+      min-height: 44px;
+      padding: 11px;
+      margin-bottom: 5px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: #526172;
+      text-align: left;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .admin-tab:hover {
+      background: #f6f3ee;
+      color: var(--admin-ink);
+    }
+
+    .admin-tab.active {
+      background: var(--admin-ink);
+      color: white;
+    }
+
+    .admin-tab-icon {
+      width: 22px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .admin-sidebar-note {
+      margin: 25px 5px 5px;
+      padding-top: 17px;
+      border-top: 1px solid var(--admin-line);
+      color: #7b8793;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .admin-content {
+      min-width: 0;
+    }
+
+    .admin-view {
+      display: block;
+    }
+
+    .admin-section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .admin-section-heading h2 {
+      margin: 0 0 5px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .admin-section-heading p {
+      margin: 0;
+      color: var(--admin-muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* =====================================
+       STAT CARDS
+    ===================================== */
+
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .admin-stat {
+      min-width: 0;
+      padding: 21px;
+      background: white;
+      border: 1px solid var(--admin-line);
+    }
+
+    .admin-stat-label {
+      margin: 0 0 12px;
+      color: var(--admin-muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .admin-stat-value {
+      display: block;
+      margin-bottom: 8px;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.1;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-stat-note {
+      color: #8993a0;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    /* =====================================
+       WHITE PANELS
+    ===================================== */
+
+    .admin-panel {
+      min-width: 0;
+      margin-bottom: 24px;
+      background: white;
+      border: 1px solid var(--admin-line);
+    }
+
+    .admin-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 20px;
+      border-bottom: 1px solid var(--admin-line);
+    }
+
+    .admin-panel-header h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .admin-panel-header p {
+      margin: 5px 0 0;
+      color: var(--admin-muted);
+      font-size: 11px;
+    }
+
+    /* =====================================
+       SEARCH AND FILTERS
+    ===================================== */
+
+    .admin-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--admin-line);
+    }
+
+    .admin-input,
+    .admin-select {
+      width: 100%;
+      min-width: 0;
+      min-height: 39px;
+      padding: 9px 11px;
+      border: 1px solid #d9dee5;
+      border-radius: 3px;
+      background: white;
+      color: var(--admin-ink);
+      font: inherit;
+      font-size: 12px;
+    }
+
+    .admin-search {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .admin-select {
+      width: auto;
+      min-width: 145px;
+    }
+
+    .admin-input:focus,
+    .admin-select:focus {
+      border-color: var(--admin-accent);
+      outline: 2px solid #ba895720;
+    }
+
+    /* =====================================
+       TABLES
+    ===================================== */
+
+    .admin-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .admin-table th {
+      padding: 14px 15px;
+      background: #fafbfc;
+      color: #778392;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .admin-table td {
+      padding: 15px;
+      border-top: 1px solid #edf0f3;
+      color: #354355;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+
+    .admin-table tbody tr:hover {
+      background: #fcfcfd;
+    }
+
+    .admin-main-cell {
+      color: var(--admin-ink);
+      font-weight: 800;
+    }
+
+    .admin-sub-cell {
+      display: block;
+      margin-top: 5px;
+      color: #8893a0;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-empty {
+      padding: 35px 18px;
+      color: var(--admin-muted);
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .admin-empty strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--admin-ink);
+      font-size: 16px;
+    }
+
+    /* =====================================
+       STATUS BADGES
+    ===================================== */
+
+    .admin-badge {
+      display: inline-block;
+      padding: 6px 9px;
+      border-radius: 3px;
+      background: #eef1f5;
+      color: #465365;
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .admin-badge.pending,
+    .admin-badge.processing {
+      background: #fff0d8;
+      color: var(--admin-yellow);
+    }
+
+    .admin-badge.shipped {
+      background: #e1edff;
+      color: #245ea8;
+    }
+
+    .admin-badge.delivered,
+    .admin-badge.paid,
+    .admin-badge.in-stock {
+      background: #e4f3e8;
+      color: var(--admin-green);
+    }
+
+    .admin-badge.cancelled,
+    .admin-badge.out-of-stock {
+      background: #fbe4e4;
+      color: var(--admin-red);
+    }
+
+    /* =====================================
+       INVENTORY
+    ===================================== */
+
+    .inventory-product {
+      min-width: 150px;
+    }
+
+    .stock-value {
+      min-width: 80px;
+      max-width: 100px;
+    }
+
+    .stock-low {
+      color: var(--admin-red);
+      font-weight: 800;
+    }
+
+    .inventory-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .inventory-actions .admin-input {
+      width: 85px;
+    }
+
+    .inventory-row-message {
+      margin-top: 5px;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    /* =====================================
+       ORDER DETAILS DIALOG
+    ===================================== */
+
+    .order-dialog {
+      width: min(calc(100% - 24px), 750px);
+      max-height: 88vh;
+      padding: 0;
+      border: 1px solid var(--admin-line);
+      background: white;
+      color: var(--admin-ink);
+    }
+
+    .order-dialog::backdrop {
+      background: #10192788;
+    }
+
+    .order-dialog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 23px;
+      border-bottom: 1px solid var(--admin-line);
+    }
+
+    .order-dialog-header h2 {
+      margin: 0 0 7px;
+      font-size: 22px;
+    }
+
+    .order-dialog-header p {
+      margin: 0;
+      color: var(--admin-muted);
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .dialog-close {
+      width: 35px;
+      height: 35px;
+      border: 1px solid var(--admin-line);
+      background: white;
+      color: var(--admin-ink);
+      font-size: 21px;
+      cursor: pointer;
+    }
+
+    .order-dialog-body {
+      max-height: 65vh;
+      overflow-y: auto;
+      padding: 23px;
+    }
+
+    .dialog-details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .dialog-detail label {
+      display: block;
+      margin-bottom: 6px;
+      color: #8993a0;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dialog-detail p {
+      margin: 0;
+      color: var(--admin-ink);
+      font-size: 12px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+      white-space: pre-line;
+    }
+
+    .dialog-items h3,
+    .dialog-status h3 {
+      margin: 0 0 13px;
+      font-size: 15px;
+    }
+
+    .dialog-status {
+      padding-top: 22px;
+      margin-top: 22px;
+      border-top: 1px solid var(--admin-line);
+    }
+
+    .dialog-status-row {
+      display: flex;
+      align-items: end;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .dialog-status-row .form-field {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .dialog-status-row label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .admin-feedback {
+      min-height: 20px;
+      margin: 12px 0 0;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .admin-feedback.error {
+      color: var(--admin-red);
+    }
+
+    .admin-feedback.success {
+      color: var(--admin-green);
+    }
+
+    .order-dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 17px 23px;
+      border-top: 1px solid var(--admin-line);
+      background: #fafbfc;
+    }
+
+    /* =====================================
+       ACCESS DENIED PAGE
+    ===================================== */
+
+    .access-denied {
+      width: min(calc(100% - 32px), 540px);
+      margin: 80px auto;
+      padding: 35px;
+      background: white;
+      border: 1px solid var(--admin-line);
+      text-align: center;
+    }
+
+    .access-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #fff0d8;
+      color: var(--admin-yellow);
+      font-size: 26px;
+    }
+
+    .access-denied h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+    }
+
+    .access-denied p {
+      margin: 0 0 23px;
+      color: var(--admin-muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =====================================
+       FOOTER NOTE
+    ===================================== */
+
+    .admin-page-footer {
+      padding-top: 10px;
+      color: #8993a0;
+      font-size: 11px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    /* =====================================
+       RESPONSIVE
+    ===================================== */
+
+    @media (max-width: 1100px) {
+      .admin-layout {
+        grid-template-columns: 185px minmax(0, 1fr);
+        gap: 16px;
+      }
+
+      .admin-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .admin-stat {
+        padding: 17px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .admin-page {
+        padding-top: 24px;
+      }
+
+      .admin-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 10px;
+      }
+
+      .admin-sidebar-title,
+      .admin-sidebar-note {
+        display: none;
+      }
+
+      .admin-tab {
+        flex: 1;
+        justify-content: center;
+        min-width: 105px;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .admin-tab-icon {
+        width: auto;
+      }
+
+      .admin-section-heading h2 {
+        font-size: 20px;
+      }
+
+      .admin-panel-header {
+        padding: 16px;
+      }
+
+      .admin-filters {
+        padding: 13px;
+      }
+
+      .admin-table th,
+      .admin-table td {
+        padding: 12px 10px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .admin-stats {
+        gap: 9px;
+      }
+
+      .admin-stat {
+        padding: 13px;
+      }
+
+      .admin-stat-value {
+        font-size: 24px;
+      }
+
+      .admin-heading h1 {
+        font-size: 27px;
+      }
+
+      .admin-top-actions {
+        width: 100%;
+      }
+
+      .admin-top-actions .admin-button {
+        flex: 1;
+      }
+
+      .dialog-details-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .order-dialog-body,
+      .order-dialog-header {
+        padding: 17px;
+      }
+
+      .order-dialog-footer {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#admin-main">
+    Skip to content
+  </a>
+
+  <div class="announcement">
+    BRUTBOX & CO. — ADMINISTRATION
+  </div>
+
+  <!-- =====================================
+       HEADER
+  ===================================== -->
+
+  <header class="site-header">
+
+    <div class="container header-inner">
+
+      <a href="index.html"
+         class="brand"
+         aria-label="Brutbox and Company Home">
+        BRUTBOX <span>& CO.</span>
+      </a>
+
+      <nav class="desktop-nav"
+           aria-label="Main Navigation">
+
+        <a href="index.html">Website</a>
+
+        <a href="products.html">Products</a>
+
+        <a href="cart.html">Cart</a>
+
+      </nav>
+
+      <div class="header-actions">
+
+        <button class="admin-button"
+                id="logout-button"
+                type="button"
+                hidden>
+          Sign Out
+        </button>
+
+        <details class="mobile-nav">
+
+          <summary aria-label="Open navigation menu">
+            <span aria-hidden="true">☰</span>
+            Menu
+          </summary>
+
+          <nav class="mobile-menu-panel"
+               aria-label="Mobile Navigation">
+
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="login.html">Sign In</a>
+
+          </nav>
+
+        </details>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- =====================================
+       ACCESS CONTROL MESSAGE
+  ===================================== -->
+
+  <section class="access-denied" id="access-denied" hidden>
+
+    <div class="access-icon" aria-hidden="true">
+      !
+    </div>
+
+    <h1>Admin Access Required</h1>
+
+    <p>
+      Please sign in with the demo administrator account
+      to access the BRUTBOX & CO. dashboard.
+    </p>
+
+    <a href="login.html"
+       class="admin-button primary">
+      Sign In as Admin →
+    </a>
+
+    <p style="margin-top: 20px; margin-bottom: 0;">
+      Demo email: admin@brutbox.test
+    </p>
+
+  </section>
+
+  <!-- =====================================
+       ADMIN APPLICATION
+  ===================================== -->
+
+  <main class="admin-page"
+        id="admin-main"
+        hidden>
+
+    <div class="admin-container">
+
+      <!-- Page Header -->
+
+      <div class="admin-topbar">
+
+        <div class="admin-heading">
+
+          <h1>Admin Dashboard</h1>
+
+          <p>
+            Welcome back,
+            <strong id="admin-user-name">Administrator</strong>.
+            Manage your demo orders and inventory.
+          </p>
+
+        </div>
+
+        <div class="admin-top-actions">
+
+          <a href="products.html"
+             class="admin-button">
+            View Storefront ↗
+          </a>
+
+          <button type="button"
+                  class="admin-button primary"
+                  id="refresh-button">
+            Refresh Dashboard
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Demo Notice -->
+
+      <div class="admin-notice">
+        <strong>Frontend demo mode:</strong>
+        Orders, status changes and inventory changes are
+        stored in this browser only. There is no secure
+        server-side administrator, shared database or
+        real payment verification.
+      </div>
+
+      <!-- Dashboard Layout -->
+
+      <div class="admin-layout">
+
+        <!-- =================================
+             SIDEBAR
+        ================================== -->
+
+        <aside class="admin-sidebar"
+               aria-label="Admin Dashboard Navigation">
+
+          <p class="admin-sidebar-title">
+            Management
+          </p>
+
+          <button type="button"
+                  class="admin-tab active"
+                  data-view="dashboard"
+                  aria-current="page">
+            <span class="admin-tab-icon" aria-hidden="true">▦</span>
+            Dashboard
+          </button>
+
+          <button type="button"
+                  class="admin-tab"
+                  data-view="inventory">
+            <span class="admin-tab-icon" aria-hidden="true">▤</span>
+            Inventory
+          </button>
+
+          <button type="button"
+                  class="admin-tab"
+                  data-view="orders">
+            <span class="admin-tab-icon" aria-hidden="true">▣</span>
+            Orders
+          </button>
+
+          <p class="admin-sidebar-note">
+            BRUTBOX & CO.<br>
+            Phase 01 E-Commerce Prototype
+          </p>
+
+        </aside>
+
+        <!-- =================================
+             MAIN ADMIN CONTENT
+        ================================== -->
+
+        <div class="admin-content">
+
+          <!-- =================================
+               VIEW 1: DASHBOARD
+          ================================== -->
+
+          <section class="admin-view"
+                   id="view-dashboard">
+
+            <div class="admin-section-heading">
+
+              <div>
+
+                <h2>Overview</h2>
+
+                <p>
+                  Summary of the orders and demo inventory
+                  saved in this browser.
+                </p>
+
+              </div>
+
+            </div>
+
+            <!-- Statistics -->
+
+            <div class="admin-stats">
+
+              <article class="admin-stat">
+
+                <p class="admin-stat-label">
+                  Total Orders
+                </p>
+
+                <strong class="admin-stat-value"
+                        id="stat-total-orders">
+                  0
+                </strong>
+
+                <span class="admin-stat-note">
+                  Locally saved orders
+                </span>
+
+              </article>
+
+              <article class="admin-stat">
+
+                <p class="admin-stat-label">
+                  Pending Orders
+                </p>
+
+                <strong class="admin-stat-value"
+                        id="stat-pending-orders">
+                  0
+                </strong>
+
+                <span class="admin-stat-note">
+                  Awaiting processing
+                </span>
+
+              </article>
+
+              <article class="admin-stat">
+
+                <p class="admin-stat-label">
+                  Order Value
+                </p>
+
+                <strong class="admin-stat-value"
+                        id="stat-order-value">
+                  BDT 0
+                </strong>
+
+                <span class="admin-stat-note">
+                  Excludes cancelled orders
+                </span>
+
+              </article>
+
+              <article class="admin-stat">
+
+                <p class="admin-stat-label">
+                  Low Stock SKUs
+                </p>
+
+                <strong class="admin-stat-value"
+                        id="stat-low-stock">
+                  0
+                </strong>
+
+                <span class="admin-stat-note">
+                  Five units or fewer
+                </span>
+
+              </article>
+
+            </div>
+
+            <!-- Recent Orders -->
+
+            <section class="admin-panel">
+
+              <div class="admin-panel-header">
+
+                <div>
+
+                  <h3>Recent Orders</h3>
+
+                  <p>
+                    Latest order records in this browser.
+                  </p>
+
+                </div>
+
+                <button type="button"
+                        class="admin-button small"
+                        data-open-view="orders">
+                  View All Orders →
+                </button>
+
+              </div>
+
+              <div class="admin-table-wrapper">
+
+                <table class="admin-table">
+
+                  <thead>
+
+                    <tr>
+                      <th>Order</th>
+                      <th>Customer</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+
+                  </thead>
+
+                  <tbody id="recent-orders-body">
+
+                    <tr>
+                      <td colspan="5">
+                        <div class="admin-empty">
+                          No demo orders have been created yet.
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            </section>
+
+            <!-- Inventory Preview -->
+
+            <section class="admin-panel">
+
+              <div class="admin-panel-header">
+
+                <div>
+
+                  <h3>Low Stock Overview</h3>
+
+                  <p>
+                    Review variants that need attention.
+                  </p>
+
+                </div>
+
+                <button type="button"
+                        class="admin-button small"
+                        data-open-view="inventory">
+                  Open Inventory →
+                </button>
+
+              </div>
+
+              <div class="admin-table-wrapper">
+
+                <table class="admin-table">
+
+                  <thead>
+
+                    <tr>
+                      <th>Product</th>
+                      <th>SKU</th>
+                      <th>Variant</th>
+                      <th>Available</th>
+                    </tr>
+
+                  </thead>
+
+                  <tbody id="low-stock-body">
+
+                    <tr>
+                      <td colspan="4">
+                        <div class="admin-empty">
+                          Loading inventory...
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            </section>
+
+          </section>
+
+          <!-- =================================
+               VIEW 2: INVENTORY
+          ================================== -->
+
+          <section class="admin-view"
+                   id="view-inventory"
+                   hidden>
+
+            <div class="admin-section-heading">
+
+              <div>
+
+                <h2>Inventory Management</h2>
+
+                <p>
+                  Review and edit demo stock for each
+                  size/color SKU.
+                </p>
+
+              </div>
+
+              <button type="button"
+                      class="admin-button"
+                      id="reset-inventory-button">
+                Reset Demo Inventory
+              </button>
+
+            </div>
+
+            <div class="admin-notice">
+              <strong>Inventory limitation:</strong>
+              edits here are saved under the browser key
+              <code>bb_admin_inventory</code>. In this
+              HTML-only stage, the storefront and checkout
+              still use their own sample catalog values.
+              A later integration step is needed to share
+              inventory across all pages.
+            </div>
+
+            <section class="admin-panel">
+
+              <div class="admin-panel-header">
+
+                <div>
+
+                  <h3>Product Variants</h3>
+
+                  <p id="inventory-count-label">
+                    Demo product inventory
+                  </p>
+
+                </div>
+
+              </div>
+
+              <div class="admin-filters">
+
+                <input type="search"
+                       id="inventory-search"
+                       class="admin-input admin-search"
+                       placeholder="Search product name or SKU..."
+                       aria-label="Search inventory">
+
+                <select id="inventory-category-filter"
+                        class="admin-select"
+                        aria-label="Filter inventory by category">
+
+                  <option value="all">All Categories</option>
+                  <option value="Underwear">Underwear</option>
+                  <option value="Bow Ties">Bow Ties</option>
+                  <option value="Pocket Squares">Pocket Squares</option>
+                  <option value="Socks">Socks</option>
+                  <option value="Eyeglass Cases">Eyeglass Cases</option>
+                  <option value="Wallets">Wallets</option>
+
+                </select>
+
+              </div>
+
+              <div class="admin-table-wrapper">
+
+                <table class="admin-table">
+
+                  <thead>
+
+                    <tr>
+                      <th>Product</th>
+                      <th>SKU</th>
+                      <th>Variant</th>
+                      <th>Price</th>
+                      <th>Stock</th>
+                      <th>Update Stock</th>
+                    </tr>
+
+                  </thead>
+
+                  <tbody id="inventory-table-body">
+
+                    <tr>
+                      <td colspan="6">
+                        <div class="admin-empty">
+                          Loading inventory...
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+              <div style="padding: 0 20px 16px;">
+                <p id="inventory-feedback"
+                   class="admin-feedback"
+                   role="status"
+                   aria-live="polite"></p>
+              </div>
+
+            </section>
+
+          </section>
+
+          <!-- =================================
+               VIEW 3: ORDERS
+          ================================== -->
+
+          <section class="admin-view"
+                   id="view-orders"
+                   hidden>
+
+            <div class="admin-section-heading">
+
+              <div>
+
+                <h2>Order Management</h2>
+
+                <p>
+                  View orders and update their demo status.
+                </p>
+
+              </div>
+
+              <button type="button"
+                      class="admin-button"
+                      id="export-orders-button">
+                Export Orders CSV ↓
+              </button>
+
+            </div>
+
+            <section class="admin-panel">
+
+              <div class="admin-panel-header">
+
+                <div>
+
+                  <h3>All Orders</h3>
+
+                  <p>
+                    Order history from local browser storage.
+                  </p>
+
+                </div>
+
+                <span id="orders-count-label"
+                      class="admin-badge">
+                  0 Orders
+                </span>
+
+              </div>
+
+              <div class="admin-filters">
+
+                <input type="search"
+                       id="order-search"
+                       class="admin-input admin-search"
+                       placeholder="Search order ID, name or email..."
+                       aria-label="Search orders">
+
+                <select id="order-status-filter"
+                        class="admin-select"
+                        aria-label="Filter orders by status">
+
+                  <option value="all">All Statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Processing">Processing</option>
+                  <option value="Shipped">Shipped</option>
+                  <option value="Delivered">Delivered</option>
+                  <option value="Cancelled">Cancelled</option>
+
+                </select>
+
+              </div>
+
+              <div class="admin-table-wrapper">
+
+                <table class="admin-table">
+
+                  <thead>
+
+                    <tr>
+                      <th>Order</th>
+                      <th>Customer</th>
+                      <th>Date</th>
+                      <th>Items</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+
+                  </thead>
+
+                  <tbody id="orders-table-body">
+
+                    <tr>
+                      <td colspan="7">
+                        <div class="admin-empty">
+                          No orders have been created yet.
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+              <div style="padding: 0 20px 16px;">
+                <p id="orders-feedback"
+                   class="admin-feedback"
+                   role="status"
+                   aria-live="polite"></p>
+              </div>
+
+            </section>
+
+          </section>
+
+        </div>
+
+      </div>
+
+      <p class="admin-page-footer">
+        BRUTBOX & CO. — Phase 01 Frontend Administration Demo.
+        Data is limited to this browser and is not protected
+        by server-side authentication.
+      </p>
+
+    </div>
+
+  </main>
+
+  <!-- =====================================
+       ORDER DETAILS DIALOG
+  ===================================== -->
+
+  <dialog class="order-dialog"
+          id="order-dialog"
+          aria-labelledby="dialog-order-title">
+
+    <div class="order-dialog-header">
+
+      <div>
+
+        <h2 id="dialog-order-title">
+          Order Details
+        </h2>
+
+        <p id="dialog-order-date"></p>
+
+      </div>
+
+      <button type="button"
+              class="dialog-close"
+              id="dialog-close-button"
+              aria-label="Close order details">
+        ×
+      </button>
+
+    </div>
+
+    <div class="order-dialog-body">
+
+      <div class="dialog-details-grid">
+
+        <div class="dialog-detail">
+
+          <label>Customer</label>
+
+          <p id="dialog-customer-name">—</p>
+
+        </div>
+
+        <div class="dialog-detail">
+
+          <label>Email</label>
+
+          <p id="dialog-customer-email">—</p>
+
+        </div>
+
+        <div class="dialog-detail">
+
+          <label>Phone</label>
+
+          <p id="dialog-customer-phone">—</p>
+
+        </div>
+
+        <div class="dialog-detail">
+
+          <label>Delivery Address</label>
+
+          <p id="dialog-customer-address">—</p>
+
+        </div>
+
+        <div class="dialog-detail">
+
+          <label>Payment Method</label>
+
+          <p id="dialog-payment-method">—</p>
+
+        </div>
+
+        <div class="dialog-detail">
+
+          <label>Payment Status</label>
+
+          <p id="dialog-payment-status">Pending</p>
+
+        </div>
+
+        <div class="dialog-detail">
+
+          <label>Grand Total</label>
+
+          <p id="dialog-order-total">BDT 0</p>
+
+        </div>
+
+        <div class="dialog-detail">
+
+          <label>Notes</label>
+
+          <p id="dialog-order-notes">No additional notes</p>
+
+        </div>
+
+      </div>
+
+      <div class="dialog-items">
+
+        <h3>Order Items</h3>
+
+        <div class="admin-table-wrapper">
+
+          <table class="admin-table">
+
+            <thead>
+
+              <tr>
+                <th>Product</th>
+                <th>SKU / Variant</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="dialog-items-body"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+      <div class="dialog-status">
+
+        <h3>Update Order Status</h3>
+
+        <div class="dialog-status-row">
+
+          <div class="form-field">
+
+            <label for="dialog-status-select">
+              New Status
+            </label>
+
+            <select class="admin-select"
+                    id="dialog-status-select"
+                    style="width: 100%;">
+
+              <option value="Pending">Pending</option>
+              <option value="Processing">Processing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+
+            </select>
+
+          </div>
+
+          <button type="button"
+                  class="admin-button primary"
+                  id="save-order-status-button">
+            Save Status
+          </button>
+
+        </div>
+
+        <p id="dialog-feedback"
+           class="admin-feedback"
+           role="status"
+           aria-live="polite"></p>
+
+      </div>
+
+    </div>
+
+    <div class="order-dialog-footer">
+
+      <button type="button"
+              class="admin-button"
+              id="dialog-receipt-button">
+        Open Receipt ↗
+      </button>
+
+      <button type="button"
+              class="admin-button"
+              id="dialog-close-footer">
+        Close
+      </button>
+
+    </div>
+
+  </dialog>
+
+  <!-- =====================================
+       FOOTER
+  ===================================== -->
+
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <div>
+
+        <strong>BRUTBOX & CO.</strong>
+
+        <p>Men's Essentials and Accessories</p>
+
+        <p>Academic E-Commerce Website Project</p>
+
+      </div>
+
+      <div>
+
+        <p>© 2026 Brutbox & CO.</p>
+
+        <p>Phase 01 Frontend Prototype</p>
+
+      </div>
+
+      <a href="#admin-main">
+        Back to Top ↑
+      </a>
+
+    </div>
+
+  </footer>
+
+  <!-- =====================================
+       ADMIN JAVASCRIPT
+  ===================================== -->
+
+  <script>
+
+    "use strict";
+
+    // =====================================
+    // 1. DEMO INVENTORY
+    // =====================================
+
+    const defaultInventory = [
+
+      {
+        productId: "P-001",
+        name: "Cotton Boxer",
+        category: "Underwear",
+        price: 450,
+        sku: "CB-BLK-S",
+        size: "S",
+        color: "Black",
+        stock: 30
+      },
+
+      {
+        productId: "P-001",
+        name: "Cotton Boxer",
+        category: "Underwear",
+        price: 450,
+        sku: "CB-BLK-M",
+        size: "M",
+        color: "Black",
+        stock: 30
+      },
+
+      {
+        productId: "P-001",
+        name: "Cotton Boxer",
+        category: "Underwear",
+        price: 450,
+        sku: "CB-BLK-L",
+        size: "L",
+        color: "Black",
+        stock: 25
+      },
+
+      {
+        productId: "P-001",
+        name: "Cotton Boxer",
+        category: "Underwear",
+        price: 450,
+        sku: "CB-BLK-XL",
+        size: "XL",
+        color: "Black",
+        stock: 20
+      },
+
+      {
+        productId: "P-002",
+        name: "Cotton Brief",
+        category: "Underwear",
+        price: 380,
+        sku: "BR-WHT-M",
+        size: "M",
+        color: "White",
+        stock: 30
+      },
+
+      {
+        productId: "P-002",
+        name: "Cotton Brief",
+        category: "Underwear",
+        price: 380,
+        sku: "BR-WHT-L",
+        size: "L",
+        color: "White",
+        stock: 25
+      },
+
+      {
+        productId: "P-003",
+        name: "Silk Bow Tie",
+        category: "Bow Ties",
+        price: 650,
+        sku: "BT-BLK-OS",
+        size: "One Size",
+        color: "Black",
+        stock: 30
+      },
+
+      {
+        productId: "P-004",
+        name: "Silk Pocket Square",
+        category: "Pocket Squares",
+        price: 550,
+        sku: "PS-NVY-OS",
+        size: "One Size",
+        color: "Navy",
+        stock: 30
+      },
+
+      {
+        productId: "P-005",
+        name: "Crew Socks",
+        category: "Socks",
+        price: 200,
+        sku: "CS-BLK-4043",
+        size: "40-43",
+        color: "Black",
+        stock: 30
+      },
+
+      {
+        productId: "P-005",
+        name: "Crew Socks",
+        category: "Socks",
+        price: 200,
+        sku: "CS-BLK-4446",
+        size: "44-46",
+        color: "Black",
+        stock: 20
+      },
+
+      {
+        productId: "P-006",
+        name: "Hard Eyeglass Case",
+        category: "Eyeglass Cases",
+        price: 350,
+        sku: "EC-BLK-STD",
+        size: "Standard",
+        color: "Black",
+        stock: 30
+      },
+
+      {
+        productId: "P-007",
+        name: "Bifold Wallet",
+        category: "Wallets",
+        price: 1200,
+        sku: "BW-BRN-STD",
+        size: "Standard",
+        color: "Brown",
+        stock: 30
+      }
+
+    ];
+
+
+    // =====================================
+    // 2. SELECT ELEMENTS
+    // =====================================
+
+    const adminMain =
+      document.getElementById("admin-main");
+
+    const accessDenied =
+      document.getElementById("access-denied");
+
+    const logoutButton =
+      document.getElementById("logout-button");
+
+    const dialog =
+      document.getElementById("order-dialog");
+
+
+    // =====================================
+    // 3. GENERAL HELPERS
+    // =====================================
+
+    function formatPrice(amount) {
+
+      const value = Number(amount);
+
+      return "BDT " + (
+        Number.isFinite(value) && value >= 0
+          ? value.toLocaleString("en-US", {
+              maximumFractionDigits: 2
+            })
+          : "0"
+      );
+
+    }
+
+
+    function formatDate(value) {
+
+      if (!value) {
+        return "Date unavailable";
+      }
+
+      const date = new Date(value);
+
+      if (Number.isNaN(date.getTime())) {
+        return String(value);
+      }
+
+      return date.toLocaleString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+    }
+
+
+    function appendTextCell(row, text, className = "") {
+
+      const cell = document.createElement("td");
+
+      cell.textContent = text == null ? "" : String(text);
+
+      if (className) {
+        cell.className = className;
+      }
+
+      row.appendChild(cell);
+
+      return cell;
+
+    }
+
+
+    function showEmptyRow(tbody, colspan, heading, message) {
+
+      tbody.replaceChildren();
+
+      const row = document.createElement("tr");
+
+      const cell = document.createElement("td");
+
+      cell.colSpan = colspan;
+
+      const empty = document.createElement("div");
+
+      empty.className = "admin-empty";
+
+      const strong = document.createElement("strong");
+
+      strong.textContent = heading;
+
+      const paragraph = document.createElement("span");
+
+      paragraph.textContent = message;
+
+      empty.appendChild(strong);
+
+      empty.appendChild(paragraph);
+
+      cell.appendChild(empty);
+
+      row.appendChild(cell);
+
+      tbody.appendChild(row);
+
+    }
+
+
+    function showFeedback(element, message, type = "") {
+
+      element.textContent = message;
+
+      element.className =
+        "admin-feedback" + (type ? " " + type : "");
+
+    }
+
+
+    function escapeCSV(value) {
+
+      const text = String(value ?? "");
+
+      return '"' + text.replace(/"/g, '""') + '"';
+
+    }
+
+
+    // =====================================
+    // 4. DEMO ADMIN ACCESS CHECK
+    // =====================================
+
+    function getCurrentUser() {
+
+      try {
+
+        const user = JSON.parse(
+          localStorage.getItem("bb_user") || "null"
+        );
+
+        if (
+          user &&
+          user.loggedIn === true &&
+          user.role === "admin" &&
+          typeof user.email === "string" &&
+          user.email.toLowerCase() === "admin@brutbox.test"
+        ) {
+          return user;
+        }
+
+      } catch (error) {
+
+        // Invalid local demo session.
+
+      }
+
+      return null;
+
+    }
+
+
+    function initializeAdmin() {
+
+      const user = getCurrentUser();
+
+      if (!user) {
+
+        accessDenied.hidden = false;
+
+        adminMain.hidden = true;
+
+        logoutButton.hidden = true;
+
+        return false;
+
+      }
+
+      accessDenied.hidden = true;
+
+      adminMain.hidden = false;
+
+      logoutButton.hidden = false;
+
+      document.getElementById("admin-user-name")
+        .textContent = user.name || "Administrator";
+
+      return true;
+
+    }
+
+
+    // =====================================
+    // 5. LOAD AND SAVE ORDERS
+    // =====================================
+
+    function getOrders() {
+
+      try {
+
+        const stored = JSON.parse(
+          localStorage.getItem("bb_orders") || "[]"
+        );
+
+        return Array.isArray(stored) ? stored : [];
+
+      } catch (error) {
+
+        return [];
+
+      }
+
+    }
+
+
+    function saveOrders(orders) {
+
+      try {
+
+        localStorage.setItem(
+          "bb_orders",
+          JSON.stringify(orders)
+        );
+
+        return true;
+
+      } catch (error) {
+
+        return false;
+
+      }
+
+    }
+
+
+    function getOrderId(order) {
+
+      return String(
+        order.orderId || order.id || ""
+      );
+
+    }
+
+
+    function getOrderCustomer(order) {
+
+      const customer = order.customer || {};
+
+      return {
+        name: order.customerName ||
+          customer.name || order.name || "Guest",
+
+        email: order.customerEmail ||
+          customer.email || order.email || "—",
+
+        phone: order.customerPhone ||
+          customer.phone || order.phone || "—",
+
+        address: order.shippingAddress ||
+          customer.address || order.address || "—",
+
+        city: order.city ||
+          customer.city || "",
+
+        postcode: order.postcode ||
+          customer.postcode || ""
+      };
+
+    }
+
+
+    function getOrderItems(order) {
+
+      return Array.isArray(order.items)
+        ? order.items
+        : [];
+
+    }
+
+
+    function getOrderTotal(order) {
+
+      if (
+        Number.isFinite(Number(order.total)) &&
+        order.total !== "" &&
+        order.total !== null
+      ) {
+        return Number(order.total);
+      }
+
+      return getOrderItems(order).reduce((sum, item) => {
+
+        const unitPrice = Number(
+          item.unitPrice !== undefined
+            ? item.unitPrice
+            : item.price
+        ) || 0;
+
+        const quantity = Number(item.quantity) || 0;
+
+        const lineTotal = Number.isFinite(Number(item.subtotal))
+          ? Number(item.subtotal)
+          : unitPrice * quantity;
+
+        return sum + lineTotal;
+
+      }, 0);
+
+    }
+
+
+    function getOrderStatus(order) {
+
+      return String(order.status || "Pending");
+
+    }
+
+
+    // =====================================
+    // 6. INVENTORY STORAGE
+    // =====================================
+
+    function getInventory() {
+
+      let saved = [];
+
+      try {
+
+        const raw = JSON.parse(
+          localStorage.getItem("bb_admin_inventory") || "null"
+        );
+
+        if (Array.isArray(raw)) {
+          saved = raw;
+        }
+
+      } catch (error) {
+
+        saved = [];
+
+      }
+
+      const bySku = new Map();
+
+      saved.forEach(item => {
+
+        if (
+          item &&
+          typeof item.sku === "string" &&
+          Number.isInteger(Number(item.stock)) &&
+          Number(item.stock) >= 0
+        ) {
+          bySku.set(item.sku, {
+            ...item,
+            stock: Number(item.stock)
+          });
+        }
+
+      });
+
+      const mergedDefaults = defaultInventory.map(item => {
+
+        return bySku.get(item.sku)
+          ? { ...item, stock: bySku.get(item.sku).stock }
+          : { ...item };
+
+      });
+
+      // Preserve future demo SKUs that aren't in the
+      // starter list, if any have been saved.
+
+      const defaultSkus = new Set(
+        defaultInventory.map(item => item.sku)
+      );
+
+      saved.forEach(item => {
+
+        if (
+          item &&
+          typeof item.sku === "string" &&
+          !defaultSkus.has(item.sku) &&
+          Number.isInteger(Number(item.stock)) &&
+          Number(item.stock) >= 0
+        ) {
+          mergedDefaults.push({
+            ...item,
+            stock: Number(item.stock)
+          });
+        }
+
+      });
+
+      return mergedDefaults;
+
+    }
+
+
+    function saveInventory(inventory) {
+
+      try {
+
+        localStorage.setItem(
+          "bb_admin_inventory",
+          JSON.stringify(inventory)
+        );
+
+        return true;
+
+      } catch (error) {
+
+        return false;
+
+      }
+
+    }
+
+
+    // =====================================
+    // 7. DASHBOARD STATISTICS
+    // =====================================
+
+    function updateDashboardStats() {
+
+      const orders = getOrders();
+
+      const inventory = getInventory();
+
+      const validOrders = orders.filter(order => {
+
+        return order && typeof order === "object";
+
+      });
+
+      const pendingOrders = validOrders.filter(order => {
+
+        return getOrderStatus(order).toLowerCase() === "pending";
+
+      }).length;
+
+      const orderValue = validOrders.reduce((sum, order) => {
+
+        if (
+          getOrderStatus(order).toLowerCase() === "cancelled"
+        ) {
+          return sum;
+        }
+
+        return sum + getOrderTotal(order);
+
+      }, 0);
+
+      const lowStock = inventory.filter(item => {
+
+        return Number(item.stock) <= 5;
+
+      }).length;
+
+      document.getElementById("stat-total-orders")
+        .textContent = validOrders.length;
+
+      document.getElementById("stat-pending-orders")
+        .textContent = pendingOrders;
+
+      document.getElementById("stat-order-value")
+        .textContent = formatPrice(orderValue);
+
+      document.getElementById("stat-low-stock")
+        .textContent = lowStock;
+
+    }
+
+
+    // =====================================
+    // 8. ORDER STATUS BADGE
+    // =====================================
+
+    function createStatusBadge(status) {
+
+      const badge = document.createElement("span");
+
+      badge.className = "admin-badge";
+
+      const normalized = String(status || "Pending");
+
+      badge.textContent = normalized;
+
+      const allowedClasses = [
+        "pending",
+        "processing",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ];
+
+      const cssClass = normalized.toLowerCase();
+
+      if (allowedClasses.includes(cssClass)) {
+        badge.classList.add(cssClass);
+      }
+
+      return badge;
+
+    }
+
+
+    // =====================================
+    // 9. RECENT ORDERS TABLE
+    // =====================================
+
+    function renderRecentOrders() {
+
+      const tbody =
+        document.getElementById("recent-orders-body");
+
+      const orders = getOrders().slice().reverse().slice(0, 5);
+
+      if (orders.length === 0) {
+
+        showEmptyRow(
+          tbody,
+          5,
+          "No demo orders yet",
+          "Place an order from the storefront to see it here."
+        );
+
+        return;
+
+      }
+
+      tbody.replaceChildren();
+
+      orders.forEach(order => {
+
+        const row = document.createElement("tr");
+
+        const customer = getOrderCustomer(order);
+
+        const idCell = appendTextCell(
+          row,
+          getOrderId(order),
+          "admin-main-cell"
+        );
+
+        const date = document.createElement("span");
+
+        date.className = "admin-sub-cell";
+
+        date.textContent = formatDate(
+          order.createdAt || order.date
+        );
+
+        idCell.appendChild(date);
+
+        const customerCell = appendTextCell(
+          row,
+          customer.name,
+          "admin-main-cell"
+        );
+
+        const email = document.createElement("span");
+
+        email.className = "admin-sub-cell";
+
+        email.textContent = customer.email;
+
+        customerCell.appendChild(email);
+
+        appendTextCell(
+          row,
+          formatPrice(getOrderTotal(order))
+        );
+
+        const statusCell = document.createElement("td");
+
+        statusCell.appendChild(
+          createStatusBadge(getOrderStatus(order))
+        );
+
+        row.appendChild(statusCell);
+
+        const actionCell = document.createElement("td");
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+
+        button.className = "admin-button small";
+
+        button.textContent = "View";
+
+        button.addEventListener("click", () => {
+
+          openOrderDetails(getOrderId(order));
+
+        });
+
+        actionCell.appendChild(button);
+
+        row.appendChild(actionCell);
+
+        tbody.appendChild(row);
+
+      });
+
+    }
+
+
+    // =====================================
+    // 10. LOW STOCK TABLE
+    // =====================================
+
+    function renderLowStock() {
+
+      const tbody =
+        document.getElementById("low-stock-body");
+
+      const lowStock = getInventory()
+        .filter(item => Number(item.stock) <= 5)
+        .sort((a, b) => a.stock - b.stock);
+
+      tbody.replaceChildren();
+
+      if (lowStock.length === 0) {
+
+        showEmptyRow(
+          tbody,
+          4,
+          "No low stock variants",
+          "All demo inventory variants have more than five units."
+        );
+
+        return;
+
+      }
+
+      lowStock.slice(0, 8).forEach(item => {
+
+        const row = document.createElement("tr");
+
+        appendTextCell(
+          row,
+          item.name,
+          "admin-main-cell"
+        );
+
+        appendTextCell(row, item.sku);
+
+        appendTextCell(
+          row,
+          item.size + " / " + item.color
+        );
+
+        const stockCell = appendTextCell(
+          row,
+          String(item.stock),
+          "stock-low"
+        );
+
+        tbody.appendChild(row);
+
+      });
+
+    }
+
+
+    // =====================================
+    // 11. INVENTORY TABLE
+    // =====================================
+
+    function renderInventory() {
+
+      const tbody =
+        document.getElementById("inventory-table-body");
+
+      const search = document.getElementById("inventory-search")
+        .value.trim().toLowerCase();
+
+      const category = document.getElementById(
+        "inventory-category-filter"
+      ).value;
+
+      const inventory = getInventory().filter(item => {
+
+        const matchesSearch =
+          item.name.toLowerCase().includes(search) ||
+          item.sku.toLowerCase().includes(search) ||
+          item.productId.toLowerCase().includes(search);
+
+        const matchesCategory =
+          category === "all" || item.category === category;
+
+        return matchesSearch && matchesCategory;
+
+      });
+
+      document.getElementById("inventory-count-label")
+        .textContent = inventory.length +
+          (inventory.length === 1
+            ? " variant shown"
+            : " variants shown");
+
+      tbody.replaceChildren();
+
+      if (inventory.length === 0) {
+
+        showEmptyRow(
+          tbody,
+          6,
+          "No matching variants",
+          "Change your search or category filter."
+        );
+
+        return;
+
+      }
+
+      inventory.forEach(item => {
+
+        const row = document.createElement("tr");
+
+        row.dataset.sku = item.sku;
+
+        const productCell = appendTextCell(
+          row,
+          item.name,
+          "admin-main-cell inventory-product"
+        );
+
+        const productId = document.createElement("span");
+
+        productId.className = "admin-sub-cell";
+
+        productId.textContent = item.productId;
+
+        productCell.appendChild(productId);
+
+        appendTextCell(row, item.sku);
+
+        appendTextCell(
+          row,
+          item.size + " / " + item.color
+        );
+
+        appendTextCell(
+          row,
+          formatPrice(item.price)
+        );
+
+        const stockCell = document.createElement("td");
+
+        const stockValue = document.createElement("strong");
+
+        stockValue.textContent = item.stock;
+
+        if (item.stock <= 5) {
+          stockValue.className = "stock-low";
+        }
+
+        stockCell.appendChild(stockValue);
+
+        const stockSub = document.createElement("span");
+
+        stockSub.className = "admin-sub-cell";
+
+        stockSub.textContent = item.stock === 0
+          ? "Out of stock"
+          : item.stock <= 5
+            ? "Low stock"
+            : "In stock";
+
+        stockCell.appendChild(stockSub);
+
+        row.appendChild(stockCell);
+
+        const actionCell = document.createElement("td");
+
+        const actionWrapper = document.createElement("div");
+
+        actionWrapper.className = "inventory-actions";
+
+        const input = document.createElement("input");
+
+        input.type = "number";
+
+        input.min = "0";
+
+        input.max = "1000000";
+
+        input.step = "1";
+
+        input.value = String(item.stock);
+
+        input.className = "admin-input stock-value";
+
+        input.setAttribute(
+          "aria-label",
+          "New stock for " + item.sku
+        );
+
+        const saveButton = document.createElement("button");
+
+        saveButton.type = "button";
+
+        saveButton.className = "admin-button small primary";
+
+        saveButton.textContent = "Save";
+
+        saveButton.addEventListener("click", () => {
+
+          updateInventoryStock(item.sku, input.value);
+
+        });
+
+        actionWrapper.appendChild(input);
+
+        actionWrapper.appendChild(saveButton);
+
+        actionCell.appendChild(actionWrapper);
+
+        row.appendChild(actionCell);
+
+        tbody.appendChild(row);
+
+      });
+
+    }
+
+
+    // =====================================
+    // 12. UPDATE STOCK FOR ONE SKU
+    // =====================================
+
+    function updateInventoryStock(sku, rawValue) {
+
+      const value = Number(rawValue);
+
+      const feedback =
+        document.getElementById("inventory-feedback");
+
+      if (
+        !Number.isInteger(value) ||
+        value < 0 ||
+        value > 1000000
+      ) {
+
+        showFeedback(
+          feedback,
+          "Enter a whole number from 0 to 1,000,000.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      const inventory = getInventory();
+
+      const item = inventory.find(entry => entry.sku === sku);
+
+      if (!item) {
+
+        showFeedback(
+          feedback,
+          "The selected SKU could not be found.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      item.stock = value;
+
+      if (!saveInventory(inventory)) {
+
+        showFeedback(
+          feedback,
+          "Could not save inventory. Check browser storage settings.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      showFeedback(
+        feedback,
+        "Saved demo stock for " + sku + ": " + value + " units.",
+        "success"
+      );
+
+      renderInventory();
+
+      updateDashboardStats();
+
+      renderLowStock();
+
+    }
+
+
+    // =====================================
+    // 13. ORDERS TABLE AND FILTERS
+    // =====================================
+
+    function renderOrders() {
+
+      const tbody =
+        document.getElementById("orders-table-body");
+
+      const search = document.getElementById("order-search")
+        .value.trim().toLowerCase();
+
+      const statusFilter = document.getElementById(
+        "order-status-filter"
+      ).value;
+
+      const allOrders = getOrders().slice().reverse();
+
+      const filtered = allOrders.filter(order => {
+
+        const customer = getOrderCustomer(order);
+
+        const searchable = [
+
+          getOrderId(order),
+
+          customer.name,
+
+          customer.email,
+
+          customer.phone
+
+        ].join(" ").toLowerCase();
+
+        const matchesSearch = searchable.includes(search);
+
+        const matchesStatus =
+          statusFilter === "all" ||
+          getOrderStatus(order).toLowerCase() ===
+            statusFilter.toLowerCase();
+
+        return matchesSearch && matchesStatus;
+
+      });
+
+      document.getElementById("orders-count-label")
+        .textContent = filtered.length +
+          (filtered.length === 1
+            ? " Order"
+            : " Orders");
+
+      tbody.replaceChildren();
+
+      if (filtered.length === 0) {
+
+        showEmptyRow(
+          tbody,
+          7,
+          "No matching orders",
+          allOrders.length === 0
+            ? "Orders created at checkout will appear here."
+            : "Try changing your search or order status filter."
+        );
+
+        return;
+
+      }
+
+      filtered.forEach(order => {
+
+        const row = document.createElement("tr");
+
+        const customer = getOrderCustomer(order);
+
+        const items = getOrderItems(order);
+
+        const idCell = appendTextCell(
+          row,
+          getOrderId(order),
+          "admin-main-cell"
+        );
+
+        const payment = document.createElement("span");
+
+        payment.className = "admin-sub-cell";
+
+        payment.textContent =
+          order.paymentMethod || "Payment not specified";
+
+        idCell.appendChild(payment);
+
+        const customerCell = appendTextCell(
+          row,
+          customer.name,
+          "admin-main-cell"
+        );
+
+        const customerEmail = document.createElement("span");
+
+        customerEmail.className = "admin-sub-cell";
+
+        customerEmail.textContent = customer.email;
+
+        customerCell.appendChild(customerEmail);
+
+        appendTextCell(
+          row,
+          formatDate(order.createdAt || order.date)
+        );
+
+        appendTextCell(
+          row,
+          String(items.reduce(
+            (sum, item) => sum + (Number(item.quantity) || 0),
+            0
+          ))
+        );
+
+        appendTextCell(
+          row,
+          formatPrice(getOrderTotal(order))
+        );
+
+        const statusCell = document.createElement("td");
+
+        statusCell.appendChild(
+          createStatusBadge(getOrderStatus(order))
+        );
+
+        row.appendChild(statusCell);
+
+        const actionCell = document.createElement("td");
+
+        const button = document.createElement("button");
+
+        button.type = "button";
+
+        button.className = "admin-button small";
+
+        button.textContent = "Details";
+
+        button.addEventListener("click", () => {
+
+          openOrderDetails(getOrderId(order));
+
+        });
+
+        actionCell.appendChild(button);
+
+        row.appendChild(actionCell);
+
+        tbody.appendChild(row);
+
+      });
+
+    }
+
+
+    // =====================================
+    // 14. ORDER DETAILS DIALOG
+    // =====================================
+
+    let activeOrderId = null;
+
+    function openOrderDetails(orderId) {
+
+      const order = getOrders().find(item => {
+
+        return getOrderId(item) === String(orderId);
+
+      });
+
+      if (!order) {
+
+        const feedback = document.getElementById(
+          "orders-feedback"
+        );
+
+        showFeedback(
+          feedback,
+          "The selected order could not be found.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      activeOrderId = String(orderId);
+
+      const customer = getOrderCustomer(order);
+
+      document.getElementById("dialog-order-title")
+        .textContent = "Order " + getOrderId(order);
+
+      document.getElementById("dialog-order-date")
+        .textContent = formatDate(
+          order.createdAt || order.date
+        );
+
+      document.getElementById("dialog-customer-name")
+        .textContent = customer.name;
+
+      document.getElementById("dialog-customer-email")
+        .textContent = customer.email;
+
+      document.getElementById("dialog-customer-phone")
+        .textContent = customer.phone;
+
+      const addressParts = [
+
+        customer.address,
+
+        customer.city,
+
+        customer.postcode
+
+      ].filter(Boolean);
+
+      document.getElementById("dialog-customer-address")
+        .textContent = addressParts.join(", ") || "—";
+
+      document.getElementById("dialog-payment-method")
+        .textContent = order.paymentMethod || "—";
+
+      document.getElementById("dialog-payment-status")
+        .textContent = order.paymentStatus || "Pending";
+
+      document.getElementById("dialog-order-total")
+        .textContent = formatPrice(getOrderTotal(order));
+
+      document.getElementById("dialog-order-notes")
+        .textContent = order.notes || "No additional notes";
+
+      document.getElementById("dialog-status-select")
+        .value = getOrderStatus(order);
+
+      showFeedback(
+        document.getElementById("dialog-feedback"),
+        ""
+      );
+
+      // Render order line items safely.
+
+      const tbody = document.getElementById(
+        "dialog-items-body"
+      );
+
+      tbody.replaceChildren();
+
+      getOrderItems(order).forEach(item => {
+
+        const row = document.createElement("tr");
+
+        appendTextCell(
+          row,
+          item.name || item.productName || "Product"
+        );
+
+        const variantParts = [];
+
+        if (item.sku) {
+          variantParts.push(item.sku);
+        }
+
+        if (item.size) {
+          variantParts.push("Size " + item.size);
+        }
+
+        if (item.color) {
+          variantParts.push(item.color);
+        }
+
+        appendTextCell(
+          row,
+          variantParts.join(" / ") || "—"
+        );
+
+        appendTextCell(
+          row,
+          String(Number(item.quantity) || 0)
+        );
+
+        const price = Number(
+          item.subtotal !== undefined
+            ? item.subtotal
+            : (Number(item.price || item.unitPrice || 0) *
+               Number(item.quantity || 0))
+        );
+
+        appendTextCell(
+          row,
+          formatPrice(price)
+        );
+
+        tbody.appendChild(row);
+
+      });
+
+      if (typeof dialog.showModal === "function") {
+
+        dialog.showModal();
+
+      } else {
+
+        // Basic fallback for older browsers.
+
+        dialog.setAttribute("open", "");
+
+      }
+
+    }
+
+
+    function closeOrderDialog() {
+
+      if (typeof dialog.close === "function" && dialog.open) {
+
+        dialog.close();
+
+      } else {
+
+        dialog.removeAttribute("open");
+
+      }
+
+      activeOrderId = null;
+
+    }
+
+
+    // =====================================
+    // 15. UPDATE ORDER STATUS
+    // =====================================
+
+    document.getElementById("save-order-status-button")
+      .addEventListener("click", () => {
+
+        const feedback =
+          document.getElementById("dialog-feedback");
+
+        if (!activeOrderId) {
+
+          showFeedback(
+            feedback,
+            "No order is selected.",
+            "error"
+          );
+
+          return;
+
+        }
+
+        const newStatus = document.getElementById(
+          "dialog-status-select"
+        ).value;
+
+        const allowedStatuses = [
+
+          "Pending",
+          "Processing",
+          "Shipped",
+          "Delivered",
+          "Cancelled"
+
+        ];
+
+        if (!allowedStatuses.includes(newStatus)) {
+
+          showFeedback(
+            feedback,
+            "Please select a valid order status.",
+            "error"
+          );
+
+          return;
+
+        }
+
+        const orders = getOrders();
+
+        const index = orders.findIndex(order => {
+
+          return getOrderId(order) === activeOrderId;
+
+        });
+
+        if (index === -1) {
+
+          showFeedback(
+            feedback,
+            "Order not found.",
+            "error"
+          );
+
+          return;
+
+        }
+
+        // Update the local order record.
+
+        orders[index].status = newStatus;
+
+        orders[index].updatedAt = new Date().toISOString();
+
+        if (!saveOrders(orders)) {
+
+          showFeedback(
+            feedback,
+            "Unable to save changes in browser storage.",
+            "error"
+          );
+
+          return;
+
+        }
+
+        showFeedback(
+          feedback,
+          "Order status updated to " + newStatus + ".",
+          "success"
+        );
+
+        // Refresh views so status remains consistent.
+
+        updateDashboardStats();
+
+        renderRecentOrders();
+
+        renderOrders();
+
+      });
+
+
+    // =====================================
+    // 16. OPEN THE ORDER RECEIPT
+    // =====================================
+
+    document.getElementById("dialog-receipt-button")
+      .addEventListener("click", () => {
+
+        if (!activeOrderId) {
+          return;
+        }
+
+        window.location.href =
+          "receipt.html?id=" +
+          encodeURIComponent(activeOrderId);
+
+      });
+
+
+    // =====================================
+    // 17. CLOSE ORDER DIALOG
+    // =====================================
+
+    document.getElementById("dialog-close-button")
+      .addEventListener("click", closeOrderDialog);
+
+    document.getElementById("dialog-close-footer")
+      .addEventListener("click", closeOrderDialog);
+
+    dialog.addEventListener("click", event => {
+
+      if (event.target === dialog) {
+
+        closeOrderDialog();
+
+      }
+
+    });
+
+
+    // =====================================
+    // 18. EXPORT ORDERS AS CSV
+    // =====================================
+
+    document.getElementById("export-orders-button")
+      .addEventListener("click", () => {
+
+        const orders = getOrders();
+
+        const headers = [
+
+          "Order ID",
+          "Created At",
+          "Customer Name",
+          "Email",
+          "Phone",
+          "Address",
+          "City",
+          "Payment Method",
+          "Payment Status",
+          "Order Status",
+          "Items",
+          "Subtotal BDT",
+          "Delivery BDT",
+          "Total BDT"
+
+        ];
+
+        const rows = orders.map(order => {
+
+          const customer = getOrderCustomer(order);
+
+          const items = getOrderItems(order);
+
+          const itemSummary = items.map(item => {
+
+            return (
+              (item.name || "Product") +
+              " (" + (item.sku || "") + ") x" +
+              (Number(item.quantity) || 0)
+            );
+
+          }).join("; ");
+
+          return [
+
+            getOrderId(order),
+
+            order.createdAt || order.date || "",
+
+            customer.name,
+
+            customer.email,
+
+            customer.phone,
+
+            customer.address,
+
+            customer.city,
+
+            order.paymentMethod || "",
+
+            order.paymentStatus || "Pending",
+
+            getOrderStatus(order),
+
+            itemSummary,
+
+            order.subtotal ?? "",
+
+            order.deliveryFee ?? 0,
+
+            getOrderTotal(order)
+
+          ].map(escapeCSV);
+
+        });
+
+        const csv = [
+
+          headers.map(escapeCSV).join(","),
+
+          ...rows.map(row => row.join(","))
+
+        ].join("\r\n");
+
+        const blob = new Blob(
+          ["\uFEFF" + csv],
+          { type: "text/csv;charset=utf-8;" }
+        );
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+
+        link.href = url;
+
+        link.download = "brutbox-demo-orders.csv";
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+        URL.revokeObjectURL(url);
+
+        showFeedback(
+          document.getElementById("orders-feedback"),
+          "CSV export generated from this browser's demo orders.",
+          "success"
+        );
+
+      });
+
+
+    // =====================================
+    // 19. RESET DEMO INVENTORY
+    // =====================================
+
+    document.getElementById("reset-inventory-button")
+      .addEventListener("click", () => {
+
+        const confirmed = window.confirm(
+          "Reset all locally saved demo inventory quantities to their original sample values?"
+        );
+
+        if (!confirmed) {
+          return;
+        }
+
+        try {
+
+          localStorage.removeItem("bb_admin_inventory");
+
+        } catch (error) {
+
+          showFeedback(
+            document.getElementById("inventory-feedback"),
+            "Unable to reset demo inventory.",
+            "error"
+          );
+
+          return;
+
+        }
+
+        renderInventory();
+
+        renderLowStock();
+
+        updateDashboardStats();
+
+        showFeedback(
+          document.getElementById("inventory-feedback"),
+          "Demo inventory reset to sample values.",
+          "success"
+        );
+
+      });
+
+
+    // =====================================
+    // 20. DASHBOARD NAVIGATION
+    // =====================================
+
+    function showView(viewName) {
+
+      const allowedViews = [
+
+        "dashboard",
+        "inventory",
+        "orders"
+
+      ];
+
+      if (!allowedViews.includes(viewName)) {
+        return;
+      }
+
+      document.querySelectorAll(".admin-view")
+        .forEach(view => {
+
+          view.hidden = view.id !== "view-" + viewName;
+
+        });
+
+      document.querySelectorAll(".admin-tab")
+        .forEach(button => {
+
+          const isActive =
+            button.dataset.view === viewName;
+
+          button.classList.toggle("active", isActive);
+
+          if (isActive) {
+
+            button.setAttribute("aria-current", "page");
+
+          } else {
+
+            button.removeAttribute("aria-current");
+
+          }
+
+        });
+
+      if (viewName === "dashboard") {
+
+        refreshDashboard();
+
+      }
+
+      if (viewName === "inventory") {
+
+        renderInventory();
+
+      }
+
+      if (viewName === "orders") {
+
+        renderOrders();
+
+      }
+
+    }
+
+
+    document.querySelectorAll(".admin-tab")
+      .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+          showView(button.dataset.view);
+
+        });
+
+      });
+
+
+    document.querySelectorAll("[data-open-view]")
+      .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+          showView(button.dataset.openView);
+
+        });
+
+      });
+
+
+    // =====================================
+    // 21. INVENTORY SEARCH AND CATEGORY
+    // =====================================
+
+    document.getElementById("inventory-search")
+      .addEventListener("input", renderInventory);
+
+    document.getElementById("inventory-category-filter")
+      .addEventListener("change", renderInventory);
+
+
+    // =====================================
+    // 22. ORDER SEARCH AND STATUS FILTER
+    // =====================================
+
+    document.getElementById("order-search")
+      .addEventListener("input", renderOrders);
+
+    document.getElementById("order-status-filter")
+      .addEventListener("change", renderOrders);
+
+
+    // =====================================
+    // 23. REFRESH DASHBOARD
+    // =====================================
+
+    function refreshDashboard() {
+
+      updateDashboardStats();
+
+      renderRecentOrders();
+
+      renderLowStock();
+
+    }
+
+
+    document.getElementById("refresh-button")
+      .addEventListener("click", () => {
+
+        refreshDashboard();
+
+        renderInventory();
+
+        renderOrders();
+
+      });
+
+
+    // =====================================
+    // 24. DEMO SIGN OUT
+    // =====================================
+
+    logoutButton.addEventListener("click", () => {
+
+      const confirmed = window.confirm(
+        "Sign out of the demo administrator account?"
+      );
+
+      if (!confirmed) {
+        return;
+      }
+
+      try {
+
+        localStorage.removeItem("bb_user");
+
+      } catch (error) {
+
+        // Continue to login page.
+
+      }
+
+      window.location.href = "login.html";
+
+    });
+
+
+    // =====================================
+    // 25. INITIALIZE ADMIN DASHBOARD
+    // =====================================
+
+    if (initializeAdmin()) {
+
+      refreshDashboard();
+
+      renderInventory();
+
+      renderOrders();
+
+    }
+
+  </script>
+
+</body>
+</html>
