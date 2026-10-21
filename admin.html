@@ -1,66 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="BRUTBOX &amp; CO. mens essentials academic HTML/CSS storefront.">
-  <meta name="theme-color" content="#182536">
-  <title>Admin Dashboard Preview | BRUTBOX &amp; CO.</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="topbar">BRUTBOX &amp; CO. &nbsp;·&nbsp; THE MEN'S ESSENTIALS EDIT &nbsp;·&nbsp; STUDENT DEMO</div>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="BRUTBOX &amp; CO. mens essentials academic HTML/CSS storefront." name="description"/>
+  <meta content="#182536" name="theme-color"/>
+  <title>
+   Admin Dashboard Preview | BRUTBOX &amp; CO.
+  </title>
+  <link href="css/style.css" rel="stylesheet"/>
+  <link href="css/inventory.css" rel="stylesheet"/>
+  <link href="css/responsive.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <a class="skip-link" href="#main">
+   Skip to content
+  </a>
+  <div class="topbar">
+   BRUTBOX &amp; CO. &nbsp;&middot;&nbsp; THE MEN'S ESSENTIALS EDIT &nbsp;&middot;&nbsp; STUDENT DEMO
+  </div>
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Brutbox and Company home">BRUTBOX <span>&amp; CO.</span></a>
-      <nav class="desktop-nav" aria-label="Main navigation">
-          <a href="index.html">Home</a>
-          <a href="products.html">Shop</a>
-          <a href="cart.html">Cart</a>
-          <a href="checkout.html">Checkout</a>
-          <a href="index.html#about">Our Story</a>
-      </nav>
-      <div class="header-actions">
-        <a class="header-login" href="login.html">Account</a>
-        <a class="cart-pill" href="cart.html" aria-label="View sample cart">Bag <span>02</span></a>
-        <details class="mobile-nav">
-          <summary aria-label="Open navigation menu">☰ <span>Menu</span></summary>
-          <nav class="mobile-panel" aria-label="Mobile navigation">
-            <a href="index.html">Home</a>
-            <a href="products.html">All Products</a>
-            <a href="cart.html">Sample Cart</a>
-            <a href="login.html">Login</a>
-            <a href="signup.html">Create Account</a>
-            <a href="checkout.html">Checkout Preview</a>
-            <a href="receipt.html">Sample Receipt</a>
-            <a href="admin.html">Admin Preview</a>
-          </nav>
-        </details>
-      </div>
+   <div class="container header-inner">
+    <details class="mobile-nav">
+     <summary aria-label="Open navigation menu">
+      ☰
+      <span>
+       Menu
+      </span>
+     </summary>
+     <nav aria-label="Mobile navigation" class="mobile-panel">
+      <a href="index.html">
+       Home
+      </a>
+      <a href="products.html">
+       All Products
+      </a>
+      <a href="cart.html">
+       Sample Cart
+      </a>
+      <a href="login.html">
+       Login
+      </a>
+      <a href="signup.html">
+       Create Account
+      </a>
+      <a href="checkout.html">
+       Checkout Preview
+      </a>
+      <a href="receipt.html">
+       Sample Receipt
+      </a>
+      <a href="admin.html">
+       Admin Preview
+      </a>
+      <a href="inventory.html">
+       Inventory Preview
+      </a>
+     </nav>
+    </details>
+    <a aria-label="Brutbox and Company home" class="brand" href="index.html">
+     BRUTBOX
+     <span>
+      &amp; CO.
+     </span>
+    </a>
+    <nav aria-label="Main navigation" class="desktop-nav">
+     <a href="index.html">
+      Home
+     </a>
+     <a href="products.html">
+      Shop
+     </a>
+     <a href="cart.html">
+      Cart
+     </a>
+     <a href="checkout.html">
+      Checkout
+     </a>
+     <a href="index.html#about">
+      Our Story
+     </a>
+    </nav>
+    <div class="header-actions">
+     <a class="header-login" href="login.html">
+      Account
+     </a>
+     <a aria-label="View sample cart" class="cart-pill" href="cart.html">
+      Bag
+      <span>
+       02
+      </span>
+     </a>
     </div>
+   </div>
   </header>
   <main id="main">
-    <section class="page-hero container"><p class="breadcrumb"><a href="index.html">Home</a> / Admin Preview</p><p class="eyebrow dark">STORE MANAGEMENT / PROTOTYPE</p><h1>Store overview.</h1><p>A clean dashboard design for future product and inventory management. All numbers are sample values.</p></section>
-    <section class="container admin-section"><div class="catalog-notice"><span class="label-small">DEMO ADMIN PANEL</span><p>This page is publicly viewable and has no authentication. Tables, statuses and buttons are not connected to a database.</p></div>
-      <nav class="admin-tabs" aria-label="Admin preview sections"><a href="#statistics">Overview</a><a href="#inventory">Inventory</a><a href="#orders">Orders</a></nav>
-      <section id="statistics"><div class="admin-stats"><div class="stat-card"><span>Total sample products</span><strong>07</strong><small>Across 6 categories</small></div><div class="stat-card"><span>Sample SKUs</span><strong>12</strong><small>Illustrative variants</small></div><div class="stat-card"><span>Example orders</span><strong>01</strong><small>Not a live purchase</small></div><div class="stat-card"><span>Example order value</span><strong>৳1,620</strong><small>Simulated amount</small></div></div></section>
-      <section class="admin-table-wrap" id="inventory"><div class="admin-section-title"><h2>Inventory overview</h2><span>Sample stock only</span></div><div class="responsive-table"><table><thead><tr><th>SKU</th><th>Product</th><th>Variant</th><th>Demo Stock</th><th>Status</th></tr></thead><tbody>
-        <tr><td>CB-BLK-S</td><td>Cotton Boxer</td><td>S / Black</td><td>30</td><td><span class="status-tag">In Stock</span></td></tr><tr><td>CB-BLK-M</td><td>Cotton Boxer</td><td>M / Black</td><td>30</td><td><span class="status-tag">In Stock</span></td></tr><tr><td>CB-BLK-L</td><td>Cotton Boxer</td><td>L / Black</td><td>25</td><td><span class="status-tag">In Stock</span></td></tr><tr><td>BT-BLK-OS</td><td>Silk Bow Tie</td><td>One Size / Black</td><td>30</td><td><span class="status-tag">In Stock</span></td></tr><tr><td>CS-BLK-4043</td><td>Crew Socks</td><td>40–43 / Black</td><td>30</td><td><span class="status-tag">In Stock</span></td></tr>
-      </tbody></table></div><p class="fine-print">Five example rows shown. Product editing and inventory adjustment require a future JavaScript/backend phase.</p></section>
-      <section class="admin-table-wrap" id="orders"><div class="admin-section-title"><h2>Orders preview</h2><span>Not a real order</span></div><div class="responsive-table"><table><thead><tr><th>Reference</th><th>Customer</th><th>Items</th><th>Amount</th><th>Payment</th><th>Receipt</th></tr></thead><tbody><tr><td>BB-DEMO-1001</td><td>Sample Customer</td><td>3</td><td>৳1,620</td><td><span class="status-tag pending">Pending (Demo)</span></td><td><a class="subtle-link" href="receipt.html">View example ↗</a></td></tr></tbody></table></div></section>
+   <section class="page-hero container">
+    <p class="breadcrumb">
+     <a href="index.html">
+      Home
+     </a>
+     / Admin Preview
+    </p>
+    <p class="eyebrow dark">
+     STORE MANAGEMENT / PROTOTYPE
+    </p>
+    <h1>
+     Store overview.
+    </h1>
+    <p>
+     A clean dashboard design for future product and inventory management. All numbers are sample values.
+    </p>
+   </section>
+   <section class="container admin-section">
+    <div class="catalog-notice">
+     <span class="label-small">
+      DEMO ADMIN PANEL
+     </span>
+     <p>
+      This page is publicly viewable and has no authentication. Tables, statuses and buttons are not connected to a database.
+     </p>
+    </div>
+    <nav aria-label="Admin preview sections" class="admin-tabs">
+     <a href="#statistics">
+      Overview
+     </a>
+     <a href="#inventory">
+      Inventory
+     </a>
+     <a href="#orders">
+      Orders
+     </a>
+     <a href="inventory.html">
+      Full inventory page &nearrow;
+     </a>
+    </nav>
+    <section id="statistics">
+     <div class="admin-stats">
+      <div class="stat-card">
+       <span>
+        Total sample products
+       </span>
+       <strong>
+        07
+       </strong>
+       <small>
+        Across 6 categories
+       </small>
+      </div>
+      <div class="stat-card">
+       <span>
+        Sample SKUs
+       </span>
+       <strong>
+        12
+       </strong>
+       <small>
+        Illustrative variants
+       </small>
+      </div>
+      <div class="stat-card">
+       <span>
+        Example orders
+       </span>
+       <strong>
+        01
+       </strong>
+       <small>
+        Not a live purchase
+       </small>
+      </div>
+      <div class="stat-card">
+       <span>
+        Example order value
+       </span>
+       <strong>
+        ৳1,620
+       </strong>
+       <small>
+        Simulated amount
+       </small>
+      </div>
+     </div>
     </section>
+    <section class="admin-table-wrap" id="inventory">
+     <div class="admin-section-title">
+      <h2>
+       Inventory overview
+      </h2>
+      <span>
+       Sample stock only
+      </span>
+     </div>
+     <div class="responsive-table">
+      <table>
+       <thead>
+        <tr>
+         <th>
+          SKU
+         </th>
+         <th>
+          Product
+         </th>
+         <th>
+          Variant
+         </th>
+         <th>
+          Demo Stock
+         </th>
+         <th>
+          Status
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td>
+          CB-BLK-S
+         </td>
+         <td>
+          Cotton Boxer
+         </td>
+         <td>
+          S / Black
+         </td>
+         <td>
+          30
+         </td>
+         <td>
+          <span class="status-tag">
+           In Stock
+          </span>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          CB-BLK-M
+         </td>
+         <td>
+          Cotton Boxer
+         </td>
+         <td>
+          M / Black
+         </td>
+         <td>
+          30
+         </td>
+         <td>
+          <span class="status-tag">
+           In Stock
+          </span>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          CB-BLK-L
+         </td>
+         <td>
+          Cotton Boxer
+         </td>
+         <td>
+          L / Black
+         </td>
+         <td>
+          25
+         </td>
+         <td>
+          <span class="status-tag">
+           In Stock
+          </span>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          BT-BLK-OS
+         </td>
+         <td>
+          Silk Bow Tie
+         </td>
+         <td>
+          One Size / Black
+         </td>
+         <td>
+          30
+         </td>
+         <td>
+          <span class="status-tag">
+           In Stock
+          </span>
+         </td>
+        </tr>
+        <tr>
+         <td>
+          CS-BLK-4043
+         </td>
+         <td>
+          Crew Socks
+         </td>
+         <td>
+          40&ndash;43 / Black
+         </td>
+         <td>
+          30
+         </td>
+         <td>
+          <span class="status-tag">
+           In Stock
+          </span>
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <p class="fine-print">
+      Five example rows shown. Product editing and inventory adjustment require a future JavaScript/backend phase.
+     </p>
+    </section>
+    <section class="admin-table-wrap" id="orders">
+     <div class="admin-section-title">
+      <h2>
+       Orders preview
+      </h2>
+      <span>
+       Not a real order
+      </span>
+     </div>
+     <div class="responsive-table">
+      <table>
+       <thead>
+        <tr>
+         <th>
+          Reference
+         </th>
+         <th>
+          Customer
+         </th>
+         <th>
+          Items
+         </th>
+         <th>
+          Amount
+         </th>
+         <th>
+          Payment
+         </th>
+         <th>
+          Receipt
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr>
+         <td>
+          BB-DEMO-1001
+         </td>
+         <td>
+          Sample Customer
+         </td>
+         <td>
+          3
+         </td>
+         <td>
+          ৳1,620
+         </td>
+         <td>
+          <span class="status-tag pending">
+           Pending (Demo)
+          </span>
+         </td>
+         <td>
+          <a class="subtle-link" href="receipt.html">
+           View example &nearrow;
+          </a>
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </section>
+   </section>
   </main>
   <footer class="site-footer" id="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand"><a class="brand footer-logo" href="index.html">BRUTBOX <span>&amp; CO.</span></a>
-        <p>Understated style. Everyday essentials. An academic e-commerce interface built with HTML and CSS.</p></div>
-      <div><h3>Explore</h3><a href="products.html">All Products</a><a href="product-details.html#p-001">Sample Product Details</a><a href="cart.html">Sample Shopping Bag</a></div>
-      <div><h3>Project Pages</h3><a href="login.html">Login Preview</a><a href="signup.html">Signup Preview</a><a href="checkout.html">Checkout Preview</a><a href="admin.html">Admin Preview</a></div>
-      <div><h3>Important</h3><p>Phase 01: HTML/CSS only. No account creation, order placement, inventory changes or payments are processed.</p></div>
+   <div class="container footer-grid">
+    <div class="footer-brand">
+     <a class="brand footer-logo" href="index.html">
+      BRUTBOX
+      <span>
+       &amp; CO.
+      </span>
+     </a>
+     <p>
+      Understated style. Everyday essentials. An academic e-commerce interface built with HTML and CSS.
+     </p>
     </div>
-    <div class="footer-bottom container"><span>© 2026 BRUTBOX &amp; CO. — Academic Prototype</span><span>Designed for desktop • tablet • mobile</span></div>
+    <div>
+     <h3>
+      Explore
+     </h3>
+     <a href="products.html">
+      All Products
+     </a>
+     <a href="product-details.html#p-001">
+      Sample Product Details
+     </a>
+     <a href="cart.html">
+      Sample Shopping Bag
+     </a>
+    </div>
+    <div>
+     <h3>
+      Project Pages
+     </h3>
+     <a href="login.html">
+      Login Preview
+     </a>
+     <a href="signup.html">
+      Signup Preview
+     </a>
+     <a href="checkout.html">
+      Checkout Preview
+     </a>
+     <a href="admin.html">
+      Admin Preview
+     </a>
+     <a href="inventory.html">
+      Inventory Preview
+     </a>
+    </div>
+    <div>
+     <h3>
+      Important
+     </h3>
+     <p>
+      Phase 01: HTML/CSS only. No account creation, order placement, inventory changes or payments are processed.
+     </p>
+    </div>
+   </div>
+   <div class="footer-bottom container">
+    <span>
+     &copy; 2026 BRUTBOX &amp; CO. &mdash; Academic Prototype
+    </span>
+    <span>
+     Designed for desktop &bull; tablet &bull; mobile
+    </span>
+   </div>
   </footer>
-</body>
+ </body>
 </html>
+
