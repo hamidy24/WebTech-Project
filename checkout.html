@@ -1,0 +1,2025 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Complete your order at Brutbox & CO.">
+
+  <title>Checkout | BRUTBOX & CO.</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* =====================================
+       CHECKOUT PAGE
+    ===================================== */
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .checkout-page {
+      padding-top: 45px;
+      padding-bottom: 75px;
+    }
+
+    .checkout-breadcrumb {
+      margin-bottom: 20px;
+      color: #516071;
+      font-size: 13px;
+    }
+
+    .checkout-breadcrumb a {
+      color: #182536;
+    }
+
+    .checkout-heading {
+      margin-bottom: 32px;
+    }
+
+    .checkout-heading h1 {
+      margin: 0 0 8px;
+      font-size: clamp(32px, 4vw, 45px);
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+    }
+
+    .checkout-heading p {
+      margin: 0;
+      color: #516071;
+      font-size: 14px;
+    }
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      align-items: start;
+      gap: 30px;
+    }
+
+    .checkout-main {
+      min-width: 0;
+    }
+
+    .checkout-card {
+      margin-bottom: 24px;
+      padding: 27px;
+      border: 1px solid #e6e3df;
+      background: #ffffff;
+    }
+
+    .checkout-card h2 {
+      margin: 0 0 8px;
+      font-size: 21px;
+    }
+
+    .checkout-card-description {
+      margin: 0 0 24px;
+      color: #516071;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* =====================================
+       LOGIN REQUIRED MESSAGE
+    ===================================== */
+
+    .login-required {
+      padding: 25px;
+      margin-bottom: 24px;
+      border: 1px solid #e6e3df;
+      background: #f6f3ee;
+    }
+
+    .login-required h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .login-required p {
+      margin: 0 0 18px;
+      color: #516071;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* =====================================
+       FORM
+    ===================================== */
+
+    .checkout-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .form-group {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      color: #182536;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .form-group label .optional {
+      color: #7b8793;
+      font-weight: 400;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 12px 13px;
+      border: 1px solid #d8dce0;
+      border-radius: 3px;
+      outline: none;
+      background: #ffffff;
+      color: #182536;
+      font: inherit;
+      font-size: 13px;
+    }
+
+    .form-group textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #ba8957;
+      box-shadow: 0 0 0 2px #ba895720;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #9ba4ae;
+    }
+
+    .field-hint {
+      margin: 0;
+      color: #7b8793;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    /* =====================================
+       PAYMENT METHODS
+    ===================================== */
+
+    .payment-options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px;
+      border: 1px solid #e6e3df;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .payment-option:has(input:checked) {
+      border-color: #ba8957;
+      background: #faf7f2;
+    }
+
+    .payment-option input {
+      flex-shrink: 0;
+      margin-top: 4px;
+      accent-color: #182536;
+    }
+
+    .payment-option-content {
+      flex: 1;
+    }
+
+    .payment-option-content strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #182536;
+      font-size: 13px;
+    }
+
+    .payment-option-content span {
+      display: block;
+      color: #516071;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .payment-tag {
+      display: inline-block;
+      padding: 4px 7px;
+      background: #f0e5d6;
+      color: #76532f;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    /* =====================================
+       ORDER SUMMARY
+    ===================================== */
+
+    .checkout-summary {
+      position: sticky;
+      top: 105px;
+      padding: 25px;
+      border: 1px solid #e6e3df;
+      background: #f6f3ee;
+    }
+
+    .checkout-summary h2 {
+      margin: 0 0 22px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #dcd7d0;
+      font-size: 21px;
+    }
+
+    .summary-products {
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
+      padding-bottom: 21px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #dcd7d0;
+    }
+
+    .summary-product {
+      display: grid;
+      grid-template-columns: 55px minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 11px;
+    }
+
+    .summary-product-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 55px;
+      height: 65px;
+      padding: 4px;
+      color: white;
+      background: #394653;
+      font-size: 9px;
+      font-weight: 800;
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+
+    .summary-product-info {
+      min-width: 0;
+    }
+
+    .summary-product-info strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .summary-product-info span {
+      display: block;
+      color: #516071;
+      font-size: 10px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    .summary-product-price {
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    .summary-row span:first-child {
+      color: #516071;
+    }
+
+    .summary-row span:last-child {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-top: 19px;
+      margin-top: 19px;
+      border-top: 1px solid #dcd7d0;
+    }
+
+    .summary-total span {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .summary-total strong {
+      font-size: 21px;
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .delivery-note {
+      margin: 20px 0 0;
+      padding: 12px;
+      background: #ffffff;
+      color: #516071;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    /* =====================================
+       ORDER BUTTON
+    ===================================== */
+
+    .place-order-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 49px;
+      padding: 13px 15px;
+      margin-top: 24px;
+      border: none;
+      border-radius: 3px;
+      background: #182536;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .place-order-btn:hover:not(:disabled) {
+      background: #997347;
+    }
+
+    .place-order-btn:disabled {
+      background: #9ba4ae;
+      cursor: not-allowed;
+    }
+
+    .back-to-cart {
+      display: block;
+      margin-top: 18px;
+      color: #182536;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .back-to-cart:hover {
+      color: #997347;
+      text-decoration: underline;
+    }
+
+    /* =====================================
+       STATUS MESSAGES
+    ===================================== */
+
+    .form-message {
+      display: none;
+      padding: 12px 14px;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .form-message.error {
+      display: block;
+      background: #fbe4e4;
+      color: #a52b2b;
+    }
+
+    .form-message.success {
+      display: block;
+      background: #e4f3e8;
+      color: #267345;
+    }
+
+    /* =====================================
+       EMPTY CART
+    ===================================== */
+
+    .checkout-empty {
+      padding: 35px 20px;
+      border: 1px solid #e6e3df;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .checkout-empty h2 {
+      margin: 0 0 10px;
+      font-size: 23px;
+    }
+
+    .checkout-empty p {
+      margin: 0 0 22px;
+      color: #516071;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =====================================
+       SECURITY / DEMO NOTICE
+    ===================================== */
+
+    .checkout-demo-notice {
+      padding: 14px;
+      margin-top: 20px;
+      border-left: 3px solid #ba8957;
+      background: #fffaf2;
+      color: #66533f;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    /* =====================================
+       RESPONSIVE
+    ===================================== */
+
+    @media (max-width: 900px) {
+      .checkout-layout {
+        grid-template-columns: minmax(0, 1fr) 310px;
+        gap: 20px;
+      }
+
+      .checkout-card {
+        padding: 22px;
+      }
+
+      .checkout-summary {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .checkout-page {
+        padding-top: 30px;
+        padding-bottom: 50px;
+      }
+
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-summary {
+        position: static;
+        grid-row: 1;
+      }
+
+      .checkout-main {
+        grid-row: 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .checkout-card {
+        padding: 18px;
+      }
+
+      .checkout-summary {
+        padding: 18px;
+      }
+
+      .checkout-heading h1 {
+        font-size: 32px;
+      }
+
+      .summary-product {
+        grid-template-columns: 45px minmax(0, 1fr) auto;
+        gap: 8px;
+      }
+
+      .summary-product-image {
+        width: 45px;
+        height: 58px;
+        font-size: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================
+       SKIP LINK
+  ===================================== -->
+
+  <a class="skip-link" href="#main-content">
+    Skip to content
+  </a>
+
+  <!-- =====================================
+       ANNOUNCEMENT BAR
+  ===================================== -->
+
+  <div class="announcement">
+    BRUTBOX & CO. — MEN'S ESSENTIALS
+  </div>
+
+  <!-- =====================================
+       HEADER
+  ===================================== -->
+
+  <header class="site-header">
+
+    <div class="container header-inner">
+
+      <a href="index.html"
+         class="brand"
+         aria-label="Brutbox and Company Home">
+        BRUTBOX <span>& CO.</span>
+      </a>
+
+      <nav class="desktop-nav"
+           aria-label="Main Navigation">
+
+        <a href="index.html">Home</a>
+
+        <a href="products.html">Products</a>
+
+        <a href="products.html#categories">
+          Categories
+        </a>
+
+        <a href="index.html#about">About</a>
+
+      </nav>
+
+      <div class="header-actions">
+
+        <a href="cart.html" class="header-shop">
+          Back to Cart ↗
+        </a>
+
+        <details class="mobile-nav">
+
+          <summary aria-label="Open navigation menu">
+            <span aria-hidden="true">☰</span>
+            Menu
+          </summary>
+
+          <nav class="mobile-menu-panel"
+               aria-label="Mobile Navigation">
+
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="index.html#about">About</a>
+
+          </nav>
+
+        </details>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- =====================================
+       MAIN CONTENT
+  ===================================== -->
+
+  <main id="main-content">
+
+    <section class="container checkout-page">
+
+      <!-- Breadcrumb -->
+
+      <nav class="checkout-breadcrumb"
+           aria-label="Breadcrumb">
+
+        <a href="index.html">Home</a>
+        /
+        <a href="cart.html">Cart</a>
+        /
+        <span aria-current="page">Checkout</span>
+
+      </nav>
+
+      <!-- Page Heading -->
+
+      <div class="checkout-heading">
+
+        <h1>Checkout</h1>
+
+        <p>
+          Enter your delivery details and review
+          your order before confirming.
+        </p>
+
+      </div>
+
+      <!-- Login Notice -->
+
+      <div class="login-required"
+           id="login-required"
+           hidden>
+
+        <h2>Sign in to continue</h2>
+
+        <p>
+          Please sign in to your demo account before
+          completing checkout. Your cart will be
+          saved in this browser.
+        </p>
+
+        <a class="button button-primary"
+           id="checkout-login-link"
+           href="login.html?next=checkout.html">
+          Sign In →
+        </a>
+
+      </div>
+
+      <!-- Empty Cart Message -->
+
+      <div class="checkout-empty"
+           id="checkout-empty"
+           hidden>
+
+        <h2>Your cart is empty</h2>
+
+        <p>
+          Add some products to your cart before
+          proceeding to checkout.
+        </p>
+
+        <a href="products.html"
+           class="button button-primary">
+          Explore Products →
+        </a>
+
+      </div>
+
+      <!-- Checkout Layout -->
+
+      <div class="checkout-layout"
+           id="checkout-layout">
+
+        <!-- =================================
+             LEFT: CHECKOUT FORM
+        ================================== -->
+
+        <div class="checkout-main">
+
+          <form id="checkout-form"
+                class="checkout-form"
+                novalidate>
+
+            <!-- Delivery Information -->
+
+            <section class="checkout-card"
+                     id="delivery-card">
+
+              <h2>01. Delivery Information</h2>
+
+              <p class="checkout-card-description">
+                Enter the information needed to
+                deliver your demo order.
+              </p>
+
+              <div class="checkout-form">
+
+                <div class="form-group">
+
+                  <label for="customer-name">
+                    Full Name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="customer-name"
+                    name="customerName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    maxlength="100"
+                    required
+                  >
+
+                </div>
+
+                <div class="form-row">
+
+                  <div class="form-group">
+
+                    <label for="customer-email">
+                      Email Address
+                    </label>
+
+                    <input
+                      type="email"
+                      id="customer-email"
+                      name="email"
+                      placeholder="you@example.com"
+                      autocomplete="email"
+                      maxlength="254"
+                      required
+                    >
+
+                  </div>
+
+                  <div class="form-group">
+
+                    <label for="customer-phone">
+                      Phone Number
+                    </label>
+
+                    <input
+                      type="tel"
+                      id="customer-phone"
+                      name="phone"
+                      placeholder="01XXXXXXXXX"
+                      autocomplete="tel"
+                      maxlength="20"
+                      required
+                    >
+
+                    <p class="field-hint">
+                      Enter a valid Bangladeshi mobile number.
+                    </p>
+
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+
+                  <label for="customer-address">
+                    Delivery Address
+                  </label>
+
+                  <textarea
+                    id="customer-address"
+                    name="address"
+                    placeholder="House, road, area and other address details"
+                    autocomplete="street-address"
+                    maxlength="500"
+                    required
+                  ></textarea>
+
+                </div>
+
+                <div class="form-row">
+
+                  <div class="form-group">
+
+                    <label for="customer-city">
+                      City / District
+                    </label>
+
+                    <input
+                      type="text"
+                      id="customer-city"
+                      name="city"
+                      placeholder="e.g. Dhaka"
+                      autocomplete="address-level2"
+                      maxlength="100"
+                      required
+                    >
+
+                  </div>
+
+                  <div class="form-group">
+
+                    <label for="customer-postcode">
+                      Postcode <span class="optional">(Optional)</span>
+                    </label>
+
+                    <input
+                      type="text"
+                      id="customer-postcode"
+                      name="postcode"
+                      placeholder="e.g. 1207"
+                      autocomplete="postal-code"
+                      maxlength="15"
+                    >
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </section>
+
+            <!-- Payment Method -->
+
+            <section class="checkout-card">
+
+              <h2>02. Payment Method</h2>
+
+              <p class="checkout-card-description">
+                Choose a payment option for this
+                demonstration order.
+              </p>
+
+              <div class="payment-options">
+
+                <label class="payment-option">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="Cash on Delivery"
+                    checked
+                    required
+                  >
+
+                  <span class="payment-option-content">
+
+                    <strong>Cash on Delivery (COD)</strong>
+
+                    <span>
+                      Demo selection. Payment remains
+                      unverified in this frontend prototype.
+                    </span>
+
+                  </span>
+
+                  <span class="payment-tag">
+                    DEMO
+                  </span>
+
+                </label>
+
+                <label class="payment-option">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="bKash (Demo)"
+                    required
+                  >
+
+                  <span class="payment-option-content">
+
+                    <strong>bKash</strong>
+
+                    <span>
+                      Demo option only. No bKash account
+                      or transaction is connected.
+                    </span>
+
+                  </span>
+
+                  <span class="payment-tag">
+                    DEMO
+                  </span>
+
+                </label>
+
+                <label class="payment-option">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="Nagad (Demo)"
+                    required
+                  >
+
+                  <span class="payment-option-content">
+
+                    <strong>Nagad</strong>
+
+                    <span>
+                      Demo option only. No Nagad account
+                      or transaction is connected.
+                    </span>
+
+                  </span>
+
+                  <span class="payment-tag">
+                    DEMO
+                  </span>
+
+                </label>
+
+                <label class="payment-option">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="Card Payment (Demo)"
+                    required
+                  >
+
+                  <span class="payment-option-content">
+
+                    <strong>Card Payment</strong>
+
+                    <span>
+                      Preview only. Do not enter or share
+                      real card details.
+                    </span>
+
+                  </span>
+
+                  <span class="payment-tag">
+                    DEMO
+                  </span>
+
+                </label>
+
+              </div>
+
+              <div class="checkout-demo-notice">
+
+                <strong>Demo payment notice:</strong>
+                This project does not connect to a real
+                payment provider. Selecting a payment
+                option does not charge an account.
+                Every order created here is a simulated order.
+
+              </div>
+
+            </section>
+
+            <!-- Order Notes -->
+
+            <section class="checkout-card">
+
+              <h2>03. Additional Information</h2>
+
+              <p class="checkout-card-description">
+                Add optional notes for your demonstration order.
+              </p>
+
+              <div class="form-group">
+
+                <label for="order-notes">
+                  Order Notes
+                  <span class="optional">(Optional)</span>
+                </label>
+
+                <textarea
+                  id="order-notes"
+                  name="notes"
+                  placeholder="Any additional delivery instructions..."
+                  maxlength="500"
+                ></textarea>
+
+              </div>
+
+            </section>
+
+            <!-- Form Message -->
+
+            <p id="checkout-message"
+               class="form-message"
+               role="status"
+               aria-live="polite">
+            </p>
+
+            <!-- Confirm Order -->
+
+            <button type="submit"
+                    class="place-order-btn"
+                    id="place-order-btn">
+
+              CONFIRM DEMO ORDER →
+
+            </button>
+
+            <a href="cart.html"
+               class="back-to-cart">
+              ← Return to Shopping Cart
+            </a>
+
+          </form>
+
+        </div>
+
+        <!-- =================================
+             RIGHT: ORDER SUMMARY
+        ================================== -->
+
+        <aside class="checkout-summary"
+               aria-label="Order Summary">
+
+          <h2>Your Order</h2>
+
+          <!-- Products inserted by JavaScript -->
+
+          <div class="summary-products"
+               id="summary-products">
+
+            <p>
+              Loading cart items...
+            </p>
+
+          </div>
+
+          <div class="summary-row">
+
+            <span>Total Items</span>
+
+            <span id="summary-quantity">0</span>
+
+          </div>
+
+          <div class="summary-row">
+
+            <span>Subtotal</span>
+
+            <span id="summary-subtotal">
+              BDT 0
+            </span>
+
+          </div>
+
+          <div class="summary-row">
+
+            <span>Delivery</span>
+
+            <span id="summary-delivery">
+              BDT 0
+            </span>
+
+          </div>
+
+          <div class="summary-total">
+
+            <span>Total</span>
+
+            <strong id="summary-total">
+              BDT 0
+            </strong>
+
+          </div>
+
+          <p class="delivery-note">
+            Delivery is set to BDT 0 in this demo.
+            The amount displayed is not a real
+            payment request.
+          </p>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =====================================
+       FOOTER
+  ===================================== -->
+
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <div>
+
+        <strong>BRUTBOX & CO.</strong>
+
+        <p>Men's Essentials and Accessories</p>
+
+        <p>Academic E-Commerce Website Project</p>
+
+      </div>
+
+      <div>
+
+        <p>© 2026 Brutbox & CO.</p>
+
+        <p>Phase 01 Frontend Prototype</p>
+
+      </div>
+
+      <a href="#main-content">
+        Back to Top ↑
+      </a>
+
+    </div>
+
+  </footer>
+
+  <!-- =====================================
+       CHECKOUT JAVASCRIPT
+
+       Uses:
+       bb_cart  - shopping cart
+       bb_user  - demo login
+       bb_orders - saved demo orders
+
+       This is not a production checkout system.
+  ===================================== -->
+
+  <script>
+
+    // =====================================
+    // 1. PRODUCT CATALOG
+    //
+    // These SKUs must match the values
+    // in product-details.html and cart.html.
+    // =====================================
+
+    const products = [
+
+      {
+        id: "P-001",
+        name: "Cotton Boxer",
+        category: "Underwear",
+        price: 450,
+        variants: [
+          { sku: "CB-BLK-S", size: "S", color: "Black", stock: 30 },
+          { sku: "CB-BLK-M", size: "M", color: "Black", stock: 30 },
+          { sku: "CB-BLK-L", size: "L", color: "Black", stock: 25 },
+          { sku: "CB-BLK-XL", size: "XL", color: "Black", stock: 20 }
+        ]
+      },
+
+      {
+        id: "P-002",
+        name: "Cotton Brief",
+        category: "Underwear",
+        price: 380,
+        variants: [
+          { sku: "BR-WHT-M", size: "M", color: "White", stock: 30 },
+          { sku: "BR-WHT-L", size: "L", color: "White", stock: 25 }
+        ]
+      },
+
+      {
+        id: "P-003",
+        name: "Silk Bow Tie",
+        category: "Bow Ties",
+        price: 650,
+        variants: [
+          { sku: "BT-BLK-OS", size: "One Size", color: "Black", stock: 30 }
+        ]
+      },
+
+      {
+        id: "P-004",
+        name: "Silk Pocket Square",
+        category: "Pocket Squares",
+        price: 550,
+        variants: [
+          { sku: "PS-NVY-OS", size: "One Size", color: "Navy", stock: 30 }
+        ]
+      },
+
+      {
+        id: "P-005",
+        name: "Crew Socks",
+        category: "Socks",
+        price: 200,
+        variants: [
+          { sku: "CS-BLK-4043", size: "40-43", color: "Black", stock: 30 },
+          { sku: "CS-BLK-4446", size: "44-46", color: "Black", stock: 20 }
+        ]
+      },
+
+      {
+        id: "P-006",
+        name: "Hard Eyeglass Case",
+        category: "Eyeglass Cases",
+        price: 350,
+        variants: [
+          { sku: "EC-BLK-STD", size: "Standard", color: "Black", stock: 30 }
+        ]
+      },
+
+      {
+        id: "P-007",
+        name: "Bifold Wallet",
+        category: "Wallets",
+        price: 1200,
+        variants: [
+          { sku: "BW-BRN-STD", size: "Standard", color: "Brown", stock: 30 }
+        ]
+      }
+
+    ];
+
+    // =====================================
+    // 2. DOM ELEMENTS
+    // =====================================
+
+    const checkoutForm =
+      document.getElementById("checkout-form");
+
+    const checkoutLayout =
+      document.getElementById("checkout-layout");
+
+    const loginRequired =
+      document.getElementById("login-required");
+
+    const emptyCartMessage =
+      document.getElementById("checkout-empty");
+
+    const checkoutMessage =
+      document.getElementById("checkout-message");
+
+    const placeOrderButton =
+      document.getElementById("place-order-btn");
+
+    const summaryProducts =
+      document.getElementById("summary-products");
+
+
+    // =====================================
+    // 3. HELPER FUNCTIONS
+    // =====================================
+
+    function formatPrice(amount) {
+
+      return "BDT " + amount.toLocaleString("en-US");
+
+    }
+
+
+    function getUser() {
+
+      try {
+
+        const user = JSON.parse(
+          localStorage.getItem("bb_user") || "null"
+        );
+
+        if (
+          user &&
+          user.loggedIn === true &&
+          typeof user.email === "string"
+        ) {
+          return user;
+        }
+
+      } catch (error) {
+
+        // Invalid stored demo account.
+
+      }
+
+      return null;
+
+    }
+
+
+    function getCart() {
+
+      try {
+
+        const stored = JSON.parse(
+          localStorage.getItem("bb_cart") || "[]"
+        );
+
+        if (!Array.isArray(stored)) {
+          return [];
+        }
+
+        const cart = [];
+
+        stored.forEach(item => {
+
+          if (
+            !item ||
+            typeof item.sku !== "string" ||
+            !Number.isInteger(item.quantity) ||
+            item.quantity < 1
+          ) {
+            return;
+          }
+
+          const existing = cart.find(
+            entry => entry.sku === item.sku
+          );
+
+          if (existing) {
+
+            existing.quantity += item.quantity;
+
+          } else {
+
+            cart.push({
+              sku: item.sku,
+              quantity: item.quantity
+            });
+
+          }
+
+        });
+
+        return cart;
+
+      } catch (error) {
+
+        return [];
+
+      }
+
+    }
+
+
+    function saveCart(cart) {
+
+      try {
+
+        localStorage.setItem(
+          "bb_cart",
+          JSON.stringify(cart)
+        );
+
+        return true;
+
+      } catch (error) {
+
+        return false;
+
+      }
+
+    }
+
+
+    function saveOrders(orders) {
+
+      try {
+
+        localStorage.setItem(
+          "bb_orders",
+          JSON.stringify(orders)
+        );
+
+        return true;
+
+      } catch (error) {
+
+        return false;
+
+      }
+
+    }
+
+
+    function findVariant(sku) {
+
+      for (const product of products) {
+
+        const variant = product.variants.find(
+          item => item.sku === sku
+        );
+
+        if (variant) {
+
+          return {
+            product: product,
+            variant: variant
+          };
+
+        }
+
+      }
+
+      return null;
+
+    }
+
+
+    function getCartDetails() {
+
+      const cart = getCart();
+
+      const items = [];
+
+      let subtotal = 0;
+      let quantity = 0;
+
+      for (const cartItem of cart) {
+
+        const match = findVariant(cartItem.sku);
+
+        if (!match) {
+
+          return {
+            error: "A product in your cart is no longer available."
+          };
+
+        }
+
+        const product = match.product;
+        const variant = match.variant;
+
+        if (cartItem.quantity > variant.stock) {
+
+          return {
+            error:
+              product.name +
+              " exceeds the available demo stock for " +
+              variant.size + " / " + variant.color + "."
+          };
+
+        }
+
+        const lineTotal =
+          product.price * cartItem.quantity;
+
+        items.push({
+
+          productId: product.id,
+          name: product.name,
+          category: product.category,
+
+          sku: variant.sku,
+          size: variant.size,
+          color: variant.color,
+
+          quantity: cartItem.quantity,
+          unitPrice: product.price,
+          price: product.price,
+          subtotal: lineTotal
+
+        });
+
+        subtotal += lineTotal;
+
+        quantity += cartItem.quantity;
+
+      }
+
+      return {
+        items: items,
+        subtotal: subtotal,
+        quantity: quantity
+      };
+
+    }
+
+
+    // =====================================
+    // 4. DISPLAY MESSAGES
+    // =====================================
+
+    function showMessage(message, type = "error") {
+
+      checkoutMessage.textContent = message;
+
+      checkoutMessage.className =
+        "form-message " + type;
+
+    }
+
+
+    function clearMessage() {
+
+      checkoutMessage.textContent = "";
+
+      checkoutMessage.className = "form-message";
+
+    }
+
+
+    // =====================================
+    // 5. RENDER THE ORDER SUMMARY
+    // =====================================
+
+    function renderOrderSummary() {
+
+      const details = getCartDetails();
+
+      summaryProducts.replaceChildren();
+
+      if (details.error) {
+
+        const message = document.createElement("p");
+
+        message.textContent = details.error;
+
+        summaryProducts.appendChild(message);
+
+        document.getElementById("summary-quantity")
+          .textContent = "—";
+
+        document.getElementById("summary-subtotal")
+          .textContent = "—";
+
+        document.getElementById("summary-delivery")
+          .textContent = "—";
+
+        document.getElementById("summary-total")
+          .textContent = "—";
+
+        return;
+
+      }
+
+      if (details.items.length === 0) {
+
+        const message = document.createElement("p");
+
+        message.textContent =
+          "Your cart is empty. Add products before checkout.";
+
+        summaryProducts.appendChild(message);
+
+      }
+
+      details.items.forEach(item => {
+
+        const row = document.createElement("div");
+
+        row.className = "summary-product";
+
+        const image = document.createElement("div");
+
+        image.className = "summary-product-image";
+
+        image.textContent = item.name.toUpperCase();
+
+        image.setAttribute("aria-hidden", "true");
+
+        const info = document.createElement("div");
+
+        info.className = "summary-product-info";
+
+        const name = document.createElement("strong");
+
+        name.textContent = item.name;
+
+        const variant = document.createElement("span");
+
+        variant.textContent =
+          "Size: " + item.size +
+          " · " + item.color;
+
+        const quantity = document.createElement("span");
+
+        quantity.textContent =
+          "Qty: " + item.quantity;
+
+        info.appendChild(name);
+
+        info.appendChild(variant);
+
+        info.appendChild(quantity);
+
+        const price = document.createElement("div");
+
+        price.className = "summary-product-price";
+
+        price.textContent = formatPrice(item.subtotal);
+
+        row.appendChild(image);
+
+        row.appendChild(info);
+
+        row.appendChild(price);
+
+        summaryProducts.appendChild(row);
+
+      });
+
+      const deliveryFee = 0;
+
+      const total = details.subtotal + deliveryFee;
+
+      document.getElementById("summary-quantity")
+        .textContent = details.quantity;
+
+      document.getElementById("summary-subtotal")
+        .textContent = formatPrice(details.subtotal);
+
+      document.getElementById("summary-delivery")
+        .textContent = formatPrice(deliveryFee);
+
+      document.getElementById("summary-total")
+        .textContent = formatPrice(total);
+
+    }
+
+
+    // =====================================
+    // 6. INITIALIZE PAGE ACCESS
+    // =====================================
+
+    function initializeCheckout() {
+
+      const cart = getCart();
+
+      const user = getUser();
+
+      // An empty cart should not proceed to checkout.
+
+      if (cart.length === 0) {
+
+        emptyCartMessage.hidden = false;
+
+        checkoutLayout.hidden = true;
+
+        loginRequired.hidden = true;
+
+        return;
+
+      }
+
+      checkoutLayout.hidden = false;
+
+      emptyCartMessage.hidden = true;
+
+      // Customers must sign in before ordering.
+
+      if (!user) {
+
+        loginRequired.hidden = false;
+
+        checkoutForm.hidden = true;
+
+      } else {
+
+        loginRequired.hidden = true;
+
+        checkoutForm.hidden = false;
+
+        // Fill in available account information.
+
+        const nameInput =
+          document.getElementById("customer-name");
+
+        const emailInput =
+          document.getElementById("customer-email");
+
+        if (user.name && !nameInput.value) {
+
+          nameInput.value = user.name;
+
+        }
+
+        if (user.email && !emailInput.value) {
+
+          emailInput.value = user.email;
+
+        }
+
+      }
+
+      renderOrderSummary();
+
+    }
+
+
+    // =====================================
+    // 7. VALIDATE PHONE NUMBER
+    // =====================================
+
+    function isValidBangladeshiPhone(phone) {
+
+      const cleaned = phone.replace(/[\s-]/g, "");
+
+      return /^(?:\+?8801[3-9]\d{8}|01[3-9]\d{8})$/.test(cleaned);
+
+    }
+
+
+    // =====================================
+    // 8. CREATE A UNIQUE ORDER ID
+    // =====================================
+
+    function createOrderId() {
+
+      const time = Date.now().toString(36).toUpperCase();
+
+      const random = Math.random()
+        .toString(36)
+        .slice(2, 7)
+        .toUpperCase();
+
+      return "BB-" + time + "-" + random;
+
+    }
+
+
+    // =====================================
+    // 9. SUBMIT CHECKOUT
+    // =====================================
+
+    checkoutForm.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      clearMessage();
+
+      // Recheck the demo login state.
+
+      const user = getUser();
+
+      if (!user) {
+
+        showMessage(
+          "Please sign in before confirming your order.",
+          "error"
+        );
+
+        loginRequired.hidden = false;
+
+        checkoutForm.hidden = true;
+
+        return;
+
+      }
+
+      // Read delivery information.
+
+      const customerName = document
+        .getElementById("customer-name")
+        .value.trim();
+
+      const customerEmail = document
+        .getElementById("customer-email")
+        .value.trim()
+        .toLowerCase();
+
+      const customerPhone = document
+        .getElementById("customer-phone")
+        .value.trim();
+
+      const customerAddress = document
+        .getElementById("customer-address")
+        .value.trim();
+
+      const customerCity = document
+        .getElementById("customer-city")
+        .value.trim();
+
+      const postcode = document
+        .getElementById("customer-postcode")
+        .value.trim();
+
+      const notes = document
+        .getElementById("order-notes")
+        .value.trim();
+
+      const paymentInput = checkoutForm.querySelector(
+        'input[name="paymentMethod"]:checked'
+      );
+
+      // Validate required fields.
+
+      if (
+        !customerName ||
+        !customerEmail ||
+        !customerPhone ||
+        !customerAddress ||
+        !customerCity
+      ) {
+
+        showMessage(
+          "Please complete all required delivery fields.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      if (
+        !document
+          .getElementById("customer-email")
+          .checkValidity()
+      ) {
+
+        showMessage(
+          "Please enter a valid email address.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      if (!isValidBangladeshiPhone(customerPhone)) {
+
+        showMessage(
+          "Please enter a valid Bangladeshi mobile number, such as 01712345678.",
+          "error"
+        );
+
+        document.getElementById("customer-phone").focus();
+
+        return;
+
+      }
+
+      if (!paymentInput) {
+
+        showMessage(
+          "Please select a demo payment method.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      // Recalculate cart and totals immediately
+      // before saving the order.
+
+      const details = getCartDetails();
+
+      if (details.error) {
+
+        showMessage(details.error, "error");
+
+        renderOrderSummary();
+
+        return;
+
+      }
+
+      if (details.items.length === 0) {
+
+        showMessage(
+          "Your cart is empty. Please add a product first.",
+          "error"
+        );
+
+        return;
+
+      }
+
+      const subtotal = details.subtotal;
+
+      const deliveryFee = 0;
+
+      const total = subtotal + deliveryFee;
+
+      const orderId = createOrderId();
+
+      const now = new Date().toISOString();
+
+      // Order snapshot: keep the purchased item
+      // prices and variants in the saved order.
+
+      const order = {
+
+        id: orderId,
+        orderId: orderId,
+
+        date: now,
+        createdAt: now,
+
+        customer: {
+
+          name: customerName,
+          email: customerEmail,
+          phone: customerPhone,
+
+          address: customerAddress,
+          city: customerCity,
+          postcode: postcode
+
+        },
+
+        customerName: customerName,
+        customerEmail: customerEmail,
+        customerPhone: customerPhone,
+
+        shippingAddress: customerAddress,
+        city: customerCity,
+        postcode: postcode,
+
+        items: details.items,
+
+        subtotal: subtotal,
+        deliveryFee: deliveryFee,
+        total: total,
+
+        paymentMethod: paymentInput.value,
+
+        // Payment is never marked as paid by this
+        // frontend demonstration.
+
+        paymentStatus: "Pending",
+
+        status: "Pending",
+
+        notes: notes
+
+      };
+
+      placeOrderButton.disabled = true;
+
+      placeOrderButton.textContent = "SAVING DEMO ORDER...";
+
+      try {
+
+        // Save the new order without overwriting
+        // orders previously created in this browser.
+
+        let orders = [];
+
+        const storedOrders = JSON.parse(
+          localStorage.getItem("bb_orders") || "[]"
+        );
+
+        if (Array.isArray(storedOrders)) {
+
+          orders = storedOrders;
+
+        }
+
+        orders.push(order);
+
+        const saved = saveOrders(orders);
+
+        if (!saved) {
+
+          throw new Error("Could not save the order.");
+
+        }
+
+        // Only clear the cart after the order
+        // was successfully stored.
+
+        if (!saveCart([])) {
+
+          showMessage(
+            "Your demo order was saved, but the cart could not be cleared. Please review your order history.",
+            "error"
+          );
+
+          placeOrderButton.disabled = false;
+
+          placeOrderButton.textContent = "CONFIRM DEMO ORDER →";
+
+          return;
+
+        }
+
+        // Inform the user, then open the receipt.
+
+        showMessage(
+          "Demo order created successfully. Opening receipt...",
+          "success"
+        );
+
+        window.location.href =
+          "receipt.html?id=" + encodeURIComponent(orderId);
+
+      } catch (error) {
+
+        placeOrderButton.disabled = false;
+
+        placeOrderButton.textContent = "CONFIRM DEMO ORDER →";
+
+        showMessage(
+          "Unable to save your demo order. Please check browser storage and try again.",
+          "error"
+        );
+
+      }
+
+    });
+
+
+    // =====================================
+    // 10. START CHECKOUT PAGE
+    // =====================================
+
+    initializeCheckout();
+
+  </script>
+
+</body>
+</html>
