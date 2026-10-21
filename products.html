@@ -1,780 +1,129 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description"
-        content="Shop men's underwear, bow ties, pocket squares, socks, eyeglass cases and wallets at Brutbox & CO.">
-
-  <title>All Products | Brutbox & CO.</title>
-
-  <!-- Main CSS -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BRUTBOX &amp; CO. mens essentials academic HTML/CSS storefront.">
+  <meta name="theme-color" content="#182536">
+  <title>Shop All Products | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
-
 <body>
-
-  <!-- =====================================
-       SKIP NAVIGATION
-  ====================================== -->
-
-  <a class="skip-link" href="#main-content">
-    Skip to content
-  </a>
-
-  <!-- =====================================
-       ANNOUNCEMENT BAR
-  ====================================== -->
-
-  <div class="announcement">
-    BRUTBOX & CO. — MEN'S ESSENTIALS
-  </div>
-
-  <!-- =====================================
-       HEADER AND NAVIGATION
-  ====================================== -->
-
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="topbar">BRUTBOX &amp; CO. &nbsp;·&nbsp; THE MEN'S ESSENTIALS EDIT &nbsp;·&nbsp; STUDENT DEMO</div>
   <header class="site-header">
-
     <div class="container header-inner">
-
-      <!-- Brand Logo -->
-      <a href="index.html"
-         class="brand"
-         aria-label="Brutbox and Company Home">
-        BRUTBOX <span>& CO.</span>
-      </a>
-
-      <!-- Desktop Navigation -->
-      <nav class="desktop-nav"
-           aria-label="Main Navigation">
-
-        <a href="index.html">Home</a>
-
-        <a href="products.html"
-           aria-current="page">
-          Products
-        </a>
-
-        <a href="#categories">Categories</a>
-
-        <a href="index.html#about">About</a>
-
+      <a class="brand" href="index.html" aria-label="Brutbox and Company home">BRUTBOX <span>&amp; CO.</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="products.html" aria-current="page">Shop</a>
+          <a href="cart.html">Cart</a>
+          <a href="checkout.html">Checkout</a>
+          <a href="index.html#about">Our Story</a>
       </nav>
-
-      <!-- Header Actions -->
       <div class="header-actions">
-
-        <a href="#all-products"
-           class="header-shop">
-          Shop Products
-          <span aria-hidden="true">↗</span>
-        </a>
-
-        <!-- Mobile Navigation -->
+        <a class="header-login" href="login.html">Account</a>
+        <a class="cart-pill" href="cart.html" aria-label="View sample cart">Bag <span>02</span></a>
         <details class="mobile-nav">
-
-          <summary aria-label="Open navigation menu">
-            <span aria-hidden="true">☰</span>
-            Menu
-          </summary>
-
-          <nav class="mobile-menu-panel"
-               aria-label="Mobile Navigation">
-
+          <summary aria-label="Open navigation menu">☰ <span>Menu</span></summary>
+          <nav class="mobile-panel" aria-label="Mobile navigation">
             <a href="index.html">Home</a>
             <a href="products.html">All Products</a>
-            <a href="#categories">Categories</a>
-            <a href="#all-products">Our Collection</a>
-            <a href="index.html#about">About</a>
-
+            <a href="cart.html">Sample Cart</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Create Account</a>
+            <a href="checkout.html">Checkout Preview</a>
+            <a href="receipt.html">Sample Receipt</a>
+            <a href="admin.html">Admin Preview</a>
           </nav>
-
         </details>
-
       </div>
-
     </div>
-
   </header>
-
-  <!-- =====================================
-       MAIN CONTENT
-  ====================================== -->
-
-  <main id="main-content">
-
-    <!-- =====================================
-         PAGE INTRODUCTION
-    ====================================== -->
-
-    <section class="hero">
-
-      <div class="container hero-layout">
-
-        <div class="hero-copy">
-
-          <p class="eyebrow">
-            BRUTBOX & CO. COLLECTION
-          </p>
-
-          <h1>
-            Explore our<br>
-            <em>Men's Essentials.</em>
-          </h1>
-
-          <p class="hero-description">
-            Discover everyday comfort, timeless
-            accessories and carefully selected
-            essentials designed for modern men.
-          </p>
-
-          <div class="hero-buttons">
-
-            <a href="#all-products"
-               class="button button-primary">
-              Explore Products
-              <span aria-hidden="true">→</span>
-            </a>
-
-            <a href="#categories"
-               class="text-link">
-              Shop by Category
-              <span aria-hidden="true">↗</span>
-            </a>
-
-          </div>
-
-          <p class="hero-note">
-            Phase 01 Product Catalog Preview
-          </p>
-
-        </div>
-
-        <!-- Hero Artwork -->
-        <div class="hero-art" aria-hidden="true">
-
-          <span class="art-top">
-            THE ESSENTIAL COLLECTION
-          </span>
-
-          <strong>BRUTBOX</strong>
-
-          <span class="art-bottom">
-            STYLE / COMFORT / QUALITY
-          </span>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================
-         PRODUCT CATEGORIES
-    ====================================== -->
-
-    <section class="section container"
-             id="categories">
-
-      <div class="section-heading">
-
-        <div>
-
-          <p class="eyebrow dark">
-            DISCOVER OUR COLLECTION
-          </p>
-
-          <h2>Shop by Category</h2>
-
-        </div>
-
-        <p>
-          Explore our six collections of
-          men's essentials and accessories.
-        </p>
-
-      </div>
-
-      <div class="category-grid">
-
-        <!-- Category 01 -->
-        <a href="#underwear"
-           class="category-card">
-
-          <span class="category-number">01</span>
-
-          <strong>Underwear</strong>
-
-          <span aria-hidden="true">↗</span>
-
-        </a>
-
-        <!-- Category 02 -->
-        <a href="#bow-ties"
-           class="category-card">
-
-          <span class="category-number">02</span>
-
-          <strong>Bow Ties</strong>
-
-          <span aria-hidden="true">↗</span>
-
-        </a>
-
-        <!-- Category 03 -->
-        <a href="#pocket-squares"
-           class="category-card">
-
-          <span class="category-number">03</span>
-
-          <strong>Pocket Squares</strong>
-
-          <span aria-hidden="true">↗</span>
-
-        </a>
-
-        <!-- Category 04 -->
-        <a href="#socks"
-           class="category-card">
-
-          <span class="category-number">04</span>
-
-          <strong>Socks</strong>
-
-          <span aria-hidden="true">↗</span>
-
-        </a>
-
-        <!-- Category 05 -->
-        <a href="#eyeglass-cases"
-           class="category-card">
-
-          <span class="category-number">05</span>
-
-          <strong>Eyeglass Cases</strong>
-
-          <span aria-hidden="true">↗</span>
-
-        </a>
-
-        <!-- Category 06 -->
-        <a href="#wallets"
-           class="category-card">
-
-          <span class="category-number">06</span>
-
-          <strong>Wallets</strong>
-
-          <span aria-hidden="true">↗</span>
-
-        </a>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================
-         ALL PRODUCTS
-    ====================================== -->
-
-    <section class="section section-alt"
-             id="all-products">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <div>
-
-            <p class="eyebrow dark">
-              OUR PRODUCTS
-            </p>
-
-            <h2>All Products</h2>
-
-          </div>
-
-          <p>
-            Browse our collection of men's
-            everyday essentials.
-          </p>
-
-        </div>
-
-        <!-- =================================
-             PRODUCT GRID
-        ================================== -->
-
-        <div class="product-grid">
-
-          <!-- ===============================
-               PRODUCT 01 - COTTON BOXER
-          ================================ -->
-
-          <article class="product-card"
-                   id="underwear">
-
-            <div class="product-art product-art-one">
-
-              <span>
-                COTTON<br>
-                BOXER
-              </span>
-
-              <small>
-                PRODUCT IMAGE COMING SOON
-              </small>
-
-            </div>
-
-            <div class="product-info">
-
-              <p>UNDERWEAR</p>
-
-              <h3>Cotton Boxer</h3>
-
-              <p>
-                Comfortable everyday cotton boxer.
-              </p>
-
-              <strong>BDT 450</strong>
-
-              <p>
-                Sizes: S, M, L, XL
-              </p>
-
-              <!-- Product details page will
-                   be developed in the next part -->
-
-              <a href="product-details.html?id=P-001"
-                 class="button button-primary">
-                View Details →
-              </a>
-
-            </div>
-
-          </article>
-
-          <!-- ===============================
-               PRODUCT 02 - COTTON BRIEF
-          ================================ -->
-
+  <main id="main">
+    <section class="page-hero container"><p class="breadcrumb"><a href="index.html">Home</a> / The Collection</p><p class="eyebrow dark">THE SHOP / BRUTBOX & CO.</p><h1>All the essentials.</h1><p>Discover our sample catalog. Each item links to its own CSS-only product detail view.</p></section>
+    <section class="container shop-shell"><div class="catalog-notice"><span class="label-small">PHASE 01 / DESIGN PREVIEW</span><p>This is a static product catalog. Search, sorting, live stock and real shopping actions will be added in a future development phase.</p></div>
+      <nav class="filter-pills" aria-label="Jump to product category"><a href="#underwear">Underwear</a><a href="#bow-ties">Bow Ties</a><a href="#pocket-squares">Pocket Squares</a><a href="#socks">Socks</a><a href="#eyeglass-cases">Eyeglass Cases</a><a href="#wallets">Wallets</a></nav>
+      <section class="catalog-section" id="underwear"><div class="catalog-heading"><div><p class="eyebrow dark">COLLECTION / UNDERWEAR</p><h2>Underwear</h2></div><span>2 sample items</span></div><div class="product-grid catalog-grid">
           <article class="product-card">
-
-            <div class="product-art product-art-three">
-
-              <span>
-                COTTON<br>
-                BRIEF
-              </span>
-
-              <small>
-                PRODUCT IMAGE COMING SOON
-              </small>
-
+            <a class="product-media-link" href="product-details.html#p-001" aria-label="Cotton Boxer details"><div class="product-media tone-slate" role="img" aria-label="Abstract placeholder graphic for Cotton Boxer"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>COTTON / BOXER</strong><span class="media-caption">PHOTO COMING SOON</span></div></a>
+            <div class="product-card-info"><div class="product-card-meta"><span>Underwear</span><span>Everyday comfort</span></div>
+              <h3><a href="product-details.html#p-001">Cotton Boxer</a></h3>
+              <div class="product-card-bottom"><strong>৳450</strong><span>S • M • L • XL</span></div>
+              <a class="subtle-link" href="product-details.html#p-001">View sample details ↗</a>
             </div>
-
-            <div class="product-info">
-
-              <p>UNDERWEAR</p>
-
-              <h3>Cotton Brief</h3>
-
-              <p>
-                Soft stretch cotton brief
-                for everyday comfort.
-              </p>
-
-              <strong>BDT 380</strong>
-
-              <p>
-                Sizes: M, L
-              </p>
-
-              <a href="product-details.html?id=P-002"
-                 class="button button-primary">
-                View Details →
-              </a>
-
-            </div>
-
           </article>
-
-          <!-- ===============================
-               PRODUCT 03 - SILK BOW TIE
-          ================================ -->
-
-          <article class="product-card"
-                   id="bow-ties">
-
-            <div class="product-art product-art-two">
-
-              <span>
-                SILK<br>
-                BOW TIE
-              </span>
-
-              <small>
-                PRODUCT IMAGE COMING SOON
-              </small>
-
+          <article class="product-card">
+            <a class="product-media-link" href="product-details.html#p-002" aria-label="Cotton Brief details"><div class="product-media tone-fog" role="img" aria-label="Abstract placeholder graphic for Cotton Brief"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>COTTON / BRIEF</strong><span class="media-caption">PHOTO COMING SOON</span></div></a>
+            <div class="product-card-info"><div class="product-card-meta"><span>Underwear</span><span>Soft cotton</span></div>
+              <h3><a href="product-details.html#p-002">Cotton Brief</a></h3>
+              <div class="product-card-bottom"><strong>৳380</strong><span>M • L</span></div>
+              <a class="subtle-link" href="product-details.html#p-002">View sample details ↗</a>
             </div>
-
-            <div class="product-info">
-
-              <p>BOW TIES</p>
-
-              <h3>Silk Bow Tie</h3>
-
-              <p>
-                Elegant silk bow tie for
-                formal occasions.
-              </p>
-
-              <strong>BDT 650</strong>
-
-              <p>
-                Size: One Size
-              </p>
-
-              <a href="product-details.html?id=P-003"
-                 class="button button-primary">
-                View Details →
-              </a>
-
-            </div>
-
           </article>
-
-          <!-- ===============================
-               PRODUCT 04 - POCKET SQUARE
-          ================================ -->
-
-          <article class="product-card"
-                   id="pocket-squares">
-
-            <div class="product-art product-art-four">
-
-              <span>
-                POCKET<br>
-                SQUARE
-              </span>
-
-              <small>
-                PRODUCT IMAGE COMING SOON
-              </small>
-
+        </div></section>
+      <section class="catalog-section" id="bow-ties"><div class="catalog-heading"><div><p class="eyebrow dark">COLLECTION / BOW TIES</p><h2>Bow Ties</h2></div><span>1 sample item</span></div><div class="product-grid catalog-grid">
+          <article class="product-card">
+            <a class="product-media-link" href="product-details.html#p-003" aria-label="Silk Bow Tie details"><div class="product-media tone-rose" role="img" aria-label="Abstract placeholder graphic for Silk Bow Tie"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>SILK / BOW TIE</strong><span class="media-caption">PHOTO COMING SOON</span></div></a>
+            <div class="product-card-info"><div class="product-card-meta"><span>Bow Ties</span><span>Formal edit</span></div>
+              <h3><a href="product-details.html#p-003">Silk Bow Tie</a></h3>
+              <div class="product-card-bottom"><strong>৳650</strong><span>One size</span></div>
+              <a class="subtle-link" href="product-details.html#p-003">View sample details ↗</a>
             </div>
-
-            <div class="product-info">
-
-              <p>POCKET SQUARES</p>
-
-              <h3>Silk Pocket Square</h3>
-
-              <p>
-                Premium silk pocket square
-                for a refined look.
-              </p>
-
-              <strong>BDT 550</strong>
-
-              <p>
-                Size: One Size
-              </p>
-
-              <a href="product-details.html?id=P-004"
-                 class="button button-primary">
-                View Details →
-              </a>
-
-            </div>
-
           </article>
-
-          <!-- ===============================
-               PRODUCT 05 - CREW SOCKS
-          ================================ -->
-
-          <article class="product-card"
-                   id="socks">
-
-            <div class="product-art product-art-three">
-
-              <span>
-                CREW<br>
-                SOCKS
-              </span>
-
-              <small>
-                PRODUCT IMAGE COMING SOON
-              </small>
-
+        </div></section>
+      <section class="catalog-section" id="pocket-squares"><div class="catalog-heading"><div><p class="eyebrow dark">COLLECTION / POCKET SQUARES</p><h2>Pocket Squares</h2></div><span>1 sample item</span></div><div class="product-grid catalog-grid">
+          <article class="product-card">
+            <a class="product-media-link" href="product-details.html#p-004" aria-label="Silk Pocket Square details"><div class="product-media tone-sand" role="img" aria-label="Abstract placeholder graphic for Silk Pocket Square"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>SILK / POCKET SQUARE</strong><span class="media-caption">PHOTO COMING SOON</span></div></a>
+            <div class="product-card-info"><div class="product-card-meta"><span>Pocket Squares</span><span>Classic details</span></div>
+              <h3><a href="product-details.html#p-004">Silk Pocket Square</a></h3>
+              <div class="product-card-bottom"><strong>৳550</strong><span>One size</span></div>
+              <a class="subtle-link" href="product-details.html#p-004">View sample details ↗</a>
             </div>
-
-            <div class="product-info">
-
-              <p>SOCKS</p>
-
-              <h3>Crew Socks</h3>
-
-              <p>
-                Breathable cotton socks
-                for daily use.
-              </p>
-
-              <strong>BDT 200</strong>
-
-              <p>
-                Sizes: 40-43, 44-46
-              </p>
-
-              <a href="product-details.html?id=P-005"
-                 class="button button-primary">
-                View Details →
-              </a>
-
-            </div>
-
           </article>
-
-          <!-- ===============================
-               PRODUCT 06 - EYEGLASS CASE
-          ================================ -->
-
-          <article class="product-card"
-                   id="eyeglass-cases">
-
-            <div class="product-art product-art-one">
-
-              <span>
-                EYEGLASS<br>
-                CASE
-              </span>
-
-              <small>
-                PRODUCT IMAGE COMING SOON
-              </small>
-
+        </div></section>
+      <section class="catalog-section" id="socks"><div class="catalog-heading"><div><p class="eyebrow dark">COLLECTION / SOCKS</p><h2>Socks</h2></div><span>1 sample item</span></div><div class="product-grid catalog-grid">
+          <article class="product-card">
+            <a class="product-media-link" href="product-details.html#p-005" aria-label="Crew Socks details"><div class="product-media tone-sage" role="img" aria-label="Abstract placeholder graphic for Crew Socks"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>COTTON / SOCKS</strong><span class="media-caption">PHOTO COMING SOON</span></div></a>
+            <div class="product-card-info"><div class="product-card-meta"><span>Socks</span><span>Daily essential</span></div>
+              <h3><a href="product-details.html#p-005">Crew Socks</a></h3>
+              <div class="product-card-bottom"><strong>৳200</strong><span>40–43 • 44–46</span></div>
+              <a class="subtle-link" href="product-details.html#p-005">View sample details ↗</a>
             </div>
-
-            <div class="product-info">
-
-              <p>EYEGLASS CASES</p>
-
-              <h3>Hard Eyeglass Case</h3>
-
-              <p>
-                Protective hard case
-                for keeping glasses safe.
-              </p>
-
-              <strong>BDT 350</strong>
-
-              <p>
-                Size: Standard
-              </p>
-
-              <a href="product-details.html?id=P-006"
-                 class="button button-primary">
-                View Details →
-              </a>
-
-            </div>
-
           </article>
-
-          <!-- ===============================
-               PRODUCT 07 - BIFOLD WALLET
-          ================================ -->
-
-          <article class="product-card"
-                   id="wallets">
-
-            <div class="product-art product-art-four">
-
-              <span>
-                BIFOLD<br>
-                WALLET
-              </span>
-
-              <small>
-                PRODUCT IMAGE COMING SOON
-              </small>
-
+        </div></section>
+      <section class="catalog-section" id="eyeglass-cases"><div class="catalog-heading"><div><p class="eyebrow dark">COLLECTION / EYEGLASS CASES</p><h2>Eyeglass Cases</h2></div><span>1 sample item</span></div><div class="product-grid catalog-grid">
+          <article class="product-card">
+            <a class="product-media-link" href="product-details.html#p-006" aria-label="Hard Eyeglass Case details"><div class="product-media tone-steel" role="img" aria-label="Abstract placeholder graphic for Hard Eyeglass Case"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>EYEGLASS / CASE</strong><span class="media-caption">PHOTO COMING SOON</span></div></a>
+            <div class="product-card-info"><div class="product-card-meta"><span>Eyeglass Cases</span><span>Keep it safe</span></div>
+              <h3><a href="product-details.html#p-006">Hard Eyeglass Case</a></h3>
+              <div class="product-card-bottom"><strong>৳350</strong><span>Standard</span></div>
+              <a class="subtle-link" href="product-details.html#p-006">View sample details ↗</a>
             </div>
-
-            <div class="product-info">
-
-              <p>WALLETS</p>
-
-              <h3>Bifold Wallet</h3>
-
-              <p>
-                Classic leather bifold wallet
-                with a minimalist design.
-              </p>
-
-              <strong>BDT 1,200</strong>
-
-              <p>
-                Size: Standard
-              </p>
-
-              <a href="product-details.html?id=P-007"
-                 class="button button-primary">
-                View Details →
-              </a>
-
-            </div>
-
           </article>
-
-        </div>
-
-        <!-- =================================
-             DEVELOPMENT NOTE
-        ================================== -->
-
-        <p class="development-note">
-
-          This is the Phase 01 HTML/CSS product
-          catalog preview. Product details,
-          search, filters, size-based inventory,
-          shopping cart and checkout functionality
-          will be implemented in upcoming
-          development parts.
-
-        </p>
-
-      </div>
-
+        </div></section>
+      <section class="catalog-section" id="wallets"><div class="catalog-heading"><div><p class="eyebrow dark">COLLECTION / WALLETS</p><h2>Wallets</h2></div><span>1 sample item</span></div><div class="product-grid catalog-grid">
+          <article class="product-card">
+            <a class="product-media-link" href="product-details.html#p-007" aria-label="Bifold Wallet details"><div class="product-media tone-cocoa" role="img" aria-label="Abstract placeholder graphic for Bifold Wallet"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>BIFOLD / WALLET</strong><span class="media-caption">PHOTO COMING SOON</span></div></a>
+            <div class="product-card-info"><div class="product-card-meta"><span>Wallets</span><span>Minimal carry</span></div>
+              <h3><a href="product-details.html#p-007">Bifold Wallet</a></h3>
+              <div class="product-card-bottom"><strong>৳1,200</strong><span>Standard</span></div>
+              <a class="subtle-link" href="product-details.html#p-007">View sample details ↗</a>
+            </div>
+          </article>
+        </div></section>
     </section>
-
-    <!-- =====================================
-         WHY SHOP WITH US
-    ====================================== -->
-
-    <section class="section container">
-
-      <div class="section-heading">
-
-        <div>
-
-          <p class="eyebrow dark">
-            OUR COMMITMENT
-          </p>
-
-          <h2>Why Brutbox & CO.?</h2>
-
-        </div>
-
-        <p>
-          Everyday essentials with
-          modern style and simplicity.
-        </p>
-
-      </div>
-
-      <div class="benefits">
-
-        <!-- Benefit 01 -->
-        <div>
-
-          <span class="benefit-num">01</span>
-
-          <h3>Everyday Comfort</h3>
-
-          <p>
-            Essential clothing and accessories
-            designed for everyday use.
-          </p>
-
-        </div>
-
-        <!-- Benefit 02 -->
-        <div>
-
-          <span class="benefit-num">02</span>
-
-          <h3>Modern Collection</h3>
-
-          <p>
-            Discover simple and timeless
-            products for every occasion.
-          </p>
-
-        </div>
-
-        <!-- Benefit 03 -->
-        <div>
-
-          <span class="benefit-num">03</span>
-
-          <h3>Easy Shopping Experience</h3>
-
-          <p>
-            Our planned shopping system
-            will include product selection,
-            size-based inventory, cart
-            and checkout.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
   </main>
-
-  <!-- =====================================
-       FOOTER
-  ====================================== -->
-
-  <footer class="site-footer">
-
-    <div class="container footer-inner">
-
-      <div>
-
-        <strong>
-          BRUTBOX & CO.
-        </strong>
-
-        <p>
-          Men's Essentials and Accessories
-        </p>
-
-        <p>
-          Academic E-Commerce Website Project
-        </p>
-
-      </div>
-
-      <div>
-
-        <p>
-          © 2026 Brutbox & CO.
-        </p>
-
-        <p>
-          Phase 01 Frontend Prototype
-        </p>
-
-      </div>
-
-      <a href="#main-content">
-        Back to Top ↑
-      </a>
-
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><a class="brand footer-logo" href="index.html">BRUTBOX <span>&amp; CO.</span></a>
+        <p>Understated style. Everyday essentials. An academic e-commerce interface built with HTML and CSS.</p></div>
+      <div><h3>Explore</h3><a href="products.html">All Products</a><a href="product-details.html#p-001">Sample Product Details</a><a href="cart.html">Sample Shopping Bag</a></div>
+      <div><h3>Project Pages</h3><a href="login.html">Login Preview</a><a href="signup.html">Signup Preview</a><a href="checkout.html">Checkout Preview</a><a href="admin.html">Admin Preview</a></div>
+      <div><h3>Important</h3><p>Phase 01: HTML/CSS only. No account creation, order placement, inventory changes or payments are processed.</p></div>
     </div>
-
+    <div class="footer-bottom container"><span>© 2026 BRUTBOX &amp; CO. — Academic Prototype</span><span>Designed for desktop • tablet • mobile</span></div>
   </footer>
-
 </body>
 </html>

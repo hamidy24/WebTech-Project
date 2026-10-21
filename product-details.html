@@ -1,1109 +1,160 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description"
-        content="Explore product details, size options, prices and availability at Brutbox & CO.">
-
-  <title>Product Details | Brutbox & CO.</title>
-
-  <!-- Main CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BRUTBOX &amp; CO. mens essentials academic HTML/CSS storefront.">
+  <meta name="theme-color" content="#182536">
+  <title>Product Details | BRUTBOX &amp; CO.</title>
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Product Details Page Styling -->
-  <style>
-    .breadcrumb {
-      padding: 22px 0;
-      font-size: 13px;
-      color: #516071;
-    }
-
-    .breadcrumb a {
-      color: #182536;
-    }
-
-    .breadcrumb a:hover {
-      text-decoration: underline;
-    }
-
-    .details-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 65px;
-      align-items: start;
-      margin-bottom: 60px;
-    }
-
-    .details-image {
-      min-height: 480px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      background: linear-gradient(
-        140deg,
-        #7b8b91,
-        #263b46
-      );
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-
-    .details-image::before {
-      content: "";
-      position: absolute;
-      inset: 35px;
-      border: 1px solid #ffffff55;
-      transform: rotate(-7deg);
-    }
-
-    .details-image span {
-      position: relative;
-      color: white;
-      font-size: clamp(35px, 5vw, 65px);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.05em;
-    }
-
-    .details-category {
-      color: #997347;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    .details-info h1 {
-      margin: 10px 0 15px;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.15;
-      color: #182536;
-    }
-
-    .details-price {
-      font-size: 27px;
-      font-weight: 800;
-      margin: 18px 0;
-    }
-
-    .details-description {
-      font-size: 15px;
-      line-height: 1.8;
-      color: #516071;
-      margin-bottom: 25px;
-    }
-
-    .product-form {
-      border-top: 1px solid #e6e3df;
-      padding-top: 22px;
-    }
-
-    .form-group {
-      margin-bottom: 22px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 9px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .form-group select,
-    .form-group input {
-      display: block;
-      width: 100%;
-      max-width: 380px;
-      padding: 13px 15px;
-      background: white;
-      border: 1px solid #d8dce0;
-      border-radius: 4px;
-      font-size: 14px;
-      color: #182536;
-    }
-
-    .form-group select:focus,
-    .form-group input:focus {
-      outline: 2px solid #ba8957;
-      border-color: #ba8957;
-    }
-
-    .quantity-input {
-      max-width: 120px !important;
-    }
-
-    .stock-label {
-      display: inline-block;
-      padding: 7px 13px;
-      margin: 0 0 23px;
-      background: #e4f3e8;
-      color: #267345;
-      font-size: 12px;
-      font-weight: 800;
-      border-radius: 4px;
-    }
-
-    .stock-label.low {
-      background: #fff0d8;
-      color: #956000;
-    }
-
-    .stock-label.out {
-      background: #fbe4e4;
-      color: #a52b2b;
-    }
-
-    .add-cart-btn {
-      display: inline-block;
-      width: 100%;
-      max-width: 380px;
-      padding: 16px 22px;
-      background: #182536;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-    }
-
-    .add-cart-btn:hover {
-      background: #ba8957;
-    }
-
-    .add-cart-btn:disabled {
-      background: #9ca5ae;
-      cursor: not-allowed;
-    }
-
-    .cart-message {
-      min-height: 24px;
-      margin-top: 15px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .cart-message.success {
-      color: #267345;
-    }
-
-    .cart-message.error {
-      color: #b3261e;
-    }
-
-    .details-features {
-      margin-top: 30px;
-      padding: 20px;
-      background: #f6f3ee;
-    }
-
-    .details-features p {
-      margin: 8px 0;
-      font-size: 13px;
-      color: #516071;
-    }
-
-    .details-features strong {
-      color: #182536;
-    }
-
-    .product-extra {
-      padding-top: 25px;
-      padding-bottom: 55px;
-      border-top: 1px solid #e6e3df;
-    }
-
-    .product-extra h2 {
-      font-size: 27px;
-      margin-bottom: 15px;
-    }
-
-    .product-extra p {
-      max-width: 780px;
-      color: #516071;
-      font-size: 15px;
-      line-height: 1.8;
-    }
-
-    .details-back {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 14px;
-      font-weight: 700;
-      color: #997347;
-    }
-
-    .details-back:hover {
-      text-decoration: underline;
-    }
-
-    .not-found {
-      text-align: center;
-      padding: 75px 20px;
-    }
-
-    @media (max-width: 800px) {
-      .details-layout {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .details-image {
-        min-height: 360px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .details-image {
-        min-height: 290px;
-      }
-
-      .details-info h1 {
-        font-size: 32px;
-      }
-
-      .details-price {
-        font-size: 24px;
-      }
-
-      .add-cart-btn {
-        max-width: 100%;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
-
 <body>
-
-  <!-- =====================================
-       SKIP NAVIGATION
-  ====================================== -->
-
-  <a class="skip-link" href="#main-content">
-    Skip to content
-  </a>
-
-  <!-- =====================================
-       ANNOUNCEMENT BAR
-  ====================================== -->
-
-  <div class="announcement">
-    BRUTBOX & CO. — MEN'S ESSENTIALS
-  </div>
-
-  <!-- =====================================
-       HEADER
-  ====================================== -->
-
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="topbar">BRUTBOX &amp; CO. &nbsp;·&nbsp; THE MEN'S ESSENTIALS EDIT &nbsp;·&nbsp; STUDENT DEMO</div>
   <header class="site-header">
-
     <div class="container header-inner">
-
-      <!-- Brand Logo -->
-      <a href="index.html"
-         class="brand"
-         aria-label="Brutbox and Company Home">
-        BRUTBOX <span>& CO.</span>
-      </a>
-
-      <!-- Desktop Navigation -->
-      <nav class="desktop-nav"
-           aria-label="Main Navigation">
-
-        <a href="index.html">Home</a>
-
-        <a href="products.html"
-           aria-current="page">
-          Products
-        </a>
-
-        <a href="products.html#categories">
-          Categories
-        </a>
-
-        <a href="index.html#about">
-          About
-        </a>
-
+      <a class="brand" href="index.html" aria-label="Brutbox and Company home">BRUTBOX <span>&amp; CO.</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="products.html" aria-current="page">Shop</a>
+          <a href="cart.html">Cart</a>
+          <a href="checkout.html">Checkout</a>
+          <a href="index.html#about">Our Story</a>
       </nav>
-
-      <!-- Header Actions -->
       <div class="header-actions">
-
-        <a href="products.html"
-           class="header-shop">
-          Continue Shopping ↗
-        </a>
-
-        <!-- Mobile Menu -->
+        <a class="header-login" href="login.html">Account</a>
+        <a class="cart-pill" href="cart.html" aria-label="View sample cart">Bag <span>02</span></a>
         <details class="mobile-nav">
-
-          <summary aria-label="Open navigation menu">
-            <span aria-hidden="true">☰</span>
-            Menu
-          </summary>
-
-          <nav class="mobile-menu-panel"
-               aria-label="Mobile Navigation">
-
+          <summary aria-label="Open navigation menu">☰ <span>Menu</span></summary>
+          <nav class="mobile-panel" aria-label="Mobile navigation">
             <a href="index.html">Home</a>
-
-            <a href="products.html">
-              All Products
-            </a>
-
-            <a href="products.html#categories">
-              Categories
-            </a>
-
-            <a href="index.html#about">
-              About
-            </a>
-
+            <a href="products.html">All Products</a>
+            <a href="cart.html">Sample Cart</a>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Create Account</a>
+            <a href="checkout.html">Checkout Preview</a>
+            <a href="receipt.html">Sample Receipt</a>
+            <a href="admin.html">Admin Preview</a>
           </nav>
-
         </details>
-
       </div>
-
     </div>
-
   </header>
-
-  <!-- =====================================
-       MAIN CONTENT
-  ====================================== -->
-
-  <main id="main-content">
-
-    <!-- =====================================
-         BREADCRUMB NAVIGATION
-    ====================================== -->
-
-    <div class="container">
-
-      <nav class="breadcrumb"
-           aria-label="Breadcrumb">
-
-        <a href="index.html">Home</a>
-        /
-        <a href="products.html">Products</a>
-        /
-        <span id="breadcrumb-product">
-          Product Details
-        </span>
-
-      </nav>
-
-    </div>
-
-    <!-- =====================================
-         PRODUCT DETAILS
-    ====================================== -->
-
-    <section class="section container"
-             id="product-section">
-
-      <div class="details-layout">
-
-        <!-- ===============================
-             PRODUCT IMAGE
-        ================================ -->
-
-        <div class="details-gallery">
-
-          <div class="details-image"
-               id="product-image"
-               role="img"
-               aria-label="Product image placeholder">
-
-            <span id="product-image-text">
-              BRUTBOX
-            </span>
-
-          </div>
-
-          <p class="development-note">
-            Product photography will be added
-            in the next development stage.
-          </p>
-
+  <main id="main">
+    <section class="container detail-wrapper"><nav class="breadcrumb"><a href="index.html">Home</a> / <a href="products.html">Shop</a> / Product Details</nav>
+      <div class="demo-tip"><strong>7 product views, no JavaScript.</strong> Choose a product on the <a href="products.html">shop page</a> to open its own detail view. The URL anchor selects the matching product.</div>
+      <div id="product-views">
+      <article class="detail-panel" id="p-001">
+        <div class="detail-gallery"><div class="product-media tone-slate detail-media" role="img" aria-label="Abstract placeholder graphic for Cotton Boxer"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>COTTON / BOXER</strong><span class="media-caption">PHOTO COMING SOON</span></div><p class="fine-print">Concept visual — replace with product photography in the next design iteration.</p></div>
+        <div class="detail-copy"><p class="eyebrow dark">UNDERWEAR / THE ESSENTIALS EDIT</p><h1>Cotton Boxer</h1><p class="detail-price">৳450 <span>BDT · Example price</span></p>
+          <p class="detail-description">Soft-feel cotton boxer with a relaxed everyday fit. Designed as a concept product for the Phase 01 storefront.</p>
+          <div class="detail-line"><span>Sample SKU</span><strong>CB-BLK-M</strong></div><div class="detail-line"><span>Demo availability</span><strong>M / Black — 30 units (sample)</strong></div>
+          <fieldset class="selector-set"><legend>Select a size <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="size-p-001" checked><span>S</span></label><label class="option-chip"><input type="radio" name="size-p-001"><span>M</span></label><label class="option-chip"><input type="radio" name="size-p-001"><span>L</span></label><label class="option-chip"><input type="radio" name="size-p-001"><span>XL</span></label></div></fieldset>
+          <fieldset class="selector-set"><legend>Select a color <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="color-p-001" checked><span>Black</span></label><label class="option-chip"><input type="radio" name="color-p-001"><span>Navy</span></label></div></fieldset>
+          <label class="qty-label" for="qty-p-001">Quantity <small>(visual preview)</small></label><input id="qty-p-001" class="qty-preview" type="number" value="1" min="1" max="10">
+          <div class="detail-actions"><a class="btn btn-dark" href="cart.html">View sample shopping bag ↗</a><a class="btn btn-outline" href="products.html">Back to shop</a></div>
+          <p class="notice-soft">HTML/CSS phase: size, color, quantity and shopping bag are interface previews only. No item is added or stock changed.</p>
+          <details class="info-disclosure"><summary>Product information</summary><p>Soft-feel cotton boxer with a relaxed everyday fit. Designed as a concept product for the Phase 01 storefront. Final materials and photographs will be confirmed in later phases.</p></details>
+          <details class="info-disclosure"><summary>Delivery and payment</summary><p>Checkout options are demonstration interfaces. No real order, delivery or payment is processed.</p></details>
         </div>
-
-        <!-- ===============================
-             PRODUCT INFORMATION
-        ================================ -->
-
-        <div class="details-info">
-
-          <!-- Category -->
-          <p class="details-category"
-             id="product-category">
-            Men's Essentials
-          </p>
-
-          <!-- Product Name -->
-          <h1 id="product-name">
-            Loading Product...
-          </h1>
-
-          <!-- Product Price -->
-          <div class="details-price"
-               id="product-price">
-            BDT 0
-          </div>
-
-          <!-- Product Description -->
-          <p class="details-description"
-             id="product-description">
-            Loading product information...
-          </p>
-
-          <!-- =================================
-               PRODUCT SELECTION FORM
-          ================================== -->
-
-          <form class="product-form"
-                id="product-form">
-
-            <!-- Size / Color Selection -->
-            <div class="form-group">
-
-              <label for="product-variant">
-                Select Size / Color
-              </label>
-
-              <select id="product-variant"
-                      name="variant"
-                      required>
-
-                <option value="">
-                  Loading options...
-                </option>
-
-              </select>
-
-            </div>
-
-            <!-- Stock Information -->
-            <p class="stock-label"
-               id="stock-status"
-               role="status">
-              Checking availability...
-            </p>
-
-            <!-- Quantity -->
-            <div class="form-group">
-
-              <label for="product-quantity">
-                Quantity
-              </label>
-
-              <input type="number"
-                     id="product-quantity"
-                     name="quantity"
-                     value="1"
-                     min="1"
-                     step="1"
-                     required>
-
-            </div>
-
-            <!-- Add to Cart -->
-            <button type="submit"
-                    class="add-cart-btn"
-                    id="add-cart-btn">
-              ADD TO CART
-            </button>
-
-            <!-- Cart Feedback -->
-            <p id="cart-message"
-               class="cart-message"
-               role="status"
-               aria-live="polite">
-            </p>
-
-          </form>
-
-          <!-- =================================
-               PRODUCT FEATURES
-          ================================== -->
-
-          <div class="details-features">
-
-            <p>
-              <strong>Brand:</strong>
-              BRUTBOX & CO.
-            </p>
-
-            <p>
-              <strong>Category:</strong>
-              <span id="feature-category">
-                Men's Essentials
-              </span>
-            </p>
-
-            <p>
-              <strong>Product Code:</strong>
-              <span id="feature-code">
-                -
-              </span>
-            </p>
-
-            <p>
-              <strong>Availability:</strong>
-              Based on selected size and color
-            </p>
-
-            <p>
-              <strong>Payment:</strong>
-              Demo checkout only
-            </p>
-
-          </div>
-
-          <!-- Back to Products -->
-          <a href="products.html"
-             class="details-back">
-            ← Back to All Products
-          </a>
-
+      </article>
+      <article class="detail-panel" id="p-002">
+        <div class="detail-gallery"><div class="product-media tone-fog detail-media" role="img" aria-label="Abstract placeholder graphic for Cotton Brief"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>COTTON / BRIEF</strong><span class="media-caption">PHOTO COMING SOON</span></div><p class="fine-print">Concept visual — replace with product photography in the next design iteration.</p></div>
+        <div class="detail-copy"><p class="eyebrow dark">UNDERWEAR / THE ESSENTIALS EDIT</p><h1>Cotton Brief</h1><p class="detail-price">৳380 <span>BDT · Example price</span></p>
+          <p class="detail-description">A clean everyday staple. This is a sample product profile for visual preview and page navigation.</p>
+          <div class="detail-line"><span>Sample SKU</span><strong>BR-WHT-M</strong></div><div class="detail-line"><span>Demo availability</span><strong>M / White — 30 units (sample)</strong></div>
+          <fieldset class="selector-set"><legend>Select a size <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="size-p-002" checked><span>M</span></label><label class="option-chip"><input type="radio" name="size-p-002"><span>L</span></label></div></fieldset>
+          <fieldset class="selector-set"><legend>Select a color <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="color-p-002" checked><span>White</span></label><label class="option-chip"><input type="radio" name="color-p-002"><span>Black</span></label></div></fieldset>
+          <label class="qty-label" for="qty-p-002">Quantity <small>(visual preview)</small></label><input id="qty-p-002" class="qty-preview" type="number" value="1" min="1" max="10">
+          <div class="detail-actions"><a class="btn btn-dark" href="cart.html">View sample shopping bag ↗</a><a class="btn btn-outline" href="products.html">Back to shop</a></div>
+          <p class="notice-soft">HTML/CSS phase: size, color, quantity and shopping bag are interface previews only. No item is added or stock changed.</p>
+          <details class="info-disclosure"><summary>Product information</summary><p>A clean everyday staple. This is a sample product profile for visual preview and page navigation. Final materials and photographs will be confirmed in later phases.</p></details>
+          <details class="info-disclosure"><summary>Delivery and payment</summary><p>Checkout options are demonstration interfaces. No real order, delivery or payment is processed.</p></details>
         </div>
-
+      </article>
+      <article class="detail-panel" id="p-003">
+        <div class="detail-gallery"><div class="product-media tone-rose detail-media" role="img" aria-label="Abstract placeholder graphic for Silk Bow Tie"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>SILK / BOW TIE</strong><span class="media-caption">PHOTO COMING SOON</span></div><p class="fine-print">Concept visual — replace with product photography in the next design iteration.</p></div>
+        <div class="detail-copy"><p class="eyebrow dark">BOW TIES / THE ESSENTIALS EDIT</p><h1>Silk Bow Tie</h1><p class="detail-price">৳650 <span>BDT · Example price</span></p>
+          <p class="detail-description">A polished finishing touch for formal occasions, celebrations, and smart evening outfits.</p>
+          <div class="detail-line"><span>Sample SKU</span><strong>BT-BLK-OS</strong></div><div class="detail-line"><span>Demo availability</span><strong>Black — 30 units (sample)</strong></div>
+          <fieldset class="selector-set"><legend>Select a size <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="size-p-003" checked><span>One size</span></label></div></fieldset>
+          <fieldset class="selector-set"><legend>Select a color <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="color-p-003" checked><span>Black</span></label><label class="option-chip"><input type="radio" name="color-p-003"><span>Burgundy</span></label></div></fieldset>
+          <label class="qty-label" for="qty-p-003">Quantity <small>(visual preview)</small></label><input id="qty-p-003" class="qty-preview" type="number" value="1" min="1" max="10">
+          <div class="detail-actions"><a class="btn btn-dark" href="cart.html">View sample shopping bag ↗</a><a class="btn btn-outline" href="products.html">Back to shop</a></div>
+          <p class="notice-soft">HTML/CSS phase: size, color, quantity and shopping bag are interface previews only. No item is added or stock changed.</p>
+          <details class="info-disclosure"><summary>Product information</summary><p>A polished finishing touch for formal occasions, celebrations, and smart evening outfits. Final materials and photographs will be confirmed in later phases.</p></details>
+          <details class="info-disclosure"><summary>Delivery and payment</summary><p>Checkout options are demonstration interfaces. No real order, delivery or payment is processed.</p></details>
+        </div>
+      </article>
+      <article class="detail-panel" id="p-004">
+        <div class="detail-gallery"><div class="product-media tone-sand detail-media" role="img" aria-label="Abstract placeholder graphic for Silk Pocket Square"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>SILK / POCKET SQUARE</strong><span class="media-caption">PHOTO COMING SOON</span></div><p class="fine-print">Concept visual — replace with product photography in the next design iteration.</p></div>
+        <div class="detail-copy"><p class="eyebrow dark">POCKET SQUARES / THE ESSENTIALS EDIT</p><h1>Silk Pocket Square</h1><p class="detail-price">৳550 <span>BDT · Example price</span></p>
+          <p class="detail-description">An understated accent made for blazers and suits, with a refined fashion-forward look.</p>
+          <div class="detail-line"><span>Sample SKU</span><strong>PS-NVY-OS</strong></div><div class="detail-line"><span>Demo availability</span><strong>Navy — 30 units (sample)</strong></div>
+          <fieldset class="selector-set"><legend>Select a size <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="size-p-004" checked><span>One size</span></label></div></fieldset>
+          <fieldset class="selector-set"><legend>Select a color <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="color-p-004" checked><span>Navy</span></label><label class="option-chip"><input type="radio" name="color-p-004"><span>Champagne</span></label></div></fieldset>
+          <label class="qty-label" for="qty-p-004">Quantity <small>(visual preview)</small></label><input id="qty-p-004" class="qty-preview" type="number" value="1" min="1" max="10">
+          <div class="detail-actions"><a class="btn btn-dark" href="cart.html">View sample shopping bag ↗</a><a class="btn btn-outline" href="products.html">Back to shop</a></div>
+          <p class="notice-soft">HTML/CSS phase: size, color, quantity and shopping bag are interface previews only. No item is added or stock changed.</p>
+          <details class="info-disclosure"><summary>Product information</summary><p>An understated accent made for blazers and suits, with a refined fashion-forward look. Final materials and photographs will be confirmed in later phases.</p></details>
+          <details class="info-disclosure"><summary>Delivery and payment</summary><p>Checkout options are demonstration interfaces. No real order, delivery or payment is processed.</p></details>
+        </div>
+      </article>
+      <article class="detail-panel" id="p-005">
+        <div class="detail-gallery"><div class="product-media tone-sage detail-media" role="img" aria-label="Abstract placeholder graphic for Crew Socks"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>COTTON / SOCKS</strong><span class="media-caption">PHOTO COMING SOON</span></div><p class="fine-print">Concept visual — replace with product photography in the next design iteration.</p></div>
+        <div class="detail-copy"><p class="eyebrow dark">SOCKS / THE ESSENTIALS EDIT</p><h1>Crew Socks</h1><p class="detail-price">৳200 <span>BDT · Example price</span></p>
+          <p class="detail-description">Versatile, breathable everyday crew socks designed for comfortable daily styling.</p>
+          <div class="detail-line"><span>Sample SKU</span><strong>CS-BLK-4043</strong></div><div class="detail-line"><span>Demo availability</span><strong>40–43 / Black — 30 units (sample)</strong></div>
+          <fieldset class="selector-set"><legend>Select a size <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="size-p-005" checked><span>40–43</span></label><label class="option-chip"><input type="radio" name="size-p-005"><span>44–46</span></label></div></fieldset>
+          <fieldset class="selector-set"><legend>Select a color <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="color-p-005" checked><span>Black</span></label><label class="option-chip"><input type="radio" name="color-p-005"><span>White</span></label></div></fieldset>
+          <label class="qty-label" for="qty-p-005">Quantity <small>(visual preview)</small></label><input id="qty-p-005" class="qty-preview" type="number" value="1" min="1" max="10">
+          <div class="detail-actions"><a class="btn btn-dark" href="cart.html">View sample shopping bag ↗</a><a class="btn btn-outline" href="products.html">Back to shop</a></div>
+          <p class="notice-soft">HTML/CSS phase: size, color, quantity and shopping bag are interface previews only. No item is added or stock changed.</p>
+          <details class="info-disclosure"><summary>Product information</summary><p>Versatile, breathable everyday crew socks designed for comfortable daily styling. Final materials and photographs will be confirmed in later phases.</p></details>
+          <details class="info-disclosure"><summary>Delivery and payment</summary><p>Checkout options are demonstration interfaces. No real order, delivery or payment is processed.</p></details>
+        </div>
+      </article>
+      <article class="detail-panel" id="p-006">
+        <div class="detail-gallery"><div class="product-media tone-steel detail-media" role="img" aria-label="Abstract placeholder graphic for Hard Eyeglass Case"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>EYEGLASS / CASE</strong><span class="media-caption">PHOTO COMING SOON</span></div><p class="fine-print">Concept visual — replace with product photography in the next design iteration.</p></div>
+        <div class="detail-copy"><p class="eyebrow dark">EYEGLASS CASES / THE ESSENTIALS EDIT</p><h1>Hard Eyeglass Case</h1><p class="detail-price">৳350 <span>BDT · Example price</span></p>
+          <p class="detail-description">A simple hard-shell case concept to protect glasses while traveling or on the go.</p>
+          <div class="detail-line"><span>Sample SKU</span><strong>EC-BLK-STD</strong></div><div class="detail-line"><span>Demo availability</span><strong>Black — 30 units (sample)</strong></div>
+          <fieldset class="selector-set"><legend>Select a size <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="size-p-006" checked><span>Standard</span></label></div></fieldset>
+          <fieldset class="selector-set"><legend>Select a color <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="color-p-006" checked><span>Black</span></label></div></fieldset>
+          <label class="qty-label" for="qty-p-006">Quantity <small>(visual preview)</small></label><input id="qty-p-006" class="qty-preview" type="number" value="1" min="1" max="10">
+          <div class="detail-actions"><a class="btn btn-dark" href="cart.html">View sample shopping bag ↗</a><a class="btn btn-outline" href="products.html">Back to shop</a></div>
+          <p class="notice-soft">HTML/CSS phase: size, color, quantity and shopping bag are interface previews only. No item is added or stock changed.</p>
+          <details class="info-disclosure"><summary>Product information</summary><p>A simple hard-shell case concept to protect glasses while traveling or on the go. Final materials and photographs will be confirmed in later phases.</p></details>
+          <details class="info-disclosure"><summary>Delivery and payment</summary><p>Checkout options are demonstration interfaces. No real order, delivery or payment is processed.</p></details>
+        </div>
+      </article>
+      <article class="detail-panel" id="p-007">
+        <div class="detail-gallery"><div class="product-media tone-cocoa detail-media" role="img" aria-label="Abstract placeholder graphic for Bifold Wallet"><div class="media-orbit"></div><span class="media-kicker">BRUTBOX EDIT / 2026</span><strong>BIFOLD / WALLET</strong><span class="media-caption">PHOTO COMING SOON</span></div><p class="fine-print">Concept visual — replace with product photography in the next design iteration.</p></div>
+        <div class="detail-copy"><p class="eyebrow dark">WALLETS / THE ESSENTIALS EDIT</p><h1>Bifold Wallet</h1><p class="detail-price">৳1,200 <span>BDT · Example price</span></p>
+          <p class="detail-description">A timeless bifold wallet concept with room for everyday cards and essentials.</p>
+          <div class="detail-line"><span>Sample SKU</span><strong>BW-BRN-STD</strong></div><div class="detail-line"><span>Demo availability</span><strong>Brown — 30 units (sample)</strong></div>
+          <fieldset class="selector-set"><legend>Select a size <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="size-p-007" checked><span>Standard</span></label></div></fieldset>
+          <fieldset class="selector-set"><legend>Select a color <small>(visual preview)</small></legend><div class="choice-row"><label class="option-chip"><input type="radio" name="color-p-007" checked><span>Brown</span></label><label class="option-chip"><input type="radio" name="color-p-007"><span>Black</span></label></div></fieldset>
+          <label class="qty-label" for="qty-p-007">Quantity <small>(visual preview)</small></label><input id="qty-p-007" class="qty-preview" type="number" value="1" min="1" max="10">
+          <div class="detail-actions"><a class="btn btn-dark" href="cart.html">View sample shopping bag ↗</a><a class="btn btn-outline" href="products.html">Back to shop</a></div>
+          <p class="notice-soft">HTML/CSS phase: size, color, quantity and shopping bag are interface previews only. No item is added or stock changed.</p>
+          <details class="info-disclosure"><summary>Product information</summary><p>A timeless bifold wallet concept with room for everyday cards and essentials. Final materials and photographs will be confirmed in later phases.</p></details>
+          <details class="info-disclosure"><summary>Delivery and payment</summary><p>Checkout options are demonstration interfaces. No real order, delivery or payment is processed.</p></details>
+        </div>
+      </article>
       </div>
-
     </section>
-
-    <!-- =====================================
-         ADDITIONAL PRODUCT INFORMATION
-    ====================================== -->
-
-    <section class="container product-extra">
-
-      <h2>Product Information</h2>
-
-      <p id="extra-description">
-        Explore the Brutbox & CO. collection
-        of everyday men's essentials.
-        Choose your preferred product variant
-        before adding an item to your cart.
-      </p>
-
-      <p>
-        <strong>Important:</strong>
-        This website is currently an academic
-        frontend prototype. Product stock,
-        cart information and checkout
-        are simulated for demonstration purposes.
-        No real payment is collected.
-      </p>
-
-    </section>
-
-    <!-- =====================================
-         MORE PRODUCTS
-    ====================================== -->
-
-    <section class="section section-alt">
-
-      <div class="container">
-
-        <div class="section-heading">
-
-          <div>
-
-            <p class="eyebrow dark">
-              KEEP EXPLORING
-            </p>
-
-            <h2>Discover More Essentials</h2>
-
-          </div>
-
-          <p>
-            Explore our range of men's
-            everyday products and accessories.
-          </p>
-
-        </div>
-
-        <div class="category-grid">
-
-          <a href="products.html#underwear"
-             class="category-card">
-
-            <span class="category-number">01</span>
-
-            <strong>Underwear</strong>
-
-            <span aria-hidden="true">↗</span>
-
-          </a>
-
-          <a href="products.html#bow-ties"
-             class="category-card">
-
-            <span class="category-number">02</span>
-
-            <strong>Bow Ties</strong>
-
-            <span aria-hidden="true">↗</span>
-
-          </a>
-
-          <a href="products.html#wallets"
-             class="category-card">
-
-            <span class="category-number">03</span>
-
-            <strong>Wallets</strong>
-
-            <span aria-hidden="true">↗</span>
-
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
   </main>
-
-  <!-- =====================================
-       FOOTER
-  ====================================== -->
-
-  <footer class="site-footer">
-
-    <div class="container footer-inner">
-
-      <div>
-
-        <strong>BRUTBOX & CO.</strong>
-
-        <p>
-          Men's Essentials and Accessories
-        </p>
-
-        <p>
-          Academic E-Commerce Website Project
-        </p>
-
-      </div>
-
-      <div>
-
-        <p>© 2026 Brutbox & CO.</p>
-
-        <p>Phase 01 Frontend Prototype</p>
-
-      </div>
-
-      <a href="#main-content">
-        Back to Top ↑
-      </a>
-
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><a class="brand footer-logo" href="index.html">BRUTBOX <span>&amp; CO.</span></a>
+        <p>Understated style. Everyday essentials. An academic e-commerce interface built with HTML and CSS.</p></div>
+      <div><h3>Explore</h3><a href="products.html">All Products</a><a href="product-details.html#p-001">Sample Product Details</a><a href="cart.html">Sample Shopping Bag</a></div>
+      <div><h3>Project Pages</h3><a href="login.html">Login Preview</a><a href="signup.html">Signup Preview</a><a href="checkout.html">Checkout Preview</a><a href="admin.html">Admin Preview</a></div>
+      <div><h3>Important</h3><p>Phase 01: HTML/CSS only. No account creation, order placement, inventory changes or payments are processed.</p></div>
     </div>
-
+    <div class="footer-bottom container"><span>© 2026 BRUTBOX &amp; CO. — Academic Prototype</span><span>Designed for desktop • tablet • mobile</span></div>
   </footer>
-
-  <!-- =====================================
-       PRODUCT DETAILS JAVASCRIPT
-       Temporary Demo Product Data
-
-       This script allows product-details.html
-       to load products using ?id=P-001 etc.
-
-       Later, product data will be moved to
-       data/products.json and the logic to
-       js/products.js.
-  ====================================== -->
-
-  <script>
-
-    // =====================================
-    // 1. DEMO PRODUCT DATA
-    // =====================================
-
-    const products = [
-
-      {
-        id: "P-001",
-        name: "Cotton Boxer",
-        category: "Underwear",
-        description:
-          "Comfortable everyday cotton boxer designed for a soft and breathable fit.",
-        price: 450,
-        color: "#465b66",
-        variants: [
-          { sku: "CB-BLK-S", size: "S", color: "Black", stock: 30 },
-          { sku: "CB-BLK-M", size: "M", color: "Black", stock: 30 },
-          { sku: "CB-BLK-L", size: "L", color: "Black", stock: 25 },
-          { sku: "CB-BLK-XL", size: "XL", color: "Black", stock: 20 }
-        ]
-      },
-
-      {
-        id: "P-002",
-        name: "Cotton Brief",
-        category: "Underwear",
-        description:
-          "Soft stretch cotton brief offering comfort and support for daily use.",
-        price: 380,
-        color: "#65746b",
-        variants: [
-          { sku: "BR-WHT-M", size: "M", color: "White", stock: 30 },
-          { sku: "BR-WHT-L", size: "L", color: "White", stock: 25 }
-        ]
-      },
-
-      {
-        id: "P-003",
-        name: "Silk Bow Tie",
-        category: "Bow Ties",
-        description:
-          "Elegant silk bow tie suitable for weddings, celebrations and formal occasions.",
-        price: 650,
-        color: "#79565c",
-        variants: [
-          { sku: "BT-BLK-OS", size: "One Size", color: "Black", stock: 30 }
-        ]
-      },
-
-      {
-        id: "P-004",
-        name: "Silk Pocket Square",
-        category: "Pocket Squares",
-        description:
-          "Premium silk pocket square designed to complement formal and smart outfits.",
-        price: 550,
-        color: "#957653",
-        variants: [
-          { sku: "PS-NVY-OS", size: "One Size", color: "Navy", stock: 30 }
-        ]
-      },
-
-      {
-        id: "P-005",
-        name: "Crew Socks",
-        category: "Socks",
-        description:
-          "Breathable cotton crew socks that provide comfort throughout the day.",
-        price: 200,
-        color: "#697267",
-        variants: [
-          { sku: "CS-BLK-4043", size: "40-43", color: "Black", stock: 30 },
-          { sku: "CS-BLK-4446", size: "44-46", color: "Black", stock: 20 }
-        ]
-      },
-
-      {
-        id: "P-006",
-        name: "Hard Eyeglass Case",
-        category: "Eyeglass Cases",
-        description:
-          "Durable hard eyeglass case designed to protect your glasses during everyday use.",
-        price: 350,
-        color: "#435866",
-        variants: [
-          { sku: "EC-BLK-STD", size: "Standard", color: "Black", stock: 30 }
-        ]
-      },
-
-      {
-        id: "P-007",
-        name: "Bifold Wallet",
-        category: "Wallets",
-        description:
-          "Classic bifold wallet with a minimalist design and practical compartments.",
-        price: 1200,
-        color: "#826142",
-        variants: [
-          { sku: "BW-BRN-STD", size: "Standard", color: "Brown", stock: 30 }
-        ]
-      }
-
-    ];
-
-    // =====================================
-    // 2. GET PRODUCT ID FROM URL
-    // =====================================
-
-    const params = new URLSearchParams(window.location.search);
-
-    const productId = params.get("id") || "P-001";
-
-    const product = products.find(
-      item => item.id === productId
-    );
-
-    // =====================================
-    // 3. SELECT PAGE ELEMENTS
-    // =====================================
-
-    const productName = document.getElementById("product-name");
-    const productPrice = document.getElementById("product-price");
-    const productCategory = document.getElementById("product-category");
-    const productDescription = document.getElementById("product-description");
-
-    const productVariant = document.getElementById("product-variant");
-    const productQuantity = document.getElementById("product-quantity");
-
-    const stockStatus = document.getElementById("stock-status");
-    const cartButton = document.getElementById("add-cart-btn");
-    const cartMessage = document.getElementById("cart-message");
-
-    // =====================================
-    // 4. LOAD PRODUCT INFORMATION
-    // =====================================
-
-    if (!product) {
-
-      document.getElementById("product-section").innerHTML = `
-        <div class="not-found">
-          <h1>Product Not Found</h1>
-          <p>The requested product is not available.</p>
-          <a href="products.html" class="button button-primary">
-            Back to Products
-          </a>
-        </div>
-      `;
-
-    } else {
-
-      document.title = product.name + " | Brutbox & CO.";
-
-      productName.textContent = product.name;
-
-      productPrice.textContent =
-        "BDT " + product.price.toLocaleString("en-US");
-
-      productCategory.textContent = product.category;
-
-      productDescription.textContent = product.description;
-
-      document.getElementById("breadcrumb-product").textContent =
-        product.name;
-
-      document.getElementById("feature-category").textContent =
-        product.category;
-
-      document.getElementById("feature-code").textContent =
-        product.id;
-
-      document.getElementById("extra-description").textContent =
-        product.description;
-
-      document.getElementById("product-image-text").textContent =
-        product.name.toUpperCase();
-
-      document.getElementById("product-image").style.background =
-        "linear-gradient(140deg, " + product.color + ", #182536)";
-
-      document.getElementById("product-image").setAttribute(
-        "aria-label",
-        product.name + " image placeholder"
-      );
-
-      // =====================================
-      // 5. POPULATE SIZE/COLOR OPTIONS
-      // =====================================
-
-      productVariant.innerHTML = "";
-
-      product.variants.forEach((variant, index) => {
-
-        const option = document.createElement("option");
-
-        option.value = index;
-
-        option.textContent =
-          variant.size + " / " + variant.color +
-          " (" + variant.stock + " available)";
-
-        productVariant.appendChild(option);
-
-      });
-
-      // =====================================
-      // 6. UPDATE STOCK INFORMATION
-      // =====================================
-
-      function updateVariant() {
-
-        const selectedIndex = Number(productVariant.value);
-
-        const variant = product.variants[selectedIndex];
-
-        if (!variant) return;
-
-        const available = variant.stock;
-
-        productQuantity.max = available;
-        productQuantity.value = 1;
-
-        stockStatus.className = "stock-label";
-
-        if (available === 0) {
-
-          stockStatus.textContent = "Out of Stock";
-
-          stockStatus.classList.add("out");
-
-          cartButton.disabled = true;
-
-        } else if (available <= 5) {
-
-          stockStatus.textContent =
-            "Low Stock - Only " + available + " left";
-
-          stockStatus.classList.add("low");
-
-          cartButton.disabled = false;
-
-        } else {
-
-          stockStatus.textContent =
-            "In Stock - " + available + " Available";
-
-          cartButton.disabled = false;
-
-        }
-
-        cartMessage.textContent = "";
-        cartMessage.className = "cart-message";
-
-      }
-
-      productVariant.addEventListener(
-        "change",
-        updateVariant
-      );
-
-      updateVariant();
-
-      // =====================================
-      // 7. ADD TO CART (LOCAL DEMO)
-      // =====================================
-
-      document.getElementById("product-form")
-        .addEventListener("submit", function(event) {
-
-          event.preventDefault();
-
-          const selectedIndex = Number(productVariant.value);
-
-          const variant = product.variants[selectedIndex];
-
-          const quantity = Number(productQuantity.value);
-
-          cartMessage.className = "cart-message";
-
-          if (!variant) {
-
-            cartMessage.textContent =
-              "Please select a product variant.";
-
-            cartMessage.classList.add("error");
-
-            return;
-          }
-
-          if (
-            !Number.isInteger(quantity) ||
-            quantity < 1
-          ) {
-
-            cartMessage.textContent =
-              "Please enter a valid quantity.";
-
-            cartMessage.classList.add("error");
-
-            return;
-          }
-
-          // Read existing demo cart
-          let cart = [];
-
-          try {
-
-            const savedCart = JSON.parse(
-              localStorage.getItem("bb_cart") || "[]"
-            );
-
-            cart = Array.isArray(savedCart) ? savedCart : [];
-
-          } catch (error) {
-
-            cart = [];
-
-          }
-
-          const existingItem = cart.find(
-            item => item.sku === variant.sku
-          );
-
-          const alreadyInCart = existingItem
-            ? existingItem.quantity
-            : 0;
-
-          if (
-            alreadyInCart + quantity >
-            variant.stock
-          ) {
-
-            cartMessage.textContent =
-              "Not enough stock. You already have " +
-              alreadyInCart +
-              " in your cart. Available: " +
-              variant.stock;
-
-            cartMessage.classList.add("error");
-
-            return;
-          }
-
-          // Add or update item
-          if (existingItem) {
-
-            existingItem.quantity += quantity;
-
-          } else {
-
-            cart.push({
-              sku: variant.sku,
-              quantity: quantity
-            });
-
-          }
-
-          // Save demo cart in browser
-          localStorage.setItem(
-            "bb_cart",
-            JSON.stringify(cart)
-          );
-
-          cartMessage.textContent =
-            quantity + " item(s) added to your demo cart successfully!";
-
-          cartMessage.classList.add("success");
-
-          // Stock is not deducted when adding to cart.
-          // Stock deduction will be implemented
-          // during the demo checkout stage.
-
-        });
-
-    }
-
-  </script>
-
 </body>
 </html>
