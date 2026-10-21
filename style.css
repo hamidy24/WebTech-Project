@@ -1,0 +1,804 @@
+
+/* =========================================
+   BRUTBOX & CO.
+   Part 01 - Homepage Stylesheet
+   HTML + CSS Only
+========================================= */
+
+/* =========================================
+   1. GLOBAL VARIABLES
+========================================= */
+
+:root {
+  --ink: #182536;
+  --ink-soft: #516071;
+  --accent: #ba8957;
+  --cream: #f6f3ee;
+  --line: #e6e3df;
+  --white: #ffffff;
+  --max-width: 1180px;
+}
+
+/* =========================================
+   2. RESET AND GLOBAL STYLES
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(calc(100% - 40px), var(--max-width));
+  margin: 0 auto;
+}
+
+/* Accessibility */
+
+.skip-link {
+  position: absolute;
+  top: -80px;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 14px;
+  color: white;
+  background: var(--ink);
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* =========================================
+   3. ANNOUNCEMENT BAR
+========================================= */
+
+.announcement {
+  padding: 8px 15px;
+  background: var(--ink);
+  color: #f4ede4;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+/* =========================================
+   4. HEADER AND NAVIGATION
+========================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  min-height: 76px;
+}
+
+/* Brand Logo */
+
+.brand {
+  flex-shrink: 0;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 0.075em;
+  line-height: 1;
+}
+
+.brand span {
+  color: var(--accent);
+}
+
+/* Desktop Navigation */
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 31px;
+}
+
+.desktop-nav a {
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a[aria-current="page"] {
+  color: var(--ink);
+}
+
+/* Header Buttons */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-shop {
+  padding: 11px 16px;
+  background: var(--ink);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.header-shop:hover {
+  background: #2d4358;
+}
+
+/* =========================================
+   5. MOBILE NAVIGATION
+========================================= */
+
+.mobile-nav {
+  display: none;
+  position: relative;
+}
+
+.mobile-nav summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mobile-nav summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 210px;
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 40px #18253620;
+}
+
+.mobile-menu-panel a {
+  display: block;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.mobile-menu-panel a:last-child {
+  border-bottom: none;
+}
+
+/* =========================================
+   6. HERO SECTION
+========================================= */
+
+.hero {
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.14fr 0.86fr;
+  align-items: center;
+  gap: 65px;
+  min-height: 520px;
+  padding: 65px 0;
+}
+
+/* Small Heading */
+
+.eyebrow {
+  margin: 0 0 15px;
+  color: #e1b67e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+
+.eyebrow.dark {
+  color: #997347;
+}
+
+/* Main Hero Heading */
+
+.hero h1 {
+  margin: 0;
+  color: white;
+  font-size: clamp(38px, 5.7vw, 72px);
+  line-height: 1.09;
+  letter-spacing: -0.055em;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: #dbba8e;
+}
+
+/* Hero Description */
+
+.hero-description {
+  max-width: 465px;
+  margin: 23px 0 28px;
+  color: #d1d9e0;
+  font-size: 15px;
+}
+
+/* Hero Buttons */
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  min-height: 46px;
+  padding: 13px 20px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.button-primary {
+  background: #e1b67e;
+  color: #1a2635;
+}
+
+.button-primary:hover {
+  background: #f0c995;
+}
+
+.text-link {
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  border-bottom: 1px solid #ffffff9c;
+  padding: 10px 0;
+}
+
+.hero-note {
+  margin: 28px 0 0;
+  color: #aebbc7;
+  font-size: 11px;
+}
+
+/* =========================================
+   7. HERO GRAPHIC
+========================================= */
+
+.hero-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+  padding: 28px;
+  overflow: hidden;
+  border: 1px solid #f4dfc334;
+
+  background:
+    radial-gradient(
+      circle at 70% 25%,
+      #ba895780,
+      transparent 33%
+    ),
+    linear-gradient(
+      145deg,
+      #394653,
+      #9b7755
+    );
+
+  color: #fff7ed;
+}
+
+.hero-art::before {
+  content: "";
+  position: absolute;
+  inset: 36px 70px;
+  border: 1px solid #ffffff38;
+  transform: rotate(-20deg);
+}
+
+.hero-art::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 1px solid #ffffff40;
+  border-radius: 50%;
+  right: -75px;
+  bottom: 35px;
+}
+
+.hero-art span,
+.hero-art strong {
+  position: relative;
+  z-index: 1;
+}
+
+.art-top,
+.art-bottom {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.hero-art strong {
+  align-self: center;
+  font-size: clamp(33px, 4vw, 57px);
+  letter-spacing: -0.04em;
+}
+
+.art-bottom {
+  align-self: flex-end;
+}
+
+/* =========================================
+   8. COMMON SECTION STYLES
+========================================= */
+
+.section {
+  padding-top: 82px;
+  padding-bottom: 82px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 29px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.section-heading > p {
+  max-width: 360px;
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* =========================================
+   9. PRODUCT CATEGORIES
+========================================= */
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.category-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 96px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.category-card:hover {
+  background: var(--cream);
+  border-color: #bca080;
+}
+
+.category-number {
+  color: #a28c75;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.category-card strong {
+  flex: 1;
+  font-size: 16px;
+}
+
+.category-card > span:last-child {
+  font-size: 20px;
+  color: #997347;
+}
+
+/* =========================================
+   10. FEATURED PRODUCTS SECTION
+========================================= */
+
+.section-alt {
+  background: var(--cream);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.product-card {
+  min-width: 0;
+}
+
+/* Product Image Placeholder */
+
+.product-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  min-height: 295px;
+  padding: 18px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.product-art span {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-size: clamp(28px, 3vw, 46px);
+  font-weight: 900;
+  line-height: 1.03;
+  letter-spacing: -0.07em;
+}
+
+.product-art small {
+  position: relative;
+  z-index: 1;
+  color: #ffffffb8;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.product-art::before {
+  position: absolute;
+  inset: 30px;
+  content: "";
+  border: 1px solid #ffffff5b;
+  transform: rotate(-8deg);
+}
+
+/* Product Background Colors */
+
+.product-art-one {
+  background: linear-gradient(
+    140deg,
+    #7b8b91,
+    #263b46
+  );
+}
+
+.product-art-two {
+  background: linear-gradient(
+    140deg,
+    #b49487,
+    #674c50
+  );
+}
+
+.product-art-three {
+  background: linear-gradient(
+    140deg,
+    #a6a397,
+    #555c56
+  );
+}
+
+.product-art-four {
+  background: linear-gradient(
+    140deg,
+    #c1a078,
+    #73583a
+  );
+}
+
+/* =========================================
+   11. PRODUCT INFORMATION
+========================================= */
+
+.product-info {
+  padding: 15px 0;
+}
+
+.product-info p {
+  margin: 0 0 4px;
+  color: #88725e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.product-info h3 {
+  margin: 0 0 5px;
+  font-size: 18px;
+}
+
+.product-info > strong {
+  font-size: 14px;
+}
+
+.development-note {
+  margin: 27px 0 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* =========================================
+   12. ABOUT SECTION
+========================================= */
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 27px;
+}
+
+.benefits > div {
+  border-top: 2px solid var(--ink);
+  padding-top: 17px;
+}
+
+.benefit-num {
+  color: #a47e53;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.benefits h3 {
+  margin: 12px 0 8px;
+  font-size: 18px;
+}
+
+.benefits p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+/* =========================================
+   13. FOOTER
+========================================= */
+
+.site-footer {
+  background: #111b29;
+  color: #dce1e6;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-top: 37px;
+  padding-bottom: 37px;
+}
+
+.footer-inner strong {
+  font-size: 17px;
+  letter-spacing: 0.07em;
+}
+
+.footer-inner p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #b1bfca;
+}
+
+.footer-inner a {
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================
+   14. TABLET RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 920px) {
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  .hero-layout {
+    gap: 25px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+/* =========================================
+   15. MOBILE RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 640px) {
+
+  .container {
+    width: min(
+      calc(100% - 28px),
+      var(--max-width)
+    );
+  }
+
+  /* Header */
+
+  .brand {
+    font-size: 17px;
+  }
+
+  .header-inner {
+    min-height: 64px;
+  }
+
+  .header-shop {
+    display: none;
+  }
+
+  /* Hero */
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+    padding: 58px 0;
+  }
+
+  .hero-art {
+    min-height: 225px;
+  }
+
+  .hero-art strong {
+    font-size: 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 11vw, 54px);
+  }
+
+  /* Sections */
+
+  .section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-heading > p {
+    margin-top: 10px;
+  }
+
+  /* Categories */
+
+  .category-grid {
+    gap: 9px;
+  }
+
+  .category-card {
+    min-height: 100px;
+    padding: 14px;
+    gap: 6px;
+  }
+
+  .category-card strong {
+    font-size: 13px;
+  }
+
+  /* Product Grid */
+
+  .product-grid {
+    gap: 12px;
+  }
+
+  .product-art {
+    min-height: 195px;
+  }
+
+  .product-art span {
+    font-size: 27px;
+  }
+
+  .product-art small {
+    font-size: 8px;
+  }
+
+  /* About */
+
+  .benefits {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Footer */
+
+  .footer-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+}
+
+/* =========================================
+   16. REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .category-card {
+    transition: none;
+  }
+
+}
+
+/* =========================================
+   END OF PART 01 - STYLE.CSS
+========================================= */
