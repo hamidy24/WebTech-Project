@@ -1,92 +1,58 @@
-# BRUTBOX & CO. — Complete Phase 1 Frontend Demo
+# BRUTBOX & CO. - Men's Essentials E-Commerce Website (Phase 01)
 
-A connected, commented HTML/CSS/JavaScript project based on your project idea. The homepage is banner-free and immediately shows categories and products.
+Academic project by a four-member team. Phase 01 is a front-end prototype built with
+**HTML, CSS and JavaScript** only. Products, stock, cart, login, orders and receipts
+work in the browser (localStorage). There is no real payment and no secure login yet.
 
-## Important limits
+## Live website
+`https://hamidy24.github.io/brutbox-co/`  (see "Publish with GitHub Pages" below)
 
-This is a **frontend coursework demonstration**, not a production e-commerce system.
+## Run on your computer
+1. Open the `brutbox-co` folder in VS Code.
+2. Install the **Live Server** extension, then right-click `index.html` -> *Open with Live Server*.
+   (Do not double-click the HTML files: the browser blocks `data/products.json` that way.)
 
-- Customer profiles and demo records are saved in the browser's `localStorage`/`sessionStorage`.
-- Customer password fields are demonstration-only. Passwords are not saved or verified; login accepts a saved email and any non-empty demo password.
-- Admin IDs/password are public values in `js/data.js` for coursework demonstration. Anyone can inspect frontend JavaScript. Never use them as real credentials.
-- The three-admin-session counter and red fourth-login alert coordinate among tabs sharing the same browser profile and site origin only. They cannot coordinate between devices or different browsers. A backend is required for a real global limit.
-- Images uploaded in Admin Control Center are converted to data URLs and stored in this browser only. They do not upload to GitHub/cloud and other visitors will not see them. Use files under 1 MB.
-- Payment choices are simulated. No money is transferred and no provider is connected. Never enter payment PINs, card data or real credentials.
-- Browser-local storage is not a central database and cannot reliably prevent overselling between devices.
-- Contact form submissions are stored locally and no email is sent.
+## Demo accounts
+| Role | How to log in |
+|---|---|
+| Customer | any valid email + a password of 6 or more characters |
+| Admin | `admin@brutbox.test` + any password of 6 or more characters |
 
-## Run locally
-
-Recommended: open this folder in VS Code and use Live Server. Or run:
-
-```bash
-python -m http.server 5500
+## Folder structure
+```
+brutbox-co/
+├── index.html  products.html  product-details.html  cart.html
+├── login.html  signup.html  checkout.html  receipt.html
+├── admin.html  inventory.html
+├── css/   style.css  home.css  checkout.css  app.css  responsive.css
+├── js/    main.js  stock.js  navbar.js  catalog.js  products.js
+│          cart.js  auth.js  payment.js  receipt.js  admin.js  inventory.js
+├── data/  products.json
+└── assets/  logo/  icons/  products/<category>/
 ```
 
-Then visit `http://localhost:5500/`. Using a local HTTP server is preferable to opening files directly with `file://`.
+## Who owns what
+| Member | Files |
+|---|---|
+| 01 Storefront & Navigation | index.html, products.html, home.css, navbar.js, catalog.js (and main.js core) |
+| 02 Product Details & Inventory | product-details.html, inventory.html, products.js, stock.js, inventory.js, data/products.json |
+| 03 Accounts & Cart | login.html, signup.html, cart.html, auth.js, cart.js |
+| 04 Checkout, Receipts & Admin Orders | checkout.html, receipt.html, admin.html, checkout.css, payment.js, receipt.js, admin.js |
 
-## Demo administrator accounts
+## Add your product photos
+1. Copy each photo into `assets/products/<category>/` (underwear, bow-ties, pocket-squares, socks, eyeglass-cases, wallets).
+2. Use lowercase names without spaces, e.g. `cotton-boxer-black-1.jpg`.
+3. In `data/products.json` set the product's `"image"` path to that file. If a photo is missing, a coloured placeholder is shown.
+4. After changing `products.json`, change `DATA_VERSION` in `js/main.js` (e.g. `"2026-10-v2"`) so browsers reload the new data.
 
-IDs: `admin01`, `admin02`, `admin03`, `admin04`
+## Publish with GitHub Pages
+1. Create a GitHub repository named `brutbox-co` (Public).
+2. Upload everything inside this folder (keep the folders). `index.html` must be at the top level.
+3. Repository **Settings -> Pages -> Build and deployment -> Source: Deploy from a branch -> Branch: main, folder: / (root) -> Save**.
+4. Wait 1-3 minutes. Your site is at `https://<username>.github.io/brutbox-co/`.
+5. After any change: commit to `main` again and refresh the page after a minute.
 
-Password for all: `Demo@123`
-
-These are sample credentials. The browser-only session limit can be demonstrated by logging in to admin01, admin02 and admin03 in three separate tabs, then attempting admin04 in a fourth tab. The fourth attempt should be blocked and logged as a red alert in active admin dashboards.
-
-## Page map
-
-| Page | Function | Controller / connection |
-|---|---|---|
-| `index.html` | Banner-free homepage, category links, featured products | `js/catalog.js` |
-| `products.html` | Search, category and stock filter, sorting | `js/catalog.js` |
-| `product-details.html?id=P001` | Variant (size/color/SKU) selection and Add to Cart | `js/product-details.js` |
-| `wishlist.html` | Saved products | `js/catalog.js` |
-| `cart.html` | Quantity change, remove item and subtotal | `js/cart.js` |
-| `signup.html` / `login.html` | Demo profile creation and returning customer sign-in | `js/auth.js` |
-| `checkout.html` | Login gate, saved delivery info, coupons, demo payment and order snapshot | `js/checkout.js` |
-| `receipt.html?orderId=...` | Print-friendly POS-style receipt | `js/receipt.js` |
-| `admin-login.html` | Demo fixed admin list and concurrent-session limit | `js/admin-login.js` |
-| `admin.html` | Product manager, coupons, branding, orders, activity, alerts and CSV export | `js/admin.js` |
-| `inventory.html` | SKU stock, purchase/restock log, CSV export | `js/admin.js` |
-| `about.html`, `contact.html`, `faq.html`, `shipping-policy.html`, `returns.html`, `privacy.html` | Essential business pages | `js/contact.js` for demo contact form |
-
-## How HTML, CSS and JavaScript connect
-
-1. Each HTML page links `css/style.css`, which controls fonts, colors, layout, responsive pages, forms and receipt printing.
-2. Each page loads deferred scripts in order: `js/data.js` → `js/store.js` → `js/app.js` → that page's controller. Order matters because later scripts use variables and functions created earlier.
-3. `js/data.js` defines the initial sample catalog, variant SKUs, coupons and demo admin accounts.
-4. `js/store.js` defines `BBStore`, the single browser-local state layer. It handles products, variant stock, cart, wishlist, profiles, coupons, orders, branding, admin sessions, purchase records and CSV export.
-5. `js/app.js` inserts the same header/footer throughout the site, displays the logo and cart count bubble, and listens for `bb:cartchange` to update the count.
-6. Page-specific scripts handle page controls but call `BBStore` for shared data, keeping cart and stock consistent in this browser.
-
-## Shared logic contracts
-
-- Every size/color combination has its own SKU. The selected SKU follows the item from detail page to cart and order.
-- Cart line structure: `{ productId, sku, qty }`.
-- Checkout creates a saved order snapshot containing the selected product name, SKU, size/color, quantities, prices, discount, delivery and payment/order statuses.
-- `BBStore.createOrder()` checks all SKUs before decrementing any stock. The receipt reads the saved snapshot so catalog price changes do not rewrite past demo receipts.
-- Cart changes dispatch a `bb:cartchange` event; `app.js` listens for that event and refreshes the badge in the shared header.
-
-## Coupon samples
-
-- `WELCOME10`: 10% off orders of ৳500 or more.
-- `ESSENTIALS100`: ৳100 off orders of ৳1,200 or more.
-
-## Quick test plan
-
-1. Shop page → search “socks” → change category and sort.
-2. Open `P001`, choose Black/M, add 2, and check the header count and cart.
-3. Update quantity and remove an item; verify the count updates.
-4. Save a favorite and open Wishlist.
-5. Create a demo customer account; continue to checkout and see saved delivery details prefilled on a returning sign-in.
-6. Apply one sample coupon.
-7. Complete demo checkout; confirm the notice says no real payment happened; print/save receipt.
-8. Log in to Admin Control Center, create a product with multiple sizes/colors, then view it in the shop in the same browser.
-9. Restock one SKU in Inventory & Purchases and verify only that SKU changes.
-10. Export inventory/orders as CSV and open the files in Excel.
-11. Test the three-session limit in separate tabs on the same browser profile.
-12. Test on mobile width and test receipt printing.
-
-## GitHub Pages
-
-Commit the complete folder with `css/`, `js/`, `assets/`, all HTML files, and `README.md`. In GitHub use **Settings → Pages** and publish the repository root from the main branch. Keep relative asset paths and exact filename letter casing. GitHub Pages can serve static files; real authentication, shared stock, cloud image uploads, shared admin session limits and actual payment processing need backend/cloud services.
+## Known limitations (Phase 01)
+- Login, admin access, stock and orders are stored in the browser only: not secure, not shared between devices.
+- Payment methods (COD, bKash, Nagad, card) are demo choices; every order stays **Payment: Pending**.
+- Secure backend, central database and a real payment gateway are Phase 02 and Phase 03.

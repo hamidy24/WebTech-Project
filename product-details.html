@@ -1,2 +1,27 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#172331"><meta name="description" content="BRUTBOX & CO. men's essentials e-commerce Phase 1 demo"><title>Product Details | BRUTBOX &amp; CO.</title><link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"><!-- Shared CSS handles the design. Deferred JavaScript order is important: data → store → app → page module. --><link rel="stylesheet" href="css/style.css"><script src="js/data.js" defer></script><script src="js/store.js" defer></script><script src="js/app.js" defer></script><script src="js/product-details.js" defer></script></head><body data-area="customer"><a class="skip-link" href="#main">Skip to content</a><div id="site-header"></div><main id="main"><section class="container page-top"><p class="eyebrow">Product details</p><a class="text-link" href="products.html">← Back to products</a></section><section class="container"><div id="product-detail-host" class="detail-layout"><p>Loading product...</p></div></section></main><div id="site-footer"></div><div id="toast-region" class="toast-region" aria-live="polite"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Choose size and colour, see exact stock and add to your bag.">
+  <meta name="theme-color" content="#182536">
+  <title>Product Details | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="container detail-wrapper"><nav class="breadcrumb"><a href="index.html">Home</a> / <a href="products.html">Shop</a> / <span id="crumb-name">Product</span></nav>
+      <div id="product-views"><div class="detail-panel" id="product-view"></div></div>
+    </section>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/main.js"></script>
+  <script src="js/stock.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>

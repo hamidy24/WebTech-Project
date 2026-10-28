@@ -1,2 +1,35 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#172331"><meta name="description" content="BRUTBOX & CO. men's essentials e-commerce Phase 1 demo"><title>Shop Products | BRUTBOX &amp; CO.</title><link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"><!-- Shared CSS handles the design. Deferred JavaScript order is important: data → store → app → page module. --><link rel="stylesheet" href="css/style.css"><script src="js/data.js" defer></script><script src="js/store.js" defer></script><script src="js/app.js" defer></script><script src="js/catalog.js" defer></script></head><body data-area="customer"><a class="skip-link" href="#main">Skip to content</a><div id="site-header"></div><main id="main"><section class="container page-top"><p class="eyebrow">The collection</p><div class="page-title-row"><div><h1>Shop all products</h1><p>Search and filter the BRUTBOX & CO. men's essentials catalog.</p></div><strong id="results-count" class="muted">0 products</strong></div></section><section class="container"><div class="filter-bar"><label>Search products<input id="product-search" type="search" placeholder="Try socks, wallet, underwear..."></label><label>Category<select id="category-filter"><option value="">All categories</option><option>Underwear</option><option>Bow Ties</option><option>Silk Pocket Squares</option><option>Socks</option><option>Eyeglass Cases</option><option>Wallets</option></select></label><label>Sort by<select id="sort-filter"><option value="featured">Featured</option><option value="name">Name A–Z</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option></select></label><label class="field-check">In stock only<input id="stock-filter" type="checkbox"></label></div><div class="product-grid" data-product-list data-mode="all"></div></section><section class="container section"><div class="help-note">Demo note: availability is sample data stored in this browser. A real store checks stock on a shared backend.</div></section></main><div id="site-footer"></div><div id="toast-region" class="toast-region" aria-live="polite"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse and filter Brutbox and Co men’s essentials.">
+  <meta name="theme-color" content="#182536">
+  <title>Shop All Products | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero container"><p class="breadcrumb"><a href="index.html">Home</a> / The Collection</p><p class="eyebrow dark">THE SHOP / BRUTBOX &amp; CO.</p><h1>All the essentials.</h1><p>Search by keyword, filter by category, size or colour, and open any product to choose its exact size and colour.</p></section>
+    <section class="container shop-shell">
+      <form class="filter-bar" id="filter-form" role="search" aria-label="Search and filter products">
+        <label>Search<input id="f-q" type="search" placeholder="e.g. wallet, silk, boxer"></label>
+        <label>Size<select id="f-size"></select></label>
+        <label>Colour<select id="f-color"></select></label>
+        <label>Sort by<select id="f-sort"><option value="">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="name">Name A–Z</option></select></label>
+      </form>
+      <nav class="filter-pills" id="pills" aria-label="Product categories"></nav>
+      <div id="catalog" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/main.js"></script>
+  <script src="js/stock.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/catalog.js"></script>
+</body>
+</html>

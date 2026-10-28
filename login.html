@@ -1,2 +1,37 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#172331"><meta name="description" content="BRUTBOX & CO. men's essentials e-commerce Phase 1 demo"><title>Customer Sign In | BRUTBOX &amp; CO.</title><link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"><!-- Shared CSS handles the design. Deferred JavaScript order is important: data → store → app → page module. --><link rel="stylesheet" href="css/style.css"><script src="js/data.js" defer></script><script src="js/store.js" defer></script><script src="js/app.js" defer></script><script src="js/auth.js" defer></script></head><body data-area="customer"><a class="skip-link" href="#main">Skip to content</a><div id="site-header"></div><main id="main"><section class="container auth-layout"><aside class="auth-aside"><div><p class="eyebrow">Welcome back</p><h1>Your essentials,<br>all in one place.</h1><p>Sign in to load your saved demo customer profile and continue checkout without registering again.</p></div><p class="small">Phase 1 demonstration only: the password is not stored or verified.</p></aside><section class="auth-form-panel"><p class="eyebrow">Customer account</p><h2>Sign in</h2><p class="muted">Use the email registered in this browser's demo.</p><form id="login-form" class="form-stack"><label>Email address<input name="email" type="email" autocomplete="email" required></label><label>Demo password<input name="password" type="password" autocomplete="current-password" required><small>Any non-empty value is accepted. Do not use a real password.</small></label><button class="btn btn-dark btn-wide" type="submit">Sign in to demo profile</button></form><p class="form-footnote">New customer? <a class="text-link" href="signup.html">Create an account</a>. <span id="account-state"></span></p></section></section></main><div id="site-footer"></div><div id="toast-region" class="toast-region" aria-live="polite"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sign in to Brutbox and Co (demo login).">
+  <meta name="theme-color" content="#182536">
+  <title>Sign In | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="auth-section container"><div class="auth-aside"><p class="eyebrow">THE BRUTBOX EXPERIENCE</p><h1>Welcome<br><em>back.</em></h1><p>Sign in to check out, view your receipts and keep your bag with you.</p><div class="auth-deco">BB / CO.</div></div>
+      <section class="auth-card"><p class="eyebrow dark">ACCOUNT / SIGN IN</p><h2>Sign in</h2><p class="muted">Demo login for the Phase 01 prototype.</p>
+        <p class="notice-soft" id="auth-note" hidden></p>
+        <form id="auth-form" class="form-stack" data-mode="login" novalidate>
+          <label for="email">Email address</label><input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
+          <label for="password">Password</label><input type="password" id="password" name="password" placeholder="Enter password" autocomplete="current-password">
+          <p id="auth-msg" class="form-msg error" role="alert"></p>
+          <button type="submit" class="btn btn-dark btn-wide">Sign in</button>
+        </form>
+        <p class="fine-print">Demo only: any valid email and a password of 6+ characters works, and no password is saved. Admin demo email: <strong>admin@brutbox.test</strong>.</p>
+        <div class="auth-divider">OR</div><a class="btn btn-outline btn-wide" href="signup.html">Create an account</a>
+        <p class="auth-bottom">Want to browse? <a href="products.html">Go to products →</a></p></section>
+    </section>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/main.js"></script>
+  <script src="js/stock.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

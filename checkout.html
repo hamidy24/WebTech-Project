@@ -1,2 +1,49 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#172331"><meta name="description" content="BRUTBOX & CO. men's essentials e-commerce Phase 1 demo"><title>Checkout | BRUTBOX &amp; CO.</title><link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"><!-- Shared CSS handles the design. Deferred JavaScript order is important: data → store → app → page module. --><link rel="stylesheet" href="css/style.css"><script src="js/data.js" defer></script><script src="js/store.js" defer></script><script src="js/app.js" defer></script><script src="js/checkout.js" defer></script></head><body data-area="customer"><a class="skip-link" href="#main">Skip to content</a><div id="site-header"></div><main id="main"><section class="container page-top"><p class="eyebrow">Last step</p><h1>Checkout</h1><p>Choose a demonstration payment method. No real payment will be processed.</p></section><section class="container checkout-layout"><div><div id="checkout-gate"></div><form id="checkout-form" class="checkout-form-card form-stack"><h2>Delivery information</h2><div class="form-grid two-col"><label>Full name<input name="name" autocomplete="name" required></label><label>Email address<input name="email" type="email" autocomplete="email" required></label></div><label>Phone number<input name="phone" type="tel" autocomplete="tel" required></label><label>Delivery address<textarea name="address" autocomplete="street-address" required></textarea></label><div class="admin-section"><h2>Payment option</h2><p class="muted small">These options are demonstrations, not connected to any payment provider.</p><div class="payment-options"><label class="payment-option"><input type="radio" name="paymentMethod" value="COD" checked><span><strong>Cash on Delivery (Demo)</strong><small>Payment stays pending collection.</small></span></label><label class="payment-option"><input type="radio" name="paymentMethod" value="bKash (Demo)"><span><strong>bKash (Demo)</strong><small>No bKash transfer occurs.</small></span></label><label class="payment-option"><input type="radio" name="paymentMethod" value="Nagad (Demo)"><span><strong>Nagad (Demo)</strong><small>No Nagad transfer occurs.</small></span></label><label class="payment-option"><input type="radio" name="paymentMethod" value="Card (Demo)"><span><strong>Card (Demo)</strong><small>Do not enter card details.</small></span></label></div></div><div class="checkout-demo-warning"><strong>DEMO MODE:</strong> Confirming creates a simulated order and adjusts this browser's sample stock. No real payment is made.</div><button class="btn btn-dark btn-wide" type="submit">Complete Demo Checkout</button><p class="file-help">A demo order number and printer-friendly receipt are generated after confirmation.</p></form></div><aside class="summary-card"><h2>Your order</h2><div id="checkout-items"></div><div class="admin-section"><label>Discount coupon<div class="coupon-row"><input id="coupon-code" placeholder="WELCOME10" autocomplete="off"><button class="btn btn-light" id="apply-coupon" type="button">Apply</button></div></label><p id="coupon-message" class="form-message" aria-live="polite">Enter a coupon and choose Apply.</p></div><div class="summary-row"><span>Subtotal</span><strong id="checkout-subtotal">৳0</strong></div><div class="summary-row"><span>Discount</span><strong id="checkout-discount">−৳0</strong></div><div class="summary-row"><span>Delivery</span><strong id="checkout-shipping">৳0</strong></div><div class="summary-row total"><span>Total</span><strong id="checkout-total">৳0</strong></div><p id="checkout-free-delivery-note" class="summary-note"></p><p class="summary-note">Coupon values and delivery fees are illustrative demo settings.</p></aside></section></main><div id="site-footer"></div><div id="toast-region" class="toast-region" aria-live="polite"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Delivery details and payment method for your Brutbox and Co order.">
+  <meta name="theme-color" content="#182536">
+  <title>Checkout | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero container"><p class="breadcrumb"><a href="index.html">Home</a> / <a href="cart.html">Bag</a> / Checkout</p><p class="eyebrow dark">CHECKOUT</p><h1>Almost there.</h1><p>Enter your delivery details and choose a payment method. This prototype creates a demo order only; no money is taken.</p></section>
+    <section class="checkout-layout container" id="checkout-layout"><div class="checkout-main">
+      <form id="checkout-form" novalidate>
+        <div class="step-banner"><span>01</span><strong>Delivery information</strong><small>All fields required except postal code</small></div>
+        <section class="form-panel"><h2>Delivery details</h2><div class="form-grid">
+          <div><label for="ship-name">Full name</label><input id="ship-name" name="ship-name" type="text" placeholder="Your full name" autocomplete="name"></div>
+          <div><label for="ship-phone">Mobile number</label><input id="ship-phone" name="ship-phone" type="tel" placeholder="01XXXXXXXXX" autocomplete="tel"></div>
+          <div class="full-span"><label for="ship-address">Street address</label><input id="ship-address" name="ship-address" type="text" placeholder="House, road, area" autocomplete="street-address"></div>
+          <div><label for="ship-city">City</label><input id="ship-city" name="ship-city" type="text" placeholder="Dhaka" autocomplete="address-level2"></div>
+          <div><label for="ship-postal">Postal code <small>(optional)</small></label><input id="ship-postal" name="ship-postal" type="text" placeholder="1200" inputmode="numeric" autocomplete="postal-code"></div>
+        </div></section>
+        <div class="step-banner"><span>02</span><strong>Payment method</strong><small>Demo options</small></div>
+        <section class="form-panel"><h2>How would you like to pay?</h2><fieldset class="payment-group"><legend>Choose one option</legend>
+          <label class="payment-option"><input type="radio" name="payment" value="Cash on Delivery" checked><span><strong>Cash on Delivery</strong><small>Pay when your order arrives</small></span><b>COD</b></label>
+          <label class="payment-option"><input type="radio" name="payment" value="bKash"><span><strong>bKash</strong><small>Mobile wallet — demo only</small></span><b>bKash</b></label>
+          <label class="payment-option"><input type="radio" name="payment" value="Nagad"><span><strong>Nagad</strong><small>Mobile wallet — demo only</small></span><b>Nagad</b></label>
+          <label class="payment-option"><input type="radio" name="payment" value="Card"><span><strong>Debit / Credit Card</strong><small>Card gateway — demo only</small></span><b>CARD</b></label>
+        </fieldset><p class="notice-soft payment-note" id="pay-note"></p></section>
+        <p id="checkout-msg" class="form-msg error" role="alert"></p>
+        <div class="checkout-bottom"><a class="text-arrow" href="cart.html">← Back to shopping bag</a><button class="btn btn-dark" type="submit">Confirm demo order ↗</button></div>
+      </form></div>
+      <aside class="summary-card checkout-summary" id="order-summary"></aside>
+    </section>
+    <section class="container" id="checkout-empty" hidden><div class="empty-state"><h3>Your shopping bag is empty</h3><p>Add items to your bag before checking out.</p><a class="btn btn-dark" href="products.html">Go to shop</a></div></section>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/main.js"></script>
+  <script src="js/stock.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+</html>

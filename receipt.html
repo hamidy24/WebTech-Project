@@ -1,2 +1,30 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#172331"><meta name="description" content="BRUTBOX & CO. men's essentials e-commerce Phase 1 demo"><title>Order Receipt | BRUTBOX &amp; CO.</title><link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"><!-- Shared CSS handles the design. Deferred JavaScript order is important: data → store → app → page module. --><link rel="stylesheet" href="css/style.css"><script src="js/data.js" defer></script><script src="js/store.js" defer></script><script src="js/app.js" defer></script><script src="js/receipt.js" defer></script></head><body data-area="customer"><a class="skip-link" href="#main">Skip to content</a><div id="site-header"></div><main id="main"><section class="container page-top no-print"><p class="eyebrow">Order confirmation</p><h1>Demo order receipt</h1><p>This describes a simulated order, not proof of real payment.</p><div class="button-row"><button class="btn btn-dark" id="print-receipt" type="button">Print receipt / Save PDF</button><button class="btn btn-light" id="new-order" type="button">Continue shopping</button></div></section><section class="container"><div id="receipt-content"></div></section></main><div id="site-footer"></div><div id="toast-region" class="toast-region" aria-live="polite"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Your Brutbox and Co order receipt (80 mm print layout).">
+  <meta name="theme-color" content="#182536">
+  <title>Receipt | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero container receipt-intro"><p class="breadcrumb"><a href="index.html">Home</a> / Receipt</p><p class="eyebrow dark">ORDER CONFIRMED</p><h1>Thank you for your order.</h1><p>This receipt shows your saved demo order. You can print it or save it as a PDF.</p></section>
+    <section class="container receipt-layout"><div class="receipt-explainer" id="receipt-info"><h2>Order <span id="r-id">—</span></h2><p>Total: <strong id="r-total">—</strong><br><span id="r-status"></span></p>
+      <p class="notice-soft">Demo order: no payment was taken. To save a PDF, press <strong>Print</strong>, then choose “Save as PDF”. Choose a narrow receipt paper size if available.</p>
+      <button class="btn btn-dark" id="print-btn" type="button">Print / Save as PDF</button><a class="btn btn-outline" href="products.html">Continue shopping</a></div>
+      <article class="receipt-paper" id="receipt-paper" aria-label="Sales receipt"></article>
+    </section>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/main.js"></script>
+  <script src="js/stock.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/receipt.js"></script>
+</body>
+</html>

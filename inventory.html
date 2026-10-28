@@ -1,1 +1,27 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#172331"><meta name="description" content="BRUTBOX & CO. Phase 1 demo"><title>Inventory & Purchases | BRUTBOX &amp; CO.</title><link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/style.css"><!-- Load shared demo data first, then store layer and shared UI, then this page's controller. --><script src="js/data.js" defer></script><script src="js/store.js" defer></script><script src="js/app.js" defer></script><script src="js/admin.js" defer></script></head><body data-area="admin" data-admin-page="inventory"><a class="skip-link" href="#main">Skip to content</a><div id="site-header"></div><main id="main"><section class="container admin-page"><div class="admin-page-head"><div><p class="eyebrow">Stock control</p><h1>Inventory & Purchases</h1><p>Inventory is managed at the exact size/color SKU level.</p></div><div class="button-row"><button class="btn btn-light" id="export-inventory" type="button">Export inventory CSV</button><button class="btn btn-light" id="export-purchases" type="button">Export purchases CSV</button></div></div><section class="admin-panel"><h2>Current stock by variant</h2><p class="muted small">Restocking changes only the selected SKU.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>SKU</th><th>Product</th><th>Size</th><th>Color</th><th>Price</th><th>Stock</th><th>Status</th></tr></thead><tbody id="inventory-rows"></tbody></table></div></section><div class="two-panel"><section class="admin-panel"><h2>Record stock purchase / restock</h2><p class="muted small">Adds stock and records the purchase in this browser.</p><form id="purchase-form" class="form-stack"><label>Product variant<select id="purchase-sku" name="sku" required></select></label><div class="form-grid two-col"><label>Quantity received<input name="qty" type="number" min="1" step="1" required></label><label>Unit purchase cost (BDT)<input name="unitCost" type="number" min="0" step="0.01" required></label></div><label>Supplier / source<input name="supplier" required maxlength="100" placeholder="Example supplier"></label><button class="btn btn-dark" type="submit">Record purchase and add stock</button></form></section><section class="admin-panel"><h2>Stock rules</h2><ul class="check-list"><li>Each SKU represents one sellable size/color combination.</li><li>Stock cannot be reduced below zero by a cart.</li><li>Demo order confirmation decreases the purchased SKU.</li><li>Restocking increases only the chosen SKU.</li><li>Low stock means five or fewer units in this prototype.</li></ul><div class="help-note">A real multi-user shop needs server-side validation and database transactions to prevent overselling.</div></section></div><section class="admin-panel"><h2>Recent purchase records</h2><div class="table-wrap"><table class="data-table"><thead><tr><th>Date</th><th>Supplier</th><th>SKU</th><th>Quantity</th><th>Unit cost</th><th>Total cost</th></tr></thead><tbody id="purchase-rows"></tbody></table></div></section></section></main><div id="site-footer"></div><div id="toast-region" class="toast-region" aria-live="polite"></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Restock SKUs and manage products (demo admin).">
+  <meta name="theme-color" content="#182536">
+  <title>Inventory | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-hero container"><p class="breadcrumb"><a href="index.html">Home</a> / <a href="admin.html">Admin</a> / Inventory</p><p class="eyebrow dark">STOCK AND PRODUCTS</p><h1>Inventory.</h1><p>Restock or correct one exact SKU at a time, update prices, and add or remove products.</p></section>
+    <section class="container admin-section"><div class="catalog-notice"><span class="label-small">DEMO ADMIN PANEL</span><p>Changes are saved in this browser only and appear straight away in the shop.</p></div>
+      <div id="inventory-view"></div></section>
+  </main>
+  <footer class="site-footer" id="site-footer"></footer>
+  <script src="js/main.js"></script>
+  <script src="js/stock.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/inventory.js"></script>
+</body>
+</html>
