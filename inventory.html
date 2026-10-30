@@ -10,9 +10,9 @@
   </title>
   <link href="css/style.css" rel="stylesheet"/>
   <link href="css/inventory.css" rel="stylesheet"/>
-  <link href="css/app.css" rel="stylesheet"/>
   <link href="css/responsive.css" rel="stylesheet"/>
- </head>
+   <link rel="stylesheet" href="css/interactive.css" />
+</head>
  <body>
   <a class="skip-link" href="#main">
    Skip to content
@@ -123,7 +123,7 @@
       STATIC PREVIEW &mdash; NO DATABASE
      </span>
      <p>
-      Restocks update this browser's demo inventory. Changes are not shared across browsers or devices.
+      Buttons and form fields illustrate how inventory adjustment will look. This HTML/CSS-only site cannot save restocks or synchronize stock across browsers.
      </p>
     </div>
     <nav aria-label="Admin areas" class="admin-tabs">
@@ -484,14 +484,14 @@
      </table>
     </div>
     <p class="fine-print inventory-table-note">
-     Each sample SKU is tracked independently in browser storage.
+     The numbers are illustrative and fixed in HTML. In a later phase, each SKU will be stored centrally and sales will update the correct variant.
     </p>
     <div class="inventory-section-title" id="restock-preview">
      <h2>
       Restock panel design
      </h2>
      <p>
-      Browser-only demo &mdash; changes saved locally
+      Form UI only &mdash; no changes saved
      </p>
     </div>
     <div class="inventory-form-preview">
@@ -518,10 +518,10 @@
       <input id="stock-reason" type="text" value="New inventory delivery"/>
      </label>
      <p class="fine-print wide">
-      Restock adjustments apply only to the selected SKU and save in this browser.
+      Example scenario: opening stock 30 + 20 restocked = 50. Nothing changes automatically on this page.
      </p>
      <button class="btn btn-dark" disabled="" type="button">
-      Apply restock
+      Apply restock &mdash; Phase 02
      </button>
     </div>
     <a class="btn btn-outline" href="admin.html">
@@ -581,7 +581,7 @@
       Important
      </h3>
      <p>
-      Phase 01 browser demo: cart, inventory and orders use this browser only. Authentication and payment are simulated.
+      Phase 01: HTML/CSS only. No account creation, order placement, inventory changes or payments are processed.
      </p>
     </div>
    </div>
@@ -594,7 +594,7 @@
     </span>
    </div>
   </footer>
-   <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
- </body>
+   <script src="js/main.js" defer></script>
+</body>
 </html>
+

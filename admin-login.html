@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Admin Sign In | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-login-body">
+  <main class="login-wrap">
+    <section class="login-card" aria-labelledby="login-title">
+      <p class="brand-mark">BRUTBOX<span> &amp; CO.</span></p>
+      <p class="eyebrow">Control Center</p>
+      <h1 id="login-title">Admin sign in</h1>
+      <p class="muted">Demo access. Up to 3 admins can be signed in at the same time.</p>
+
+      <div id="login-alert" class="alert" role="alert" hidden></div>
+
+      <form id="admin-login-form" novalidate>
+        <label for="admin-id">Admin ID</label>
+        <input id="admin-id" class="input" type="text" autocomplete="username" required />
+
+        <label for="admin-password">Password</label>
+        <input id="admin-password" class="input" type="password" autocomplete="current-password" required />
+
+        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+      </form>
+
+      <p class="seat-line"><span id="seat-count">Checking seats&hellip;</span></p>
+      <p class="fine-print">Demo gate only. Credentials are not secure and the page is public on GitHub Pages.</p>
+      <p><a href="index.html">&larr; Back to store</a></p>
+    </section>
+  </main>
+
+  <script src="js/admin-core.js"></script>
+  <script src="js/admin-auth.js"></script>
+</body>
+</html>

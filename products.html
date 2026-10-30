@@ -9,9 +9,9 @@
    Shop All Products | BRUTBOX &amp; CO.
   </title>
   <link href="css/style.css" rel="stylesheet"/>
-  <link href="css/app.css" rel="stylesheet"/>
   <link href="css/responsive.css" rel="stylesheet"/>
- </head>
+   <link rel="stylesheet" href="css/interactive.css" />
+</head>
  <body>
   <a class="skip-link" href="#main">
    Skip to content
@@ -118,7 +118,7 @@
       PHASE 01 / DESIGN PREVIEW
      </span>
      <p>
-      Search the sample catalog and add available products to your browser-only demo bag. Stock is tracked by exact SKU.
+      This is a static product catalog. Search, sorting, live stock and real shopping actions will be added in a future development phase.
      </p>
     </div>
     <nav aria-label="Jump to product category" class="filter-pills">
@@ -545,6 +545,11 @@
      </div>
     </section>
    </section>
+      <section class="section container" aria-labelledby="live-title">
+      <p class="eyebrow dark">Just added</p>
+      <h2 id="live-title">New from the studio</h2>
+      <div id="live-products" class="product-grid" hidden></div>
+    </section>
   </main>
   <footer class="site-footer" id="site-footer">
    <div class="container footer-grid">
@@ -598,7 +603,7 @@
       Important
      </h3>
      <p>
-      Phase 01 browser demo: cart, inventory and orders use this browser only. Authentication and payment are simulated.
+      Phase 01: HTML/CSS only. No account creation, order placement, inventory changes or payments are processed.
      </p>
     </div>
    </div>
@@ -611,8 +616,8 @@
     </span>
    </div>
   </footer>
-   <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
- </body>
+   <script src="js/main.js" defer></script>
+  <script src="js/live-products.js" defer></script>
+</body>
 </html>
 

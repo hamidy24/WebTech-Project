@@ -1,453 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <meta content="BRUTBOX &amp; CO. mens essentials academic HTML/CSS storefront." name="description"/>
-  <meta content="#182536" name="theme-color"/>
-  <title>
-   Admin Dashboard Preview | BRUTBOX &amp; CO.
-  </title>
-  <link href="css/style.css" rel="stylesheet"/>
-  <link href="css/inventory.css" rel="stylesheet"/>
-  <link href="css/app.css" rel="stylesheet"/>
-  <link href="css/responsive.css" rel="stylesheet"/>
- </head>
- <body>
-  <a class="skip-link" href="#main">
-   Skip to content
-  </a>
-  <div class="topbar">
-   BRUTBOX &amp; CO. &nbsp;&middot;&nbsp; THE MEN'S ESSENTIALS EDIT &nbsp;&middot;&nbsp; STUDENT DEMO
-  </div>
-  <header class="site-header">
-   <div class="container header-inner">
-    <details class="mobile-nav">
-     <summary aria-label="Open navigation menu">
-      ☰
-      <span>
-       Menu
-      </span>
-     </summary>
-     <nav aria-label="Mobile navigation" class="mobile-panel">
-      <a href="index.html">
-       Home
-      </a>
-      <a href="products.html">
-       All Products
-      </a>
-      <a href="cart.html">
-       Sample Cart
-      </a>
-      <a href="login.html">
-       Login
-      </a>
-      <a href="signup.html">
-       Create Account
-      </a>
-      <a href="checkout.html">
-       Checkout Preview
-      </a>
-      <a href="receipt.html">
-       Sample Receipt
-      </a>
-      <a href="admin.html">
-       Admin Preview
-      </a>
-      <a href="inventory.html">
-       Inventory Preview
-      </a>
-     </nav>
-    </details>
-    <a aria-label="Brutbox and Company home" class="brand" href="index.html">
-     BRUTBOX
-     <span>
-      &amp; CO.
-     </span>
-    </a>
-    <nav aria-label="Main navigation" class="desktop-nav">
-     <a href="index.html">
-      Home
-     </a>
-     <a href="products.html">
-      Shop
-     </a>
-     <a href="cart.html">
-      Cart
-     </a>
-     <a href="checkout.html">
-      Checkout
-     </a>
-     <a href="index.html#about">
-      Our Story
-     </a>
-    </nav>
-    <div class="header-actions">
-     <a class="header-login" href="login.html">
-      Account
-     </a>
-     <a aria-label="View sample cart" class="cart-pill" href="cart.html">
-      Bag
-      <span>
-       02
-      </span>
-     </a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Admin Control Center | BRUTBOX &amp; CO.</title>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-body">
+  <header class="admin-top">
+    <div class="admin-top-inner">
+      <p class="brand-mark">BRUTBOX<span> &amp; CO.</span> <small>Admin</small></p>
+      <div class="admin-top-actions">
+        <span id="seat-badge" class="seat-badge">Admins: —</span>
+        <a href="index.html" class="link-btn">View store</a>
+        <button id="logout-btn" type="button" class="link-btn danger">Sign out</button>
+      </div>
     </div>
-   </div>
+    <nav class="admin-tabs" aria-label="Admin sections">
+      <button type="button" data-view="dashboard" class="is-active">Dashboard</button>
+      <button type="button" data-view="upload">Upload product</button>
+      <button type="button" data-view="products">Products &amp; stock</button>
+      <button type="button" data-view="reports">Reports</button>
+      <button type="button" data-view="activity">Activity</button>
+    </nav>
   </header>
-  <main id="main">
-   <section class="page-hero container">
-    <p class="breadcrumb">
-     <a href="index.html">
-      Home
-     </a>
-     / Admin Preview
-    </p>
-    <p class="eyebrow dark">
-     STORE MANAGEMENT / PROTOTYPE
-    </p>
-    <h1>
-     Store overview.
-    </h1>
-    <p>
-     A clean dashboard design for future product and inventory management. All numbers are sample values.
-    </p>
-   </section>
-   <section class="container admin-section">
-    <div class="catalog-notice">
-     <span class="label-small">
-      DEMO ADMIN PANEL
-     </span>
-     <p>
-      This page is publicly viewable and has no authentication. Tables, statuses and buttons are not connected to a database.
-     </p>
-    </div>
-    <nav aria-label="Admin preview sections" class="admin-tabs">
-     <a href="#statistics">
-      Overview
-     </a>
-     <a href="#inventory">
-      Inventory
-     </a>
-     <a href="#orders">
-      Orders
-     </a>
-     <a href="inventory.html">
-      Full inventory page &nearrow;
-     </a>
-    </nav>
-    <section id="statistics">
-     <div class="admin-stats">
-      <div class="stat-card">
-       <span>
-        Total sample products
-       </span>
-       <strong>
-        07
-       </strong>
-       <small>
-        Across 6 categories
-       </small>
-      </div>
-      <div class="stat-card">
-       <span>
-        Sample SKUs
-       </span>
-       <strong>
-        12
-       </strong>
-       <small>
-        Illustrative variants
-       </small>
-      </div>
-      <div class="stat-card">
-       <span>
-        Example orders
-       </span>
-       <strong>
-        01
-       </strong>
-       <small>
-        Not a live purchase
-       </small>
-      </div>
-      <div class="stat-card">
-       <span>
-        Example order value
-       </span>
-       <strong>
-        ৳1,620
-       </strong>
-       <small>
-        Simulated amount
-       </small>
-      </div>
-     </div>
-    </section>
-    <section class="admin-table-wrap" id="inventory">
-     <div class="admin-section-title">
-      <h2>
-       Inventory overview
-      </h2>
-      <span>
-       Sample stock only
-      </span>
-     </div>
-     <div class="responsive-table">
-      <table>
-       <thead>
-        <tr>
-         <th>
-          SKU
-         </th>
-         <th>
-          Product
-         </th>
-         <th>
-          Variant
-         </th>
-         <th>
-          Demo Stock
-         </th>
-         <th>
-          Status
-         </th>
-        </tr>
-       </thead>
-       <tbody>
-        <tr>
-         <td>
-          CB-BLK-S
-         </td>
-         <td>
-          Cotton Boxer
-         </td>
-         <td>
-          S / Black
-         </td>
-         <td>
-          30
-         </td>
-         <td>
-          <span class="status-tag">
-           In Stock
-          </span>
-         </td>
-        </tr>
-        <tr>
-         <td>
-          CB-BLK-M
-         </td>
-         <td>
-          Cotton Boxer
-         </td>
-         <td>
-          M / Black
-         </td>
-         <td>
-          30
-         </td>
-         <td>
-          <span class="status-tag">
-           In Stock
-          </span>
-         </td>
-        </tr>
-        <tr>
-         <td>
-          CB-BLK-L
-         </td>
-         <td>
-          Cotton Boxer
-         </td>
-         <td>
-          L / Black
-         </td>
-         <td>
-          25
-         </td>
-         <td>
-          <span class="status-tag">
-           In Stock
-          </span>
-         </td>
-        </tr>
-        <tr>
-         <td>
-          BT-BLK-OS
-         </td>
-         <td>
-          Silk Bow Tie
-         </td>
-         <td>
-          One Size / Black
-         </td>
-         <td>
-          30
-         </td>
-         <td>
-          <span class="status-tag">
-           In Stock
-          </span>
-         </td>
-        </tr>
-        <tr>
-         <td>
-          CS-BLK-4043
-         </td>
-         <td>
-          Crew Socks
-         </td>
-         <td>
-          40&ndash;43 / Black
-         </td>
-         <td>
-          30
-         </td>
-         <td>
-          <span class="status-tag">
-           In Stock
-          </span>
-         </td>
-        </tr>
-       </tbody>
-      </table>
-     </div>
-     <p class="fine-print">
-      Five example rows shown. Product editing and inventory adjustment require a future JavaScript/backend phase.
-     </p>
-    </section>
-    <section class="admin-table-wrap" id="orders">
-     <div class="admin-section-title">
-      <h2>
-       Orders preview
-      </h2>
-      <span>
-       Not a real order
-      </span>
-     </div>
-     <div class="responsive-table">
-      <table>
-       <thead>
-        <tr>
-         <th>
-          Reference
-         </th>
-         <th>
-          Customer
-         </th>
-         <th>
-          Items
-         </th>
-         <th>
-          Amount
-         </th>
-         <th>
-          Payment
-         </th>
-         <th>
-          Receipt
-         </th>
-        </tr>
-       </thead>
-       <tbody>
-        <tr>
-         <td>
-          BB-DEMO-1001
-         </td>
-         <td>
-          Sample Customer
-         </td>
-         <td>
-          3
-         </td>
-         <td>
-          ৳1,620
-         </td>
-         <td>
-          <span class="status-tag pending">
-           Pending (Demo)
-          </span>
-         </td>
-         <td>
-          <a class="subtle-link" href="receipt.html">
-           View example &nearrow;
-          </a>
-         </td>
-        </tr>
-       </tbody>
-      </table>
-     </div>
-    </section>
-   </section>
-  </main>
-  <footer class="site-footer" id="site-footer">
-   <div class="container footer-grid">
-    <div class="footer-brand">
-     <a class="brand footer-logo" href="index.html">
-      BRUTBOX
-      <span>
-       &amp; CO.
-      </span>
-     </a>
-     <p>
-      Understated style. Everyday essentials. An academic e-commerce interface built with HTML and CSS.
-     </p>
-    </div>
-    <div>
-     <h3>
-      Explore
-     </h3>
-     <a href="products.html">
-      All Products
-     </a>
-     <a href="product-details.html#p-001">
-      Sample Product Details
-     </a>
-     <a href="cart.html">
-      Sample Shopping Bag
-     </a>
-    </div>
-    <div>
-     <h3>
-      Project Pages
-     </h3>
-     <a href="login.html">
-      Login Preview
-     </a>
-     <a href="signup.html">
-      Signup Preview
-     </a>
-     <a href="checkout.html">
-      Checkout Preview
-     </a>
-     <a href="admin.html">
-      Admin Preview
-     </a>
-     <a href="inventory.html">
-      Inventory Preview
-     </a>
-    </div>
-    <div>
-     <h3>
-      Important
-     </h3>
-     <p>
-      Phase 01 browser demo: cart, inventory and orders use this browser only. Authentication and payment are simulated.
-     </p>
-    </div>
-   </div>
-   <div class="footer-bottom container">
-    <span>
-     &copy; 2026 BRUTBOX &amp; CO. &mdash; Academic Prototype
-    </span>
-    <span>
-     Designed for desktop &bull; tablet &bull; mobile
-    </span>
-   </div>
-  </footer>
-   <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
- </body>
-</html>
 
+  <main class="admin-main">
+    <div id="alerts" class="alert-stack" aria-live="polite"></div>
+
+    <!-- ============ DASHBOARD ============ -->
+    <section data-section="dashboard" class="view is-visible">
+      <h2>Business overview</h2>
+      <div id="kpis" class="kpi-grid"></div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Revenue, last 14 days</h3>
+          <span class="muted">Hover a bar for details</span>
+        </div>
+        <div id="revenue-chart" class="chart"></div>
+      </div>
+
+      <div class="two-col">
+        <div class="panel">
+          <h3>Low stock</h3>
+          <div id="low-stock"></div>
+        </div>
+        <div class="panel">
+          <h3>Best sellers (all time)</h3>
+          <div id="best-sellers"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ UPLOAD ============ -->
+    <section data-section="upload" class="view">
+      <h2>Upload new product</h2>
+      <p class="muted">Drop a photo, fill in the details and publish. The product appears on the storefront in this browser.</p>
+
+      <div class="two-col upload-layout">
+        <div class="panel">
+          <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Choose or drop a product photo">
+            <p><strong>Drag a photo here</strong></p>
+            <p class="muted">or click to choose a file. Auto-cropped to 1000 × 1000 px, WebP.</p>
+            <input id="file-input" type="file" accept="image/*" hidden />
+          </div>
+          <div id="upload-preview" class="upload-preview" hidden>
+            <img id="preview-img" alt="Processed preview" />
+            <p class="muted" id="preview-meta"></p>
+          </div>
+        </div>
+
+        <form id="upload-form" class="panel" novalidate>
+          <label>Product name
+            <input id="up-name" class="input" type="text" maxlength="60" required />
+          </label>
+          <div class="field-row">
+            <label>Category
+              <select id="up-category" class="input"></select>
+            </label>
+            <label>Price (BDT)
+              <input id="up-price" class="input" type="number" min="1" step="1" required />
+            </label>
+          </div>
+          <label>Colors <small class="muted">comma separated</small>
+            <input id="up-colors" class="input" type="text" placeholder="Black, Navy" />
+          </label>
+          <label>Sizes <small class="muted">comma separated</small>
+            <input id="up-sizes" class="input" type="text" />
+          </label>
+
+          <p class="field-label">Starting stock per color and size</p>
+          <div class="table-wrap">
+            <table class="stock-matrix" id="stock-matrix"></table>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Publish to store</button>
+            <button type="button" id="up-reset" class="btn btn-ghost">Clear form</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCTS & STOCK ============ -->
+    <section data-section="products" class="view">
+      <h2>Products &amp; stock</h2>
+
+      <div class="two-col">
+        <div class="panel">
+          <h3>Restock a variant</h3>
+          <div class="field-row">
+            <label>Product <select id="rs-product" class="input"></select></label>
+            <label>Color <select id="rs-color" class="input"></select></label>
+          </div>
+          <div class="field-row">
+            <label>Size <select id="rs-size" class="input"></select></label>
+            <label>Amount to add <input id="rs-amount" class="input" type="number" min="1" value="10" /></label>
+          </div>
+          <button type="button" id="rs-apply" class="btn btn-primary">Add stock</button>
+        </div>
+
+        <div class="panel">
+          <h3>Bulk price change</h3>
+          <div class="field-row">
+            <label>Category <select id="bp-category" class="input"></select></label>
+            <label>Change (%) <input id="bp-percent" class="input" type="number" min="1" max="90" value="10" /></label>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-ghost" data-bulk="up">Increase</button>
+            <button type="button" class="btn btn-ghost" data-bulk="down">Decrease</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Photo</th><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="product-rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REPORTS ============ -->
+    <section data-section="reports" class="view">
+      <div class="section-head">
+        <h2>Sales report</h2>
+        <div class="section-tools">
+          <label>Period
+            <select id="report-range" class="input">
+              <option value="7">Last 7 days</option>
+              <option value="30" selected>Last 30 days</option>
+              <option value="all">All time</option>
+            </select>
+          </label>
+          <button type="button" id="export-orders" class="btn btn-ghost">Export orders (CSV)</button>
+          <button type="button" id="export-stock" class="btn btn-ghost">Export stock (CSV)</button>
+        </div>
+      </div>
+      <p class="muted">CSV files open in Excel, Google Sheets or Numbers.</p>
+
+      <div id="report-kpis" class="kpi-grid"></div>
+
+      <div class="two-col">
+        <div class="panel">
+          <h3>Sales by category</h3>
+          <div id="category-sales"></div>
+        </div>
+        <div class="panel">
+          <h3>Sales spikes</h3>
+          <div id="spike-list"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Daily breakdown</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Date</th><th>Orders</th><th>Units</th><th>Revenue</th></tr></thead>
+            <tbody id="daily-rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACTIVITY ============ -->
+    <section data-section="activity" class="view">
+      <h2>Activity log</h2>
+      <p class="muted">Logins, uploads, price changes, restocks and deletions.</p>
+      <div class="panel"><ul id="activity-list" class="activity-list"></ul></div>
+    </section>
+  </main>
+
+  <script src="js/admin-core.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
