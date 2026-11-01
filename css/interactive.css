@@ -23,3 +23,29 @@
 .js-modal h2 { margin: 0.25rem 0 0.75rem; }
 .js-modal-warning { border-left: 3px solid #b7791f; padding: 0.5rem 0.75rem; background: #fff8e6; }
 .js-modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; flex-wrap: wrap; margin-top: 1rem; }
+
+/* ---------- Storefront header: admin icon menu ---------- */
+.admin-menu { position: relative; }
+.admin-menu > summary { list-style: none; cursor: pointer; width: 42px; height: 42px; border-radius: 50%; border: 1px solid #cdd3da; display: inline-flex; align-items: center; justify-content: center; color: #182536; background: #fff; }
+.admin-menu > summary::-webkit-details-marker { display: none; }
+.admin-menu > summary:hover, .admin-menu[open] > summary { border-color: #c89c68; color: #9a6a2e; }
+.admin-menu-panel { position: absolute; right: 0; top: 52px; width: 230px; background: #fff; border: 1px solid #e4e5e4; border-radius: 12px; box-shadow: 0 16px 40px rgba(24,37,54,.16); padding: .6rem; z-index: 200; display: grid; gap: .1rem; }
+.admin-menu-panel a { padding: .6rem .75rem; border-radius: 8px; color: #1c2937; text-decoration: none; font-weight: 500; }
+.admin-menu-panel a:hover { background: #f4f1ec; color: #9a6a2e; }
+.admin-menu-title { font-size: .68rem; text-transform: uppercase; letter-spacing: .14em; color: #9a6a2e; font-weight: 700; margin: .3rem .75rem .4rem; }
+@media (max-width: 700px) { .header-login { display: none; } .admin-menu-panel { right: -6px; } }
+
+/* ---------- Checkout: organised delivery details ---------- */
+.delivery-card .form-intro { color: #667280; margin: .2rem 0 1rem; font-size: .95rem; }
+.delivery-card .form-intro em, .delivery-card label em { color: #b42318; font-style: normal; }
+.form-block { padding: 1.1rem 0; border-top: 1px solid #e4e5e4; }
+.form-block:first-of-type { border-top: 0; padding-top: .2rem; }
+.block-title { display: flex; align-items: center; gap: .6rem; font-size: 1rem; margin: 0 0 .9rem; color: #182536; }
+.block-no { width: 28px; height: 28px; border-radius: 50%; background: #182536; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 700; flex: 0 0 auto; }
+.field-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .field-grid { grid-template-columns: 1fr 1fr; } .field.full { grid-column: 1 / -1; } }
+.field { display: flex; flex-direction: column; }
+.field label { font-size: .9rem; font-weight: 600; color: #182536; margin-bottom: .4rem; }
+.field input { width: 100%; padding: .78rem .9rem; border: 1px solid #cdd3da; border-radius: 8px; font: inherit; background: #fff; color: #1c2937; }
+.field input:focus { outline: none; border-color: #c89c68; box-shadow: 0 0 0 3px rgba(200,156,104,.22); }
+.field small { color: #667280; font-size: .8rem; margin-top: .35rem; }

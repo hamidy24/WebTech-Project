@@ -25,73 +25,44 @@
     <details class="mobile-nav">
      <summary aria-label="Open navigation menu">
       ☰
-      <span>
-       Menu
-      </span>
+      <span>Menu</span>
      </summary>
      <nav aria-label="Mobile navigation" class="mobile-panel">
-      <a href="index.html">
-       Home
-      </a>
-      <a href="products.html">
-       All Products
-      </a>
-      <a href="cart.html">
-       Sample Cart
-      </a>
-      <a href="login.html">
-       Login
-      </a>
-      <a href="signup.html">
-       Create Account
-      </a>
-      <a href="checkout.html">
-       Checkout Preview
-      </a>
-      <a href="receipt.html">
-       Sample Receipt
-      </a>
-      <a href="admin.html">
-       Admin Preview
-      </a>
-      <a href="inventory.html">
-       Inventory Preview
-      </a>
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html">Account</a>
      </nav>
     </details>
     <a aria-label="Brutbox and Company home" class="brand" href="index.html">
      BRUTBOX
-     <span>
-      &amp; CO.
-     </span>
+     <span>&amp; CO.</span>
     </a>
     <nav aria-label="Main navigation" class="desktop-nav">
-     <a href="index.html">
-      Home
-     </a>
-     <a href="products.html">
-      Shop
-     </a>
-     <a href="cart.html">
-      Cart
-     </a>
-     <a aria-current="page" href="checkout.html">
-      Checkout
-     </a>
-     <a href="index.html#about">
-      Our Story
-     </a>
+     <a href="index.html">Home</a>
+     <a href="products.html">Shop</a>
+     <a href="cart.html">Cart</a>
     </nav>
     <div class="header-actions">
-     <a class="header-login" href="login.html">
-      Account
-     </a>
-     <a aria-label="View sample cart" class="cart-pill" href="cart.html">
+     <a class="header-login" href="login.html">Account</a>
+     <a aria-label="View bag" class="cart-pill" href="cart.html">
       Bag
-      <span>
-       02
-      </span>
+      <span>00</span>
      </a>
+     <details class="admin-menu">
+      <summary aria-label="Admin tools" title="Admin tools">
+       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </summary>
+      <div class="admin-menu-panel">
+       <p class="admin-menu-title">Admin</p>
+       <a href="admin-login.html">Sign in</a>
+       <a href="admin.html#dashboard">Dashboard</a>
+       <a href="admin.html#upload">Upload product</a>
+       <a href="admin.html#products">Products &amp; stock</a>
+       <a href="admin.html#reports">Reports</a>
+       <a href="admin.html#activity">Activity log</a>
+      </div>
+     </details>
     </div>
    </div>
   </header>
@@ -127,49 +98,48 @@
        Delivery information
       </strong>
       <small>
-       Static form preview
+       Enter your details
       </small>
      </div>
-     <section class="form-panel">
-      <h2>
-       Delivery details
-      </h2>
-      <div class="form-grid">
-       <div>
-        <label for="ship-name">
-         Full name
-        </label>
-        <input autocomplete="name" id="ship-name" placeholder="Your full name" type="text"/>
+     <section class="form-panel delivery-card" aria-labelledby="delivery-title">
+       <h2 id="delivery-title">Delivery details</h2>
+       <p class="form-intro">Tell us where to deliver your order. Fields marked <em>*</em> are required.</p>
+       <div class="form-block">
+        <h3 class="block-title"><span class="block-no">A</span>Contact</h3>
+        <div class="field-grid">
+         <div class="field">
+          <label for="ship-name">Full name <em>*</em></label>
+          <input autocomplete="name" id="ship-name" placeholder="Your full name" type="text"/>
+          <small>As written on your national ID.</small>
+         </div>
+         <div class="field">
+          <label for="ship-phone">Mobile number <em>*</em></label>
+          <input autocomplete="tel" id="ship-phone" placeholder="01XXXXXXXXX" type="tel"/>
+          <small>11 digits, starting with 01.</small>
+         </div>
+        </div>
        </div>
-       <div>
-        <label for="ship-phone">
-         Mobile number
-        </label>
-        <input autocomplete="tel" id="ship-phone" placeholder="01XXXXXXXXX" type="tel"/>
+       <div class="form-block">
+        <h3 class="block-title"><span class="block-no">B</span>Address</h3>
+        <div class="field-grid">
+         <div class="field full">
+          <label for="ship-address">Street address <em>*</em></label>
+          <input autocomplete="street-address" id="ship-address" placeholder="House, road, area" type="text"/>
+          <small>House number, road and area.</small>
+         </div>
+         <div class="field">
+          <label for="ship-city">City <em>*</em></label>
+          <input autocomplete="address-level2" id="ship-city" placeholder="Dhaka" type="text"/>
+         </div>
+         <div class="field">
+          <label for="ship-postal">Postal code</label>
+          <input autocomplete="postal-code" id="ship-postal" placeholder="1200" type="text"/>
+          <small>4 digits, optional.</small>
+         </div>
+        </div>
        </div>
-       <div class="full-span">
-        <label for="ship-address">
-         Street address
-        </label>
-        <input autocomplete="street-address" id="ship-address" placeholder="House, road, area" type="text"/>
-       </div>
-       <div>
-        <label for="ship-city">
-         City
-        </label>
-        <input autocomplete="address-level2" id="ship-city" placeholder="Dhaka" type="text"/>
-       </div>
-       <div>
-        <label for="ship-postal">
-         Postal code
-        </label>
-        <input autocomplete="postal-code" id="ship-postal" placeholder="1200" type="text"/>
-       </div>
-      </div>
-      <p class="fine-print">
-       These fields are not submitted or stored in Phase 01. Enter sample data only.
-      </p>
-     </section>
+       <p class="fine-print">Demo form: these details are not sent or stored. Enter sample data only.</p>
+      </section>
      <div class="step-banner">
       <span>
        02

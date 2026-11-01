@@ -8,194 +8,227 @@
   <link rel="stylesheet" href="css/admin.css" />
 </head>
 <body class="admin-body">
-  <header class="admin-top">
-    <div class="admin-top-inner">
-      <p class="brand-mark">BRUTBOX<span> &amp; CO.</span> <small>Admin</small></p>
-      <div class="admin-top-actions">
-        <span id="seat-badge" class="seat-badge">Admins: —</span>
-        <a href="index.html" class="link-btn">View store</a>
-        <button id="logout-btn" type="button" class="link-btn danger">Sign out</button>
-      </div>
-    </div>
-    <nav class="admin-tabs" aria-label="Admin sections">
-      <button type="button" data-view="dashboard" class="is-active">Dashboard</button>
-      <button type="button" data-view="upload">Upload product</button>
-      <button type="button" data-view="products">Products &amp; stock</button>
-      <button type="button" data-view="reports">Reports</button>
-      <button type="button" data-view="activity">Activity</button>
-    </nav>
-  </header>
+  <div class="admin-shell">
 
-  <main class="admin-main">
-    <div id="alerts" class="alert-stack" aria-live="polite"></div>
-
-    <!-- ============ DASHBOARD ============ -->
-    <section data-section="dashboard" class="view is-visible">
-      <h2>Business overview</h2>
-      <div id="kpis" class="kpi-grid"></div>
-
-      <div class="panel">
-        <div class="panel-head">
-          <h3>Revenue, last 14 days</h3>
-          <span class="muted">Hover a bar for details</span>
-        </div>
-        <div id="revenue-chart" class="chart"></div>
+    <!-- ============ LEFT SIDEBAR ============ -->
+    <aside class="admin-side" id="admin-side" aria-label="Admin navigation">
+      <div class="side-brand">
+        <p class="brand-mark">BRUTBOX<span> &amp; CO.</span></p>
+        <small>Admin control</small>
+        <button type="button" class="side-close" id="side-close" aria-label="Close menu">&times;</button>
       </div>
 
-      <div class="two-col">
-        <div class="panel">
-          <h3>Low stock</h3>
-          <div id="low-stock"></div>
-        </div>
-        <div class="panel">
-          <h3>Best sellers (all time)</h3>
-          <div id="best-sellers"></div>
-        </div>
+      <nav class="admin-tabs" aria-label="Admin sections">
+        <button type="button" data-view="dashboard" class="is-active"><span class="ico">&#9638;</span>Dashboard</button>
+        <button type="button" data-view="upload"><span class="ico">+</span>Upload product</button>
+        <button type="button" data-view="products"><span class="ico">&#9776;</span>Products &amp; stock</button>
+        <button type="button" data-view="reports"><span class="ico">&#9685;</span>Reports</button>
+        <button type="button" data-view="activity"><span class="ico">&#8801;</span>Activity log</button>
+      </nav>
+
+      <div class="side-foot">
+        <span id="seat-badge" class="seat-badge">Admins: &mdash;</span>
+        <a href="index.html" class="side-link">View store</a>
+        <button id="logout-btn" type="button" class="side-link danger">Sign out</button>
       </div>
-    </section>
+    </aside>
 
-    <!-- ============ UPLOAD ============ -->
-    <section data-section="upload" class="view">
-      <h2>Upload new product</h2>
-      <p class="muted">Drop a photo, fill in the details and publish. The product appears on the storefront in this browser.</p>
+    <div class="admin-content">
+      <!-- Top bar: shows the menu button on phones -->
+      <header class="admin-topbar">
+        <button id="side-toggle" class="side-toggle" type="button" aria-expanded="false" aria-controls="admin-side">&#9776; Menu</button>
+        <span id="topbar-title" class="topbar-title">Dashboard</span>
+      </header>
 
-      <div class="two-col upload-layout">
-        <div class="panel">
-          <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Choose or drop a product photo">
-            <p><strong>Drag a photo here</strong></p>
-            <p class="muted">or click to choose a file. Auto-cropped to 1000 × 1000 px, WebP.</p>
-            <input id="file-input" type="file" accept="image/*" hidden />
+      <main class="admin-main">
+        <div id="alerts" class="alert-stack" aria-live="polite"></div>
+
+        <!-- ============ DASHBOARD ============ -->
+        <section data-section="dashboard" class="view is-visible">
+          <h2>Business overview</h2>
+          <div id="kpis" class="kpi-grid"></div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Revenue, last 14 days</h3>
+              <span class="muted">Hover a bar for details</span>
+            </div>
+            <div id="revenue-chart" class="chart"></div>
           </div>
-          <div id="upload-preview" class="upload-preview" hidden>
-            <img id="preview-img" alt="Processed preview" />
-            <p class="muted" id="preview-meta"></p>
-          </div>
-        </div>
 
-        <form id="upload-form" class="panel" novalidate>
-          <label>Product name
-            <input id="up-name" class="input" type="text" maxlength="60" required />
-          </label>
-          <div class="field-row">
+          <div class="two-col">
+            <div class="panel">
+              <h3>Low stock</h3>
+              <div id="low-stock"></div>
+            </div>
+            <div class="panel">
+              <h3>Best sellers (all time)</h3>
+              <div id="best-sellers"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ UPLOAD ============ -->
+        <section data-section="upload" class="view">
+          <h2>Upload new product</h2>
+          <p class="muted">Drop a photo, fill in the details and publish. The product appears on the storefront in this browser.</p>
+
+          <div class="two-col upload-layout">
+            <div class="panel">
+              <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Choose or drop a product photo">
+                <p><strong>Drag a photo here</strong></p>
+                <p class="muted">or click to choose a file. Cropped to 1000 &times; 1000 px, WebP.</p>
+                <input id="file-input" type="file" accept="image/*" hidden />
+              </div>
+              <div id="upload-preview" class="upload-preview" hidden>
+                <img id="preview-img" alt="Processed preview" />
+                <p class="muted" id="preview-meta"></p>
+              </div>
+            </div>
+
+            <form id="upload-form" class="panel" novalidate>
+              <label>Product name
+                <input id="up-name" class="input" type="text" maxlength="60" required />
+              </label>
+              <div class="field-row">
+                <label>Category
+                  <select id="up-category" class="input"></select>
+                </label>
+                <label>Price (BDT)
+                  <input id="up-price" class="input" type="number" min="1" step="1" required />
+                </label>
+              </div>
+              <label>Colours <small class="muted">comma separated</small>
+                <input id="up-colors" class="input" type="text" placeholder="Black, Navy" />
+              </label>
+              <label>Sizes <small class="muted">comma separated</small>
+                <input id="up-sizes" class="input" type="text" />
+              </label>
+
+              <p class="field-label">Starting stock per colour and size</p>
+              <div class="table-wrap">
+                <table class="stock-matrix" id="stock-matrix"></table>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Publish to store</button>
+                <button type="button" id="up-reset" class="btn btn-ghost">Clear form</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ============ PRODUCTS & STOCK ============ -->
+        <section data-section="products" class="view">
+          <div class="section-head">
+            <div>
+              <h2>Products &amp; stock</h2>
+              <p class="muted">Open a product to see its colours and sizes. Type a number to change stock. Use the &times; buttons to remove a wrong colour or size.</p>
+            </div>
+            <button type="button" class="btn btn-primary" data-goto="upload">+ Add product</button>
+          </div>
+
+          <div class="tool-row">
+            <label class="grow">Search
+              <input id="pf-search" class="input" type="search" placeholder="Type a product name" />
+            </label>
             <label>Category
-              <select id="up-category" class="input"></select>
+              <select id="pf-category" class="input"></select>
             </label>
-            <label>Price (BDT)
-              <input id="up-price" class="input" type="number" min="1" step="1" required />
+            <label>Show
+              <select id="pf-status" class="input">
+                <option value="all">All products</option>
+                <option value="live">Live only</option>
+                <option value="hidden">Hidden only</option>
+                <option value="low">Low or sold out</option>
+              </select>
             </label>
           </div>
-          <label>Colors <small class="muted">comma separated</small>
-            <input id="up-colors" class="input" type="text" placeholder="Black, Navy" />
-          </label>
-          <label>Sizes <small class="muted">comma separated</small>
-            <input id="up-sizes" class="input" type="text" />
-          </label>
 
-          <p class="field-label">Starting stock per color and size</p>
-          <div class="table-wrap">
-            <table class="stock-matrix" id="stock-matrix"></table>
+          <details class="panel tool-panel">
+            <summary>Quick restock</summary>
+            <div class="field-row">
+              <label>Product <select id="rs-product" class="input"></select></label>
+              <label>Colour <select id="rs-color" class="input"></select></label>
+            </div>
+            <div class="field-row">
+              <label>Size <select id="rs-size" class="input"></select></label>
+              <label>Units to add <input id="rs-amount" class="input" type="number" min="1" value="10" /></label>
+            </div>
+            <button type="button" id="rs-apply" class="btn btn-primary">Add stock</button>
+          </details>
+
+          <details class="panel tool-panel">
+            <summary>Bulk price change</summary>
+            <div class="field-row">
+              <label>Category <select id="bp-category" class="input"></select></label>
+              <label>Change (%) <input id="bp-percent" class="input" type="number" min="1" max="90" value="10" /></label>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-ghost" data-bulk="up">Increase prices</button>
+              <button type="button" class="btn btn-ghost" data-bulk="down">Decrease prices</button>
+            </div>
+          </details>
+
+          <div id="product-list" class="product-list"></div>
+        </section>
+
+        <!-- ============ REPORTS ============ -->
+        <section data-section="reports" class="view">
+          <div class="section-head">
+            <h2>Sales report</h2>
+            <div class="section-tools">
+              <label>Period
+                <select id="report-range" class="input">
+                  <option value="7">Last 7 days</option>
+                  <option value="30" selected>Last 30 days</option>
+                  <option value="all">All time</option>
+                </select>
+              </label>
+              <button type="button" id="export-orders" class="btn btn-ghost">Export orders (CSV)</button>
+              <button type="button" id="export-stock" class="btn btn-ghost">Export stock (CSV)</button>
+            </div>
+          </div>
+          <p class="muted">CSV files open in Excel, Google Sheets or Numbers.</p>
+
+          <div id="report-kpis" class="kpi-grid"></div>
+
+          <div class="two-col">
+            <div class="panel">
+              <h3>Sales share by category</h3>
+              <div id="category-pie" class="pie-wrap"></div>
+            </div>
+            <div class="panel">
+              <h3>Sales by category (amount)</h3>
+              <div id="category-sales"></div>
+            </div>
           </div>
 
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Publish to store</button>
-            <button type="button" id="up-reset" class="btn btn-ghost">Clear form</button>
+          <div class="panel">
+            <h3>Sales spikes</h3>
+            <div id="spike-list"></div>
           </div>
-        </form>
-      </div>
-    </section>
 
-    <!-- ============ PRODUCTS & STOCK ============ -->
-    <section data-section="products" class="view">
-      <h2>Products &amp; stock</h2>
-
-      <div class="two-col">
-        <div class="panel">
-          <h3>Restock a variant</h3>
-          <div class="field-row">
-            <label>Product <select id="rs-product" class="input"></select></label>
-            <label>Color <select id="rs-color" class="input"></select></label>
+          <div class="panel">
+            <h3>Daily breakdown</h3>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Date</th><th>Orders</th><th>Units</th><th>Revenue</th></tr></thead>
+                <tbody id="daily-rows"></tbody>
+              </table>
+            </div>
           </div>
-          <div class="field-row">
-            <label>Size <select id="rs-size" class="input"></select></label>
-            <label>Amount to add <input id="rs-amount" class="input" type="number" min="1" value="10" /></label>
-          </div>
-          <button type="button" id="rs-apply" class="btn btn-primary">Add stock</button>
-        </div>
+        </section>
 
-        <div class="panel">
-          <h3>Bulk price change</h3>
-          <div class="field-row">
-            <label>Category <select id="bp-category" class="input"></select></label>
-            <label>Change (%) <input id="bp-percent" class="input" type="number" min="1" max="90" value="10" /></label>
-          </div>
-          <div class="form-actions">
-            <button type="button" class="btn btn-ghost" data-bulk="up">Increase</button>
-            <button type="button" class="btn btn-ghost" data-bulk="down">Decrease</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="table-wrap">
-          <table class="data-table">
-            <thead>
-              <tr><th>Photo</th><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr>
-            </thead>
-            <tbody id="product-rows"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ REPORTS ============ -->
-    <section data-section="reports" class="view">
-      <div class="section-head">
-        <h2>Sales report</h2>
-        <div class="section-tools">
-          <label>Period
-            <select id="report-range" class="input">
-              <option value="7">Last 7 days</option>
-              <option value="30" selected>Last 30 days</option>
-              <option value="all">All time</option>
-            </select>
-          </label>
-          <button type="button" id="export-orders" class="btn btn-ghost">Export orders (CSV)</button>
-          <button type="button" id="export-stock" class="btn btn-ghost">Export stock (CSV)</button>
-        </div>
-      </div>
-      <p class="muted">CSV files open in Excel, Google Sheets or Numbers.</p>
-
-      <div id="report-kpis" class="kpi-grid"></div>
-
-      <div class="two-col">
-        <div class="panel">
-          <h3>Sales by category</h3>
-          <div id="category-sales"></div>
-        </div>
-        <div class="panel">
-          <h3>Sales spikes</h3>
-          <div id="spike-list"></div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3>Daily breakdown</h3>
-        <div class="table-wrap">
-          <table class="data-table">
-            <thead><tr><th>Date</th><th>Orders</th><th>Units</th><th>Revenue</th></tr></thead>
-            <tbody id="daily-rows"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ACTIVITY ============ -->
-    <section data-section="activity" class="view">
-      <h2>Activity log</h2>
-      <p class="muted">Logins, uploads, price changes, restocks and deletions.</p>
-      <div class="panel"><ul id="activity-list" class="activity-list"></ul></div>
-    </section>
-  </main>
+        <!-- ============ ACTIVITY ============ -->
+        <section data-section="activity" class="view">
+          <h2>Activity log</h2>
+          <p class="muted">Logins, uploads, price changes, stock changes, deletions and exports.</p>
+          <div class="panel"><ul id="activity-list" class="activity-list"></ul></div>
+        </section>
+      </main>
+    </div>
+  </div>
 
   <script src="js/admin-core.js"></script>
   <script src="js/admin-auth.js"></script>
