@@ -14,7 +14,7 @@
     lastOrder: "brutbox_last_order",   // written by checkout (main.js)
     seed: "bb_seed_version"
   };
-  var SEED_VERSION = "admin-v2";
+  var SEED_VERSION = "admin-v3";
 
   var CONFIG = {
     maxAdmins: 3,             // concurrent admin sessions allowed
@@ -97,8 +97,11 @@
   function buildSample() {
     var products = SAMPLE_PRODUCTS.map(function (d) {
       var sizes = CATEGORIES.filter(function (c) { return c.slug === d.category; })[0].sizes;
+      var shots = ["Front", "Back", "Detail"].map(function (view, k) {
+        return placeholder(d.name + " \u00B7 " + view, d.hue + k * 18);
+      });
       return { id: d.id, name: d.name, category: d.category, price: d.price, colors: d.colors.slice(),
-        sizes: sizes.slice(), stock: {}, image: placeholder(d.name, d.hue), hidden: false,
+        sizes: sizes.slice(), stock: {}, image: shots[0], images: shots, hidden: false,
         source: "seed", createdAt: d.created, _weight: d.weight, _range: d.stock };
     });
 
@@ -200,6 +203,7 @@
 
   global.Brutbox = {
     KEY: KEY, CONFIG: CONFIG, CATEGORIES: CATEGORIES, COLOR_HEX: COLOR_HEX,
+    productImages: function (p) { return (p && p.images && p.images.length) ? p.images : (p && p.image ? [p.image] : []); },
     read: read, write: write, money: money, esc: esc, categoryName: categoryName,
     totalStock: totalStock, placeholder: placeholder, seedData: seedData,
     importStorefrontOrders: importStorefrontOrders, logActivity: logActivity

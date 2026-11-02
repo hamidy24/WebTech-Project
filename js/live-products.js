@@ -1,8 +1,8 @@
 /* =====================================================================
    BRUTBOX & CO. — live-products.js
-   Shows products that the admin uploaded (source: "admin") on any page
-   that contains an element with id="live-products".
-   Reads the same localStorage data the admin panel writes.
+   Shows products uploaded through the admin panel (source: "admin") on any
+   page with an element id="live-products". Each card shows the main photo,
+   swaps to the second photo on hover, and opens the quick-view preview.
    ===================================================================== */
 (function () {
   "use strict";
@@ -26,7 +26,10 @@
     var names = { underwear: "Underwear", "bow-ties": "Bow Ties", "pocket-squares": "Pocket Squares", socks: "Socks", "eyeglass-covers": "Eyeglass Covers", wallets: "Wallets" };
     return names[slug] || slug;
   };
-
+  function images(p) {
+    if (p.images && p.images.length) return p.images;
+    return p.image ? [p.image] : [];
+  }
   function read() {
     try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return []; }
   }
@@ -37,11 +40,18 @@
     host.hidden = false;
     host.innerHTML = list.map(function (p) {
       var t = total(p.stock);
+      var imgs = images(p);
       var badge = t === 0 ? "<span class='live-badge out'>Sold out</span>"
         : t <= CONFIG.lowStock ? "<span class='live-badge low'>Only " + t + " left</span>"
         : "<span class='live-badge new'>New</span>";
+      var second = imgs.length > 1 ? "<img class='media-second' src='" + esc(imgs[1]) + "' alt='' loading='lazy' decoding='async' />" : "";
+      var count = imgs.length > 1 ? "<span class='photo-count' aria-hidden='true'>" + imgs.length + " photos</span>" : "";
       return '<article class="product-card live-card' + (t === 0 ? " is-soldout" : "") + '" data-cat="' + esc(p.category) + '">' +
-        '<div class="product-media-link"><div class="product-media"><img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" /></div>' + badge + "</div>" +
+        '<button type="button" class="live-media" data-preview-id="' + esc(p.id) + '" aria-label="Preview ' + esc(p.name) + ' photos">' +
+          '<span class="product-media"><img class="media-main" src="' + esc(imgs[0] || "") + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" />' + second + "</span>" +
+          badge + count +
+          '<span class="quick-view-hint">Quick view</span>' +
+        "</button>" +
         '<div class="product-card-info"><div class="product-card-meta"><span class="eyebrow dark">' + esc(catName(p.category)) + "</span></div>" +
         "<h3>" + esc(p.name) + "</h3>" +
         '<div class="product-card-bottom"><strong>' + money(p.price) + "</strong><span>" + esc((p.sizes || []).join(" · ")) + "</span></div>" +

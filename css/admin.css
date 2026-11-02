@@ -47,8 +47,6 @@ label .input { margin-top: 0.25rem; font-weight: 400; }
 .alert-danger { background: #fdeeee; border-color: #f0b4ad; color: var(--red); font-weight: 600; }
 .alert-warning { background: #fff7e0; border-color: #ecd08a; color: var(--amber); }
 .alert-success { background: #eef8f2; border-color: #a9d3bf; color: var(--green); }
-.alert-stack { position: sticky; top: 56px; z-index: 20; }
-.alert-stack:empty { display: none; }
 
 /* ---------- Shell: sidebar + content ---------- */
 .admin-shell { min-height: 100vh; display: grid; grid-template-columns: 1fr; }
@@ -200,7 +198,6 @@ label .input { margin-top: 0.25rem; font-weight: 400; }
   .admin-side.is-open { transform: none; }
   .side-toggle, .admin-topbar { display: none; }
   .admin-content { min-height: 100vh; }
-  .alert-stack { top: 0; }
   .admin-main { padding: 1.5rem 1.75rem; }
   .kpi-grid { grid-template-columns: repeat(3, 1fr); }
   .two-col { grid-template-columns: 1fr 1fr; }
@@ -233,3 +230,47 @@ label .input { margin-top: 0.25rem; font-weight: 400; }
 .side-brand { position: relative; }
 .side-close { display: inline-flex; position: absolute; right: 0; top: 0; background: rgba(255,255,255,0.1); color: var(--ivory); border: 0; border-radius: 8px; width: 34px; height: 34px; font-size: 1.3rem; line-height: 1; cursor: pointer; align-items: center; justify-content: center; }
 @media (min-width: 900px) { .side-close { display: none; } }
+
+/* ---------- Product photos (admin card) ---------- */
+.photo-strip { display: flex; gap: 0.6rem; overflow-x: auto; padding: 0.3rem 0.2rem 0.5rem; align-items: flex-start; }
+.photo-item { position: relative; margin: 0; flex: 0 0 auto; width: 96px; }
+.photo-item img { width: 96px; height: 96px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); display: block; background: #f4f1ec; }
+.photo-item.is-main img { border: 2px solid var(--gold); }
+.photo-item figcaption { position: absolute; left: 4px; bottom: 4px; background: var(--navy); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.4rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.06em; }
+.photo-make-main { display: block; width: 100%; margin-top: 0.3rem; background: none; border: 0; color: var(--navy); font: inherit; font-size: 0.72rem; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 0; }
+.photo-x { position: absolute; top: -6px; right: -6px; }
+.photo-add { flex: 0 0 auto; width: 96px; height: 96px; border: 2px dashed #c9cfd6; border-radius: 10px; background: #fafbfc; color: var(--navy); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.6rem; line-height: 1; transition: border-color 0.2s ease, background-color 0.2s ease; }
+.photo-add span { font-size: 0.7rem; font-weight: 600; margin-top: 0.25rem; color: var(--muted); }
+.photo-add:hover { border-color: var(--gold); background: #fdf6ec; }
+
+/* ---------- Toasts: small, bottom-right, auto-close ---------- */
+.toast-root { position: fixed; right: 1rem; bottom: 1rem; z-index: 1500; display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; pointer-events: none; width: min(340px, calc(100vw - 2rem)); }
+.toast { pointer-events: auto; width: 100%; display: flex; align-items: center; gap: 0.6rem; background: var(--white); color: var(--ink); border-radius: 10px; padding: 0.6rem 0.6rem 0.6rem 0.75rem; box-shadow: 0 10px 30px rgba(24,37,54,0.16); border: 1px solid var(--line); border-left: 3px solid var(--green); font-size: 0.86rem; line-height: 1.35; opacity: 0; transform: translateX(18px) scale(0.98); transition: opacity 0.26s ease, transform 0.3s cubic-bezier(.2,.8,.2,1); }
+.toast.is-in { opacity: 1; transform: none; }
+.toast.is-out { opacity: 0; transform: translateX(18px) scale(0.98); transition-duration: 0.22s; }
+.toast-success { border-left-color: var(--green); }
+.toast-warning { border-left-color: #d4a017; }
+.toast-danger { border-left-color: var(--red); }
+.toast-icon { flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: #fff; background: var(--green); }
+.toast-warning .toast-icon { background: #d4a017; }
+.toast-danger .toast-icon { background: var(--red); }
+.toast-text { flex: 1 1 auto; min-width: 0; }
+.toast-x { flex: 0 0 auto; background: none; border: 0; color: var(--muted); font-size: 1.05rem; line-height: 1; cursor: pointer; padding: 0.2rem 0.3rem; border-radius: 6px; }
+.toast-x:hover { color: var(--ink); background: #f1f2f4; }
+
+/* ---------- Status strip: calm business notices on the dashboard ---------- */
+.status-strip { display: flex; flex-direction: column; gap: 0.4rem; margin: 0.25rem 0 1rem; }
+.status-strip[hidden] { display: none; }
+.status-item { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0.6rem 0.5rem 0.75rem; background: var(--white); border: 1px solid var(--line); border-radius: 8px; font-size: 0.84rem; color: var(--ink); animation: status-in 0.3s ease both; transition: opacity 0.2s ease, transform 0.2s ease; }
+.status-item.is-out { opacity: 0; transform: translateY(-4px); }
+.status-dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+.status-item.is-danger .status-dot { background: var(--red); }
+.status-item.is-warning .status-dot { background: #d4a017; }
+.status-item.is-danger { border-color: #f3c4bf; }
+.status-item.is-warning { border-color: #ecdca6; }
+.status-text { flex: 1 1 auto; min-width: 0; }
+.status-x { flex: 0 0 auto; background: none; border: 0; color: var(--muted); font-size: 1rem; line-height: 1; cursor: pointer; padding: 0.15rem 0.3rem; border-radius: 6px; }
+.status-x:hover { color: var(--ink); background: #f1f2f4; }
+@keyframes status-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (max-width: 899px) { .toast-root { left: 1rem; right: 1rem; width: auto; align-items: stretch; } }
+@media (prefers-reduced-motion: reduce) { .toast, .status-item { transition: none !important; animation: none !important; } }

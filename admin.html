@@ -42,10 +42,10 @@
       </header>
 
       <main class="admin-main">
-        <div id="alerts" class="alert-stack" aria-live="polite"></div>
 
         <!-- ============ DASHBOARD ============ -->
         <section data-section="dashboard" class="view is-visible">
+          <div id="status-strip" class="status-strip" hidden></div>
           <h2>Business overview</h2>
           <div id="kpis" class="kpi-grid"></div>
 
@@ -230,6 +230,8 @@
       </main>
     </div>
   </div>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
 
   <script src="js/admin-core.js"></script>
   <script src="js/admin-auth.js"></script>

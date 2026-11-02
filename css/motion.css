@@ -8,9 +8,10 @@
 :root { --ease-out: cubic-bezier(.2, .8, .2, 1); --ease-spring: cubic-bezier(.34, 1.4, .64, 1); }
 
 /* ---------- Page enter / leave ---------- */
-@keyframes page-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-body { animation: page-in 0.38s var(--ease-out) both; }
-body.is-leaving { opacity: 0; transform: translateY(-4px); transition: opacity 0.18s ease, transform 0.18s ease; }
+/* Opacity only: a transform on <body> would break position:fixed (toasts, popups) */
+@keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
+body { animation: page-in 0.38s ease backwards; }
+body.is-leaving { opacity: 0; transition: opacity 0.18s ease; }
 
 /* ---------- Buttons ---------- */
 .btn, .cart-pill, .chip, .icon-btn, .link-btn, .side-toggle, .admin-tabs button, .nav-toggle {
@@ -63,7 +64,6 @@ body.is-leaving { opacity: 0; transform: translateY(-4px); transition: opacity 0
 .admin-side { transition: transform 0.3s var(--ease-out); }
 
 /* ---------- Alerts slide in ---------- */
-.alert-stack > * { animation: alert-in 0.35s var(--ease-out) both; }
 @keyframes alert-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 
 /* ---------- Scroll reveal (activated by motion.js) ---------- */

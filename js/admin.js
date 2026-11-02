@@ -26,24 +26,77 @@
   function orderUnits(o) { return (o.items || []).reduce(function (s, i) { return s + Number(i.qty || 0); }, 0); }
   function fmtDay(t) { return new Date(t).toLocaleDateString("en-GB", { day: "2-digit", month: "short" }); }
 
-  /* ---------- Alerts ---------- */
-  function alertBox(type, text, persist) {
-    var box = document.createElement("div");
-    box.className = "alert alert-" + type;
-    box.setAttribute("role", type === "danger" ? "alert" : "status");
-    if (persist) box.setAttribute("data-persist", "1");
-    box.textContent = text;
-    $("#alerts").appendChild(box);
-    if (!persist) setTimeout(function () { box.remove(); }, 7000);
-    return box;
+  /* ---------- Notifications ----------
+     Action messages (saved, deleted, restocked) appear as small toasts in the
+     bottom-right corner and close themselves. Business alerts (spikes, low
+     stock) sit in a calm status strip at the top of the dashboard. Nothing
+     sticks over the page while you scroll. */
+  var TOAST_MS = { success: 3800, warning: 5000, danger: 6500 };
+  var ICON = { success: "\u2713", warning: "!", danger: "\u00D7" };
+
+  function alertBox(type, text) {
+    var root = $("#toast-root");
+    if (!root) return null;
+    var t = document.createElement("div");
+    t.className = "toast toast-" + (type || "success");
+    t.setAttribute("role", type === "danger" ? "alert" : "status");
+    t.innerHTML = "<span class='toast-icon' aria-hidden='true'>" + ICON[type || "success"] + "</span>" +
+      "<span class='toast-text'></span>" +
+      "<button type='button' class='toast-x' aria-label='Dismiss notification'>&times;</button>";
+    t.querySelector(".toast-text").textContent = text;
+    root.appendChild(t);
+    while (root.children.length > 3) root.firstElementChild.remove();   // keep at most 3 on screen
+
+    var timer = null;
+    function dismiss() {
+      clearTimeout(timer);
+      if (!t.parentNode) return;
+      t.classList.remove("is-in");
+      t.classList.add("is-out");
+      setTimeout(function () { if (t.parentNode) t.remove(); }, 260);
+    }
+    function start() { timer = setTimeout(dismiss, TOAST_MS[type] || TOAST_MS.success); }
+    t.querySelector(".toast-x").addEventListener("click", dismiss);
+    t.addEventListener("mouseenter", function () { clearTimeout(timer); });
+    t.addEventListener("mouseleave", start);
+    requestAnimationFrame(function () { t.classList.add("is-in"); });
+    start();
+    return t;
   }
+
+  var DISMISSED_KEY = "bb_dismissed_alerts";
+  function dismissedList() {
+    try { return JSON.parse(sessionStorage.getItem(DISMISSED_KEY) || "[]"); } catch (e) { return []; }
+  }
+  var lastStripHtml = "";
   function setPersistent(list) {
-    $$("#alerts [data-persist]").forEach(function (n) { n.remove(); });
-    list.forEach(function (a) {
-      var box = alertBox(a.type, a.text, true);
-      $("#alerts").insertBefore(box, $("#alerts").firstChild);
-    });
+    var strip = $("#status-strip");
+    if (!strip) return;
+    var dismissed = dismissedList();
+    var shown = list.filter(function (a) { return dismissed.indexOf(a.text) < 0; });
+    var html = shown.map(function (a) {
+      return "<div class='status-item is-" + a.type + "' data-text='" + esc(a.text) + "'>" +
+        "<span class='status-dot' aria-hidden='true'></span>" +
+        "<span class='status-text'>" + esc(a.text) + "</span>" +
+        "<button type='button' class='status-x' aria-label='Dismiss this notice'>&times;</button></div>";
+    }).join("");
+    // Only touch the page when something actually changed (avoids flicker on refresh)
+    if (html === lastStripHtml) return;
+    lastStripHtml = html;
+    strip.innerHTML = html;
+    strip.hidden = !shown.length;
   }
+  $("#status-strip").addEventListener("click", function (e) {
+    var btn = e.target.closest(".status-x");
+    if (!btn) return;
+    var item = btn.closest(".status-item");
+    var list = dismissedList();
+    list.push(item.getAttribute("data-text"));
+    sessionStorage.setItem(DISMISSED_KEY, JSON.stringify(list.slice(-50)));
+    lastStripHtml = "";
+    item.classList.add("is-out");
+    setTimeout(function () { renderDashboard(); }, 220);
+  });
 
   /* ---------- Sales analytics ---------- */
   function dailySeries(days) {
@@ -360,6 +413,7 @@
       var p = list.filter(function (x) { return x.id === replaceTarget; })[0];
       if (!p) return;
       p.image = url;
+      p.images = [url].concat(B.productImages(p).slice(1));
       if (!saveProducts(list)) return alertBox("danger", "Storage is full. The new photo was not saved.");
       B.logActivity("photo", "Replaced photo of " + p.name + ".");
       alertBox("success", "Photo replaced for " + p.name + ".");
@@ -371,6 +425,19 @@
   /* ---------- Products & stock: one card per product ---------- */
   function stockCls(t) { return t === 0 ? "pill-out" : t <= B.CONFIG.lowStock ? "pill-low" : "pill-ok"; }
   function stockLabel(t) { return t === 0 ? "Sold out" : t <= B.CONFIG.lowStock ? "Only " + t + " left" : "In stock"; }
+
+  function photoThumbs(p) {
+    var imgs = B.productImages(p);
+    return imgs.map(function (src, i) {
+      var id = esc(p.id);
+      return "<figure class='photo-item" + (i === 0 ? " is-main" : "") + "'>" +
+        "<img src='" + src + "' alt='Photo " + (i + 1) + " of " + esc(p.name) + "' loading='lazy'/>" +
+        (i === 0 ? "<figcaption>Main</figcaption>" :
+          "<button type='button' class='photo-make-main' data-act='make-main' data-id='" + id + "' data-index='" + i + "'>Make main</button>") +
+        "<button type='button' class='x-btn photo-x' data-act='remove-photo' data-id='" + id + "' data-index='" + i + "' title='Remove photo' aria-label='Remove photo " + (i + 1) + "'>&times;</button>" +
+        "</figure>";
+    }).join("");
+  }
 
   function productCard(p) {
     var t = B.totalStock(p.stock);
@@ -412,6 +479,10 @@
           "<button type='button' class='btn btn-ghost' data-act='photo' data-id='" + id + "'>Replace photo</button>" +
           "<button type='button' class='btn btn-danger' data-act='delete' data-id='" + id + "'>Delete product</button>" +
         "</div></div>" +
+        "<div class='body-block'><h4>Photos (shoppers flip through these)</h4>" +
+          "<div class='photo-strip'>" + photoThumbs(p) + "<button type='button' class='photo-add' data-act='add-photo' data-id='" + id + "' aria-label='Add photos'>+<span>Add photo</span></button></div>" +
+          "<p class='stock-help'>The first photo is the main one. Use &ldquo;Make main&rdquo; to change it. You can add up to 8 photos.</p>" +
+        "</div>" +
         "<div class='body-block'><h4>Stock by colour and size</h4>" +
           "<p class='stock-help'>Type a number to set the stock. Red boxes are sold out. Use &times; to remove a size, or &ldquo;Remove colour&rdquo; for a colour added by mistake.</p>" +
           "<div class='stock-grid-wrap'><table class='stock-grid'><thead><tr><th>Colour</th>" + head +
@@ -461,6 +532,42 @@
 
   function findProduct(id) { return products().filter(function (x) { return x.id === id; })[0]; }
 
+  var addPhotoInput = document.createElement("input");
+  addPhotoInput.type = "file";
+  addPhotoInput.accept = "image/*";
+  addPhotoInput.multiple = true;
+  addPhotoInput.hidden = true;
+  document.body.appendChild(addPhotoInput);
+  var addPhotoTarget = null;
+
+  addPhotoInput.addEventListener("change", function () {
+    var files = Array.prototype.slice.call(addPhotoInput.files || []);
+    var id = addPhotoTarget;
+    addPhotoInput.value = "";
+    addPhotoTarget = null;
+    if (!files.length || !id) return;
+    var p0 = findProduct(id);
+    if (!p0) return;
+    var room = 8 - B.productImages(p0).length;
+    if (room <= 0) return alertBox("warning", "This product already has 8 photos. Remove one first.");
+    var chosen = files.slice(0, room);
+    if (files.length > room) alertBox("warning", "Only " + room + " more photo" + (room === 1 ? "" : "s") + " can be added (8 maximum).");
+    chosen.reduce(function (chain, file) {
+      return chain.then(function () { return processImage(file); }).then(function (url) {
+        var list = products();
+        var p = list.filter(function (x) { return x.id === id; })[0];
+        if (!p) return;
+        p.images = B.productImages(p).concat([url]);
+        p.image = p.images[0];
+        if (!saveProducts(list)) throw new Error("Storage is full. Remove some photos or products and try again.");
+      });
+    }, Promise.resolve()).then(function () {
+      B.logActivity("photo", "Added " + chosen.length + " photo" + (chosen.length === 1 ? "" : "s") + " to " + p0.name + ".");
+      alertBox("success", "Photos saved for " + p0.name + ".");
+      renderProducts(); renderActivity();
+    }).catch(function (err) { alertBox("danger", err.message); renderProducts(); });
+  });
+
   $("#product-list").addEventListener("click", function (e) {
     var btn = e.target.closest("button[data-act]");
     if (!btn) return;
@@ -469,6 +576,34 @@
     if (!p) return;
 
     if (act === "photo") { replaceTarget = id; replaceInput.click(); return; }
+
+    if (act === "add-photo") { addPhotoTarget = id; addPhotoInput.click(); return; }
+
+    if (act === "make-main") {
+      var mi = Number(btn.getAttribute("data-index"));
+      updateProduct(id, function (x) {
+        var imgs = B.productImages(x).slice();
+        var picked = imgs.splice(mi, 1)[0];
+        x.images = [picked].concat(imgs);
+        x.image = picked;
+      });
+      B.logActivity("photo", "Changed the main photo of " + p.name + ".");
+      alertBox("success", "Main photo changed for " + p.name + ".");
+    }
+
+    if (act === "remove-photo") {
+      var ri = Number(btn.getAttribute("data-index"));
+      if (B.productImages(p).length <= 1) return alertBox("danger", "A product needs at least one photo. Replace it instead.");
+      if (!window.confirm("Remove this photo of " + p.name + "?")) return;
+      updateProduct(id, function (x) {
+        var imgs = B.productImages(x).slice();
+        imgs.splice(ri, 1);
+        x.images = imgs;
+        x.image = imgs[0];
+      });
+      B.logActivity("photo", "Removed a photo of " + p.name + ".");
+      alertBox("success", "Photo removed from " + p.name + ".");
+    }
 
     if (act === "toggle") {
       var u = updateProduct(id, function (x) { x.hidden = !x.hidden; });
