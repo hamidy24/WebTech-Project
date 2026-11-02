@@ -14,7 +14,7 @@
     lastOrder: "brutbox_last_order",   // written by checkout (main.js)
     seed: "bb_seed_version"
   };
-  var SEED_VERSION = "admin-v1";
+  var SEED_VERSION = "admin-v2";
 
   var CONFIG = {
     maxAdmins: 3,             // concurrent admin sessions allowed
@@ -76,68 +76,99 @@
     };
   }
 
-  /* ---------- Sample data (matches the storefront product list) ---------- */
-  function mkProduct(id, name, cat, price, colors, qty, hue, createdAt) {
-    var sizes = CATEGORIES.filter(function (c) { return c.slug === cat; })[0].sizes;
-    var stock = {};
-    colors.forEach(function (c) {
-      stock[c] = {};
-      sizes.forEach(function (s) { stock[c][s] = typeof qty === "function" ? qty(c, s) : qty; });
+  /* ---------- Sample data: realistic stock, demand and sales ----------
+     Stock is "units still on the shelf" after the sample sales, so
+     selling a variant reduces the number that remains. Each browser
+     gets slightly different numbers, so the demo never looks identical. */
+  var RANDOM = Math.random;
+  function randInt(min, max) { return Math.floor(RANDOM() * (max - min + 1)) + min; }
+  function pick(list) { return list[Math.floor(RANDOM() * list.length)]; }
+
+  // Demand weights: how often each product is bought in the sample sales
+  var SAMPLE_PRODUCTS = [
+    { id: "p-1001", name: "Cotton Trunk", category: "underwear", price: 1290, colors: ["Black", "Navy", "Grey"], hue: 215, weight: 4.0, created: "2026-08-01", stock: [220, 480] },
+    { id: "p-1002", name: "Modal Boxer Brief", category: "underwear", price: 1490, colors: ["White", "Black"], hue: 210, weight: 3.0, created: "2026-08-10", stock: [90, 260] },
+    { id: "p-2001", name: "Burgundy Silk Bow Tie", category: "bow-ties", price: 1850, colors: ["Burgundy", "Navy"], hue: 350, weight: 1.6, created: "2026-08-05", stock: [40, 140] },
+    { id: "p-3001", name: "Emerald Pocket Square", category: "pocket-squares", price: 950, colors: ["Emerald", "Gold"], hue: 160, weight: 2.2, created: "2026-08-03", stock: [120, 300] },
+    { id: "p-4001", name: "Merino Crew Socks", category: "socks", price: 720, colors: ["Grey", "Black", "Navy"], hue: 210, weight: 3.4, created: "2026-08-07", stock: [180, 420] },
+    { id: "p-6001", name: "Full-Grain Bifold Wallet", category: "wallets", price: 2450, colors: ["Black", "Tan"], hue: 30, weight: 1.4, created: "2026-08-20", stock: [35, 150] }
+  ];
+
+  function buildSample() {
+    var products = SAMPLE_PRODUCTS.map(function (d) {
+      var sizes = CATEGORIES.filter(function (c) { return c.slug === d.category; })[0].sizes;
+      return { id: d.id, name: d.name, category: d.category, price: d.price, colors: d.colors.slice(),
+        sizes: sizes.slice(), stock: {}, image: placeholder(d.name, d.hue), hidden: false,
+        source: "seed", createdAt: d.created, _weight: d.weight, _range: d.stock };
     });
-    return {
-      id: id, name: name, category: cat, price: price, colors: colors, sizes: sizes,
-      stock: stock, image: placeholder(name, hue), hidden: false, source: "seed",
-      createdAt: createdAt
-    };
-  }
 
-  function seedProducts() {
-    return [
-      mkProduct("p-1001", "Cotton Trunk", "underwear", 1290, ["Black", "Navy", "Grey"], 12, 215, "2026-08-01"),
-      mkProduct("p-1002", "Modal Boxer Brief", "underwear", 1490, ["White", "Black"], function (c, s) { return s === "XL" ? 0 : 4; }, 210, "2026-08-10"),
-      mkProduct("p-2001", "Burgundy Silk Bow Tie", "bow-ties", 1850, ["Burgundy", "Navy"], function (c) { return c === "Navy" ? 0 : 2; }, 350, "2026-08-05"),
-      mkProduct("p-3001", "Emerald Pocket Square", "pocket-squares", 950, ["Emerald", "Gold"], 15, 160, "2026-08-03"),
-      mkProduct("p-4001", "Merino Crew Socks", "socks", 720, ["Grey", "Black", "Navy"], 20, 210, "2026-08-07"),
-      mkProduct("p-6001", "Full-Grain Bifold Wallet", "wallets", 2450, ["Black", "Tan"], 9, 30, "2026-08-20")
-    ];
-  }
+    var totalWeight = products.reduce(function (s, p) { return s + p._weight; }, 0);
+    var sold = {};   // productId -> color -> size -> units sold
+    var orders = [], n = 0, now = Date.now(), DAY = 864e5;
 
-  function makeSampleOrders(products) {
-    var rand = prng(42), orders = [], now = Date.now(), DAY = 864e5, n = 0;
-    function addOrder(daysAgo, spread, extra) {
-      var count = Math.floor(rand() * 4) + 1;
-      for (var k = 0; k < count + (extra || 0); k++) {
-        var p = products[Math.floor(rand() * products.length)];
-        var size = p.sizes[0], color = p.colors[0];
-        var qty = Math.floor(rand() * 2) + 1;
-        var at = new Date(now - daysAgo * DAY - rand() * spread).toISOString();
-        orders.push({
-          id: "BB-S" + (++n).toString(36).toUpperCase(), at: at, customer: "Sample customer",
-          method: ["COD", "bKash", "Nagad", "CARD"][Math.floor(rand() * 4)],
-          items: [{ productId: p.id, name: p.name, size: size, color: color, qty: qty, price: p.price }],
-          total: qty * p.price, status: "DEMO \u00B7 NOT PAID", source: "seed"
-        });
-      }
+    function chooseProduct() {
+      var r = RANDOM() * totalWeight;
+      for (var k = 0; k < products.length; k++) { r -= products[k]._weight; if (r <= 0) return products[k]; }
+      return products[0];
     }
-    for (var d = 20; d >= 1; d--) addOrder(d, DAY, 0);
-    // A sudden spike today, so the dashboard alert can be seen
-    addOrder(0, 30 * 60e3, 0);
-    for (var s = 0; s < 6; s++) {
-      var p = products[0], at = new Date(now - rand() * 25 * 60e3).toISOString();
+    function addOrder(atMs, qtyMax, lines) {
+      var items = [], subtotal = 0;
+      for (var l = 0; l < lines; l++) {
+        var p = chooseProduct(), color = pick(p.colors), size = pick(p.sizes);
+        var qty = randInt(1, qtyMax);
+        sold[p.id] = sold[p.id] || {};
+        sold[p.id][color] = sold[p.id][color] || {};
+        sold[p.id][color][size] = (sold[p.id][color][size] || 0) + qty;
+        items.push({ productId: p.id, name: p.name, size: size, color: color, qty: qty, price: p.price });
+        subtotal += qty * p.price;
+      }
       orders.push({
-        id: "BB-S" + (++n).toString(36).toUpperCase(), at: at, customer: "Sample customer", method: "bKash",
-        items: [{ productId: p.id, name: p.name, size: p.sizes[0], color: p.colors[0], qty: 3, price: p.price }],
-        total: 3 * p.price, status: "DEMO \u00B7 NOT PAID", source: "seed"
+        id: "BB-S" + (++n).toString(36).toUpperCase(), at: new Date(atMs).toISOString(),
+        customer: "Sample customer", method: pick(["COD", "bKash", "Nagad", "CARD"]),
+        items: items, total: subtotal + (subtotal >= 3000 ? 0 : 70),
+        status: "DEMO \u00B7 NOT PAID", source: "seed"
       });
     }
-    return orders;
+
+    // 21 days of normal trade: 6 to 14 orders a day
+    for (var d = 20; d >= 1; d--) {
+      var count = randInt(6, 14);
+      for (var c = 0; c < count; c++) {
+        addOrder(now - d * DAY - RANDOM() * DAY, 2, RANDOM() < 0.25 ? 2 : 1);
+      }
+    }
+    // Today: normal morning trade plus a real-looking sudden spike in the last hour
+    for (var t = 0; t < randInt(4, 7); t++) addOrder(now - RANDOM() * 5 * 3600e3, 2, 1);
+    for (var sp = 0; sp < randInt(24, 30); sp++) addOrder(now - RANDOM() * 55 * 60e3, 3, RANDOM() < 0.5 ? 2 : 1);
+
+    // Stock left on the shelf = units still available after the sales
+    products.forEach(function (p) {
+      p.colors.forEach(function (color) {
+        p.stock[color] = {};
+        p.sizes.forEach(function (size) {
+          var remaining = RANDOM() < 0.12 ? randInt(0, 5) : randInt(p._range[0], p._range[1]);
+          p.stock[color][size] = remaining;
+        });
+      });
+    });
+    // Make a few items visibly low or sold out so the alerts can be seen
+    products.filter(function (p) { return p.id === "p-6001"; })[0].stock.Tan["Standard"] = 3;
+    products.filter(function (p) { return p.id === "p-6001"; })[0].stock.Black["Standard"] = 2;
+    products.filter(function (p) { return p.id === "p-2001"; })[0].stock.Navy["One Size"] = 0;
+
+    products.forEach(function (p) { delete p._weight; delete p._range; });
+    return { products: products, orders: orders };
   }
 
   function seedData() {
     if (read(KEY.seed, null) === SEED_VERSION) return;
-    var products = read(KEY.products, null) || seedProducts();
-    write(KEY.products, products);
-    if (!read(KEY.orders, null)) write(KEY.orders, makeSampleOrders(products));
+    // Keep anything the admin uploaded and any real storefront orders;
+    // replace only the sample products and sample orders.
+    var kept = read(KEY.products, []).filter(function (p) { return p.source === "admin"; });
+    var keptOrders = read(KEY.orders, []).filter(function (o) { return o.source !== "seed"; });
+    var fresh = buildSample();
+    write(KEY.products, fresh.products.concat(kept));
+    write(KEY.orders, fresh.orders.concat(keptOrders));
     if (!read(KEY.sessions, null)) write(KEY.sessions, []);
     if (!read(KEY.activity, null)) write(KEY.activity, []);
     write(KEY.seed, SEED_VERSION);

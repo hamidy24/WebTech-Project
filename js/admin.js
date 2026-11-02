@@ -65,15 +65,24 @@
 
   function spikeAlerts() {
     var series = dailySeries(21);
-    var last = series[series.length - 1];
-    var base = series.slice(-8, -1);
-    var avg = base.reduce(function (s, b) { return s + b.revenue; }, 0) / 7;
+    var nowT = Date.now();
+    // Rolling 24-hour windows work at any time of day, unlike calendar days
+    function windowRevenue(from, to) {
+      return orders().reduce(function (sum, o) {
+        var t = Date.parse(o.at);
+        return (t > from && t <= to) ? sum + (Number(o.total) || 0) : sum;
+      }, 0);
+    }
+    var rolling = windowRevenue(nowT - DAY, nowT);
+    var base = [];
+    for (var k = 1; k <= 7; k++) base.push(windowRevenue(nowT - (k + 1) * DAY, nowT - k * DAY));
+    var avg = base.reduce(function (s, v) { return s + v; }, 0) / 7;
     var found = [];
 
-    if (last.revenue >= B.CONFIG.spikeMinRevenue && last.revenue >= avg * B.CONFIG.spikeMultiple) {
-      found.push({ type: "danger", kind: "Spike", text: "Sudden sales spike today: " + money(last.revenue) + " so far, about " + (avg ? (last.revenue / avg).toFixed(1) : "many") + "× the 7-day average of " + money(avg) + "." });
-    } else if (avg >= B.CONFIG.spikeMinRevenue && last.revenue < avg * 0.5) {
-      found.push({ type: "warning", kind: "Drop", text: "Sales are unusually low today: " + money(last.revenue) + " so far versus a 7-day average of " + money(avg) + "." });
+    if (rolling >= B.CONFIG.spikeMinRevenue && rolling >= avg * B.CONFIG.spikeMultiple) {
+      found.push({ type: "danger", kind: "Spike", text: "Sudden sales spike in the last 24 hours: " + money(rolling) + ", about " + (avg ? (rolling / avg).toFixed(1) : "many") + "\u00D7 the usual daily average of " + money(avg) + "." });
+    } else if (avg >= B.CONFIG.spikeMinRevenue && rolling < avg * 0.5) {
+      found.push({ type: "warning", kind: "Drop", text: "Sales are unusually low in the last 24 hours: " + money(rolling) + " against a usual daily average of " + money(avg) + "." });
     }
 
     // Product-level spikes: last 2 days vs the 14 days before that
@@ -94,7 +103,7 @@
         found.push({ type: "warning", kind: "Demand", text: p.name + " is selling fast: " + recent + " units in the last 2 days (usual about " + Math.round(priorAvg) + ")." });
       }
     });
-    return { list: found, series: series, avg: avg, last: last };
+    return { list: found, series: series, avg: avg, last: series[series.length - 1], rolling: rolling };
   }
 
   function lowStockList() {
