@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EEF2F7"/>
+    </radialGradient>
+    <linearGradient id="prodGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#2B4C7E"/>
+      <stop offset="50%" stop-color="#162C4E"/>
+      <stop offset="100%" stop-color="#0B182E"/>
+    </linearGradient>
+    <pattern id="weave" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0,8 L8,0" stroke="#FFFFFF" stroke-width="0.5" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Studio Backdrop -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  <rect x="24" y="24" width="752" height="552" rx="16" fill="none" stroke="#E2DDD3" stroke-width="1.5"/>
+
+  <!-- Top Left Editorial Spec Header -->
+  <g transform="translate(48, 52)">
+    <rect x="0" y="0" width="92" height="26" rx="5" fill="#182536"/>
+    <text x="46" y="17" font-family="'DM Sans', sans-serif" font-size="11" font-weight="800" fill="#C89C68" letter-spacing="1.5" text-anchor="middle">STYLE #04</text>
+    <text x="106" y="17" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#64748B" letter-spacing="2.5">WALLETS</text>
+  </g>
+
+  <!-- Top Right Active Shade Swatch Badge -->
+  <g transform="translate(560, 52)">
+    <rect x="0" y="0" width="192" height="28" rx="14" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="1.2"/>
+    <circle cx="18" cy="14" r="8" fill="#162C4E" stroke="#0B182E" stroke-width="1"/>
+    <text x="34" y="18" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#182536">Royal Navy</text>
+  </g>
+
+  <!-- Main Bespoke Product Studio Render -->
+  <g>
+    <ellipse cx="400" cy="455" rx="205" ry="17" fill="#000" fill-opacity="0.15"/>
+        <rect x="210" y="180" width="380" height="240" rx="12" fill="url(#prodGrad)" stroke="#0B182E" stroke-width="2.5"/>
+        <rect x="222" y="192" width="356" height="216" rx="8" fill="none" stroke="#5B7BA8" stroke-width="2" stroke-dasharray="5,4"/>
+        <!-- Folded Banknotes Under Clip -->
+        <rect x="355" y="168" width="195" height="252" rx="4" fill="#2D6A4F" fill-opacity="0.35" stroke="#B7E4C7" stroke-width="1.5"/>
+        <!-- Integrated Brushed Brass Spring Money Clip Bar -->
+        <rect x="392" y="162" width="18" height="268" rx="6" fill="#D4AF37" stroke="#7D5D11" stroke-width="2"/>
+        <circle cx="401" cy="395" r="5" fill="#FFF"/>
+        
+  </g>
+
+  <!-- Bottom Studio Spec Caption Bar -->
+  <g transform="translate(48, 515)">
+    <line x1="0" y1="0" x2="704" y2="0" stroke="#E2DDD3" stroke-width="1.2"/>
+    <text x="0" y="26" font-family="'DM Sans', sans-serif" font-size="16" font-weight="800" fill="#182536">Money Clip Wallet</text>
+    <text x="704" y="26" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#C89C68" letter-spacing="2" text-anchor="end">BRUTBOX &amp; CO. · THE MODERN GENTLEMEN</text>
+  </g>
+</svg>

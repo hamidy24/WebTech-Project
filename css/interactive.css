@@ -57,3 +57,14 @@ a:hover > .brand-logo { transform: rotate(-4deg) scale(1.04); box-shadow: 0 0 0 
 .site-footer .brand-logo { width: 56px; height: 56px; }
 .admin-shell .brand-logo, .admin-login-body .brand-logo { width: 44px; height: 44px; }
 .login-card .brand-logo { width: 56px; height: 56px; margin-bottom: 0.25rem; }
+
+/* ---------- Coupon box in the bag summary ---------- */
+.coupon-box { margin: 1rem 0 0.4rem; padding-top: 0.9rem; border-top: 1px dashed #d8d4cb; }
+.coupon-box label { display: block; font-size: 0.85rem; font-weight: 600; color: #182536; margin-bottom: 0.4rem; }
+.coupon-row { display: flex; gap: 0.5rem; }
+.coupon-row input { flex: 1; min-width: 0; padding: 0.65rem 0.8rem; border: 1px solid #cdd3da; border-radius: 8px; font: inherit; text-transform: uppercase; }
+.coupon-row input:focus { outline: none; border-color: #c89c68; box-shadow: 0 0 0 3px rgba(200,156,104,.22); }
+.coupon-msg { font-size: 0.82rem; color: #667280; margin: 0.45rem 0 0; min-height: 1.1em; }
+.coupon-msg.is-ok { color: #205b43; }
+.coupon-msg.is-error { color: #b42318; }
+.coupon-remove { margin-top: 0.3rem; }

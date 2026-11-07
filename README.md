@@ -1,49 +1,44 @@
-# BRUTBOX & CO. — Phase 01 (HTML + CSS Only)
+# BRUTBOX & CO. — Men's Essentials
 
-A responsive, modern academic concept for a men's essentials e-commerce storefront.
+A responsive storefront and admin control centre for men's essentials, built with HTML, CSS and vanilla JavaScript. No server is needed to run it.
 
-## Scope (IMPORTANT)
-- **Included:** 10 standalone HTML pages, 7 CSS stylesheets, linked navigation, visually selectable size/color radio inputs, a static checkout/payment selection UI, an example receipt, and a sample admin/inventory dashboard.
-- **Not included:** JavaScript, a functional shopping cart, search/filter calculations, authentication, persistent stock, order confirmation, payment processing, or a database.
-- Do not enter real passwords or payment data. All form fields are for demonstration only.
+## Pages
 
-## Open locally
-Open `index.html` with a browser, or start a local HTTP server:
-
-```powershell
-cd C:\path\to\brutbox-co
-py -m http.server 5500
-```
-
-Then visit `http://localhost:5500/`.
-
-## Publish on GitHub Pages
-1. Place all files in the **repository root** with the `css` directory intact.
-2. GitHub repository **Settings → Pages → Deploy from a branch**.
-3. Choose **main** and **/(root)**, then save.
-4. Expected site: `https://hamidy24.github.io/WebTech-Project/` after deployment.
-
-## Page map
-| HTML | UI purpose |
+| Page | What it does |
 |---|---|
-| `index.html` | Home, hero, categories, featured items |
-| `products.html` | Catalog with anchored categories |
-| `product-details.html` | Seven URL-anchor-selectable product panels and example variants |
-| `cart.html` | Fixed example cart and totals |
-| `login.html` / `signup.html` | Account interface only |
-| `checkout.html` | Static delivery details and selectable COD/bKash/Nagad/Card options |
-| `receipt.html` | Sample 80 mm printable receipt (Ctrl+P) |
-| `admin.html` | Static dashboard and example orders |
-| `inventory.html` | Twelve sample SKUs and nonfunctional restock form |
+| `index.html` | Home: hero, six category tiles with photos, new arrivals |
+| `products.html` | The shop: all six categories, filter bar, quick view on every product |
+| `product-details.html` | Detailed product view (sample layout) |
+| `cart.html` | Shopping bag: quantities, coupon code, VAT and delivery totals |
+| `checkout.html` | Delivery details, payment method, dummy-payment warning |
+| `receipt.html` | 80 mm printable receipt |
+| `login.html`, `signup.html` | Account forms (layout and validation) |
+| `inventory.html` | Stock table and restock form (sample) |
+| `admin-login.html`, `admin.html` | Admin sign-in (max 3 sessions) and control centre |
 
-## Stylesheet order
-- All pages load `css/style.css` first.
-- `index.html` also loads `css/home.css`.
-- `login.html` and `signup.html` also load `css/auth.css`.
-- `checkout.html` also loads `css/checkout.css`.
-- `admin.html` and `inventory.html` also load `css/inventory.css`.
-- `receipt.html` also loads `css/receipt.css`.
-- Every page loads `css/responsive.css` **last**.
+## Categories and products
 
-## Future phases
-Add JavaScript for interactive cart and variant calculations, then a secure backend/database and verified payment integration. Do not describe this HTML/CSS prototype as a production-ready store.
+Six categories with ten styles each, every style in three colours:
+Underwear, Bow Ties, Pocket Squares, Men's Socks, Wallets, Eyeglass Cases.
+
+- Product data: `js/catalog-data.js` (60 products: names, descriptions, prices, colours, sizes, stock)
+- Product photos: `images/catalog/<category>/<style>/<colour>.svg`
+- Brand logo: `images/brand/logo.png`
+
+## Shop rules
+
+- Delivery: ৳120, free on orders of ৳3,000 or more
+- VAT: 5% on the discounted subtotal
+- Coupons: `WELCOME10` (10% over ৳1,000), `BRUT20` (৳500 over ৳2,500), `FREESHIP` (৳120 off delivery over ৳500)
+
+## Run it
+
+Open `index.html` in a browser, or publish the folder with GitHub Pages or Firebase Hosting.
+
+## Data storage (demo)
+
+Products, orders and admin changes are saved in each browser's localStorage. Admin sign-in is a browser-only demo gate, not real security. For shared data and real accounts, connect a database such as Firestore and Firebase Authentication.
+
+## Tests
+
+The `tests` checks cover the admin panel, the bag, the quick view, and the motion scripts. They run in a headless DOM with Node.js and jsdom.

@@ -57,22 +57,49 @@
     { id: "p-001", name: "Cotton Boxer", size: "M", color: "Black", price: 450, qty: 2, tone: "tone-slate", cat: "UNDERWEAR" },
     { id: "p-003", name: "Silk Bow Tie", size: "One Size", color: "Black", price: 650, qty: 1, tone: "tone-rose", cat: "BOW TIES" }
   ];
-  var FREE_DELIVERY_OVER = 3000;
-  var DELIVERY_FEE = 70;
+  var KEY_COUPON = "brutbox_coupon";
+  var KEY_PRODUCTS = "bb_products";
+  var FREE_DELIVERY_OVER = 3000;   // free delivery from ৳3,000
+  var DELIVERY_FEE = 120;          // standard delivery inside Bangladesh
+  var VAT_RATE = 0.05;             // 5% VAT
+  var COUPONS = {
+    WELCOME10: { percent: 10, minSpend: 1000, text: "10% off your first order over ৳1,000" },
+    BRUT20:    { fixed: 500,   minSpend: 2500, text: "৳500 off orders above ৳2,500" },
+    FREESHIP:  { fixed: 120,   minSpend: 500,  text: "৳120 off delivery on orders above ৳500" }
+  };
 
+  function activeCoupon() {
+    var code = read(KEY_COUPON, null);
+    return code && COUPONS[code] ? { code: code, rule: COUPONS[code] } : null;
+  }
+  function cartTotals(cart) {
+    var units = 0, subtotal = 0;
+    cart.forEach(function (i) { units += i.qty; subtotal += i.qty * i.price; });
+    var coupon = activeCoupon(), discount = 0;
+    if (coupon && subtotal >= coupon.rule.minSpend) {
+      discount = coupon.rule.percent ? Math.round(subtotal * coupon.rule.percent / 100) : Math.min(subtotal, coupon.rule.fixed);
+    } else { coupon = null; }
+    var delivery = subtotal === 0 ? 0 : (subtotal >= FREE_DELIVERY_OVER ? 0 : DELIVERY_FEE);
+    if (coupon && coupon.code === "FREESHIP") delivery = Math.max(0, delivery - coupon.rule.fixed);
+    var taxable = Math.max(0, subtotal - (coupon && coupon.code !== "FREESHIP" ? discount : 0));
+    var tax = Math.round(taxable * VAT_RATE);
+    return { units: units, subtotal: subtotal, discount: discount, delivery: delivery, tax: tax,
+      total: taxable + delivery + tax, coupon: coupon };
+  }
+  function findCatalogProduct(id) {
+    var list = (window.BRUTBOX_CATALOG && window.BRUTBOX_CATALOG.products) || [];
+    return list.filter(function (p) { return p.id === id; })[0] || null;
+  }
   function stockFor(id, color, size) {
+    var saved = read(KEY_PRODUCTS, []).filter(function (p) { return p.id === id; })[0];
+    var source = saved || findCatalogProduct(id);
+    if (source && source.stock && source.stock[color] && typeof source.stock[color][size] === "number") return source.stock[color][size];
     var p = STOCK[id];
     if (p && p[color] && typeof p[color][size] === "number") return p[color][size];
     return DEFAULT_STOCK;
   }
   function getCart() { return read(KEY.cart, null) || SAMPLE_CART.map(function (i) { return Object.assign({}, i); }); }
   function saveCart(cart) { write(KEY.cart, cart); }
-  function cartTotals(cart) {
-    var units = 0, subtotal = 0;
-    cart.forEach(function (i) { units += i.qty; subtotal += i.qty * i.price; });
-    var delivery = subtotal === 0 ? 0 : (subtotal >= FREE_DELIVERY_OVER ? 0 : DELIVERY_FEE);
-    return { units: units, subtotal: subtotal, delivery: delivery, total: subtotal + delivery };
-  }
 
   /* ---------- Header bag counter ---------- */
   function updateBagPill() {
@@ -216,7 +243,9 @@
       var art = document.createElement("article");
       art.className = "cart-item";
       art.innerHTML =
-        '<div aria-hidden="true" class="cart-thumbnail ' + esc(item.tone || "tone-slate") + '">' + esc(item.name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2).toUpperCase()) + "</div>" +
+        (item.image
+          ? '<div class="cart-thumbnail cart-thumbnail--photo"><img src="' + esc(item.image) + '" alt="' + esc(item.name) + " in " + esc(item.color || "") + '" loading="lazy" /></div>'
+          : '<div aria-hidden="true" class="cart-thumbnail ' + esc(item.tone || "tone-slate") + '">' + esc(item.name.split(" ").map(function (w) { return w[0]; }).join("").slice(0, 2).toUpperCase()) + "</div>") +
         "<div>" +
           '<p class="eyebrow dark">' + esc(item.cat || "") + "</p>" +
           "<h3>" + esc(item.name) + "</h3>" +
@@ -241,15 +270,61 @@
     else list.appendChild(frag);
 
     var t = cartTotals(cart);
-    if (heading) heading.textContent = t.units + " pieces / " + cart.length + " products";
+    if (heading) heading.textContent = t.units + " item" + (t.units === 1 ? "" : "s") + " · " + cart.length + " product" + (cart.length === 1 ? "" : "s");
     setSummary($(".summary-card"), t, "Subtotal (" + t.units + " items)");
     var fine = $(".summary-card .fine-print");
-    if (fine) fine.textContent = "Delivery is free on orders above " + money(FREE_DELIVERY_OVER) + ".";
+    if (fine) {
+      var parts = ["Delivery is free on orders above " + money(FREE_DELIVERY_OVER) + "."];
+      if (t.discount) parts.push("Coupon " + activeCoupon().code + ": −" + money(t.discount) + ".");
+      parts.push("VAT (5%): " + money(t.tax) + ".");
+      fine.textContent = parts.join(" ");
+    }
+    renderCouponBox(t);
     var total = $(".summary-card .summary-total span");
-    if (total) total.textContent = "Total";
+    if (total) total.textContent = "Total (incl. VAT)";
     var checkout = $(".summary-card a[href='checkout.html']");
     if (checkout && cart.length === 0) { checkout.classList.add("is-disabled"); checkout.setAttribute("aria-disabled", "true"); }
     updateBagPill();
+  }
+
+  function renderCouponBox(t) {
+    var card = $(".summary-card");
+    if (!card) return;
+    var box = card.querySelector(".coupon-box");
+    if (!box) {
+      box = document.createElement("div");
+      box.className = "coupon-box";
+      box.innerHTML = "<label for='coupon-code'>Coupon code</label>" +
+        "<div class='coupon-row'><input id='coupon-code' type='text' placeholder='e.g. WELCOME10' autocomplete='off' />" +
+        "<button type='button' id='coupon-apply' class='btn btn-ghost'>Apply</button></div>" +
+        "<p class='coupon-msg' role='status'></p>";
+      var anchor = card.querySelector(".summary-total") || card.lastElementChild;
+      card.insertBefore(box, anchor);
+      box.querySelector("#coupon-apply").addEventListener("click", function () {
+        var code = (box.querySelector("#coupon-code").value || "").trim().toUpperCase();
+        var msg = box.querySelector(".coupon-msg");
+        if (!code) { msg.textContent = "Type a coupon code first."; return; }
+        var rule = COUPONS[code];
+        if (!rule) { msg.textContent = "That code is not valid."; msg.className = "coupon-msg is-error"; return; }
+        var sub = cartTotals(getCart()).subtotal;
+        if (sub < rule.minSpend) { msg.textContent = "Add " + money(rule.minSpend - sub) + " more to use " + code + "."; msg.className = "coupon-msg is-error"; return; }
+        write(KEY_COUPON, code);
+        msg.textContent = code + " applied: " + rule.text + ".";
+        msg.className = "coupon-msg is-ok";
+        renderCart();
+      });
+    }
+    var current = read(KEY_COUPON, null);
+    var input = box.querySelector("#coupon-code");
+    if (current && input && !input.value) input.value = current;
+    var rem = box.querySelector(".coupon-remove");
+    if (current && !rem) {
+      rem = document.createElement("button");
+      rem.type = "button"; rem.className = "link-btn coupon-remove"; rem.textContent = "Remove coupon";
+      rem.addEventListener("click", function () { localStorage.removeItem(KEY_COUPON); renderCart(); });
+      box.appendChild(rem);
+    }
+    if (!current && rem) rem.remove();
   }
 
   function setSummary(scope, t, subtotalLabel) {

@@ -48,3 +48,31 @@ body.pv-lock { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .pv-overlay, .pv-box, .live-media .media-main, .live-media .media-second, .quick-view-hint { transition: none !important; }
 }
+
+/* ---------- Options: colour, size, quantity, add to bag ---------- */
+.pv-meta .pv-cat { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: .12em; color: #667280; font-family: inherit; font-weight: 600; margin-top: 0.15rem; }
+.pv-old { color: #9aa0a6; font-size: 0.9rem; margin-left: 0.35rem; }
+.pv-options { display: grid; gap: 0.7rem; padding: 0.2rem 0.25rem 0.1rem; }
+.pv-row { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+.pv-label { font-size: 0.8rem; font-weight: 700; color: #182536; min-width: 56px; text-transform: uppercase; letter-spacing: .08em; }
+.pv-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.pv-chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.7rem; border-radius: 999px; border: 1px solid #d8d4cb; background: #fff; font: inherit; font-size: 0.82rem; cursor: pointer; transition: border-color .2s ease, transform .15s ease; }
+.pv-chip i { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,.2); display: inline-block; }
+.pv-chip:hover { transform: translateY(-1px); }
+.pv-chip.is-active { border-color: #c89c68; box-shadow: 0 0 0 2px rgba(200,156,104,.25); }
+.pv-select { padding: 0.45rem 0.7rem; border: 1px solid #cdd3da; border-radius: 8px; font: inherit; background: #fff; min-width: 140px; }
+.pv-qty { display: inline-flex; align-items: center; border: 1px solid #cdd3da; border-radius: 999px; overflow: hidden; }
+.pv-qty button { width: 36px; height: 36px; border: 0; background: #fff; font-size: 1.1rem; cursor: pointer; }
+.pv-qty button:hover { background: #f4f1ec; }
+.pv-qty-n { min-width: 36px; text-align: center; font-weight: 700; }
+.pv-stock { margin: 0; font-size: 0.85rem; color: #205b43; font-weight: 600; }
+.pv-stock.is-low { color: #9a6a2e; }
+.pv-stock.is-out { color: #b42318; }
+.pv-add { justify-self: start; }
+.pv-add:disabled { opacity: .5; cursor: not-allowed; }
+.pv-desc { margin: 0.2rem 0 0; font-size: 0.85rem; color: #667280; line-height: 1.5; }
+.pv-msg { margin: 0.2rem 0 0; font-size: 0.85rem; min-height: 1.1em; }
+.pv-msg.is-ok { color: #205b43; }
+.pv-msg.is-error { color: #b42318; }
+.pv-box { max-height: calc(100vh - 2rem); }
+.pv-stage { height: min(44vh, 460px) !important; }

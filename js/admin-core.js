@@ -14,7 +14,7 @@
     lastOrder: "brutbox_last_order",   // written by checkout (main.js)
     seed: "bb_seed_version"
   };
-  var SEED_VERSION = "admin-v3";
+  var SEED_VERSION = "admin-v5";
 
   var CONFIG = {
     maxAdmins: 3,             // concurrent admin sessions allowed
@@ -25,18 +25,18 @@
     lowStock: 5               // "Only N left" threshold
   };
 
-  var CATEGORIES = [
-    { slug: "underwear", name: "Underwear", sizes: ["S", "M", "L", "XL", "XXL"] },
-    { slug: "bow-ties", name: "Bow Ties", sizes: ["One Size"] },
-    { slug: "pocket-squares", name: "Pocket Squares", sizes: ["One Size"] },
-    { slug: "socks", name: "Socks", sizes: ["One Size"] },
-    { slug: "eyeglass-covers", name: "Eyeglass Covers", sizes: ["One Size"] },
-    { slug: "wallets", name: "Wallets", sizes: ["Standard"] }
-  ];
+  var CATEGORIES = (window.BRUTBOX_CATALOG && window.BRUTBOX_CATALOG.categories || []).map(function (c) {
+    return { slug: c.slug, name: c.name, sizes: c.sizes.slice(), image: c.image };
+  });
 
   var COLOR_HEX = {
-    Black: "#111111", Navy: "#1f2d4d", Grey: "#7c8087", White: "#f2f2f2",
-    Burgundy: "#6d1f2b", Gold: "#d4a24c", Emerald: "#1e6b52", Tan: "#b08968"
+    "Obsidian Black": "#111111", "Royal Navy": "#1f2d4d", "Classic Ivory": "#f2efe6",
+    "Crimson Burgundy": "#6d1f2b", "Cognac Tan": "#9a6a3a", "Forest Emerald": "#1e6b52",
+    "Champagne Silk": "#e8d8b5", "Charcoal Slate": "#4a4f57", "Cobalt Sapphire": "#1f4fa0",
+    "Imperial Gold": "#c89c3a", "Plum Aubergine": "#5b2a52", "Espresso Brown": "#3b2a1f",
+    "Heather Grey": "#9aa0a6", "Olive Moss": "#6b6b3a", "Terracotta Rust": "#b5532f",
+    "Titanium Silver": "#a7adb3", "Black": "#111111", "Navy": "#1f2d4d", "Grey": "#7c8087",
+    "White": "#f2f2f2", "Burgundy": "#6d1f2b", "Gold": "#c89c3a", "Emerald": "#1e6b52", "Tan": "#9a6a3a"
   };
 
   function read(k, fallback) {
@@ -76,90 +76,59 @@
     };
   }
 
-  /* ---------- Sample data: realistic stock, demand and sales ----------
-     Stock is "units still on the shelf" after the sample sales, so
-     selling a variant reduces the number that remains. Each browser
-     gets slightly different numbers, so the demo never looks identical. */
+  /* ---------- Sample data from the Brutbox & Co. catalogue ----------
+     Products, colours, sizes, prices and stock come from the catalogue
+     file. Sample orders are generated over those products so the reports
+     and alerts have real-looking history. */
   var RANDOM = Math.random;
   function randInt(min, max) { return Math.floor(RANDOM() * (max - min + 1)) + min; }
   function pick(list) { return list[Math.floor(RANDOM() * list.length)]; }
 
-  // Demand weights: how often each product is bought in the sample sales
-  var SAMPLE_PRODUCTS = [
-    { id: "p-1001", name: "Cotton Trunk", category: "underwear", price: 1290, colors: ["Black", "Navy", "Grey"], hue: 215, weight: 4.0, created: "2026-08-01", stock: [220, 480] },
-    { id: "p-1002", name: "Modal Boxer Brief", category: "underwear", price: 1490, colors: ["White", "Black"], hue: 210, weight: 3.0, created: "2026-08-10", stock: [90, 260] },
-    { id: "p-2001", name: "Burgundy Silk Bow Tie", category: "bow-ties", price: 1850, colors: ["Burgundy", "Navy"], hue: 350, weight: 1.6, created: "2026-08-05", stock: [40, 140] },
-    { id: "p-3001", name: "Emerald Pocket Square", category: "pocket-squares", price: 950, colors: ["Emerald", "Gold"], hue: 160, weight: 2.2, created: "2026-08-03", stock: [120, 300] },
-    { id: "p-4001", name: "Merino Crew Socks", category: "socks", price: 720, colors: ["Grey", "Black", "Navy"], hue: 210, weight: 3.4, created: "2026-08-07", stock: [180, 420] },
-    { id: "p-6001", name: "Full-Grain Bifold Wallet", category: "wallets", price: 2450, colors: ["Black", "Tan"], hue: 30, weight: 1.4, created: "2026-08-20", stock: [35, 150] }
-  ];
-
   function buildSample() {
-    var products = SAMPLE_PRODUCTS.map(function (d) {
-      var sizes = CATEGORIES.filter(function (c) { return c.slug === d.category; })[0].sizes;
-      var shots = ["Front", "Back", "Detail"].map(function (view, k) {
-        return placeholder(d.name + " \u00B7 " + view, d.hue + k * 18);
+    var catalog = (window.BRUTBOX_CATALOG && window.BRUTBOX_CATALOG.products) || [];
+    var products = catalog.map(function (d) {
+      var stock = {};
+      Object.keys(d.stock).forEach(function (color) {
+        stock[color] = {};
+        Object.keys(d.stock[color]).forEach(function (size) { stock[color][size] = d.stock[color][size]; });
       });
       return { id: d.id, name: d.name, category: d.category, price: d.price, colors: d.colors.slice(),
-        sizes: sizes.slice(), stock: {}, image: shots[0], images: shots, hidden: false,
-        source: "seed", createdAt: d.created, _weight: d.weight, _range: d.stock };
+        sizes: d.sizes.slice(), stock: stock, image: d.image, images: d.images.slice(), photoCount: d.photoCount || 0, hidden: false,
+        source: "seed", createdAt: d.createdAt, badge: d.badge || null };
     });
-
-    var totalWeight = products.reduce(function (s, p) { return s + p._weight; }, 0);
-    var sold = {};   // productId -> color -> size -> units sold
-    var orders = [], n = 0, now = Date.now(), DAY = 864e5;
-
-    function chooseProduct() {
-      var r = RANDOM() * totalWeight;
-      for (var k = 0; k < products.length; k++) { r -= products[k]._weight; if (r <= 0) return products[k]; }
-      return products[0];
+    // A few variants are set low on purpose so the low-stock alert can be seen
+    function setAll(product, qty) {
+      product.colors.forEach(function (c) { product.sizes.forEach(function (z) { product.stock[c][z] = qty; }); });
     }
+    var low = products.filter(function (p) { return p.id === "p-wl-03"; })[0];
+    if (low) setAll(low, 1);          // total 3 units: shows "Only 3 left"
+    var soldOut = products.filter(function (p) { return p.id === "p-bt-02"; })[0];
+    if (soldOut) setAll(soldOut, 0);  // shows "Sold out"
+
+    var orders = [], n = 0, now = Date.now(), DAY = 864e5;
     function addOrder(atMs, qtyMax, lines) {
       var items = [], subtotal = 0;
       for (var l = 0; l < lines; l++) {
-        var p = chooseProduct(), color = pick(p.colors), size = pick(p.sizes);
+        var p = pick(products), color = pick(p.colors), size = pick(p.sizes);
         var qty = randInt(1, qtyMax);
-        sold[p.id] = sold[p.id] || {};
-        sold[p.id][color] = sold[p.id][color] || {};
-        sold[p.id][color][size] = (sold[p.id][color][size] || 0) + qty;
         items.push({ productId: p.id, name: p.name, size: size, color: color, qty: qty, price: p.price });
         subtotal += qty * p.price;
       }
       orders.push({
         id: "BB-S" + (++n).toString(36).toUpperCase(), at: new Date(atMs).toISOString(),
         customer: "Sample customer", method: pick(["COD", "bKash", "Nagad", "CARD"]),
-        items: items, total: subtotal + (subtotal >= 3000 ? 0 : 70),
+        items: items, total: subtotal + (subtotal >= 3000 ? 0 : 120),
         status: "DEMO \u00B7 NOT PAID", source: "seed"
       });
     }
-
-    // 21 days of normal trade: 6 to 14 orders a day
+    // 21 days of normal trade, placed on full 24-hour windows
     for (var d = 20; d >= 1; d--) {
-      var count = randInt(6, 14);
-      for (var c = 0; c < count; c++) {
-        addOrder(now - d * DAY - RANDOM() * DAY, 2, RANDOM() < 0.25 ? 2 : 1);
-      }
+      var count = randInt(4, 10);
+      for (var c = 0; c < count; c++) addOrder(now - d * DAY - RANDOM() * DAY, 2, RANDOM() < 0.25 ? 2 : 1);
     }
-    // Today: normal morning trade plus a real-looking sudden spike in the last hour
-    for (var t = 0; t < randInt(4, 7); t++) addOrder(now - RANDOM() * 5 * 3600e3, 2, 1);
-    for (var sp = 0; sp < randInt(24, 30); sp++) addOrder(now - RANDOM() * 55 * 60e3, 3, RANDOM() < 0.5 ? 2 : 1);
-
-    // Stock left on the shelf = units still available after the sales
-    products.forEach(function (p) {
-      p.colors.forEach(function (color) {
-        p.stock[color] = {};
-        p.sizes.forEach(function (size) {
-          var remaining = RANDOM() < 0.12 ? randInt(0, 5) : randInt(p._range[0], p._range[1]);
-          p.stock[color][size] = remaining;
-        });
-      });
-    });
-    // Make a few items visibly low or sold out so the alerts can be seen
-    products.filter(function (p) { return p.id === "p-6001"; })[0].stock.Tan["Standard"] = 3;
-    products.filter(function (p) { return p.id === "p-6001"; })[0].stock.Black["Standard"] = 2;
-    products.filter(function (p) { return p.id === "p-2001"; })[0].stock.Navy["One Size"] = 0;
-
-    products.forEach(function (p) { delete p._weight; delete p._range; });
+    // Today: normal morning trade plus a burst in the last hour
+    for (var t = 0; t < randInt(3, 6); t++) addOrder(now - RANDOM() * 5 * 3600e3, 2, 1);
+    for (var sp = 0; sp < randInt(16, 22); sp++) addOrder(now - RANDOM() * 55 * 60e3, 3, RANDOM() < 0.5 ? 2 : 1);
     return { products: products, orders: orders };
   }
 

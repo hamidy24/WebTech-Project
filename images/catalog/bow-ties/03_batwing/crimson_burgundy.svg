@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8F0F1"/>
+    </radialGradient>
+    <linearGradient id="prodGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#9E2A3B"/>
+      <stop offset="50%" stop-color="#6E1423"/>
+      <stop offset="100%" stop-color="#420913"/>
+    </linearGradient>
+    <pattern id="weave" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0,8 L8,0" stroke="#FFFFFF" stroke-width="0.5" stroke-opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Studio Backdrop -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  <rect x="24" y="24" width="752" height="552" rx="16" fill="none" stroke="#E2DDD3" stroke-width="1.5"/>
+
+  <!-- Top Left Editorial Spec Header -->
+  <g transform="translate(48, 52)">
+    <rect x="0" y="0" width="92" height="26" rx="5" fill="#182536"/>
+    <text x="46" y="17" font-family="'DM Sans', sans-serif" font-size="11" font-weight="800" fill="#C89C68" letter-spacing="1.5" text-anchor="middle">STYLE #03</text>
+    <text x="106" y="17" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#64748B" letter-spacing="2.5">BOW TIES</text>
+  </g>
+
+  <!-- Top Right Active Shade Swatch Badge -->
+  <g transform="translate(560, 52)">
+    <rect x="0" y="0" width="192" height="28" rx="14" fill="#FFFFFF" stroke="#D8D2C5" stroke-width="1.2"/>
+    <circle cx="18" cy="14" r="8" fill="#6E1423" stroke="#420913" stroke-width="1"/>
+    <text x="34" y="18" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#182536">Crimson Burgundy</text>
+  </g>
+
+  <!-- Main Bespoke Product Studio Render -->
+  <g>
+    
+        <ellipse cx="400" cy="410" rx="195" ry="15" fill="#000" fill-opacity="0.14"/>
+        <polygon points="185,245 372,265 372,315 185,335" fill="url(#prodGrad)" stroke="#420913" stroke-width="2.5"/>
+        <polygon points="615,245 428,265 428,315 615,335" fill="url(#prodGrad)" stroke="#420913" stroke-width="2.5"/>
+        <line x1="200" y1="247" x2="200" y2="333" stroke="#E5C9A3" stroke-width="3"/>
+        <line x1="600" y1="247" x2="600" y2="333" stroke="#E5C9A3" stroke-width="3"/>
+        
+        <path d="M368,275 L300,260 M368,290 L285,290 M368,305 L300,320" stroke="#420913" stroke-width="2.5" stroke-opacity="0.45" stroke-linecap="round"/>
+        <path d="M432,275 L500,260 M432,290 L515,290 M432,305 L500,320" stroke="#420913" stroke-width="2.5" stroke-opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="370" y="258" width="60" height="64" rx="8" fill="url(#prodGrad)" stroke="#420913" stroke-width="2.5"/>
+        
+  </g>
+
+  <!-- Bottom Studio Spec Caption Bar -->
+  <g transform="translate(48, 515)">
+    <line x1="0" y1="0" x2="704" y2="0" stroke="#E2DDD3" stroke-width="1.2"/>
+    <text x="0" y="26" font-family="'DM Sans', sans-serif" font-size="16" font-weight="800" fill="#182536">The Batwing (Straight / Square)</text>
+    <text x="704" y="26" font-family="'DM Sans', sans-serif" font-size="11" font-weight="700" fill="#C89C68" letter-spacing="2" text-anchor="end">BRUTBOX &amp; CO. · THE MODERN GENTLEMEN</text>
+  </g>
+</svg>

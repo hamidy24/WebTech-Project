@@ -139,6 +139,7 @@
     }
 
     // Product-level spikes: last 2 days vs the 14 days before that
+    var demand = [];
     var yStart = startOfDay(Date.now()) - DAY;
     var priorStart = yStart - 14 * DAY;
     products().forEach(function (p) {
@@ -152,9 +153,13 @@
         });
       });
       var priorAvg = prior / 7; // average units per 2-day window
-      if (recent >= 5 && recent >= 3 * Math.max(priorAvg, 1)) {
-        found.push({ type: "warning", kind: "Demand", text: p.name + " is selling fast: " + recent + " units in the last 2 days (usual about " + Math.round(priorAvg) + ")." });
+      if (recent >= 8 && recent >= 3 * Math.max(priorAvg, 1)) {
+        demand.push({ recent: recent, text: p.name + " is selling fast: " + recent + " units in the last 2 days (usual about " + Math.round(priorAvg) + ")." });
       }
+    });
+    // Show only the strongest demand signals, so the dashboard stays calm
+    demand.sort(function (a, b) { return b.recent - a.recent; }).slice(0, 2).forEach(function (d) {
+      found.push({ type: "warning", kind: "Demand", text: d.text });
     });
     return { list: found, series: series, avg: avg, last: series[series.length - 1], rolling: rolling };
   }
