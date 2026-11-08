@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="BRUTBOX &amp; CO. mens essentials academic HTML/CSS storefront." name="description"/>
+  <meta content="#182536" name="theme-color"/>
+  <title>
+   Checkout &amp; Payment Preview | BRUTBOX &amp; CO.
+  </title>
+  <link href="css/style.css" rel="stylesheet"/>
+  <link href="css/checkout.css" rel="stylesheet"/>
+  <link href="css/responsive.css" rel="stylesheet"/>
+   <link rel="stylesheet" href="css/interactive.css" />
+  <link rel="stylesheet" href="css/motion.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="images/brand/favicon-64.png" />
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png" />
+  <meta name="theme-color" content="#1F2D4D" />
+  <link rel="stylesheet" href="css/theme.css" />
+</head>
+ <body>
+  <a class="skip-link" href="#main">
+   Skip to content
+  </a>
+  <div class="topbar">
+   BRUTBOX &amp; CO. &nbsp;&middot;&nbsp; THE MEN'S ESSENTIALS EDIT &nbsp;&middot;&nbsp; STUDENT DEMO
+  </div>
+  <header class="site-header">
+   <div class="container header-inner">
+    <details class="mobile-nav">
+     <summary aria-label="Open navigation menu">
+      ☰
+      <span>Menu</span>
+     </summary>
+     <nav aria-label="Mobile navigation" class="mobile-panel">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="cart.html">Cart</a>
+      <a href="login.html">Account</a>
+           <a href="track.html">Track order</a>
+     </nav>
+    </details>
+    <a aria-label="BRUTBOX and CO. home" class="brand" href="index.html"><img class="brand-logo" src="images/brand/logo.png" alt="BRUTBOX &amp; CO. logo" width="48" height="48" /></a>
+    <nav aria-label="Main navigation" class="desktop-nav">
+     <a href="index.html">Home</a>
+     <a href="products.html">Shop</a>
+     <a href="cart.html">Cart</a>
+     <a href="track.html">Track order</a>
+    </nav>
+    <div class="header-actions">
+     <a class="header-login" href="login.html">Account</a>
+     <a aria-label="View bag" class="cart-pill" href="cart.html">
+      Bag
+      <span>00</span>
+     </a>
+     <details class="admin-menu">
+      <summary aria-label="Admin tools" title="Admin tools">
+       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </summary>
+      <div class="admin-menu-panel">
+       <p class="admin-menu-title">Admin</p>
+       <a href="admin-login.html">Sign in</a>
+       <a href="admin.html#dashboard">Dashboard</a>
+       <a href="admin.html#upload">Upload product</a>
+       <a href="admin.html#products">Products &amp; stock</a>
+       <a href="admin.html#reports">Reports</a>
+       <a href="admin.html#activity">Activity log</a>
+      </div>
+     </details>
+    </div>
+   </div>
+  </header>
+  <main id="main">
+   <section class="page-hero container">
+    <p class="breadcrumb">
+     <a href="index.html">
+      Home
+     </a>
+     /
+     <a href="cart.html">
+      Cart
+     </a>
+     / Checkout
+    </p>
+    <p class="eyebrow dark">
+     CHECKOUT / VISUAL PREVIEW
+    </p>
+    <h1>
+     Almost there.
+    </h1>
+    <p>
+     Delivery details and payment methods are designed with HTML and CSS. This page does not place an order or collect money.
+    </p>
+   </section>
+   <section class="checkout-layout container" id="checkout">
+    <div class="checkout-main">
+     <div class="step-banner">
+      <span>
+       01
+      </span>
+      <strong>
+       Delivery information
+      </strong>
+      <small>
+       Enter your details
+      </small>
+     </div>
+     <section class="form-panel delivery-card" aria-labelledby="delivery-title">
+       <h2 id="delivery-title">Delivery details</h2>
+       <p class="form-intro">Tell us where to deliver your order. Fields marked <em>*</em> are required.</p>
+       <div class="form-block">
+        <h3 class="block-title"><span class="block-no">A</span>Contact</h3>
+        <div class="field-grid">
+         <div class="field">
+          <label for="ship-name">Full name <em>*</em></label>
+          <input autocomplete="name" id="ship-name" placeholder="Your full name" type="text"/>
+          <small>As written on your national ID.</small>
+         </div>
+         <div class="field">
+          <label for="ship-phone">Mobile number <em>*</em></label>
+          <input autocomplete="tel" id="ship-phone" placeholder="01XXXXXXXXX" type="tel"/>
+          <small>11 digits, starting with 01.</small>
+         </div>
+        </div>
+       </div>
+       <div class="form-block">
+        <h3 class="block-title"><span class="block-no">B</span>Address</h3>
+        <div class="field-grid">
+         <div class="field full">
+          <label for="ship-address">Street address <em>*</em></label>
+          <input autocomplete="street-address" id="ship-address" placeholder="House, road, area" type="text"/>
+          <small>House number, road and area.</small>
+         </div>
+         <div class="field">
+          <label for="ship-city">City <em>*</em></label>
+          <input autocomplete="address-level2" id="ship-city" placeholder="Dhaka" type="text"/>
+         </div>
+         <div class="field">
+          <label for="ship-postal">Postal code</label>
+          <input autocomplete="postal-code" id="ship-postal" placeholder="1200" type="text"/>
+          <small>4 digits, optional.</small>
+         </div>
+        </div>
+       </div>
+       <p class="fine-print">Demo form: these details are not sent or stored. Enter sample data only.</p>
+      </section>
+     <div class="step-banner">
+      <span>
+       02
+      </span>
+      <strong>
+       Payment method
+      </strong>
+      <small>
+       Selection preview
+      </small>
+     </div>
+     <section class="form-panel">
+      <h2>
+       How would you like to pay?
+      </h2>
+      <fieldset class="payment-group">
+       <legend>
+        Choose one demo option
+       </legend>
+       <label class="payment-option">
+        <input checked="" name="payment-preview" type="radio"/>
+        <span>
+         <strong>
+          Cash on Delivery
+         </strong>
+         <small>
+          Pay when your order arrives &mdash; demo
+         </small>
+        </span>
+        <b>
+         COD
+        </b>
+       </label>
+       <label class="payment-option">
+        <input name="payment-preview" type="radio"/>
+        <span>
+         <strong>
+          bKash
+         </strong>
+         <small>
+          Mobile wallet &mdash; demo only
+         </small>
+        </span>
+        <b>
+         bKash
+        </b>
+       </label>
+       <label class="payment-option">
+        <input name="payment-preview" type="radio"/>
+        <span>
+         <strong>
+          Nagad
+         </strong>
+         <small>
+          Mobile wallet &mdash; demo only
+         </small>
+        </span>
+        <b>
+         Nagad
+        </b>
+       </label>
+       <label class="payment-option">
+        <input name="payment-preview" type="radio"/>
+        <span>
+         <strong>
+          Debit / Credit Card
+         </strong>
+         <small>
+          Card gateway &mdash; demo only
+         </small>
+        </span>
+        <b>
+         CARD
+        </b>
+       </label>
+      </fieldset>
+      <p class="notice-soft">
+       No real payment gateway is connected. No card, bKash or Nagad information should be entered.
+      </p>
+     </section>
+     <div class="checkout-bottom">
+      <a class="text-arrow" href="cart.html">
+       &larr; Back to sample bag
+      </a>
+      <a class="btn btn-dark" href="receipt.html">
+       View sample receipt &nearrow;
+      </a>
+     </div>
+    </div>
+    <aside class="summary-card checkout-summary">
+     <p class="eyebrow dark">
+      THE ORDER / DEMO
+     </p>
+     <h2>
+      Summary
+     </h2>
+     <div class="summary-row">
+      <span>
+       2 &times; Cotton Boxer
+      </span>
+      <strong>
+       ৳900
+      </strong>
+     </div>
+     <div class="summary-row">
+      <span>
+       1 &times; Silk Bow Tie
+      </span>
+      <strong>
+       ৳650
+      </strong>
+     </div>
+     <hr/>
+     <div class="summary-row">
+      <span>
+       Subtotal
+      </span>
+      <strong>
+       ৳1,550
+      </strong>
+     </div>
+     <div class="summary-row">
+      <span>
+       Estimated delivery
+      </span>
+      <strong>
+       ৳70
+      </strong>
+     </div>
+     <div class="summary-row summary-total">
+      <span>
+       Example total
+      </span>
+      <strong>
+       ৳1,620
+      </strong>
+     </div>
+     <p class="fine-print">
+      All amounts are fixed examples. No purchase is made by selecting a method or viewing a receipt.
+     </p>
+    </aside>
+   </section>
+  </main>
+  <footer class="site-footer">
+  <div class="container footer-grid">
+   <div class="footer-brand">
+    <a class="brand" href="index.html"><img class="brand-logo" src="images/brand/logo.png" alt="BRUTBOX &amp; CO. logo" width="56" height="56" /></a>
+    <p>Understated style and everyday essentials for the modern gentleman.</p>
+   </div>
+   <nav class="footer-col" aria-label="Shop">
+    <h4>Shop</h4>
+    <a href="products.html">All products</a>
+    <a href="products.html?cat=underwear">Underwear</a>
+    <a href="products.html?cat=socks">Socks</a>
+    <a href="products.html?cat=wallets">Wallets</a>
+   </nav>
+   <nav class="footer-col" aria-label="Customer care">
+    <h4>Customer care</h4>
+    <a href="track.html">Track your order</a>
+    <a href="cart.html">Shopping bag</a>
+    <a href="login.html">Account</a>
+    <a href="signup.html">Create account</a>
+   </nav>
+   <div class="footer-col">
+    <h4>Delivery &amp; payment</h4>
+    <p>Delivery ৳120, free on orders of ৳3,000 or more.</p>
+    <p>Cash on delivery, bKash, Nagad and card.</p>
+    <p>All prices include 5% VAT where applicable.</p>
+   </div>
+  </div>
+  <div class="container footer-bottom">
+   <span>&copy; 2026 BRUTBOX &amp; CO. All rights reserved.</span>
+   <span>Demo store: accounts, orders and payments are simulated.</span>
+  </div>
+</footer>
+   <script src="js/orders.js"></script>
+  <script src="js/catalog-data.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/motion.js" defer></script>
+</body>
+</html>
+

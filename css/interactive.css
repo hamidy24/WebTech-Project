@@ -1,0 +1,70 @@
+/* Styles for controls added by js/main.js */
+.is-soldout { text-decoration: line-through; opacity: 0.45; cursor: not-allowed; }
+.option-chip input:disabled + span { text-decoration: line-through; }
+.stock-status { font-size: 0.85rem; margin: 0.25rem 0 0.75rem; min-height: 1.2em; color: var(--muted, #667280); }
+.stock-status.is-low { color: #b7791f; font-weight: 600; }
+.stock-status.is-out { color: #b42318; font-weight: 600; }
+.add-to-bag { margin-right: 0.5rem; }
+.add-to-bag:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn[aria-disabled="true"], .is-disabled { pointer-events: none; opacity: 0.5; }
+.js-message { margin: 0.75rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius, 8px); font-size: 0.9rem; border: 1px solid; }
+.js-message[hidden] { display: none; }
+.js-message-error { color: #b42318; border-color: #f0b4ad; background: #fdeeee; }
+.js-message-success { color: var(--green, #205b43); border-color: #a9d3bf; background: #eef8f2; }
+.qty-stepper { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.5rem 0; }
+.qty-stepper button { width: 30px; height: 30px; border: 1px solid var(--line, #e4e5e4); background: var(--white, #fff); border-radius: 50%; cursor: pointer; font-size: 1rem; }
+.qty-stepper button:disabled { opacity: 0.4; cursor: not-allowed; }
+.remove-item { background: none; border: 0; padding: 0; cursor: pointer; color: var(--gold, #c89c68); font: inherit; }
+.cart-empty { padding: 1.5rem 0; color: var(--muted, #667280); }
+.payment-note { font-size: 0.85rem; color: var(--muted, #667280); margin-top: 0.5rem; }
+.receipt-explainer .receipt-print { margin-top: 0.75rem; }
+.js-modal-backdrop { position: fixed; inset: 0; background: rgba(12, 20, 32, 0.6); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 1000; }
+.js-modal { background: var(--ivory, #f7f5f1); color: var(--ink, #1c2937); max-width: 440px; width: 100%; padding: 1.5rem; border-radius: var(--radius, 8px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+.js-modal h2 { margin: 0.25rem 0 0.75rem; }
+.js-modal-warning { border-left: 3px solid #b7791f; padding: 0.5rem 0.75rem; background: #fff8e6; }
+.js-modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; flex-wrap: wrap; margin-top: 1rem; }
+
+/* ---------- Storefront header: admin icon menu ---------- */
+.admin-menu { position: relative; }
+.admin-menu > summary { list-style: none; cursor: pointer; width: 42px; height: 42px; border-radius: 50%; border: 1px solid #cdd3da; display: inline-flex; align-items: center; justify-content: center; color: #182536; background: #fff; }
+.admin-menu > summary::-webkit-details-marker { display: none; }
+.admin-menu > summary:hover, .admin-menu[open] > summary { border-color: #c89c68; color: #9a6a2e; }
+.admin-menu-panel { position: absolute; right: 0; top: 52px; width: 230px; background: #fff; border: 1px solid #e4e5e4; border-radius: 12px; box-shadow: 0 16px 40px rgba(24,37,54,.16); padding: .6rem; z-index: 200; display: grid; gap: .1rem; }
+.admin-menu-panel a { padding: .6rem .75rem; border-radius: 8px; color: #1c2937; text-decoration: none; font-weight: 500; }
+.admin-menu-panel a:hover { background: #f4f1ec; color: #9a6a2e; }
+.admin-menu-title { font-size: .68rem; text-transform: uppercase; letter-spacing: .14em; color: #9a6a2e; font-weight: 700; margin: .3rem .75rem .4rem; }
+@media (max-width: 700px) { .header-login { display: none; } .admin-menu-panel { right: -6px; } }
+
+/* ---------- Checkout: organised delivery details ---------- */
+.delivery-card .form-intro { color: #667280; margin: .2rem 0 1rem; font-size: .95rem; }
+.delivery-card .form-intro em, .delivery-card label em { color: #b42318; font-style: normal; }
+.form-block { padding: 1.1rem 0; border-top: 1px solid #e4e5e4; }
+.form-block:first-of-type { border-top: 0; padding-top: .2rem; }
+.block-title { display: flex; align-items: center; gap: .6rem; font-size: 1rem; margin: 0 0 .9rem; color: #182536; }
+.block-no { width: 28px; height: 28px; border-radius: 50%; background: #182536; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 700; flex: 0 0 auto; }
+.field-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .field-grid { grid-template-columns: 1fr 1fr; } .field.full { grid-column: 1 / -1; } }
+.field { display: flex; flex-direction: column; }
+.field label { font-size: .9rem; font-weight: 600; color: #182536; margin-bottom: .4rem; }
+.field input { width: 100%; padding: .78rem .9rem; border: 1px solid #cdd3da; border-radius: 8px; font: inherit; background: #fff; color: #1c2937; }
+.field input:focus { outline: none; border-color: #c89c68; box-shadow: 0 0 0 3px rgba(200,156,104,.22); }
+.field small { color: #667280; font-size: .8rem; margin-top: .35rem; }
+
+/* ---------- Brand logo ---------- */
+.brand-logo { display: block; width: 48px; height: 48px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px rgba(200,156,104,0.45); transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease; }
+a:hover > .brand-logo { transform: rotate(-4deg) scale(1.04); box-shadow: 0 0 0 2px rgba(200,156,104,0.7); }
+.site-header .brand { display: inline-flex; align-items: center; }
+.site-footer .brand-logo { width: 56px; height: 56px; }
+.admin-shell .brand-logo, .admin-login-body .brand-logo { width: 44px; height: 44px; }
+.login-card .brand-logo { width: 56px; height: 56px; margin-bottom: 0.25rem; }
+
+/* ---------- Coupon box in the bag summary ---------- */
+.coupon-box { margin: 1rem 0 0.4rem; padding-top: 0.9rem; border-top: 1px dashed #d8d4cb; }
+.coupon-box label { display: block; font-size: 0.85rem; font-weight: 600; color: #182536; margin-bottom: 0.4rem; }
+.coupon-row { display: flex; gap: 0.5rem; }
+.coupon-row input { flex: 1; min-width: 0; padding: 0.65rem 0.8rem; border: 1px solid #cdd3da; border-radius: 8px; font: inherit; text-transform: uppercase; }
+.coupon-row input:focus { outline: none; border-color: #c89c68; box-shadow: 0 0 0 3px rgba(200,156,104,.22); }
+.coupon-msg { font-size: 0.82rem; color: #667280; margin: 0.45rem 0 0; min-height: 1.1em; }
+.coupon-msg.is-ok { color: #205b43; }
+.coupon-msg.is-error { color: #b42318; }
+.coupon-remove { margin-top: 0.3rem; }
