@@ -467,7 +467,7 @@
 
     return "<details class='product-card-item' data-pid='" + id + "'>" +
       "<summary>" +
-        "<img class='thumb' src='" + p.image + "' alt=''/>" +
+        (p.image ? "<img class='thumb' src='" + p.image + "' alt=''/>" : "<span class='thumb thumb-empty' aria-hidden='true'>" + esc(String(p.name).charAt(0)) + "</span>") +
         "<div><div class='p-name'>" + esc(p.name) + "</div>" +
           "<div class='p-meta'>" + esc(B.categoryName(p.category)) + " &middot; " + money(p.price) +
           " &middot; " + p.colors.length + " colours &middot; " + p.sizes.length + " sizes</div></div>" +
@@ -880,7 +880,9 @@
     var t = $("#side-toggle");
     if (t) t.setAttribute("aria-expanded", "false");
   }
+  var currentView = "dashboard";
   function show(view) {
+    currentView = view;
     var title = $("#topbar-title");
     if (title) title.textContent = TITLES[view] || "Dashboard";
     closeSide();
@@ -912,13 +914,20 @@
       setTimeout(function () { location.replace("admin-login.html?reason=expired"); }, 1500);
     }
     renderSeats();
-    renderDashboard();
+    if (currentView === "dashboard") renderDashboard();
   }, B.CONFIG.heartbeatMs);
 
   // Refresh when another tab changes the data
   window.addEventListener("storage", function (e) {
     if (e.key === B.KEY.products || e.key === B.KEY.orders || e.key === B.KEY.activity || e.key === B.KEY.sessions) {
-      renderSeats(); renderDashboard(); renderProducts(); renderReports(); renderActivity();
+      clearTimeout(window.__bbRefresh);
+      window.__bbRefresh = setTimeout(function () {
+        renderSeats();
+        if (currentView === "dashboard") renderDashboard();
+        if (currentView === "products") renderProducts();
+        if (currentView === "reports") renderReports();
+        if (currentView === "activity") renderActivity();
+      }, 150);
     }
   });
 

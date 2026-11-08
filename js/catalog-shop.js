@@ -53,7 +53,9 @@
     var second = imgs.length > hoverIdx ? "<img class='media-second' src='" + esc(imgs[hoverIdx]) + "' alt='' loading='lazy' decoding='async' />" : "";
     return "<article class='product-card live-card" + (t === 0 ? " is-soldout" : "") + "'>" +
       "<button type='button' class='live-media' data-preview-id='" + esc(p.id) + "' aria-label='Preview " + esc(p.name) + "'>" +
-        "<span class='product-media'><img class='media-main' src='" + esc(imgs[0]) + "' alt='" + esc(p.name) + "' loading='lazy' decoding='async' />" + second + "</span>" +
+        (imgs[0]
+          ? "<span class='product-media'><img class='media-main' src='" + esc(imgs[0]) + "' alt='" + esc(p.name) + "' loading='lazy' decoding='async' />" + second + "</span>"
+          : "<span class='product-media noimg' aria-hidden='true'><span>" + esc(String(p.name).charAt(0)) + "</span><small>" + esc(String(p.category).replace(/-/g, " ")) + "</small></span>") +
         badge + "<span class='quick-view-hint'>Quick view</span>" +
       "</button>" +
       "<div class='product-card-info'>" +

@@ -125,13 +125,14 @@
     var p = state.product, n = state.images.length;
     track.innerHTML = state.images.map(function (src, i) {
       var off = photoCountOf(p), label = i < off ? "photo " + (i + 1) : (p.colors[i - off] || "colour");
+      if (!src) return '<div class="pv-img pv-noimg" aria-label="' + esc(p.name) + '"><span>' + esc(p.name) + '</span><small>' + esc(catName(p.category)) + '</small></div>';
       return '<img class="pv-img" src="' + esc(src) + '" alt="' + esc(p.name) + " - " + esc(label) + '" draggable="false" />';
     }).join("");
     thumbs.innerHTML = state.images.map(function (src, i) {
       var off2 = photoCountOf(p);
       var tl = i < off2 ? "Photo " + (i + 1) : (p.colors[i - off2] || "Colour");
       return '<button type="button" role="tab" data-i="' + i + '" aria-label="' + esc(tl) + '">' +
-        '<img src="' + esc(src) + '" alt="" loading="lazy" /></button>';
+        (src ? '<img src="' + esc(src) + '" alt="" loading="lazy" />' : '<span class="pv-thumb-empty"></span>') + '</button>';
     }).join("");
     nameEl.innerHTML = esc(p.name) + '<span class="pv-cat">' + esc(catName(p.category)) + "</span>";
     priceEl.innerHTML = money(p.price) + (p.originalPrice ? ' <s class="pv-old">' + money(p.originalPrice) + "</s>" : "");
@@ -241,7 +242,7 @@
     var p = findProduct(id);
     if (!p) return;
     var imgs = imagesOf(p);
-    if (!imgs.length) return;
+    if (!imgs.length) imgs = [""];          // no picture: show a text panel instead
     if (!overlay) build();
     state.product = p;
     state.images = imgs;

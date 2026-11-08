@@ -8,10 +8,6 @@
 :root { --ease-out: cubic-bezier(.2, .8, .2, 1); --ease-spring: cubic-bezier(.34, 1.4, .64, 1); }
 
 /* ---------- Page enter / leave ---------- */
-/* Opacity only: a transform on <body> would break position:fixed (toasts, popups) */
-@keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
-body { animation: page-in 0.38s ease backwards; }
-body.is-leaving { opacity: 0; transition: opacity 0.18s ease; }
 
 /* ---------- Buttons ---------- */
 .btn, .cart-pill, .chip, .icon-btn, .link-btn, .side-toggle, .admin-tabs button, .nav-toggle {
@@ -47,7 +43,6 @@ body.is-leaving { opacity: 0; transition: opacity 0.18s ease; }
 /* ---------- Cards ---------- */
 .product-card, .category-tile, .kpi {
   transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease, border-color 0.3s ease;
-  will-change: transform;
 }
 .product-card:hover, .category-tile:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(24, 37, 54, 0.14); }
 .kpi:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(24, 37, 54, 0.12); }
@@ -84,5 +79,4 @@ body.is-leaving { opacity: 0; transition: opacity 0.18s ease; }
     scroll-behavior: auto !important;
   }
   .js-motion .reveal { opacity: 1 !important; transform: none !important; }
-  body.is-leaving { opacity: 1; }
 }

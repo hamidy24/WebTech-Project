@@ -74,21 +74,4 @@
     }, { passive: true });
   }
 
-  /* ---------- 4. Quick fade between storefront pages ---------- */
-  var isAdmin = !!document.querySelector(".admin-body");
-  if (!reduce && !isAdmin) {
-    document.addEventListener("click", function (e) {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      var link = e.target.closest && e.target.closest("a[href]");
-      if (!link || link.target === "_blank" || link.hasAttribute("download")) return;
-      var url;
-      try { url = new URL(link.href, location.href); } catch (err) { return; }
-      if (url.origin !== location.origin) return;
-      if (url.pathname === location.pathname) return;          // same page, or a #hash on this page
-      if (!/\.html$/i.test(url.pathname) && url.pathname !== "/") return;
-      e.preventDefault();
-      document.body.classList.add("is-leaving");
-      window.setTimeout(function () { location.href = url.href; }, 170);
-    });
-  }
 })();

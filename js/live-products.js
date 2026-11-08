@@ -48,7 +48,7 @@
       var count = imgs.length > 1 ? "<span class='photo-count' aria-hidden='true'>" + imgs.length + " photos</span>" : "";
       return '<article class="product-card live-card' + (t === 0 ? " is-soldout" : "") + '" data-cat="' + esc(p.category) + '">' +
         '<button type="button" class="live-media" data-preview-id="' + esc(p.id) + '" aria-label="Preview ' + esc(p.name) + ' photos">' +
-          '<span class="product-media"><img class="media-main" src="' + esc(imgs[0] || "") + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" />' + second + "</span>" +
+          (imgs[0] ? '<span class="product-media"><img class="media-main" src="' + esc(imgs[0]) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" />' + second + "</span>" : '<span class="product-media noimg" aria-hidden="true"><span>' + esc(String(p.name).charAt(0)) + "</span></span>") +
           badge + count +
           '<span class="quick-view-hint">Quick view</span>' +
         "</button>" +

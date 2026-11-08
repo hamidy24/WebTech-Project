@@ -22,8 +22,7 @@ Six categories with ten styles each, every style in three colours:
 Underwear, Bow Ties, Pocket Squares, Men's Socks, Wallets, Eyeglass Cases.
 
 - Product data: `js/catalog-data.js` (60 products: names, descriptions, prices, colours, sizes, stock)
-- Product photos: `images/catalog/<category>/<style>/<colour>.svg`
-- Brand logo: `images/brand/logo.png`
+- Pictures: this version has no product photos. Products show text placeholders. Only the brand logo (`images/brand/`) and the two banners (`images/banner/`) are included.
 
 ## Shop rules
 

@@ -1,6 +1,5 @@
-/* Brutbox & Co. catalogue, generated from the product data source.
-   Sets window.BRUTBOX_CATALOG = { categories, products, colourHex }.
-   images = [lifestyle photos..., colour images...]; photoCount = number of photos. */
+/* Brutbox & Co. catalogue (text only: names, descriptions, prices, colours, sizes, stock).
+   Sets window.BRUTBOX_CATALOG = { categories, products, colourHex }. */
 window.BRUTBOX_CATALOG = {
  "categories": [
   {
@@ -13,7 +12,7 @@ window.BRUTBOX_CATALOG = {
     "XL",
     "XXL"
    ],
-   "image": "images/catalog/underwear/01_briefs/obsidian_black.svg",
+   "image": "",
    "description": "10 signature styles from Y-Front Briefs & Poplin Boxer Shorts to Long Johns & Compression Shorts."
   },
   {
@@ -22,7 +21,7 @@ window.BRUTBOX_CATALOG = {
    "sizes": [
     "One Size"
    ],
-   "image": "images/catalog/bow-ties/01_butterfly/obsidian_black.svg",
+   "image": "",
    "description": "10 sartorial silhouettes from Classic Butterfly & Batwing to Diamond Point, Self-Tie & Reversible."
   },
   {
@@ -31,7 +30,7 @@ window.BRUTBOX_CATALOG = {
    "sizes": [
     "One Size"
    ],
-   "image": "images/catalog/pocket-squares/01_presidential_fold/classic_ivory.svg",
+   "image": "",
    "description": "10 iconic folds & finishes from Presidential & Crown Fold to Winged Puff, Dunaway & Handroll Edge."
   },
   {
@@ -41,7 +40,7 @@ window.BRUTBOX_CATALOG = {
     "M (39-42)",
     "L (43-46)"
    ],
-   "image": "images/catalog/socks/01_no_show_socks/classic_ivory.svg",
+   "image": "",
    "description": "10 specialized lengths from Invisible No-Show & Ped Liners to Over-the-Calf Dress & Thermal Boot Socks."
   },
   {
@@ -50,7 +49,7 @@ window.BRUTBOX_CATALOG = {
    "sizes": [
     "One Size"
    ],
-   "image": "images/catalog/wallets/01_bifold_wallet/espresso_brown.svg",
+   "image": "",
    "description": "10 everyday carry architectures from Bifold & Executive Coat Wallets to Pop-Up Ejector & MagSafe."
   },
   {
@@ -59,7 +58,7 @@ window.BRUTBOX_CATALOG = {
    "sizes": [
     "One Size"
    ],
-   "image": "images/catalog/eyeglass-cases/01_hardshell_clamshell/cognac_tan.svg",
+   "image": "",
    "description": "10 protective forms from Hard-Shell Clamshell & Tri-Fold Prism to Double Case & Cylindrical Tube."
   }
  ],
@@ -120,12 +119,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 19
     }
    },
-   "images": [
-    "images/catalog/underwear/01_briefs/obsidian_black.svg",
-    "images/catalog/underwear/01_briefs/royal_navy.svg",
-    "images/catalog/underwear/01_briefs/classic_ivory.svg"
-   ],
-   "image": "images/catalog/underwear/01_briefs/obsidian_black.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-11",
    "photoCount": 0
   },
@@ -185,12 +180,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 20
     }
    },
-   "images": [
-    "images/catalog/underwear/02_boxer_shorts/royal_navy.svg",
-    "images/catalog/underwear/02_boxer_shorts/classic_ivory.svg",
-    "images/catalog/underwear/02_boxer_shorts/cobalt_sapphire.svg"
-   ],
-   "image": "images/catalog/underwear/02_boxer_shorts/royal_navy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-12",
    "photoCount": 0
   },
@@ -250,12 +241,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 21
     }
    },
-   "images": [
-    "images/catalog/underwear/03_boxer_briefs/crimson_burgundy.svg",
-    "images/catalog/underwear/03_boxer_briefs/obsidian_black.svg",
-    "images/catalog/underwear/03_boxer_briefs/charcoal_slate.svg"
-   ],
-   "image": "images/catalog/underwear/03_boxer_briefs/crimson_burgundy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-13",
    "photoCount": 0
   },
@@ -315,12 +302,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 22
     }
    },
-   "images": [
-    "images/catalog/underwear/04_trunks/forest_emerald.svg",
-    "images/catalog/underwear/04_trunks/obsidian_black.svg",
-    "images/catalog/underwear/04_trunks/royal_navy.svg"
-   ],
-   "image": "images/catalog/underwear/04_trunks/forest_emerald.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-14",
    "photoCount": 0
   },
@@ -380,12 +363,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 18
     }
    },
-   "images": [
-    "images/catalog/underwear/05_mid_briefs/charcoal_slate.svg",
-    "images/catalog/underwear/05_mid_briefs/cobalt_sapphire.svg",
-    "images/catalog/underwear/05_mid_briefs/obsidian_black.svg"
-   ],
-   "image": "images/catalog/underwear/05_mid_briefs/charcoal_slate.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-15",
    "photoCount": 0
   },
@@ -445,12 +424,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 19
     }
    },
-   "images": [
-    "images/catalog/underwear/06_long_johns/heather_grey.svg",
-    "images/catalog/underwear/06_long_johns/charcoal_slate.svg",
-    "images/catalog/underwear/06_long_johns/royal_navy.svg"
-   ],
-   "image": "images/catalog/underwear/06_long_johns/heather_grey.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-16",
    "photoCount": 0
   },
@@ -510,12 +485,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 20
     }
    },
-   "images": [
-    "images/catalog/underwear/07_jockstrap/cobalt_sapphire.svg",
-    "images/catalog/underwear/07_jockstrap/obsidian_black.svg",
-    "images/catalog/underwear/07_jockstrap/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/underwear/07_jockstrap/cobalt_sapphire.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-17",
    "photoCount": 0
   },
@@ -575,12 +546,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 21
     }
    },
-   "images": [
-    "images/catalog/underwear/08_thong/plum_aubergine.svg",
-    "images/catalog/underwear/08_thong/obsidian_black.svg",
-    "images/catalog/underwear/08_thong/champagne_silk.svg"
-   ],
-   "image": "images/catalog/underwear/08_thong/plum_aubergine.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-18",
    "photoCount": 0
   },
@@ -640,12 +607,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 22
     }
    },
-   "images": [
-    "images/catalog/underwear/09_bikini_briefs/terracotta_rust.svg",
-    "images/catalog/underwear/09_bikini_briefs/classic_ivory.svg",
-    "images/catalog/underwear/09_bikini_briefs/obsidian_black.svg"
-   ],
-   "image": "images/catalog/underwear/09_bikini_briefs/terracotta_rust.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-19",
    "photoCount": 0
   },
@@ -705,12 +668,8 @@ window.BRUTBOX_CATALOG = {
      "XXL": 18
     }
    },
-   "images": [
-    "images/catalog/underwear/10_compression_shorts/olive_moss.svg",
-    "images/catalog/underwear/10_compression_shorts/obsidian_black.svg",
-    "images/catalog/underwear/10_compression_shorts/royal_navy.svg"
-   ],
-   "image": "images/catalog/underwear/10_compression_shorts/olive_moss.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-20",
    "photoCount": 0
   },
@@ -754,12 +713,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 19
     }
    },
-   "images": [
-    "images/catalog/bow-ties/01_butterfly/obsidian_black.svg",
-    "images/catalog/bow-ties/01_butterfly/crimson_burgundy.svg",
-    "images/catalog/bow-ties/01_butterfly/royal_navy.svg"
-   ],
-   "image": "images/catalog/bow-ties/01_butterfly/obsidian_black.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-11",
    "photoCount": 0
   },
@@ -803,12 +758,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 20
     }
    },
-   "images": [
-    "images/catalog/bow-ties/02_slim_butterfly/royal_navy.svg",
-    "images/catalog/bow-ties/02_slim_butterfly/forest_emerald.svg",
-    "images/catalog/bow-ties/02_slim_butterfly/charcoal_slate.svg"
-   ],
-   "image": "images/catalog/bow-ties/02_slim_butterfly/royal_navy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-12",
    "photoCount": 0
   },
@@ -852,12 +803,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 21
     }
    },
-   "images": [
-    "images/catalog/bow-ties/03_batwing/crimson_burgundy.svg",
-    "images/catalog/bow-ties/03_batwing/obsidian_black.svg",
-    "images/catalog/bow-ties/03_batwing/cobalt_sapphire.svg"
-   ],
-   "image": "images/catalog/bow-ties/03_batwing/crimson_burgundy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-13",
    "photoCount": 0
   },
@@ -901,12 +848,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 22
     }
    },
-   "images": [
-    "images/catalog/bow-ties/04_diamond_point/imperial_gold.svg",
-    "images/catalog/bow-ties/04_diamond_point/obsidian_black.svg",
-    "images/catalog/bow-ties/04_diamond_point/plum_aubergine.svg"
-   ],
-   "image": "images/catalog/bow-ties/04_diamond_point/imperial_gold.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-14",
    "photoCount": 0
   },
@@ -950,12 +893,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 18
     }
    },
-   "images": [
-    "images/catalog/bow-ties/05_rounded_club/forest_emerald.svg",
-    "images/catalog/bow-ties/05_rounded_club/cognac_tan.svg",
-    "images/catalog/bow-ties/05_rounded_club/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/bow-ties/05_rounded_club/forest_emerald.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-15",
    "photoCount": 0
   },
@@ -999,12 +938,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 19
     }
    },
-   "images": [
-    "images/catalog/bow-ties/06_self_tie/plum_aubergine.svg",
-    "images/catalog/bow-ties/06_self_tie/obsidian_black.svg",
-    "images/catalog/bow-ties/06_self_tie/royal_navy.svg"
-   ],
-   "image": "images/catalog/bow-ties/06_self_tie/plum_aubergine.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-16",
    "photoCount": 0
   },
@@ -1048,12 +983,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 20
     }
    },
-   "images": [
-    "images/catalog/bow-ties/07_pre_tied/cobalt_sapphire.svg",
-    "images/catalog/bow-ties/07_pre_tied/obsidian_black.svg",
-    "images/catalog/bow-ties/07_pre_tied/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/bow-ties/07_pre_tied/cobalt_sapphire.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-17",
    "photoCount": 0
   },
@@ -1097,12 +1028,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 21
     }
    },
-   "images": [
-    "images/catalog/bow-ties/08_clip_on/charcoal_slate.svg",
-    "images/catalog/bow-ties/08_clip_on/royal_navy.svg",
-    "images/catalog/bow-ties/08_clip_on/obsidian_black.svg"
-   ],
-   "image": "images/catalog/bow-ties/08_clip_on/charcoal_slate.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-18",
    "photoCount": 0
   },
@@ -1146,12 +1073,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 22
     }
    },
-   "images": [
-    "images/catalog/bow-ties/09_oversized_butterfly/champagne_silk.svg",
-    "images/catalog/bow-ties/09_oversized_butterfly/obsidian_black.svg",
-    "images/catalog/bow-ties/09_oversized_butterfly/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/bow-ties/09_oversized_butterfly/champagne_silk.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-19",
    "photoCount": 0
   },
@@ -1195,12 +1118,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 18
     }
    },
-   "images": [
-    "images/catalog/bow-ties/10_dual_tone/terracotta_rust.svg",
-    "images/catalog/bow-ties/10_dual_tone/royal_navy.svg",
-    "images/catalog/bow-ties/10_dual_tone/forest_emerald.svg"
-   ],
-   "image": "images/catalog/bow-ties/10_dual_tone/terracotta_rust.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-20",
    "photoCount": 0
   },
@@ -1244,12 +1163,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 19
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/01_presidential_fold/classic_ivory.svg",
-    "images/catalog/pocket-squares/01_presidential_fold/champagne_silk.svg",
-    "images/catalog/pocket-squares/01_presidential_fold/cobalt_sapphire.svg"
-   ],
-   "image": "images/catalog/pocket-squares/01_presidential_fold/classic_ivory.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-11",
    "photoCount": 0
   },
@@ -1293,12 +1208,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 20
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/02_one_point_fold/royal_navy.svg",
-    "images/catalog/pocket-squares/02_one_point_fold/crimson_burgundy.svg",
-    "images/catalog/pocket-squares/02_one_point_fold/classic_ivory.svg"
-   ],
-   "image": "images/catalog/pocket-squares/02_one_point_fold/royal_navy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-12",
    "photoCount": 0
   },
@@ -1342,12 +1253,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 21
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/03_two_point_fold/crimson_burgundy.svg",
-    "images/catalog/pocket-squares/03_two_point_fold/royal_navy.svg",
-    "images/catalog/pocket-squares/03_two_point_fold/imperial_gold.svg"
-   ],
-   "image": "images/catalog/pocket-squares/03_two_point_fold/crimson_burgundy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-13",
    "photoCount": 0
   },
@@ -1391,12 +1298,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 22
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/04_three_point_fold/imperial_gold.svg",
-    "images/catalog/pocket-squares/04_three_point_fold/classic_ivory.svg",
-    "images/catalog/pocket-squares/04_three_point_fold/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/pocket-squares/04_three_point_fold/imperial_gold.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-14",
    "photoCount": 0
   },
@@ -1440,12 +1343,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 18
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/05_four_point_fold/cobalt_sapphire.svg",
-    "images/catalog/pocket-squares/05_four_point_fold/classic_ivory.svg",
-    "images/catalog/pocket-squares/05_four_point_fold/royal_navy.svg"
-   ],
-   "image": "images/catalog/pocket-squares/05_four_point_fold/cobalt_sapphire.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-15",
    "photoCount": 0
   },
@@ -1489,12 +1388,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 19
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/06_puff_fold/forest_emerald.svg",
-    "images/catalog/pocket-squares/06_puff_fold/plum_aubergine.svg",
-    "images/catalog/pocket-squares/06_puff_fold/imperial_gold.svg"
-   ],
-   "image": "images/catalog/pocket-squares/06_puff_fold/forest_emerald.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-16",
    "photoCount": 0
   },
@@ -1538,12 +1433,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 20
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/07_winged_puff_fold/plum_aubergine.svg",
-    "images/catalog/pocket-squares/07_winged_puff_fold/champagne_silk.svg",
-    "images/catalog/pocket-squares/07_winged_puff_fold/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/pocket-squares/07_winged_puff_fold/plum_aubergine.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-17",
    "photoCount": 0
   },
@@ -1587,12 +1478,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 21
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/08_dunaway_fold/terracotta_rust.svg",
-    "images/catalog/pocket-squares/08_dunaway_fold/forest_emerald.svg",
-    "images/catalog/pocket-squares/08_dunaway_fold/royal_navy.svg"
-   ],
-   "image": "images/catalog/pocket-squares/08_dunaway_fold/terracotta_rust.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-18",
    "photoCount": 0
   },
@@ -1636,12 +1523,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 22
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/09_scallop_fold/champagne_silk.svg",
-    "images/catalog/pocket-squares/09_scallop_fold/cobalt_sapphire.svg",
-    "images/catalog/pocket-squares/09_scallop_fold/olive_moss.svg"
-   ],
-   "image": "images/catalog/pocket-squares/09_scallop_fold/champagne_silk.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-19",
    "photoCount": 0
   },
@@ -1685,12 +1568,8 @@ window.BRUTBOX_CATALOG = {
      "One Size": 18
     }
    },
-   "images": [
-    "images/catalog/pocket-squares/10_handroll_edge/obsidian_black.svg",
-    "images/catalog/pocket-squares/10_handroll_edge/classic_ivory.svg",
-    "images/catalog/pocket-squares/10_handroll_edge/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/pocket-squares/10_handroll_edge/obsidian_black.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-20",
    "photoCount": 0
   },
@@ -1738,15 +1617,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 19
     }
    },
-   "images": [
-    "images/products/socks/01.jpg",
-    "images/catalog/socks/01_no_show_socks/classic_ivory.svg",
-    "images/catalog/socks/01_no_show_socks/obsidian_black.svg",
-    "images/catalog/socks/01_no_show_socks/cognac_tan.svg"
-   ],
-   "image": "images/catalog/socks/01_no_show_socks/classic_ivory.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-11",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-02",
@@ -1792,15 +1666,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 20
     }
    },
-   "images": [
-    "images/products/socks/02.jpg",
-    "images/catalog/socks/02_ped_liner_socks/champagne_silk.svg",
-    "images/catalog/socks/02_ped_liner_socks/obsidian_black.svg",
-    "images/catalog/socks/02_ped_liner_socks/heather_grey.svg"
-   ],
-   "image": "images/catalog/socks/02_ped_liner_socks/champagne_silk.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-12",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-03",
@@ -1846,15 +1715,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 21
     }
    },
-   "images": [
-    "images/products/socks/03.jpg",
-    "images/catalog/socks/03_ankle_socks/heather_grey.svg",
-    "images/catalog/socks/03_ankle_socks/obsidian_black.svg",
-    "images/catalog/socks/03_ankle_socks/classic_ivory.svg"
-   ],
-   "image": "images/catalog/socks/03_ankle_socks/heather_grey.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-13",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-04",
@@ -1900,15 +1764,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 22
     }
    },
-   "images": [
-    "images/products/socks/04.jpg",
-    "images/catalog/socks/04_quarter_socks/cobalt_sapphire.svg",
-    "images/catalog/socks/04_quarter_socks/obsidian_black.svg",
-    "images/catalog/socks/04_quarter_socks/heather_grey.svg"
-   ],
-   "image": "images/catalog/socks/04_quarter_socks/cobalt_sapphire.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-14",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-05",
@@ -1954,15 +1813,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 18
     }
    },
-   "images": [
-    "images/products/socks/05.jpg",
-    "images/catalog/socks/05_crew_socks/royal_navy.svg",
-    "images/catalog/socks/05_crew_socks/charcoal_slate.svg",
-    "images/catalog/socks/05_crew_socks/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/socks/05_crew_socks/royal_navy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-15",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-06",
@@ -2008,15 +1862,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 19
     }
    },
-   "images": [
-    "images/products/socks/06.jpg",
-    "images/catalog/socks/06_otc_dress_socks/obsidian_black.svg",
-    "images/catalog/socks/06_otc_dress_socks/royal_navy.svg",
-    "images/catalog/socks/06_otc_dress_socks/charcoal_slate.svg"
-   ],
-   "image": "images/catalog/socks/06_otc_dress_socks/obsidian_black.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-16",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-07",
@@ -2062,15 +1911,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 20
     }
    },
-   "images": [
-    "images/products/socks/07.jpg",
-    "images/catalog/socks/07_ribbed_dress_socks/crimson_burgundy.svg",
-    "images/catalog/socks/07_ribbed_dress_socks/forest_emerald.svg",
-    "images/catalog/socks/07_ribbed_dress_socks/espresso_brown.svg"
-   ],
-   "image": "images/catalog/socks/07_ribbed_dress_socks/crimson_burgundy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-17",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-08",
@@ -2116,15 +1960,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 21
     }
    },
-   "images": [
-    "images/products/socks/08.jpg",
-    "images/catalog/socks/08_compression_socks/charcoal_slate.svg",
-    "images/catalog/socks/08_compression_socks/cobalt_sapphire.svg",
-    "images/catalog/socks/08_compression_socks/obsidian_black.svg"
-   ],
-   "image": "images/catalog/socks/08_compression_socks/charcoal_slate.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-18",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-09",
@@ -2170,15 +2009,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 22
     }
    },
-   "images": [
-    "images/products/socks/09.jpg",
-    "images/catalog/socks/09_thermal_boot_socks/olive_moss.svg",
-    "images/catalog/socks/09_thermal_boot_socks/espresso_brown.svg",
-    "images/catalog/socks/09_thermal_boot_socks/charcoal_slate.svg"
-   ],
-   "image": "images/catalog/socks/09_thermal_boot_socks/olive_moss.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-19",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-sk-10",
@@ -2224,15 +2058,10 @@ window.BRUTBOX_CATALOG = {
      "L (43-46)": 18
     }
    },
-   "images": [
-    "images/products/socks/10.jpg",
-    "images/catalog/socks/10_tab_athletic_socks/terracotta_rust.svg",
-    "images/catalog/socks/10_tab_athletic_socks/obsidian_black.svg",
-    "images/catalog/socks/10_tab_athletic_socks/cobalt_sapphire.svg"
-   ],
-   "image": "images/catalog/socks/10_tab_athletic_socks/terracotta_rust.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-20",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-01",
@@ -2274,15 +2103,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 19
     }
    },
-   "images": [
-    "images/products/wallets/01.jpg",
-    "images/catalog/wallets/01_bifold_wallet/espresso_brown.svg",
-    "images/catalog/wallets/01_bifold_wallet/cognac_tan.svg",
-    "images/catalog/wallets/01_bifold_wallet/obsidian_black.svg"
-   ],
-   "image": "images/catalog/wallets/01_bifold_wallet/espresso_brown.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-11",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-02",
@@ -2324,15 +2148,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 20
     }
    },
-   "images": [
-    "images/products/wallets/02.jpg",
-    "images/catalog/wallets/02_trifold_wallet/cognac_tan.svg",
-    "images/catalog/wallets/02_trifold_wallet/obsidian_black.svg",
-    "images/catalog/wallets/02_trifold_wallet/espresso_brown.svg"
-   ],
-   "image": "images/catalog/wallets/02_trifold_wallet/cognac_tan.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-12",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-03",
@@ -2374,15 +2193,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 21
     }
    },
-   "images": [
-    "images/products/wallets/03.jpg",
-    "images/catalog/wallets/03_slim_cardholder/obsidian_black.svg",
-    "images/catalog/wallets/03_slim_cardholder/forest_emerald.svg",
-    "images/catalog/wallets/03_slim_cardholder/crimson_burgundy.svg"
-   ],
-   "image": "images/catalog/wallets/03_slim_cardholder/obsidian_black.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-13",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-04",
@@ -2424,15 +2238,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 22
     }
    },
-   "images": [
-    "images/products/wallets/04.jpg",
-    "images/catalog/wallets/04_money_clip_wallet/royal_navy.svg",
-    "images/catalog/wallets/04_money_clip_wallet/obsidian_black.svg",
-    "images/catalog/wallets/04_money_clip_wallet/cognac_tan.svg"
-   ],
-   "image": "images/catalog/wallets/04_money_clip_wallet/royal_navy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-14",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-05",
@@ -2474,15 +2283,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 18
     }
    },
-   "images": [
-    "images/products/wallets/05.jpg",
-    "images/catalog/wallets/05_coat_executive_wallet/crimson_burgundy.svg",
-    "images/catalog/wallets/05_coat_executive_wallet/obsidian_black.svg",
-    "images/catalog/wallets/05_coat_executive_wallet/espresso_brown.svg"
-   ],
-   "image": "images/catalog/wallets/05_coat_executive_wallet/crimson_burgundy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-15",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-06",
@@ -2524,15 +2328,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 19
     }
    },
-   "images": [
-    "images/products/wallets/06.jpg",
-    "images/catalog/wallets/06_travel_passport_wallet/forest_emerald.svg",
-    "images/catalog/wallets/06_travel_passport_wallet/cognac_tan.svg",
-    "images/catalog/wallets/06_travel_passport_wallet/royal_navy.svg"
-   ],
-   "image": "images/catalog/wallets/06_travel_passport_wallet/forest_emerald.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-16",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-07",
@@ -2574,15 +2373,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 20
     }
    },
-   "images": [
-    "images/products/wallets/07.jpg",
-    "images/catalog/wallets/07_zip_around_wallet/charcoal_slate.svg",
-    "images/catalog/wallets/07_zip_around_wallet/obsidian_black.svg",
-    "images/catalog/wallets/07_zip_around_wallet/espresso_brown.svg"
-   ],
-   "image": "images/catalog/wallets/07_zip_around_wallet/charcoal_slate.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-17",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-08",
@@ -2624,15 +2418,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 21
     }
    },
-   "images": [
-    "images/products/wallets/08.jpg",
-    "images/catalog/wallets/08_popup_ejector_wallet/titanium_silver.svg",
-    "images/catalog/wallets/08_popup_ejector_wallet/obsidian_black.svg",
-    "images/catalog/wallets/08_popup_ejector_wallet/cobalt_sapphire.svg"
-   ],
-   "image": "images/catalog/wallets/08_popup_ejector_wallet/titanium_silver.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-18",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-09",
@@ -2674,15 +2463,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 22
     }
    },
-   "images": [
-    "images/products/wallets/09.jpg",
-    "images/catalog/wallets/09_keychain_coin_pouch/terracotta_rust.svg",
-    "images/catalog/wallets/09_keychain_coin_pouch/espresso_brown.svg",
-    "images/catalog/wallets/09_keychain_coin_pouch/obsidian_black.svg"
-   ],
-   "image": "images/catalog/wallets/09_keychain_coin_pouch/terracotta_rust.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-19",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-wl-10",
@@ -2724,15 +2508,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 18
     }
    },
-   "images": [
-    "images/products/wallets/10.jpg",
-    "images/catalog/wallets/10_magsafe_phone_wallet/cobalt_sapphire.svg",
-    "images/catalog/wallets/10_magsafe_phone_wallet/obsidian_black.svg",
-    "images/catalog/wallets/10_magsafe_phone_wallet/cognac_tan.svg"
-   ],
-   "image": "images/catalog/wallets/10_magsafe_phone_wallet/cobalt_sapphire.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-20",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-01",
@@ -2774,15 +2553,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 19
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/01.jpg",
-    "images/catalog/eyeglass-cases/01_hardshell_clamshell/cognac_tan.svg",
-    "images/catalog/eyeglass-cases/01_hardshell_clamshell/espresso_brown.svg",
-    "images/catalog/eyeglass-cases/01_hardshell_clamshell/obsidian_black.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/01_hardshell_clamshell/cognac_tan.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-11",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-02",
@@ -2824,15 +2598,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 20
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/02.jpg",
-    "images/catalog/eyeglass-cases/02_soft_leather_sleeve/espresso_brown.svg",
-    "images/catalog/eyeglass-cases/02_soft_leather_sleeve/cognac_tan.svg",
-    "images/catalog/eyeglass-cases/02_soft_leather_sleeve/royal_navy.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/02_soft_leather_sleeve/espresso_brown.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-12",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-03",
@@ -2874,15 +2643,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 21
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/03.jpg",
-    "images/catalog/eyeglass-cases/03_structured_magnetic_snap/obsidian_black.svg",
-    "images/catalog/eyeglass-cases/03_structured_magnetic_snap/crimson_burgundy.svg",
-    "images/catalog/eyeglass-cases/03_structured_magnetic_snap/cognac_tan.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/03_structured_magnetic_snap/obsidian_black.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-13",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-04",
@@ -2924,15 +2688,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 22
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/04.jpg",
-    "images/catalog/eyeglass-cases/04_trifold_collapsible/royal_navy.svg",
-    "images/catalog/eyeglass-cases/04_trifold_collapsible/obsidian_black.svg",
-    "images/catalog/eyeglass-cases/04_trifold_collapsible/charcoal_slate.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/04_trifold_collapsible/royal_navy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-14",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-05",
@@ -2974,15 +2733,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 18
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/05.jpg",
-    "images/catalog/eyeglass-cases/05_squeeze_top_pouch/forest_emerald.svg",
-    "images/catalog/eyeglass-cases/05_squeeze_top_pouch/espresso_brown.svg",
-    "images/catalog/eyeglass-cases/05_squeeze_top_pouch/obsidian_black.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/05_squeeze_top_pouch/forest_emerald.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-15",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-06",
@@ -3024,15 +2778,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 19
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/06.jpg",
-    "images/catalog/eyeglass-cases/06_drawstring_microfiber/champagne_silk.svg",
-    "images/catalog/eyeglass-cases/06_drawstring_microfiber/charcoal_slate.svg",
-    "images/catalog/eyeglass-cases/06_drawstring_microfiber/royal_navy.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/06_drawstring_microfiber/champagne_silk.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-16",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-07",
@@ -3074,15 +2823,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 20
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/07.jpg",
-    "images/catalog/eyeglass-cases/07_double_glasses_case/crimson_burgundy.svg",
-    "images/catalog/eyeglass-cases/07_double_glasses_case/obsidian_black.svg",
-    "images/catalog/eyeglass-cases/07_double_glasses_case/espresso_brown.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/07_double_glasses_case/crimson_burgundy.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-17",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-08",
@@ -3124,15 +2868,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 21
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/08.jpg",
-    "images/catalog/eyeglass-cases/08_zippered_eva_hard_case/charcoal_slate.svg",
-    "images/catalog/eyeglass-cases/08_zippered_eva_hard_case/olive_moss.svg",
-    "images/catalog/eyeglass-cases/08_zippered_eva_hard_case/obsidian_black.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/08_zippered_eva_hard_case/charcoal_slate.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-18",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-09",
@@ -3174,15 +2913,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 22
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/09.jpg",
-    "images/catalog/eyeglass-cases/09_belt_loop_holster/olive_moss.svg",
-    "images/catalog/eyeglass-cases/09_belt_loop_holster/espresso_brown.svg",
-    "images/catalog/eyeglass-cases/09_belt_loop_holster/cognac_tan.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/09_belt_loop_holster/olive_moss.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-19",
-   "photoCount": 1
+   "photoCount": 0
   },
   {
    "id": "p-ec-10",
@@ -3224,15 +2958,10 @@ window.BRUTBOX_CATALOG = {
      "One Size": 18
     }
    },
-   "images": [
-    "images/products/eyeglass-cases/10.jpg",
-    "images/catalog/eyeglass-cases/10_cylindrical_tube_case/terracotta_rust.svg",
-    "images/catalog/eyeglass-cases/10_cylindrical_tube_case/cognac_tan.svg",
-    "images/catalog/eyeglass-cases/10_cylindrical_tube_case/obsidian_black.svg"
-   ],
-   "image": "images/catalog/eyeglass-cases/10_cylindrical_tube_case/terracotta_rust.svg",
+   "images": [],
+   "image": "",
    "createdAt": "2026-10-20",
-   "photoCount": 1
+   "photoCount": 0
   }
  ],
  "colourHex": {

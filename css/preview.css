@@ -24,7 +24,7 @@
 .pv-close:hover { transform: scale(1.08); }
 .pv-stage { position: relative; flex: 0 0 auto; height: min(50vh, 520px); width: 100%; overflow: hidden; border-radius: 12px; background: #f4f1ec; touch-action: pan-y; }
 .pv-track { position: absolute; inset: 0; }
-.pv-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; user-select: none; will-change: transform, opacity; }
+.pv-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; user-select: none; }
 .pv-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.92); color: #182536; font-size: 1.8rem; line-height: 1; cursor: pointer; box-shadow: 0 6px 16px rgba(0,0,0,0.18); transition: transform 0.18s ease, background-color 0.2s ease; }
 .pv-nav:hover { background: #fff; transform: translateY(-50%) scale(1.07); }
 .pv-prev { left: 0.6rem; }
@@ -76,3 +76,4 @@ body.pv-lock { overflow: hidden; }
 .pv-msg.is-error { color: #b42318; }
 .pv-box { max-height: calc(100vh - 2rem); }
 .pv-stage { height: min(44vh, 460px) !important; }
+.pv-thumbs[hidden], .pv-prev[hidden], .pv-next[hidden] { display: none !important; }
