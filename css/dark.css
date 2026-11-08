@@ -1,0 +1,74 @@
+/* =====================================================================
+   BRUTBOX & CO. — dark.css
+   "Minimal dark" mode: deep neutral backgrounds, white titles, muted
+   grey text, and the same gold accent used only for key actions.
+   Applies when <html data-theme="dark"> is set (see theme-mode.js).
+   ===================================================================== */
+:root[data-theme="dark"] {
+  --bb-ink: #f2f0ec;
+  --bb-navy-deep: #ffffff;
+  --bb-muted: #a7aeb9;
+  --bb-line: #262c36;
+  --bb-surface: #151a22;
+  --bb-soft: #1b212b;
+  --bb-navy: #d9b77f;
+  color-scheme: dark;
+}
+:root[data-theme="dark"] body { background: #0c0f14; color: var(--bb-ink); }
+:root[data-theme="dark"] h1, :root[data-theme="dark"] h2, :root[data-theme="dark"] h3 { color: #ffffff; }
+:root[data-theme="dark"] p { color: var(--bb-muted); }
+:root[data-theme="dark"] a { color: #e9d3ad; }
+
+/* Header and navigation */
+:root[data-theme="dark"] .site-header { background: rgba(12, 15, 20, 0.94); border-bottom-color: var(--bb-line); }
+:root[data-theme="dark"] .desktop-nav a, :root[data-theme="dark"] .header-login { color: #c9ced6; }
+:root[data-theme="dark"] .desktop-nav a:hover, :root[data-theme="dark"] .header-login:hover { color: #ffffff; }
+:root[data-theme="dark"] .brand { color: #ffffff; }
+:root[data-theme="dark"] .cart-pill, :root[data-theme="dark"] .icon-btn, :root[data-theme="dark"] .nav-toggle, :root[data-theme="dark"] .mobile-nav > summary {
+  background: #151a22; color: #e9edf2; border-color: #303744;
+}
+:root[data-theme="dark"] .admin-menu-panel, :root[data-theme="dark"] .mobile-panel { background: #151a22; border-color: #303744; }
+:root[data-theme="dark"] .admin-menu-panel a, :root[data-theme="dark"] .mobile-panel a { color: #e4e8ee; }
+:root[data-theme="dark"] .admin-menu-panel a:hover, :root[data-theme="dark"] .mobile-panel a:hover { background: #1d2430; color: #e9d3ad; }
+
+/* Buttons: one accent for the main action, outlines for the rest */
+:root[data-theme="dark"] .btn-primary { background: #d9b77f; color: #0c0f14; }
+:root[data-theme="dark"] .btn-primary:hover { background: #ecd3a6; color: #0c0f14; }
+:root[data-theme="dark"] .btn-ghost { background: transparent; color: #e9edf2; border-color: #3a4352; }
+:root[data-theme="dark"] .btn-ghost:hover { border-color: #d9b77f; color: #ffffff; }
+
+/* Inputs */
+:root[data-theme="dark"] input, :root[data-theme="dark"] select, :root[data-theme="dark"] textarea {
+  background: #10141b; color: #f2f0ec; border-color: #303744;
+}
+:root[data-theme="dark"] input::placeholder { color: #6f7887; }
+
+/* Cards, panels and product tiles */
+:root[data-theme="dark"] .panel-card, :root[data-theme="dark"] .product-card, :root[data-theme="dark"] .category-tile,
+:root[data-theme="dark"] .kpi, :root[data-theme="dark"] .track-card, :root[data-theme="dark"] .summary-card,
+:root[data-theme="dark"] .form-panel, :root[data-theme="dark"] .cart-item {
+  background: var(--bb-surface); border-color: var(--bb-line); box-shadow: none;
+}
+:root[data-theme="dark"] .product-card:hover, :root[data-theme="dark"] .category-tile:hover { box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45); }
+:root[data-theme="dark"] .product-card-bottom strong, :root[data-theme="dark"] .shop-old { color: #f1e2c6; }
+:root[data-theme="dark"] .shop-cat-head p, :root[data-theme="dark"] .shop-rating { color: var(--bb-muted); }
+:root[data-theme="dark"] .chip { background: transparent; color: #d7dce3; border-color: #3a4352; }
+:root[data-theme="dark"] .chip.active { background: #d9b77f; color: #0c0f14; border-color: #d9b77f; }
+
+/* Bag, checkout and tracking */
+:root[data-theme="dark"] .coupon-box, :root[data-theme="dark"] .form-block { border-color: var(--bb-line); }
+:root[data-theme="dark"] .track-facts div, :root[data-theme="dark"] .track-eta, :root[data-theme="dark"] .payment-option { background: var(--bb-soft); border-color: var(--bb-line); }
+:root[data-theme="dark"] .track-steps li:not(:last-child)::before { background: #303744; }
+:root[data-theme="dark"] .track-steps li.is-done:not(:last-child)::before { background: #d9b77f; }
+:root[data-theme="dark"] .track-dot { background: #151a22; border-color: #3a4352; color: #a7aeb9; }
+:root[data-theme="dark"] .track-steps li.is-done .track-dot { background: #d9b77f; border-color: #d9b77f; color: #0c0f14; }
+:root[data-theme="dark"] .track-history li { border-color: var(--bb-line); color: #d7dce3; }
+:root[data-theme="dark"] .track-alert.is-error { background: #2a1513; border-color: #6b2a24; color: #ffb4a9; }
+
+/* Thin separators on structured content */
+:root[data-theme="dark"] .section, :root[data-theme="dark"] .shop-cat { border-color: var(--bb-line); }
+:root[data-theme="dark"] .eyebrow, :root[data-theme="dark"] .breadcrumb a:hover { color: #d9b77f; }
+:root[data-theme="dark"] .breadcrumb { color: var(--bb-muted); }
+
+/* Keep the shop pictures and banners as they are */
+:root[data-theme="dark"] .hero-banner, :root[data-theme="dark"] .shop-banner-wide { box-shadow: none; }

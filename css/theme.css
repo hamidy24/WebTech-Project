@@ -140,3 +140,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
 .footer-bottom { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.25rem 0 2rem; font-size: 0.82rem; }
 @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
 @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Theme toggle button ---------- */
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid #d6d1c7; background: #fff; color: var(--bb-navy-deep); cursor: pointer; transition: border-color .2s ease, color .2s ease; }
+.theme-toggle:hover { border-color: var(--bb-gold); color: var(--bb-gold); }
+.theme-toggle svg { display: block; }
