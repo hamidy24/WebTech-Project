@@ -1,0 +1,83 @@
+/* =====================================================================
+   BRUTBOX & CO. — track.css
+   Order lookup form, summary facts, and 6-step responsive timeline.
+   ===================================================================== */
+.track-wrap { max-width: 920px; padding-bottom: 4rem; }
+.track-form { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+.track-fields { display: grid; gap: 1rem; grid-template-columns: 1.5fr 1fr; }
+.field-stack { display: flex; flex-direction: column; gap: 0.35rem; }
+.field-stack span { font-size: 0.86rem; font-weight: 600; color: var(--navy-deep); }
+.track-note { font-size: 0.84rem; margin: 0; color: var(--muted); }
+.track-form .btn { justify-self: start; }
+
+.track-alert { padding: 0.9rem 1.15rem; border-radius: 8px; border: 1px solid; font-size: 0.92rem; }
+.track-alert.is-error { background: #fdf1f0; border-color: #efc2bd; color: var(--red); }
+
+.track-card { display: grid; gap: 1.5rem; }
+.track-card.is-cancelled { opacity: 0.9; }
+.track-head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 1rem; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 1.2rem;
+}
+.track-head h2 { margin: 0.25rem 0 0.35rem; font-size: 1.55rem; }
+.track-head p { margin: 0; }
+.track-eta {
+  background: var(--ivory); border: 1px solid var(--line);
+  border-radius: 8px; padding: 0.8rem 1rem; min-width: 190px;
+}
+.track-eta span {
+  display: block; font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--muted); font-weight: 700;
+}
+.track-eta strong { font-size: 1rem; color: var(--navy-deep); }
+
+.track-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; margin: 0; }
+.track-facts div { background: var(--ivory); border-radius: 8px; padding: 0.75rem 0.9rem; border: 1px solid var(--line); }
+.track-facts dt { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; }
+.track-facts dd { margin: 0.2rem 0 0; font-weight: 600; color: var(--navy-deep); word-break: break-word; }
+
+.track-steps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; position: relative;
+}
+.track-steps li {
+  display: grid; grid-template-columns: 1fr;
+  justify-items: center; text-align: center; gap: 0.55rem; position: relative;
+}
+.track-steps li:not(:last-child)::before {
+  content: ""; position: absolute; top: 18px;
+  left: calc(50% + 22px); right: calc(-50% + 22px); height: 2px; background: var(--line);
+}
+.track-steps li.is-done:not(:last-child)::before { background: var(--navy); }
+.track-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid #cfc9be; background: var(--surface);
+  color: var(--muted); display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.88rem; position: relative; z-index: 1;
+}
+.track-steps li.is-done .track-dot { background: var(--navy); border-color: var(--navy); color: #fff; }
+.track-steps li.is-current .track-dot { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(200, 156, 104, 0.22); }
+.track-steps strong { display: block; color: var(--navy-deep); font-size: 0.88rem; }
+.track-steps small { display: block; color: var(--muted); font-size: 0.74rem; }
+.track-steps.is-cancelled .track-dot { border-color: #efc2bd; color: var(--red); }
+
+.track-history h3 { font-size: 1rem; margin-bottom: 0.6rem; }
+.track-history ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+.track-history li {
+  display: grid; grid-template-columns: 180px 1fr; gap: 0.75rem;
+  padding: 0.55rem 0; border-bottom: 1px dashed var(--line); font-size: 0.9rem;
+}
+.track-history time { color: var(--muted); font-size: 0.82rem; font-family: var(--mono); }
+
+@media (max-width: 720px) {
+  .track-fields, .track-facts { grid-template-columns: 1fr; }
+  .track-steps { grid-template-columns: 1fr; }
+  .track-steps li {
+    grid-template-columns: 36px 1fr; justify-items: start;
+    text-align: left; align-items: start; padding-bottom: 1rem; gap: 0.85rem;
+  }
+  .track-steps li:not(:last-child)::before {
+    top: 36px; left: 17px; right: auto; bottom: 0; width: 2px; height: auto;
+  }
+  .track-history li { grid-template-columns: 1fr; gap: 0.15rem; }
+}

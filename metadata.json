@@ -1,0 +1,6 @@
+{
+  "name": "BRUTBOX & CO. — Men's Essentials",
+  "description": "Responsive men's essentials e-commerce storefront and localStorage admin control center built with HTML, CSS, and vanilla JavaScript.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

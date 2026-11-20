@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var m=localStorage.getItem("bb_theme");if(!m&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)m="dark";if(m==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Control Center | BRUTBOX &amp; CO.</title>
+  <meta name="description" content="BRUTBOX & CO. store administration dashboard for products, stock, orders, reviews, coupons, and reports." />
+  <meta name="theme-color" content="#182536" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="images/brand/favicon-64.png" />
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/dark.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <aside id="admin-side" class="admin-side" aria-label="Admin navigation">
+      <div class="side-brand">
+        <img class="brand-logo" src="images/brand/logo.png" alt="BRUTBOX &amp; CO. logo" width="40" height="40" />
+        <div>
+          <strong>BRUTBOX &amp; CO.</strong>
+          <small>Control Center</small>
+        </div>
+        <button id="side-close" class="side-close" type="button" aria-label="Close menu">&times;</button>
+      </div>
+
+      <nav class="admin-tabs" aria-label="Admin sections">
+        <button type="button" data-view="dashboard" class="is-active"><span class="ico">1</span> Dashboard</button>
+        <button type="button" data-view="upload"><span class="ico">2</span> Upload product</button>
+        <button type="button" data-view="products"><span class="ico">3</span> Products &amp; stock</button>
+        <button type="button" data-view="orders"><span class="ico">4</span> Orders &amp; delivery</button>
+        <button type="button" data-view="reviews"><span class="ico">5</span> Reviews moderation</button>
+        <button type="button" data-view="coupons"><span class="ico">6</span> Coupons</button>
+        <button type="button" data-view="reports"><span class="ico">7</span> Reports &amp; CSV</button>
+        <button type="button" data-view="activity"><span class="ico">8</span> Activity log</button>
+      </nav>
+
+      <div class="side-foot">
+        <div class="admin-side-theme"><span>Theme</span></div>
+        <span id="seat-badge" class="seat-badge">Admins: 1 / 3</span>
+        <a class="side-link" href="inventory.html">Live inventory ledger</a>
+        <a class="side-link" href="index.html">View storefront</a>
+        <button id="logout-btn" class="side-link danger" type="button">Sign out</button>
+      </div>
+    </aside>
+
+    <div class="admin-content">
+      <header class="admin-topbar">
+        <div class="admin-topbar-left">
+          <button id="side-toggle" class="side-toggle" type="button" aria-expanded="false" aria-controls="admin-side">&#9776; Menu</button>
+          <span id="topbar-title" class="topbar-title">Dashboard</span>
+        </div>
+      </header>
+
+      <main class="admin-main">
+        <!-- 1. Dashboard -->
+        <section class="view is-visible" data-section="dashboard">
+          <div class="section-head">
+            <div>
+              <h1>Store Overview</h1>
+              <p class="muted">Live browser metrics across all 60 catalogue styles, orders, and localStorage quota.</p>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-primary btn-sm" data-goto="upload">Upload new product</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-goto="orders">Manage orders</button>
+            </div>
+          </div>
+
+          <div id="status-strip" class="status-strip" hidden></div>
+          <div id="kpis" class="kpi-grid"></div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Browser Storage Quota</h2>
+              <span class="muted small">localStorage monitor</span>
+            </div>
+            <div id="storage-meter"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h2>14-Day Revenue Trend</h2>
+              <span class="muted small">Excludes cancelled orders</span>
+            </div>
+            <div id="revenue-chart" class="chart"></div>
+          </div>
+
+          <div class="two-col">
+            <div class="panel">
+              <div class="panel-head">
+                <h2>Low-Stock Watchlist</h2>
+                <button type="button" class="link-btn" data-goto="products">Edit stock</button>
+              </div>
+              <div id="low-stock"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">
+                <h2>Best-Selling Styles</h2>
+                <button type="button" class="link-btn" data-goto="reports">Full report</button>
+              </div>
+              <div id="best-sellers"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Upload Product -->
+        <section class="view" data-section="upload">
+          <div class="section-head">
+            <div>
+              <h1>Upload New Product</h1>
+              <p class="muted">Images are cropped and compressed to 1000 &times; 1000 px WebP/JPEG before saving to localStorage.</p>
+            </div>
+          </div>
+
+          <div class="two-col upload-layout">
+            <div class="panel">
+              <h2>Product Photo</h2>
+              <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Upload product image">
+                <p><strong>Drop a product photo here</strong><br /><span class="muted">or click to choose JPG, PNG, or WebP (max 15 MB)</span></p>
+                <input id="file-input" type="file" accept="image/*" hidden />
+              </div>
+              <div id="upload-preview" class="upload-preview" hidden>
+                <img id="preview-img" src="" alt="Uploaded product preview" />
+                <p id="preview-meta" class="muted small"></p>
+              </div>
+            </div>
+
+            <form id="upload-form" class="panel" novalidate>
+              <h2>Product Details &amp; Variant Stock</h2>
+              <div class="field-row">
+                <label>Product name<input id="up-name" class="input" type="text" placeholder="e.g. Silk Barathea Evening Bow Tie" required /></label>
+                <label>Category<select id="up-category" class="input"></select></label>
+              </div>
+              <div class="field-row">
+                <label>Selling price (BDT)<input id="up-price" class="input" type="number" min="1" placeholder="1450" required /></label>
+                <label>Compare-at price (optional)<input id="up-original-price" class="input" type="number" min="0" placeholder="1750" /></label>
+              </div>
+              <div class="field-row">
+                <label>Badge
+                  <select id="up-badge" class="input">
+                    <option value="">None</option>
+                    <option value="New" selected>New</option>
+                    <option value="Best seller">Best seller</option>
+                    <option value="Sale">Sale</option>
+                  </select>
+                </label>
+                <label>Colours (comma-separated)<input id="up-colors" class="input" type="text" /></label>
+              </div>
+              <label>Sizes (comma-separated)<input id="up-sizes" class="input" type="text" /></label>
+              <label>Description<textarea id="up-desc" class="input" rows="2" placeholder="Describe fabric weight, finish, and styling notes..."></textarea></label>
+
+              <p class="field-label">Initial stock matrix (units per colour &times; size)</p>
+              <div class="table-wrap" style="margin-bottom:0.85rem;">
+                <table id="stock-matrix" class="stock-matrix"></table>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Publish to store</button>
+                <button id="up-reset" type="button" class="btn btn-ghost">Reset form</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- 3. Products & Stock -->
+        <section class="view" data-section="products">
+          <div class="section-head">
+            <div>
+              <h1>Products &amp; Stock</h1>
+              <p class="muted">Edit names, categories, prices, badges, photos (up to 8), and variant stock counts.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="tool-row">
+              <label>Search products<input id="pf-search" class="input" type="search" placeholder="Search name or description..." /></label>
+              <label>Category<select id="pf-category" class="input"></select></label>
+              <label>Status
+                <select id="pf-status" class="input">
+                  <option value="all">All products</option>
+                  <option value="live">Live in store</option>
+                  <option value="hidden">Hidden</option>
+                  <option value="low">Low stock / sold out</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <details class="panel tool-panel">
+              <summary>Quick variant restock</summary>
+              <div class="field-row">
+                <label>Product<select id="rs-product" class="input"></select></label>
+                <label>Colour<select id="rs-color" class="input"></select></label>
+              </div>
+              <div class="field-row">
+                <label>Size<select id="rs-size" class="input"></select></label>
+                <label>Add units<input id="rs-amount" class="input" type="number" min="1" value="10" /></label>
+              </div>
+              <button id="rs-apply" type="button" class="btn btn-primary btn-sm">Add stock</button>
+            </details>
+
+            <details class="panel tool-panel">
+              <summary>Bulk price adjustment</summary>
+              <div class="field-row">
+                <label>Category<select id="bp-category" class="input"></select></label>
+                <label>Percentage (1–90%)<input id="bp-percent" class="input" type="number" min="1" max="90" value="10" /></label>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn btn-ghost btn-sm" data-bulk="up">Increase prices</button>
+                <button type="button" class="btn btn-ghost btn-sm" data-bulk="down">Decrease prices</button>
+              </div>
+            </details>
+          </div>
+
+          <div id="product-list" class="product-list"></div>
+        </section>
+
+        <!-- 4. Orders & Delivery -->
+        <section class="view" data-section="orders">
+          <div class="section-head">
+            <div>
+              <h1>Orders &amp; Delivery</h1>
+              <p class="muted">Advance orders through the 6-step pipeline, assign Bangladesh couriers, or cancel to restore stock.</p>
+            </div>
+            <button id="export-orders-inline" type="button" class="btn btn-ghost btn-sm">Export orders CSV</button>
+          </div>
+
+          <div class="panel">
+            <div class="tool-row" style="grid-template-columns: 1fr 220px;margin-bottom:0.85rem;">
+              <label>Search orders<input id="od-search" class="input" type="search" placeholder="Order ID, tracking code, customer, or phone..." /></label>
+              <label>Order status
+                <select id="od-status" class="input">
+                  <option value="all">All statuses</option>
+                  <option value="placed">Placed</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="packed">Packed</option>
+                  <option value="shipped">Shipped</option>
+                  <option value="out">Out for delivery</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="table-wrap">
+              <table class="data-table orders-table">
+                <thead>
+                  <tr>
+                    <th>Order / Tracking</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Courier</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="order-rows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Reviews Moderation -->
+        <section class="view" data-section="reviews">
+          <div class="section-head">
+            <div>
+              <h1>Reviews Moderation</h1>
+              <p class="muted">Approve, hide, or delete customer reviews; product ratings recalculate immediately.</p>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="tool-row" style="grid-template-columns: 1fr 200px;margin-bottom:0.85rem;">
+              <label>Search reviews<input id="rv-search" class="input" type="search" placeholder="Product, author, headline, or text..." /></label>
+              <label>Visibility
+                <select id="rv-status" class="input">
+                  <option value="all">All reviews</option>
+                  <option value="approved">Approved</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Author</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="reviews-rows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. Coupons -->
+        <section class="view" data-section="coupons">
+          <div class="section-head">
+            <div>
+              <h1>Coupon Codes</h1>
+              <p class="muted">Create new promo codes, adjust minimum spends, or enable/disable active offers.</p>
+            </div>
+          </div>
+
+          <div class="two-col" style="align-items:start;">
+            <form id="coupon-create-form" class="panel" novalidate>
+              <h2>Create Promo Code</h2>
+              <label>Coupon code<input id="cp-code" class="input" type="text" placeholder="e.g. EID15" required /></label>
+              <div class="field-row">
+                <label>Discount type
+                  <select id="cp-type" class="input">
+                    <option value="percent">Percentage (%)</option>
+                    <option value="fixed">Fixed amount (৳)</option>
+                    <option value="delivery">Delivery off (৳)</option>
+                  </select>
+                </label>
+                <label>Value<input id="cp-value" class="input" type="number" min="1" placeholder="15" required /></label>
+              </div>
+              <label>Minimum subtotal (BDT)<input id="cp-min" class="input" type="number" min="0" value="1000" /></label>
+              <label>Description<input id="cp-desc" class="input" type="text" placeholder="e.g. 15% off orders over ৳1,000" /></label>
+              <button type="submit" class="btn btn-primary">Create coupon</button>
+            </form>
+
+            <div class="panel">
+              <h2>Active &amp; Disabled Coupons</h2>
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Type</th>
+                      <th>Value</th>
+                      <th>Min Spend</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="coupon-rows"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. Reports & CSV -->
+        <section class="view" data-section="reports">
+          <div class="section-head">
+            <div>
+              <h1>Sales Reports &amp; CSV Exports</h1>
+              <p class="muted">Category mix, demand anomalies, and downloadable CSV spreadsheets.</p>
+            </div>
+            <div class="section-tools">
+              <label>Range
+                <select id="report-range" class="input">
+                  <option value="14">Last 14 days</option>
+                  <option value="30">Last 30 days</option>
+                  <option value="90">Last 90 days</option>
+                  <option value="all">All time</option>
+                </select>
+              </label>
+              <button id="export-orders" type="button" class="btn btn-ghost btn-sm">Export orders CSV</button>
+              <button id="export-stock" type="button" class="btn btn-ghost btn-sm">Export stock CSV</button>
+            </div>
+          </div>
+
+          <div id="report-kpis" class="kpi-grid"></div>
+
+          <div class="two-col">
+            <div class="panel">
+              <h2>Category Revenue Share</h2>
+              <div id="category-pie" class="pie-wrap"></div>
+            </div>
+            <div class="panel">
+              <h2>Revenue by Category</h2>
+              <div id="category-sales"></div>
+              <h3 style="margin-top:1.25rem;">Sales Anomaly Monitor</h3>
+              <div id="spike-list"></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2>Daily Breakdown</h2>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Date</th><th>Orders</th><th>Units</th><th>Revenue</th></tr>
+                </thead>
+                <tbody id="daily-rows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. Activity Log -->
+        <section class="view" data-section="activity">
+          <div class="section-head">
+            <div>
+              <h1>Admin &amp; Warehouse Activity Log</h1>
+              <p class="muted">Chronological audit trail stored locally in your browser.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <ul id="activity-list" class="activity-list"></ul>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <script src="js/store-logic.js"></script>
+  <script src="js/catalog-data.js"></script>
+  <script src="js/orders.js"></script>
+  <script src="js/admin-core.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/theme-mode.js"></script>
+</body>
+</html>

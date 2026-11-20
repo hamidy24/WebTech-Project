@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var m=localStorage.getItem("bb_theme");if(!m&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)m="dark";if(m==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Sign In | BRUTBOX &amp; CO.</title>
+  <meta name="description" content="Browser-only demo admin gate for BRUTBOX & CO. enforcing up to 3 active sessions." />
+  <meta name="theme-color" content="#1F2D4D" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="images/brand/favicon-64.png" />
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="stylesheet" href="css/dark.css" />
+</head>
+<body class="admin-login-body">
+  <main class="login-wrap">
+    <section class="login-card" aria-labelledby="admin-login-title">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+        <p class="eyebrow">Browser-only demo gate</p>
+        <div class="admin-side-theme" style="padding:0;"></div>
+      </div>
+      <h1 id="admin-login-title">BRUTBOX &amp; CO. Admin</h1>
+      <p class="muted">Store administration access (maximum 3 concurrent browser sessions).</p>
+
+      <div id="login-alert" class="alert" role="alert" hidden></div>
+
+      <form id="admin-login-form" novalidate>
+        <label>
+          Admin ID
+          <input id="admin-id" class="input" type="text" autocomplete="username" placeholder="admin1" required />
+        </label>
+        <label>
+          Password
+          <input id="admin-password" class="input" type="password" autocomplete="current-password" placeholder="Enter password" required />
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Sign in to control center</button>
+      </form>
+
+      <p id="seat-count" class="seat-line">0 of 3 active sessions</p>
+      <p class="fine-print" style="text-align:center;">Browser-only demo gate: credentials <strong class="num">admin1</strong> / <strong class="num">brut1234</strong>. All session seats and edits stay in localStorage.</p>
+      <div style="text-align:center;margin-top:0.9rem;">
+        <a href="index.html" class="link-btn">&larr; Back to storefront</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/store-logic.js"></script>
+  <script src="js/catalog-data.js"></script>
+  <script src="js/orders.js"></script>
+  <script src="js/admin-core.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script src="js/theme-mode.js"></script>
+</body>
+</html>

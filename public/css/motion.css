@@ -1,0 +1,27 @@
+/* =====================================================================
+   BRUTBOX & CO. — motion.css
+   Subtle GPU-composited scroll reveals; respects prefers-reduced-motion.
+   ===================================================================== */
+.js-motion [data-reveal],
+.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--reveal-delay, var(--d, 0ms));
+}
+.js-motion [data-reveal].is-revealed,
+.js-motion [data-reveal].is-visible,
+.js-motion .reveal.is-revealed,
+.js-motion .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,132 @@
+/* =====================================================================
+   BRUTBOX & CO. — checkout.css
+   Checkout delivery form, Bangladeshi district/phone fields, payment
+   simulation selector, and order summary card.
+   ===================================================================== */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(290px, 0.78fr);
+  gap: 2.5rem;
+  align-items: start;
+  padding-bottom: 4.5rem;
+}
+
+.checkout-main { min-width: 0; }
+
+.delivery-card .form-intro {
+  color: var(--muted);
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+}
+.delivery-card label em { color: var(--red); font-style: normal; }
+
+.form-block {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line);
+}
+.form-block:first-of-type { border-top: 0; padding-top: 0.2rem; }
+
+.block-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1.05rem;
+  margin: 0 0 1rem;
+  color: var(--navy-deep);
+}
+.block-no {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex: 0 0 auto;
+}
+
+.field-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+.field.full { grid-column: 1 / -1; }
+
+.payment-group { border: 0; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+.payment-option {
+  cursor: pointer;
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.95rem 1.15rem;
+  background: var(--surface);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.payment-option:hover,
+.payment-option:has(input:checked) {
+  background: #fbf6ed;
+  border-color: var(--gold);
+}
+.payment-option input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  accent-color: var(--navy);
+  flex-shrink: 0;
+}
+.payment-option > span { display: flex; flex-direction: column; flex: 1; }
+.payment-option strong { font-size: 0.95rem; color: var(--navy-deep); }
+.payment-option small { font-size: 0.8rem; color: var(--muted); }
+.payment-option > b {
+  font-size: 0.76rem;
+  font-family: var(--mono);
+  color: var(--gold-strong);
+  white-space: nowrap;
+}
+
+.payment-note {
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 0.95rem;
+  border: 1px solid #e6dcc8;
+  border-radius: 8px;
+  background: var(--ivory);
+  font-size: 0.86rem;
+  color: var(--ink);
+}
+
+.checkout-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.checkout-items-list {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+.summary-item-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+.summary-item-line strong { color: var(--navy-deep); white-space: nowrap; }
+
+@media (max-width: 860px) {
+  .checkout-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .field-grid { grid-template-columns: 1fr; }
+  .field.full { grid-column: auto; }
+  .checkout-bottom { flex-direction: column; align-items: stretch; }
+}
