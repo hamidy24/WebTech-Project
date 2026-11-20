@@ -1,0 +1,73 @@
+/* =====================================================================
+   BRUTBOX & CO. — receipt.css
+   80 mm thermal printable receipt preview & print layout.
+   ===================================================================== */
+.receipt-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  padding-bottom: 4.5rem;
+}
+
+.receipt-explainer { padding-top: 0.5rem; }
+.receipt-explainer h2 { margin-bottom: 0.75rem; }
+.receipt-explainer p { max-width: 460px; color: var(--muted); }
+.receipt-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem; }
+
+.receipt-paper {
+  width: 80mm;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px dashed #8b8b8b;
+  padding: 7mm 5mm;
+  font-family: var(--mono), Consolas, 'Courier New', monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  color: #111;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+.receipt-paper h2 {
+  font-family: var(--mono), monospace;
+  font-size: 17px;
+  text-align: center;
+  color: #111;
+  margin: 0;
+}
+.receipt-center { text-align: center; }
+.receipt-center p { font-size: 10px; margin: 2px 0; color: #333; }
+.receipt-paper hr { border: 0; border-top: 1px dashed #777; margin: 10px 0; }
+.receipt-row { display: flex; justify-content: space-between; gap: 10px; padding: 2px 0; }
+.receipt-row strong { text-align: right; }
+.receipt-items > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px 62px;
+  gap: 6px;
+  margin: 5px 0;
+}
+.receipt-items > div > *:nth-child(2) { text-align: center; }
+.receipt-items > div > *:nth-child(3) { text-align: right; }
+.receipt-head { border-bottom: 1px dashed #999; padding-bottom: 6px; }
+.receipt-grand { font-size: 13px; font-weight: 700; }
+.receipt-track { font-size: 10px; text-align: center; word-break: break-word; }
+.receipt-track a { text-decoration: underline; }
+.receipt-thanks { padding-top: 6px; }
+.receipt-thanks p { font-size: 9.5px; }
+
+@media (max-width: 820px) {
+  .receipt-layout { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media print {
+  @page { size: 80mm auto; margin: 0; }
+  body { background: #fff !important; }
+  .receipt-layout { display: block; width: 80mm; margin: 0 auto; padding: 0; }
+  .receipt-paper {
+    width: 80mm;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+    padding: 5mm 3mm;
+  }
+  .page-hero, .receipt-explainer, #receipt-placed-banner { display: none !important; }
+}

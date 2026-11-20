@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var m=localStorage.getItem("bb_theme");if(!m&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)m="dark";if(m==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Inventory &amp; Restock Ledger | BRUTBOX &amp; CO.</title>
+  <meta name="description" content="Inspect live variant-level SKU stock counts across 60 products, restock quantities, and audit the warehouse activity log." />
+  <meta name="theme-color" content="#1F2D4D" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="images/brand/favicon-64.png" />
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link rel="stylesheet" href="css/inventory.css" />
+  <link rel="stylesheet" href="css/motion.css" />
+  <link rel="stylesheet" href="css/dark.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="topbar">BRUTBOX &amp; CO. &middot; LIVE WAREHOUSE STOCK LEDGER</div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <details class="mobile-nav">
+          <summary aria-label="Open navigation menu">&#9776; <span>Menu</span></summary>
+          <nav aria-label="Mobile navigation" class="mobile-panel">
+            <a href="index.html">Home</a>
+            <a href="products.html">Shop all 60 styles</a>
+            <a href="cart.html">Shopping bag</a>
+            <a href="track.html">Track order</a>
+            <a href="login.html">Account</a>
+            <a href="inventory.html" aria-current="page">Live inventory</a>
+            <a href="admin-login.html">Admin portal</a>
+          </nav>
+        </details>
+        <a aria-label="BRUTBOX and CO. home" class="brand" href="index.html">
+          <img class="brand-logo" src="images/brand/logo.png" alt="BRUTBOX &amp; CO. logo" width="40" height="40" />
+          <span class="brand-text">BRUTBOX <span>&amp; CO.</span></span>
+        </a>
+      </div>
+      <nav aria-label="Main navigation" class="desktop-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="track.html">Track order</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-login" href="login.html">Account</a>
+        <a aria-label="View bag" class="cart-pill" href="cart.html">Bag <span>00</span></a>
+        <details class="admin-menu">
+          <summary aria-label="Admin tools" title="Admin tools">
+            <span class="admin-led" aria-hidden="true"></span>
+            <span class="admin-label">ADMIN</span>
+            <svg class="admin-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="admin-menu-panel" role="menu">
+            <p class="admin-menu-title">Store Administration &middot; ID &amp; Password Required</p>
+            <a href="admin-login.html" data-admin-action="login" role="menuitem">Admin sign in</a>
+            <a href="admin.html#dashboard" data-admin-action="control" role="menuitem">Control center</a>
+            <a href="inventory.html" data-admin-action="inventory" role="menuitem" aria-current="page">Live inventory</a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container inventory-overview" hidden>
+    <section class="page-hero">
+      <p class="breadcrumb"><a href="index.html">Home</a> / <a href="admin-login.html">Admin</a> / Live Inventory</p>
+      <h1>Live Variant Inventory</h1>
+      <p>Real-time colour &times; size stock synced with browser checkout deductions, order cancellations, and warehouse restocks.</p>
+    </section>
+
+    <section class="inventory-intro-grid" aria-label="Stock summary">
+      <div class="stat-card">
+        <span>Total units on hand</span>
+        <strong id="inv-kpi-total" class="num">0</strong>
+        <small>Across all 60 styles &amp; variants</small>
+      </div>
+      <div class="stat-card">
+        <span>Low-stock variants (&le; 5)</span>
+        <strong id="inv-kpi-low" class="num">0</strong>
+        <small>Highlighted for replenishment</small>
+      </div>
+      <div class="stat-card">
+        <span>Sold-out variants</span>
+        <strong id="inv-kpi-out" class="num">0</strong>
+        <small>Add-to-bag disabled until restocked</small>
+      </div>
+    </section>
+
+    <section aria-label="Stock table">
+      <div class="inventory-toolbar">
+        <div class="field">
+          <label for="inv-search">Filter by SKU, product name, colour, or size</label>
+          <input id="inv-search" type="search" placeholder="Search SKU, product, colour..." />
+        </div>
+        <div class="field">
+          <label for="inv-cat">Category</label>
+          <select id="inv-cat">
+            <option value="all">All categories</option>
+            <option value="underwear">Underwear</option>
+            <option value="bow-ties">Bow Ties</option>
+            <option value="pocket-squares">Pocket Squares</option>
+            <option value="socks">Men's Socks</option>
+            <option value="wallets">Wallets</option>
+            <option value="eyeglass-cases">Eyeglass Cases</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="responsive-table">
+        <table>
+          <thead>
+            <tr>
+              <th>SKU</th>
+              <th>Product</th>
+              <th>Colour</th>
+              <th>Size</th>
+              <th>Available</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="inv-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="inventory-bottom-grid" aria-label="Restock and activity log">
+      <form id="inv-restock-form" class="panel-card inventory-form">
+        <h2>Quick restock SKU</h2>
+        <div class="field">
+          <label for="sku-select">Choose variant SKU</label>
+          <select id="sku-select"></select>
+        </div>
+        <div class="field">
+          <label for="stock-add">Units to add</label>
+          <input id="stock-add" type="number" min="1" max="500" value="10" required />
+        </div>
+        <div class="field">
+          <label for="stock-reason">Batch note / reason</label>
+          <select id="stock-reason">
+            <option value="Supplier restock">Supplier restock</option>
+            <option value="Banani warehouse transfer">Banani warehouse transfer</option>
+            <option value="Return inspection restock">Return inspection restock</option>
+            <option value="Cycle count adjustment">Cycle count adjustment</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Apply restock</button>
+      </form>
+
+      <div class="panel-card">
+        <h2>Warehouse activity log</h2>
+        <ul id="inv-activity-list" class="inv-activity-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" style="color:#fff">
+          <img class="brand-logo" src="images/brand/logo.png" alt="BRUTBOX &amp; CO. logo" width="44" height="44" />
+          <span class="brand-text">BRUTBOX <span>&amp; CO.</span></span>
+        </a>
+        <p>Understated daily tailoring and wardrobe essentials for the modern gentleman, dispatched from Banani, Dhaka.</p>
+        <div class="footer-socials" aria-label="Social links">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <nav class="footer-col" aria-label="Shop categories">
+        <h4>Shop</h4>
+        <a href="products.html">All 60 products</a>
+        <a href="products.html?cat=underwear">Underwear</a>
+        <a href="products.html?cat=bow-ties">Bow Ties</a>
+        <a href="products.html?cat=pocket-squares">Pocket Squares</a>
+        <a href="products.html?cat=socks">Men's Socks</a>
+        <a href="products.html?cat=wallets">Wallets</a>
+        <a href="products.html?cat=eyeglass-cases">Eyeglass Cases</a>
+      </nav>
+      <nav class="footer-col" aria-label="Policies and support">
+        <h4>Policies &amp; Care</h4>
+        <a href="track.html">Track Order</a>
+        <a href="shipping.html">Shipping &amp; Delivery</a>
+        <a href="returns.html">Returns &amp; Refunds</a>
+        <a href="contact.html">Contact &amp; FAQ</a>
+        <a href="account.html">My Account</a>
+        <a href="admin-login.html">Admin Panel</a>
+      </nav>
+      <div class="footer-col">
+        <h4>Dhaka Atelier</h4>
+        <p>House 14, Road 11, Banani, Dhaka 1213</p>
+        <p class="num">+880 1711-000111</p>
+        <p>care@brutbox.co</p>
+        <p>Sat–Thu, 10:00 AM – 8:00 PM BST</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 BRUTBOX &amp; CO. All rights reserved.</span>
+      <span>Delivery ৳120 (free over ৳3,000) &middot; 5% VAT &middot; Local browser persistence</span>
+    </div>
+  </footer>
+
+  <script src="js/store-logic.js"></script>
+  <script src="js/catalog-data.js"></script>
+  <script src="js/orders.js"></script>
+  <script src="js/admin-core.js"></script>
+  <script src="js/admin-auth.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/theme-mode.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>

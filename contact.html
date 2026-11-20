@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){try{var m=localStorage.getItem("bb_theme");if(!m&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)m="dark";if(m==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}})();</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact &amp; FAQ | BRUTBOX &amp; CO.</title>
+  <meta name="description" content="Get in touch with BRUTBOX & CO. Banani atelier in Dhaka, validate inquiries, and browse frequently asked questions." />
+  <meta name="theme-color" content="#1F2D4D" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="images/brand/favicon-64.png" />
+  <link rel="apple-touch-icon" href="images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link rel="stylesheet" href="css/motion.css" />
+  <link rel="stylesheet" href="css/dark.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="topbar">BRUTBOX &amp; CO. &middot; FREE DELIVERY OVER ৳3,000 ACROSS BANGLADESH</div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-left">
+        <details class="mobile-nav">
+          <summary aria-label="Open navigation menu">&#9776; <span>Menu</span></summary>
+          <nav aria-label="Mobile navigation" class="mobile-panel">
+            <a href="index.html">Home</a>
+            <a href="products.html">Shop all 60 styles</a>
+            <a href="cart.html">Shopping bag</a>
+            <a href="track.html">Track order</a>
+            <a href="login.html">Account</a>
+            <a href="shipping.html">Shipping &amp; delivery</a>
+            <a href="returns.html">Returns &amp; refunds</a>
+            <a href="contact.html" aria-current="page">Contact &amp; FAQ</a>
+            <a href="admin-login.html">Admin portal</a>
+          </nav>
+        </details>
+        <a aria-label="BRUTBOX and CO. home" class="brand" href="index.html">
+          <img class="brand-logo" src="images/brand/logo.png" alt="BRUTBOX &amp; CO. logo" width="40" height="40" />
+          <span class="brand-text">BRUTBOX <span>&amp; CO.</span></span>
+        </a>
+      </div>
+      <nav aria-label="Main navigation" class="desktop-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="track.html">Track order</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-login" href="login.html">Account</a>
+        <a aria-label="View bag" class="cart-pill" href="cart.html">Bag <span>00</span></a>
+        <details class="admin-menu">
+          <summary aria-label="Admin tools" title="Admin tools">
+            <span class="admin-led" aria-hidden="true"></span>
+            <span class="admin-label">ADMIN</span>
+            <svg class="admin-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="admin-menu-panel" role="menu">
+            <p class="admin-menu-title">Store Administration &middot; ID &amp; Password Required</p>
+            <a href="admin-login.html" data-admin-action="login" role="menuitem">Admin sign in</a>
+            <a href="admin.html#dashboard" data-admin-action="control" role="menuitem">Control center</a>
+            <a href="inventory.html" data-admin-action="inventory" role="menuitem">Live inventory</a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="page-hero">
+      <p class="breadcrumb"><a href="index.html">Home</a> / Contact &amp; FAQ</p>
+      <h1>Contact Us &amp; Common Questions</h1>
+      <p>Reach our Banani atelier team for sizing advice, gift boxes, or order support.</p>
+    </section>
+
+    <div class="contact-layout">
+      <form id="contact-form" class="panel-card contact-form" novalidate>
+        <h2>Send a message</h2>
+        <div id="ct-status" class="alert alert-success" role="status" hidden></div>
+        <div class="field">
+          <label for="ct-name">Your name</label>
+          <input id="ct-name" type="text" placeholder="e.g. Farhan Kabir" required />
+          <small class="field-error" id="err-ct-name"></small>
+        </div>
+        <div class="field">
+          <label for="ct-email">Email address</label>
+          <input id="ct-email" type="email" placeholder="farhan@example.com" required />
+          <small class="field-error" id="err-ct-email"></small>
+        </div>
+        <div class="field">
+          <label for="ct-topic">Topic</label>
+          <select id="ct-topic">
+            <option value="Order support">Order support &amp; tracking</option>
+            <option value="Sizing & fit">Sizing &amp; fabric care</option>
+            <option value="Returns & exchanges">Returns &amp; exchanges</option>
+            <option value="Corporate gifting">Corporate gift boxes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ct-message">Message</label>
+          <textarea id="ct-message" rows="4" placeholder="Include your order number if asking about a parcel..." required></textarea>
+          <small class="field-error" id="err-ct-message"></small>
+        </div>
+        <button type="submit" class="btn btn-primary">Send inquiry</button>
+      </form>
+
+      <div>
+        <div class="panel-card" style="margin-bottom:1.5rem;">
+          <h2>Banani Studio Details</h2>
+          <p><strong>Address:</strong> House 14, Road 11, Banani, Dhaka 1213</p>
+          <p><strong>Phone:</strong> <span class="num">+880 1711-000111</span></p>
+          <p><strong>Email:</strong> care@brutbox.co</p>
+          <p style="margin-bottom:0;"><strong>Hours:</strong> Saturday – Thursday, 10:00 AM – 8:00 PM BST</p>
+        </div>
+
+        <section aria-label="Frequently asked questions">
+          <h2>Frequently asked questions</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Which coupon codes can I test in my bag?</summary>
+              <p>Use <strong class="num">WELCOME10</strong> for 10% off orders over ৳1,000, <strong class="num">BRUT20</strong> for ৳500 off orders over ৳2,500, or <strong class="num">FREESHIP</strong> to waive the ৳120 delivery charge on orders over ৳500.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How do I qualify for free nationwide delivery?</summary>
+              <p>Any order with a merchandise subtotal of ৳3,000 or more receives complimentary nationwide delivery automatically—no coupon required.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How is VAT calculated at checkout?</summary>
+              <p>A 5% VAT rate is calculated strictly on your discounted merchandise subtotal before delivery fees are added.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can I track an order without creating an account?</summary>
+              <p>Yes. Visit the <a href="track.html">Track Order</a> page and enter your order number or tracking code along with the last four digits of your phone number.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is real money charged during checkout?</summary>
+              <p>No. Cash on Delivery, bKash, Nagad, and Card options on this project run as simulated browser demonstrations—no real payment is processed.</p>
+            </details>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html" style="color:#fff">
+          <img class="brand-logo" src="images/brand/logo.png" alt="BRUTBOX &amp; CO. logo" width="44" height="44" />
+          <span class="brand-text">BRUTBOX <span>&amp; CO.</span></span>
+        </a>
+        <p>Understated daily tailoring and wardrobe essentials for the modern gentleman, dispatched from Banani, Dhaka.</p>
+        <div class="footer-socials" aria-label="Social links">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <nav class="footer-col" aria-label="Shop categories">
+        <h4>Shop</h4>
+        <a href="products.html">All 60 products</a>
+        <a href="products.html?cat=underwear">Underwear</a>
+        <a href="products.html?cat=bow-ties">Bow Ties</a>
+        <a href="products.html?cat=pocket-squares">Pocket Squares</a>
+        <a href="products.html?cat=socks">Men's Socks</a>
+        <a href="products.html?cat=wallets">Wallets</a>
+        <a href="products.html?cat=eyeglass-cases">Eyeglass Cases</a>
+      </nav>
+      <nav class="footer-col" aria-label="Policies and support">
+        <h4>Policies &amp; Care</h4>
+        <a href="track.html">Track Order</a>
+        <a href="shipping.html">Shipping &amp; Delivery</a>
+        <a href="returns.html">Returns &amp; Refunds</a>
+        <a href="contact.html">Contact &amp; FAQ</a>
+        <a href="account.html">My Account</a>
+        <a href="admin-login.html">Admin Panel</a>
+      </nav>
+      <div class="footer-col">
+        <h4>Dhaka Atelier</h4>
+        <p>House 14, Road 11, Banani, Dhaka 1213</p>
+        <p class="num">+880 1711-000111</p>
+        <p>care@brutbox.co</p>
+        <p>Sat–Thu, 10:00 AM – 8:00 PM BST</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>&copy; 2026 BRUTBOX &amp; CO. All rights reserved.</span>
+      <span>Delivery ৳120 (free over ৳3,000) &middot; 5% VAT &middot; Local browser persistence</span>
+    </div>
+  </footer>
+
+  <script src="js/store-logic.js"></script>
+  <script src="js/catalog-data.js"></script>
+  <script src="js/orders.js"></script>
+  <script src="js/admin-core.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/theme-mode.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>

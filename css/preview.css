@@ -1,0 +1,202 @@
+/* =====================================================================
+   BRUTBOX & CO. — preview.css
+   Quick-view modal & size-guide dialog.
+   ===================================================================== */
+.pv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(10, 16, 26, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+.pv-overlay.is-open { opacity: 1; visibility: visible; }
+body.pv-lock { overflow: hidden; }
+
+.pv-box {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  background: var(--surface, #fff);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38);
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.pv-overlay.is-open .pv-box { transform: none; }
+
+.pv-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(24, 37, 54, 0.88);
+  color: #fff;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pv-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.35rem;
+  align-items: start;
+}
+
+.pv-stage {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--ivory, #f7f5f1);
+  border: 1px solid var(--line, #e2dfd8);
+  touch-action: pan-y;
+}
+.pv-track { position: absolute; inset: 0; }
+.pv-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.pv-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--navy-deep, #182536);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+}
+.pv-prev { left: 0.5rem; }
+.pv-next { right: 0.5rem; }
+.pv-thumbs { display: flex; gap: 0.5rem; overflow-x: auto; margin-top: 0.6rem; }
+.pv-thumbs button {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--ivory);
+  opacity: 0.65;
+}
+.pv-thumbs button img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pv-thumbs button.is-active { opacity: 1; border-color: var(--gold, #c89c68); }
+.pv-thumbs[hidden], .pv-prev[hidden], .pv-next[hidden] { display: none !important; }
+
+.pv-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+  padding-right: 2.25rem;
+}
+.pv-cat {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted, #5a6675);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.pv-name {
+  font-family: var(--display, 'Roboto', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy-deep, #182536);
+}
+.pv-price { color: var(--gold-strong, #9a6a2e); font-weight: 700; font-size: 1.1rem; margin-top: 0.25rem; }
+.pv-old { color: #9aa0a6; font-size: 0.9rem; margin-left: 0.35rem; }
+.pv-count { color: var(--muted); font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
+
+.pv-options { display: grid; gap: 0.8rem; }
+.pv-row { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
+.pv-label { font-size: 0.78rem; font-weight: 700; color: var(--navy-deep); min-width: 60px; text-transform: uppercase; letter-spacing: 0.08em; }
+.pv-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.pv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.38rem 0.68rem;
+  border-radius: 6px;
+  border: 1px solid #d5cfc5;
+  background: var(--surface, #fff);
+  color: var(--ink);
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+.pv-chip i { width: 11px; height: 11px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, 0.2); display: inline-block; }
+.pv-chip.is-active { border-color: var(--gold, #c89c68); box-shadow: 0 0 0 2px rgba(200, 156, 104, 0.22); }
+.pv-select { width: auto; min-width: 140px; min-height: 38px; padding: 0.35rem 0.65rem; }
+
+.pv-qty { display: inline-flex; align-items: center; border: 1px solid #d5cfc5; border-radius: 6px; overflow: hidden; }
+.pv-qty button { width: 34px; height: 34px; border: 0; background: var(--surface, #fff); color: var(--ink); font-size: 1.05rem; cursor: pointer; }
+.pv-qty-n { min-width: 34px; text-align: center; font-weight: 700; font-family: var(--mono); }
+
+.pv-stock { margin: 0; font-size: 0.85rem; color: var(--green, #1e5f44); font-weight: 600; }
+.pv-stock.is-low { color: var(--amber, #9a6700); }
+.pv-stock.is-out { color: var(--red, #b42318); }
+
+.pv-cta-row { display: flex; gap: 0.55rem; flex-wrap: wrap; }
+.pv-desc { margin: 0.25rem 0 0; font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+.pv-details-link { margin-top: 0.25rem; }
+.pv-msg { margin: 0.4rem 0 0; font-size: 0.85rem; min-height: 1.1em; }
+.pv-msg.is-ok { color: var(--green); }
+.pv-msg.is-error { color: var(--red); }
+
+/* Size guide dialog */
+.js-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 20, 32, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2100;
+}
+.js-modal {
+  background: var(--surface, #fff);
+  color: var(--ink);
+  max-width: 460px;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+.js-modal h2 { margin: 0.2rem 0 0.75rem; font-size: 1.45rem; }
+.js-modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem; }
+
+@media (max-width: 680px) {
+  .pv-layout { grid-template-columns: 1fr; }
+}
